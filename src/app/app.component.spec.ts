@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'qr-link'`, () => {
+  it(`should have as title 'vc-angular-boilerplate'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('qr-link');
+    expect(app.title).toEqual('vc-angular-boilerplate');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('qr-link app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('vc-angular-boilerplate app is running!');
   });
 });

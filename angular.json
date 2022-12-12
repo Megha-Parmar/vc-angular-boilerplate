@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "qr-link": {
+    "vc-angular-boilerplate": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/qr-link",
+            "outputPath": "dist/vc-angular-boilerplate",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "qr-link:build:production"
+              "browserTarget": "vc-angular-boilerplate:build:production"
             },
             "development": {
-              "browserTarget": "qr-link:build:development"
+              "browserTarget": "vc-angular-boilerplate:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "qr-link:build"
+            "browserTarget": "vc-angular-boilerplate:build"
           }
         },
         "test": {
