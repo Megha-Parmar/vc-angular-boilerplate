@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class Error403Component {
 
-  cdnURL = environment.BASE_URL;
+  readonly CDN_URL = environment.contentful.CDN_URL;
   constructor(private router: Router) { }
 
   goTOBack(): void {

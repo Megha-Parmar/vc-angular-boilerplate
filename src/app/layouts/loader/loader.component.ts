@@ -8,6 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class LoaderComponent {
 
-  CDN_URL = environment.contentful.CDN_URL;
+  readonly CDN_URL = environment.contentful.CDN_URL;
   constructor() { }
 }

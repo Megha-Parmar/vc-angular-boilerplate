@@ -1,6 +1,6 @@
-import { environment } from 'src/environments/environment';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-not-found',
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NotFoundComponent {
 
-  cdnURL = environment.BASE_URL;
+  readonly CDN_URL = environment.contentful.CDN_URL;
   constructor(private router: Router) { }
 
   goTOBack(): void {
