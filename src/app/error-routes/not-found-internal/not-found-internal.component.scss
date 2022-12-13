@@ -1,0 +1,62 @@
+.error-contain {
+    height: calc(100vh - 60px);
+
+    .img-box {
+      margin-right: 30px;
+
+      img {
+        width: 160px;
+      }
+    }
+
+    h2 {
+      font-size: 110px;
+      color: #183a64;
+      line-height: 85px;
+      position: relative;
+
+      &:before {
+        content: "Oops!";
+        color: #e2e2e2;
+        font-size: 130px;
+        font-weight: 300;
+        display: block;
+      }
+
+      span {
+        margin-top: -10px;
+        display: block;
+      }
+    }
+
+    h5 {
+      color: #50b0ef;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .error-contain {
+      .img-box {
+        img {
+          width: 130px;
+        }
+      }
+
+      h2 {
+        font-size: 80px;
+        line-height: 65px;
+
+        &:before {
+          font-size: 100px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .error-contain {
+      .img-box {
+        display: none;
+      }
+    }
+  }

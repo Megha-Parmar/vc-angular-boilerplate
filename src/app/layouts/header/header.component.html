@@ -1,0 +1,37 @@
+<div class="header-wrapper">
+  <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="header-left">
+      <a title="{{ 'loginPage.logoTitle' | translate }}">
+        <img class="logo" rel="preload" src="{{baseUrl}}assets/images/logo.svg" title="{{ 'loginPage.logoTitle' | translate }}" width="68" height="82"
+          alt="{{ 'loginPage.logoTitle' | translate }}" />
+      </a>
+    </div>
+    <div class="user-menu position-relative" fxLayout="row" fxLayoutAlign="space-between center">
+      <button fxLayoutAlign="space-between center" class="user-name trans p-0 border-0" [matMenuTriggerFor]="menu"
+        title="{{userName || 'headerPage.adminTitleText' | translate }}">
+        <span class="user-img-box d-inline-block">
+          <img rel="preload" class="user-img" *ngIf="profileImage; else defaultImage" [src]="CDN_URL + profileImage"
+            title="{{ 'profilePage.userProfileTitle' | translate }}" width="40" height="40" alt="{{ 'profilePage.userProfileTitle' | translate }}" />
+        </span>
+        <ng-template #defaultImage>
+          <span class="user-img-box d-inline-block">
+            <img rel="preload" class="user-img" src="{{baseUrl}}assets/images/demo-user.png" title="{{ 'profilePage.userProfileTitle' | translate }}" width="40"
+              height="40" alt="{{ 'profilePage.userProfileTitle' | translate }}" />
+          </span>
+        </ng-template>
+        <strong class="m-l-8">{{userName || 'headerPage.adminTitleText' | translate }} </strong>
+      </button>
+      <mat-menu #menu="matMenu" class="custom-dropdown" yPosition="above" xPosition="before">
+        <button mat-menu-item (click)="goToUserProfile()">
+          <mat-icon>mood</mat-icon>{{ "headerPage.myProfileTitleText" | translate }}
+        </button>
+        <button mat-menu-item (click)="goToChangePassword()">
+          <mat-icon>lock</mat-icon>{{ "headerPage.changePasswordTitleText" | translate }}
+        </button>
+        <button mat-menu-item (click)="goToLogout()">
+          <mat-icon>logout</mat-icon>{{ "headerPage.logoutTitleText" | translate }}
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>

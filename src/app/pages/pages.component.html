@@ -1,0 +1,10 @@
+<div fxLayout="row" class="page-wrapper">
+  <app-sidebar [isOpended]="isOpen"></app-sidebar>
+  <div class="content-wrapper position-relative">
+    <app-header></app-header>
+    <div class="content-area custom-scrollbar">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>
