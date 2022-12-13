@@ -27,10 +27,11 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   /**
-     * Set the language
-     *
-     * param lang
-    */
+   *
+   *
+   * @param {string} lang
+   * @memberof AppComponent
+   */
   setLanguage(lang: string): void {
     this.selectedLanguage = lang;
     this.encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.selectedLanguage, this.selectedLanguage);
