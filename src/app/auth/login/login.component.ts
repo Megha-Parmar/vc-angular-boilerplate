@@ -16,7 +16,6 @@ import { environment } from 'src/environments/environment';
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup | undefined;
   submitted: boolean = false;
-  loading: boolean = false;
   passwordToggle = true;
   readonly CDN_URL = environment.contentful.CDN_URL;
   public passwordFieldInputType = 'password';
@@ -51,10 +50,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   loginUser(): void {
-    this.submitted = true;
     if (this.loginForm?.invalid) {
       return;
     } // stop here if form is invalid
+    this.submitted = true;
     this._loaderService.showHideLoader(true);
     const params = {
       email: this.loginForm?.controls['email'].value,
@@ -67,9 +66,11 @@ export class LoginComponent implements OnInit, OnDestroy {
           console.log('resp)', resp);
         }
         this._loaderService.showHideLoader(false);
+        this.submitted = false;
       },
       error: () => {
         this._loaderService.showHideLoader(false);
+        this.submitted = false;
       },
     });
   }
