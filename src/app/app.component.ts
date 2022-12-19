@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Constants } from './core/constants/app.constants';
 
@@ -10,7 +10,7 @@ import { LoaderService } from './core/services/loader.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, AfterContentInit, OnDestroy {
 
   title = 'vc-angular-boilerplate';
   selectedLanguage = '';
@@ -26,9 +26,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loaderService.showHideLoader(true);
+  }
+
+  ngAfterContentInit(): void {
     setTimeout(() => {
       this.loaderService.showHideLoader(false);
-    }, 600);
+    }, 800);
   }
 
   /**

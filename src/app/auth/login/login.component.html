@@ -20,10 +20,10 @@
           </mat-form-field>
         </p>
 
-
-
         <div class="button">
-          <button type="submit" mat-button>{{ 'loginPage.loginTitle' | translate }}</button>
+          <button [disabled]="loading" [ngClass]="{ 'disabled': loading }" type="submit" mat-button>
+            {{ ( loading ? 'loginPage.loggingInTitle' : 'loginPage.loginTitle' ) | translate}}
+          </button>
         </div>
 
       </form>

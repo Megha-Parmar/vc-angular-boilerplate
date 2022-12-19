@@ -34,6 +34,7 @@ const routes: Routes = [
     MatCardModule,
     MatInputModule,
   ],
-  providers: []
+  providers: [
+  ]
 })
 export class AuthModule { }

@@ -6,7 +6,6 @@ import {
 } from '@angular/material/snack-bar';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -21,7 +20,6 @@ export class ToasterService {
   constructor(
     private matToaster: MatSnackBar,
     private translateService: TranslateService,
-    private authenticationService: AuthenticationService
   ) {
     this.languageOnChange();
     // const userData: any = this.authenticationService.currentUserValue;

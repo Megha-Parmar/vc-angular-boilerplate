@@ -1,14 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { LoaderService } from 'src/app/core/services/loader.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { environment } from 'src/environments/environment';
 
@@ -29,16 +25,17 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     public router: Router,
-    private authenticationService: AuthenticationService,
+    private _authenticationService: AuthenticationService,
     public formBuilder: FormBuilder,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private _loaderService: LoaderService,
   ) { }
 
   ngOnInit(): void {
     this.initializeForm();
   }
 
-  initializeForm() {
+  initializeForm(): void {
     this.loginForm = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -53,17 +50,28 @@ export class LoginComponent implements OnInit, OnDestroy {
     return this.loginForm?.controls;
   }
 
-  loginUser() {
+  loginUser(): void {
     this.submitted = true;
     if (this.loginForm?.invalid) {
       return;
     } // stop here if form is invalid
-    // this.loading = true;
+    this._loaderService.showHideLoader(true);
     const params = {
       email: this.loginForm?.controls['email'].value,
       password: this.loginForm?.controls['password'].value,
     };
-
+    console.log('params', params);
+    this._authenticationService.loginUser(params).pipe(takeUntil(this.unSubscriber)).subscribe({
+      next: (resp: any) => {
+        if (resp) {
+          console.log('resp)', resp);
+        }
+        this._loaderService.showHideLoader(false);
+      },
+      error: () => {
+        this._loaderService.showHideLoader(false);
+      },
+    });
   }
 
   ngOnDestroy(): void {
