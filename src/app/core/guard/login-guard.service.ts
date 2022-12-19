@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanMatch, Router, UrlTree } from '@angular/router';
+import { CanMatch, Route, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
 import { EncryptDecryptService } from 'src/app/core/services/encrypt-decrypt.service';
@@ -12,7 +12,7 @@ export class LoginGuardService implements CanMatch {
     private _encryptDecryptService: EncryptDecryptService,
   ) { }
 
-  canMatch(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+  canMatch(_route: Route): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     if (!this._encryptDecryptService.getDecryptedLocalStorage(Constants.storageKeys.currentUser)) {
       return true;
     } else {

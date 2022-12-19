@@ -1,3 +1,3 @@
-<div class="loader-wrapper d-flex">
+<div *ngIf="isLoaderEnabled$ | async"class="loader-wrapper">
     <img rel="preload" src="{{CDN_URL}}assets/images/loader.svg" alt="Loader" width="50" height="50" />
 </div>

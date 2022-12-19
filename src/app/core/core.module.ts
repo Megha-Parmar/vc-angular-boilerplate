@@ -1,16 +1,18 @@
 
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [],
   imports: [
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule
   ],
 })
 export class AdminCoreModule {

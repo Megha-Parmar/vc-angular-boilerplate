@@ -4,6 +4,7 @@ import { Constants } from './core/constants/app.constants';
 
 import { EncryptDecryptService } from './core/services/encrypt-decrypt.service';
 import { LanguageService } from './core/services/language.service';
+import { LoaderService } from './core/services/loader.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,12 +19,16 @@ export class AppComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private encryptDecryptService: EncryptDecryptService,
     private languageService: LanguageService,
+    private loaderService: LoaderService,
   ) {
     this.languageService.setLanguage();
   }
 
   ngOnInit(): void {
-
+    this.loaderService.showHideLoader(true);
+    setTimeout(() => {
+      this.loaderService.showHideLoader(false);
+    }, 600);
   }
 
   /**

@@ -1,1 +1,32 @@
-Login
+<mat-card>
+  <mat-card-title>{{ 'loginPage.welcomeToText' | translate }} <strong> {{ 'loginPage.logoTitle' | translate }}</strong></mat-card-title>
+  <mat-card-title>{{ 'loginPage.loginTitle' | translate }}</mat-card-title>
+  <img rel="preload" src="{{CDN_URL}}assets/images/logo.svg" title="{{ 'loginPage.logoTitle' | translate }}" width="68" height="82"
+    alt="{{ 'loginPage.logoTitle' | translate }}" />
+
+  <mat-card-content>
+
+    <ng-container *ngIf="loginForm">
+      <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+        <p>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <input type="password" matInput placeholder="Password" formControlName="password">
+          </mat-form-field>
+        </p>
+
+
+
+        <div class="button">
+          <button type="submit" mat-button>{{ 'loginPage.loginTitle' | translate }}</button>
+        </div>
+
+      </form>
+    </ng-container>
+  </mat-card-content>
+</mat-card>
