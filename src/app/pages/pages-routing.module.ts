@@ -19,7 +19,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/general-setting',
+        redirectTo: '/',
         pathMatch: 'full',
       },
     ]
