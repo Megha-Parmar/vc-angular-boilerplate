@@ -1,0 +1,36 @@
+@mixin bp($point) {
+    @if $point == xlg-max {
+        @media only screen and (max-width: 1440px) {
+            @content;
+        }
+    } @else if $point == xl-max {
+        @media only screen and (max-width: 1366px) {
+            @content;
+        }
+    } @else if $point == lg-min {
+        @media only screen and (min-width: 1200px) {
+            @content;
+        }
+    } @else if $point == lg-max {
+        @media only screen and (max-width: 1199px) {
+            @content;
+        }
+    } @else if $point == md-max {
+        @media only screen and (max-width: 991px) {
+            @content;
+        }
+    } @else if $point == sm-max {
+        @media only screen and (max-width: 767px) {
+            @content;
+        }
+    } @else if $point == xs-max {
+        @media only screen and (max-width: 600px) {
+            @content;
+        }
+    }
+    @else if $point == xxs-max {
+        @media only screen and (max-width: 479px) {
+            @content;
+        }
+    }
+}

@@ -1,0 +1,80 @@
+@import "responsive";
+
+.form-field {
+    margin-bottom: 25px;
+    .mat-form-field {
+        .mat-form-field-wrapper {
+            margin: 0;
+            padding: 0;
+            .mat-form-field-outline {
+                color: var(--primary-100);
+            }
+            .mat-form-field-label {
+                color: var(--primary-100);
+            }
+            .mat-input-element {
+                color: var(--primary-100);
+            }
+            .mat-form-field-flex {
+                &:hover {
+                    .mat-form-field-outline-thick {
+                        color: var(--primary);
+                    }
+                }
+            }
+        }
+        @include bp(md-max) {
+            &.form-input {
+                .mat-form-field-outline {
+                    color: var(--white);
+                }
+                .mat-form-field-label {
+                    color: var(--white);
+                }
+                .mat-input-element {
+                    color: var(--white);
+                }
+                .mat-form-field-flex {
+                    &:focus,
+                    &:hover {
+                        .mat-form-field-outline-thick {
+                            color: var(--white);
+                        }
+                    }
+                }
+            }
+        }
+        &.mat-form-field-invalid {
+            .mat-form-field-outline-thick,
+            .mat-form-field-label {
+                color: var(--danger);
+            }
+            .mat-form-field-flex {
+                &:hover {
+                    .mat-form-field-outline-thick,
+                    .mat-form-field-label {
+                        color: var(--danger);
+                    }
+                }
+            }
+        }
+        .mat-form-field-prefix,
+        .mat-form-field-suffix {
+            top: 0;
+            color: var(--primary-100);
+        }
+    }
+    &.cat-link {
+        .mat-form-field {
+            .mat-form-field-prefix,
+            .mat-form-field-suffix {
+                top: -4px;
+            }
+        }
+    }
+    .url-link {
+        .mat-form-field-flex {
+            padding-right: 40px;
+        }
+    }
+}

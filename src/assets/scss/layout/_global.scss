@@ -1,0 +1,166 @@
+@import "../components/responsive";
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--primary-font);
+    font-size: 16px;
+    font-weight: 400;
+    @include bp(sm-max) {
+        font-size: 14px;
+    }
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+* {
+    -webkit-overflow-scrolling: touch;
+    &:focus {
+        outline: none;
+    }
+}
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+button,
+.mat-form-field,
+.mat-form-field-label,
+.mat-checkbox,
+.mat-table,
+.mat-select {
+    font-family: var(--primary-font);
+}
+.w-100 {
+    width: 100%;
+}
+.w-auto {
+    width: auto;
+}
+.mt-15 {
+    margin-top: 15px;
+}
+.mb-5 {
+    margin-bottom: 5px;
+}
+.mb-10 {
+    margin-bottom: 10px;
+}
+.mb-15 {
+    margin-bottom: 15px;
+}
+.ml-10{
+    margin-left: 10px;
+}
+.d-flex {
+    display: flex;
+}
+.d-block {
+    display: block;
+}
+.d-inline-block {
+    display: inline-block;
+}
+.trans {
+    -webkit-transition: all 400ms;
+    transition: all 400ms;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+    @extend .trans;
+}
+.text-center {
+    text-align: center;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+        list-style: none;
+    }
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.position-relative {
+    position: relative;
+}
+.border-0 {
+    border: 0;
+}
+img {
+    max-width: 100%;
+}
+.big-title {
+    font-size: 28px;
+    line-height: 30px;
+    font-weight: 600;
+    color: var(--primary);
+    @include bp(sm-max){
+        font-size: 20px;
+    }
+}
+.sub-title {
+    font-size: 16px;
+    line-height: 20px;
+}
+.border-bottom-hover {
+    &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        height: 1px;
+        max-width: 0;
+        background: var(--primary);
+        @extend .trans;
+    }
+    &:hover {
+        &::after {
+            max-width: 100%;
+        }
+    }
+}
+.error-message {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    padding: 3px 10px;
+    background: var(--danger);
+    color: var(--white);
+    font-size: 13px;
+    &::before {
+        content: "";
+        position: absolute;
+        top: -3px;
+        left: 5px;
+        border-left: 7px solid var(--danger);
+        border-top: 7px solid transparent;
+        border-right: 7px solid transparent;
+        transform: rotate(135deg);
+    }
+}
+body {
+    .mat-drawer-inner-container {
+        overflow: hidden;
+    }
+    .mat-drawer-content {
+        overflow: inherit;
+    }
+}
