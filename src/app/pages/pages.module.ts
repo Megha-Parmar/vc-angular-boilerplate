@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
-// components
-import { PagesComponent } from 'src/app/pages/pages.component';
 
-// modules
+import { AdminCoreModule } from 'src/app/core/core.module';
 import { LayoutModule } from 'src/app/layouts/layout.module';
 import { PagesRoutingModule } from 'src/app/pages/pages-routing.module';
+import { PagesComponent } from 'src/app/pages/pages.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,9 @@ import { PagesRoutingModule } from 'src/app/pages/pages-routing.module';
   imports: [
     CommonModule,
     PagesRoutingModule,
-    LayoutModule
+    LayoutModule,
+    AdminCoreModule,
+    TranslateModule
   ]
 })
 export class PagesModule { }
