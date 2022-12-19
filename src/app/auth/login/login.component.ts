@@ -5,6 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
 import { LoginModel } from 'src/app/core/models/user.model';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { EncryptDecryptService } from 'src/app/core/services/encrypt-decrypt.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { environment } from 'src/environments/environment';
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     public formBuilder: FormBuilder,
     private toasterService: ToasterService,
     private _loaderService: LoaderService,
+    private _encryptDecryptService: EncryptDecryptService,
   ) { }
 
   ngOnInit(): void {
@@ -62,7 +64,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this._authenticationService.loginUser(params).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (resp: any) => {
         if (resp) {
+          this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp);
           console.log('resp)', resp);
+          this.router.navigate(['/dashboard']);
         }
         this._loaderService.showHideLoader(false);
         this.submitted = false;

@@ -22,7 +22,6 @@ export class ToasterService {
     private translateService: TranslateService,
   ) {
     this.languageOnChange();
-    // const userData: any = this.authenticationService.currentUserValue;
     const userData: any = 'en';
     if (userData && userData.data && userData.data.language && userData.data.language.shortCode) {
       this.currentLang = userData.data.language.shortCode;

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { Constants } from '../constants/app.constants';
 import { LoginModel } from '../models/user.model';
+import { EncryptDecryptService } from './encrypt-decrypt.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -10,7 +11,8 @@ export class AuthenticationService {
   loginAPI: string = String(Constants.APIRoutes.userLogin);
 
   constructor(
-    public _httpClient: HttpClient
+    public _httpClient: HttpClient,
+    public _encryptDecryptService: EncryptDecryptService,
   ) {
 
   }
@@ -23,6 +25,11 @@ export class AuthenticationService {
       }
     })
     );
+  }
+
+  logoutUser() {
+    this._encryptDecryptService.removeEncryptedLocalStorage(Constants.storageKeys.currentUser);
+    this._encryptDecryptService.removeEncryptedLocalStorage(Constants.storageKeys.token);
   }
 
 
