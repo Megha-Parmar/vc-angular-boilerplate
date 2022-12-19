@@ -1,7 +1,6 @@
 import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Constants } from './core/constants/app.constants';
-
 import { EncryptDecryptService } from './core/services/encrypt-decrypt.service';
 import { LanguageService } from './core/services/language.service';
 import { LoaderService } from './core/services/loader.service';
