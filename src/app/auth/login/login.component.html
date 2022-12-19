@@ -1,32 +1,40 @@
-<mat-card>
-  <mat-card-title>{{ 'loginPage.welcomeToText' | translate }} <strong> {{ 'loginPage.logoTitle' | translate }}</strong></mat-card-title>
-  <mat-card-title>{{ 'loginPage.loginTitle' | translate }}</mat-card-title>
+<!-- main app container -->
+<div class="card m-3">
   <img rel="preload" src="{{CDN_URL}}assets/images/logo.svg" title="{{ 'loginPage.logoTitle' | translate }}" width="68" height="82"
     alt="{{ 'loginPage.logoTitle' | translate }}" />
+  <h4 class="card-header text-center">{{ 'loginPage.welcomeToText' | translate }} <strong> {{ 'loginPage.logoTitle' | translate }}</strong>
+  </h4>
+  <h5 class="card-header text-center">{{ 'loginPage.loginTitle' | translate }}</h5>
+  <div class="card-body">
+    <form #adminLoginForm="ngForm" (ngSubmit)="onSubmit(adminLoginForm)" novalidate>
 
-  <mat-card-content>
-
-    <ng-container *ngIf="loginForm">
-      <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-        <p>
-          <mat-form-field>
-            <input type="text" matInput placeholder="Email" formControlName="email">
-          </mat-form-field>
-        </p>
-
-        <p>
-          <mat-form-field>
-            <input type="password" matInput placeholder="Password" formControlName="password">
-          </mat-form-field>
-        </p>
-
-        <div class="button">
-          <button [disabled]="submitted" [ngClass]="{ 'disabled': submitted }" type="submit" mat-button>
-            {{ ( submitted ? 'loginPage.loggingInTitle' : 'loginPage.loginTitle' ) | translate}}
-          </button>
+      <div class="row">
+        <div class="col mb-3">
+          <label class="form-label">Email</label>
+          <input type="text" name="email" ngModel #email="ngModel" class="form-control"
+            [ngClass]="{ 'is-invalid': adminLoginForm.submitted && email.invalid }" required email>
+          <div *ngIf="adminLoginForm.submitted && email.errors" class="invalid-feedback">
+            <div *ngIf="email.errors['required']">Email is required</div>
+            <div *ngIf="email.errors['email']">Email must be a valid email address</div>
+          </div>
         </div>
-
-      </form>
-    </ng-container>
-  </mat-card-content>
-</mat-card>
+      </div>
+      <div class="row">
+        <div class="col mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" name="password" ngModel #password="ngModel" class="form-control"
+            [ngClass]="{ 'is-invalid': adminLoginForm.submitted && password.invalid }" required minlength="6">
+          <div *ngIf="adminLoginForm.submitted && password.errors" class="invalid-feedback">
+            <div *ngIf="password.errors['required']">Password is required</div>
+            <div *ngIf="password.errors['minlength']">Password must be at least 6 characters</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button [disabled]="submitted" [ngClass]="{ 'disabled': submitted }" class="btn btn-primary me-1">
+          {{ ( submitted ? 'loginPage.loggingInTitle' : 'loginPage.loginTitle' ) | translate}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
