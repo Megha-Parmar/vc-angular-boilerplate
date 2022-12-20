@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { WindowService } from '../core/services/native-window.service';
 
 @Component({
   selector: 'app-pages',
@@ -7,14 +8,34 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor() { }
+  isOpen = true;
+  windowRef: Window;
+
+  constructor(
+    private _windowService: WindowService,
+  ) {
+    this.windowRef = this._windowService.getWindow() || window;
+  }
 
   ngOnInit(): void {
-
+    console.log('isOpened', this.isOpen)
+    this.setDefaultSideNav();
   }
 
   ngAfterViewInit(): void {
+    this.setSideNav();
+  }
 
+  setDefaultSideNav(): void {
+    if (this.windowRef.innerWidth <= 767) {
+      this.isOpen = false;
+    }
+  }
+
+  setSideNav(): void {
+    if (this.windowRef.innerWidth <= 767) {
+      this.isOpen = false;
+    }
   }
 
   ngOnDestroy(): void {

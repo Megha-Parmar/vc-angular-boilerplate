@@ -13,7 +13,7 @@ import { LoaderComponent } from './layouts/loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
