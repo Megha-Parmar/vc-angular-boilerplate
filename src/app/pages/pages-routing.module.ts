@@ -13,13 +13,18 @@ const routes: Routes = [
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
       {
+        path: 'profile',
+        loadChildren: () =>
+          import('./profile/profile.module').then((m) => m.ProfileModule),
+      },
+      {
         path: 'error',
         loadChildren: () => import('./../error-routes/error-routes.module').then(m => m.ErrorRoutesModule),
         //  component: Error403Component
       },
       {
         path: '',
-        redirectTo: '/',
+        redirectTo: '/dashboard',
         pathMatch: 'full',
       },
     ]
