@@ -1,6 +1,3 @@
-
-
-
 <div class="form-wrapper">
   <div class="form-left">
     <form class="form-main" #adminLoginForm="ngForm" (ngSubmit)="onSubmit(adminLoginForm)" novalidate>
@@ -9,39 +6,40 @@
           <img rel="preload" src="{{CDN_URL}}assets/images/logo.svg" title="{{ 'loginPage.logoTitle' | translate }}" width="68" height="82"
             alt="{{ 'loginPage.logoTitle' | translate }}" />
         </div>
-        <div class="big-title">{{ 'loginPage.loginTitle' | translate }}</div>
-      </div>
-      <div class="form-field">
-        <mat-form-field class="form-input" appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput type="text" name="email" ngModel #email="ngModel" class="form-control"
-            [ngClass]="{ 'is-invalid': adminLoginForm.submitted && email.invalid }" required email>
-          <div *ngIf="adminLoginForm.submitted && email.errors" class="invalid-feedback">
-            <div *ngIf="email.errors['required']">Email is required</div>
-            <div *ngIf="email.errors['email']">Email must be a valid email address</div>
-          </div>
-        </mat-form-field>
-      </div>
-      <div class="form-field">
-        <mat-form-field class="form-input" appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput type="password" name="password" ngModel #password="ngModel" class="form-control"
-            [ngClass]="{ 'is-invalid': adminLoginForm.submitted && password.invalid }" required minlength="6">
-          <div *ngIf="adminLoginForm.submitted && password.errors" class="invalid-feedback">
-            <div *ngIf="password.errors['required']">Password is required</div>
-            <div *ngIf="password.errors['minlength']">Password must be at least 6 characters</div>
-          </div>
-        </mat-form-field>
-      </div>
-      <div class="button-wrapper">
-        <button mat-button class="primary-btn w-100 trans" [disabled]="submitted" [ngClass]="{ 'disabled': submitted }">
-          {{ ( submitted ? 'loginPage.loggingInTitle' : 'loginPage.loginTitle' ) | translate}}
-        </button>
-      </div>
+        <div class="big-title mb-15">{{ 'loginPage.loginTitle' | translate }}</div>
+        <div class="form-field">
+          <mat-form-field appearance="outline" class="form-input">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" name="email" ngModel #email="ngModel" class="form-control"
+              [ngClass]="{ 'is-invalid': adminLoginForm.submitted && email.invalid }" required email>
+            <div *ngIf="adminLoginForm.submitted && email.errors" class="error-message">
+              <div *ngIf="email.errors['required']">Email is required</div>
+              <div *ngIf="email.errors['email']">Email must be a valid email address</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field class="form-input" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" name="password" ngModel #password="ngModel" class="form-control"
+              [ngClass]="{ 'is-invalid': adminLoginForm.submitted && password.invalid }" required minlength="6">
+            <div *ngIf="adminLoginForm.submitted && password.errors" class="error-message">
+              <div *ngIf="password.errors['required']">Password is required</div>
+              <div *ngIf="password.errors['minlength']">Password must be at least 6 characters</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="button-wrapper">
+          <button mat-button class="primary-btn w-100 trans" [disabled]="submitted" [ngClass]="{ 'disabled': submitted }">
+            {{ ( submitted ? 'loginPage.loggingInTitle' : 'loginPage.loginTitle' ) | translate}}
+          </button>
+        </div>
+    </div>
     </form>
   </div>
   <!-- end -->
   <div class="form-bg">
+    <img rel="preload" width="1152" height="1080" class="form-bg-img" src="{{CDN_URL}}assets/images/login-bg.jpg" alt="Login background">
     <div class="welcome-content">
       <div class="big-title">
         {{ 'loginPage.welcomeToText' | translate }} <strong> {{ 'loginPage.logoTitle' | translate }}</strong>

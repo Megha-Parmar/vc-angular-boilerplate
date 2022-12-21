@@ -16,7 +16,7 @@ export const locale = {
       invalidEmailErrorText: 'Enter valid E - mail',
       passwordIsRequiredErrorText: 'Password is required',
       forgotPasswordText: 'Forgot Password',
-      logoTitle: 'Viitorcloud Console',
+      logoTitle: 'Boilerplate',
       loginBackgroundText: 'Login Background',
       confirmPasswordTitle: 'Confirm Password',
       submitTitle: 'Submit',
