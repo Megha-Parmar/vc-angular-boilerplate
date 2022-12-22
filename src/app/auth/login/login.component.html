@@ -1,12 +1,12 @@
-<div class="form-wrapper">
+<div class="form-wrapper h-100 d-flex align-items-center position-relative">
   <div class="form-left">
     <form class="form-main" #adminLoginForm="ngForm" (ngSubmit)="onSubmit(adminLoginForm)" novalidate>
-      <div class="form-info">
+      <div class="form-info w-100">
         <div class="logo d-flex">
-          <img rel="preload" src="{{CDN_URL}}assets/images/logo.svg" title="{{ 'loginPage.logoTitle' | translate }}" width="68" height="82"
+          <img class="w-auto h-auto" rel="preload" src="{{CDN_URL}}assets/images/logo.svg" title="{{ 'loginPage.logoTitle' | translate }}" width="68" height="82"
             alt="{{ 'loginPage.logoTitle' | translate }}" />
         </div>
-        <div class="big-title mb-15">{{ 'loginPage.loginTitle' | translate }}</div>
+        <div class="big-title mt-2 mb-4">{{ 'loginPage.loginTitle' | translate }}</div>
         <div class="form-field">
           <mat-form-field appearance="outline" class="form-input">
             <mat-label>Email</mat-label>
@@ -29,7 +29,7 @@
             </div>
           </mat-form-field>
         </div>
-        <div class="button-wrapper">
+        <div class="button-wrapper mt-5">
           <button mat-button class="primary-btn w-100 trans" [disabled]="submitted" [ngClass]="{ 'disabled': submitted }">
             {{ ( submitted ? 'loginPage.loggingInTitle' : 'loginPage.loginTitle' ) | translate}}
           </button>
@@ -38,9 +38,9 @@
     </form>
   </div>
   <!-- end -->
-  <div class="form-bg">
-    <img rel="preload" width="1152" height="1080" class="form-bg-img" src="{{CDN_URL}}assets/images/login-bg.jpg" alt="Login background">
-    <div class="welcome-content">
+  <div class="form-bg d-lg-flex align-items-center justify-contetnt-center h-100 position-relative">
+    <img rel="preload" width="1152" height="1080" class="form-bg-img w-100 h-100" src="{{CDN_URL}}assets/images/login-bg.jpg" alt="Login background">
+    <div class="welcome-content w-100 mx-auto text-center">
       <div class="big-title">
         {{ 'loginPage.welcomeToText' | translate }} <strong> {{ 'loginPage.logoTitle' | translate }}</strong>
       </div>

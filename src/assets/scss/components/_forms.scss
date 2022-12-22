@@ -1,14 +1,5 @@
 @import "responsive";
-a {
-    color: var(--primary);
-    font-weight: 500;
-}
-
 .form-wrapper {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    position: relative;
     min-height: 100vh;
     overflow: hidden;
     .form-main {
@@ -16,7 +7,6 @@ a {
         .form-info {
             background-color: var(--white);
             max-width: 480px;
-            width: 100%;
             padding-top: 30px;
             padding-bottom: 30px;
             margin-left: auto;
@@ -34,8 +24,6 @@ a {
                     background: var(--white);
                 }
                 img {
-                    width: auto;
-                    height: auto;
                     max-width: 62px;
                     min-height: 75px;
                     @include bp(md-max) {
@@ -44,7 +32,6 @@ a {
                 }
             }
             .button-wrapper {
-                margin-top: 30px;
                 .primary-btn {
                     @include bp(md-max) {
                         background: var(--white);
@@ -56,29 +43,27 @@ a {
     }
     .form-left {
         width: 45%;
+        @include bp(md-max) {
+            width: 100%;
+        }
     }
     .form-bg {
-        position: relative;
-        background: var(--primary);
-        padding: 0 50px;
-        height: 100%;
         width: 55%;
-        display: flex;
-        align-items: center;
-        justify-self: center;
+        padding: 0 50px;
+        background: var(--primary);
         @include bp(md-max) {
+            width: 100%;
             position: absolute;
-            z-index: -1;
+            top: 0;
             padding: 0;
             max-width: 100% !important;
+            z-index: -1;
         }
 
         .form-bg-img {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
             object-fit: cover;
             opacity: 0.5;
             @include bp(md-max) {
@@ -87,12 +72,9 @@ a {
         }
         .welcome-content {
             max-width: 700px;
-            margin: 0 auto;
-            width: 100%;
             padding: 5% 2%;
             background: var(--light-100);
             border-radius: 10px;
-            text-align: center;
             z-index: 1;
             @include bp(md-max) {
                 display: none;

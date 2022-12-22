@@ -12,7 +12,7 @@
         padding: 0 20px;
         background: var(--primary);
         color: var(--white);
-        @include bp(md-max) {
+        @include bp(sm-max) {
             font-size: 14px;
             height: 40px;
             line-height: 40px;
