@@ -66,7 +66,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         if (resp && resp.data) {
           this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp.data);
           this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.token, resp.data.token);
-          console.log('resp)', resp);
           this._toasterService.notifySnackbarMsg('loginPage', 'loggedIn', 'success');
           this.router.navigate(['/dashboard']);
         }
