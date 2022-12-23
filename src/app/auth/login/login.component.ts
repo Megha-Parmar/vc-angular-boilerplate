@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     private _authenticationService: AuthenticationService,
-    public formBuilder: FormBuilder,
-    private toasterService: ToasterService,
+    public _formBuilder: FormBuilder,
+    private _toasterService: ToasterService,
     private _loaderService: LoaderService,
     private _encryptDecryptService: EncryptDecryptService,
   ) { }
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   initializeForm(): void {
-    this.loginForm = this.formBuilder.group({
+    this.loginForm = this._formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,
@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp.data);
           this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.token, resp.data.token);
           console.log('resp)', resp);
+          this._toasterService.notifySnackbarMsg('loginPage', 'loggedIn', 'success');
           this.router.navigate(['/dashboard']);
         }
         this._loaderService.showHideLoader(false);

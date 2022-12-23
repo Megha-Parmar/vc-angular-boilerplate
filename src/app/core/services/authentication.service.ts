@@ -4,6 +4,7 @@ import { map } from 'rxjs';
 import { Constants } from '../constants/app.constants';
 import { LoginModel } from '../models/user.model';
 import { EncryptDecryptService } from './encrypt-decrypt.service';
+import { ToasterService } from './toaster.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -13,6 +14,7 @@ export class AuthenticationService {
   constructor(
     public _httpClient: HttpClient,
     public _encryptDecryptService: EncryptDecryptService,
+    public _toasterService: ToasterService,
   ) {
 
   }
@@ -30,6 +32,7 @@ export class AuthenticationService {
   logoutUser() {
     this._encryptDecryptService.removeEncryptedLocalStorage(Constants.storageKeys.currentUser);
     this._encryptDecryptService.removeEncryptedLocalStorage(Constants.storageKeys.token);
+    this._toasterService.notifySnackbarMsg('loginPage', 'loggedOut', 'success');
   }
 
 

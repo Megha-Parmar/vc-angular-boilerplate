@@ -12,9 +12,9 @@ import { ToasterService } from '../services/toaster.service';
 export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(
-    private toaster: ToasterService,
-    private authenticationService: AuthenticationService,
-    private router: Router
+    private _toasterService: ToasterService,
+    private _authenticationService: AuthenticationService,
+    private _router: Router
   ) { }
 
 
@@ -27,9 +27,13 @@ export class ErrorInterceptor implements HttpInterceptor {
       } else {
         // server-side error
         if (error.status === 0) {
-          this.toaster.notifySnackbarMsg('generalError', 'UnhandledException', 'error');
+          this._toasterService.notifySnackbarMsg('generalError', 'UnhandledException', 'error');
         } else if (error.status === 400) {
-          this.is400Page();
+          if (request.url.includes('/login')) {
+            this.userNotFound(error.error.message);
+          } else {
+            this.is400Page();
+          }
         } else if (error.status === 401) {
           this.is401Page();
         } else if (error.status === 402) {
@@ -45,11 +49,11 @@ export class ErrorInterceptor implements HttpInterceptor {
         } else if (error.status === 500) {
           this.is500Page();
         } else if (error?.url?.includes('/logout') && error?.status === 200 && error?.statusText === 'OK') {
-          this.toaster.notifySnackbarMsg('loginForm', 'loggedOut', 'success');
+          this._toasterService.notifySnackbarMsg('loginPage', 'loggedOut', 'success');
         } else {
           errorMsg = `Error Code: ${error.status}\nMessage: ${error.message}`;
           // this.toaster.displaySnackBar(errorMessage, 'error');
-          this.toaster.notifySnackbarMsg('generalError', 'serviceUnavailable', 'error');
+          this._toasterService.notifySnackbarMsg('generalError', 'serviceUnavailable', 'error');
         }
       }
       console.log(errorMsg);
@@ -58,37 +62,43 @@ export class ErrorInterceptor implements HttpInterceptor {
     )
   }
 
+  userNotFound(msg: string) {
+    this._toasterService.displaySnackBar(msg, 'error');
+  }
+
   is400Page() {
-    this.toaster.notifySnackbarMsg('generalError', 'badRequest', 'error');
+    this._toasterService.notifySnackbarMsg('generalError', 'badRequest', 'error');
   }
 
   is401Page(): void {
-    this.toaster.notifySnackbarMsg('generalError', 'unAuthorized', 'error');
+    this._toasterService.notifySnackbarMsg('generalError', 'unAuthorized', 'error');
   }
 
   is402Page(): void {
-    this.toaster.notifySnackbarMsg('generalError', 'paymentRequired', 'error');
+    this._toasterService.notifySnackbarMsg('generalError', 'paymentRequired', 'error');
 
   }
 
   is403Page() {
-    this.toaster.notifySnackbarMsg('generalError', 'forbidden403', 'error');
+    this._toasterService.notifySnackbarMsg('generalError', 'forbidden403', 'error');
+    this._authenticationService.logoutUser();
+    this._router.navigate(['auth/login']);
   }
 
   is404Page() {
-    this.toaster.notifySnackbarMsg('loginForm', 'credentialValid', 'error');
+    this._toasterService.notifySnackbarMsg('loginForm', 'credentialValid', 'error');
   }
 
   is422Page() {
-    this.toaster.notifySnackbarMsg('generalError', 'unprocessableEntity', 'error');
+    this._toasterService.notifySnackbarMsg('generalError', 'unprocessableEntity', 'error');
   }
 
   is429Page() {
-    this.toaster.notifySnackbarMsg('generalError', 'tooManyRequest', 'error');
+    this._toasterService.notifySnackbarMsg('generalError', 'tooManyRequest', 'error');
   }
 
   is500Page() {
-    this.router.navigate(['/error/not-found-internal']);
+    this._router.navigate(['/error/not-found-internal']);
   }
 
 }
