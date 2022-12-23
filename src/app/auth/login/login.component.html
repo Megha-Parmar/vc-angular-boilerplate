@@ -3,35 +3,42 @@
     <form class="form-main" #adminLoginForm="ngForm" (ngSubmit)="onSubmit(adminLoginForm)" novalidate>
       <div class="form-info w-100">
         <div class="logo d-flex">
-          <img class="w-auto h-auto" rel="preload" src="{{CDN_URL}}assets/images/logo.svg" title="{{ 'loginPage.logoTitle' | translate }}" width="68" height="82"
-            alt="{{ 'loginPage.logoTitle' | translate }}" />
+          <img class="w-auto h-auto" rel="preload" src="{{CDN_URL}}assets/images/logo.svg" title="{{ 'loginPage.logoTitle' | translate }}"
+            width="68" height="82" alt="{{ 'loginPage.logoTitle' | translate }}" />
         </div>
         <div class="big-title mt-2 mb-4">{{ 'loginPage.loginTitle' | translate }}</div>
         <div class="form-field">
           <mat-form-field appearance="outline" class="form-input">
-            <mat-label>Email</mat-label>
+            <mat-label>{{ 'loginPage.emailTitle' | translate }}</mat-label>
             <input matInput type="text" name="email" ngModel #email="ngModel" class="form-control"
               [ngClass]="{ 'is-invalid': adminLoginForm.submitted && email.invalid }" required email>
             <div *ngIf="adminLoginForm.submitted && email.errors" class="error-message">
-              <div *ngIf="email.errors['required']">Email is required</div>
-              <div *ngIf="email.errors['email']">Email must be a valid email address</div>
+              <div *ngIf="email.errors['required']">{{ 'loginPage.emailIsRequiredErrorText' | translate }}</div>
+              <div *ngIf="email.errors['email']">{{ 'loginPage.invalidEmailErrorText' | translate }}</div>
             </div>
           </mat-form-field>
         </div>
         <div class="form-field mb-0">
           <mat-form-field class="form-input" appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" name="password" ngModel #password="ngModel" class="form-control"
-              [ngClass]="{ 'is-invalid': adminLoginForm.submitted && password.invalid }" required minlength="6">
+            <mat-label>{{ 'loginPage.passwordTitle' | translate }}</mat-label>
+            <input matInput [type]="passwordToggle ? 'password' : 'text'" name="password" ngModel #password="ngModel" class="form-control"
+              [ngClass]="{ 'is-invalid': adminLoginForm.submitted && password.invalid }" required [minlength]="passwordMinLenght"
+              [maxlength]="passwordMaxLenght">
+            <button mat-icon-button matSuffix type="button" (click)="passwordToggle = !passwordToggle" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="passwordToggle">
+              <mat-icon>{{passwordToggle ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
             <div *ngIf="adminLoginForm.submitted && password.errors" class="error-message">
-              <div *ngIf="password.errors['required']">Password is required</div>
-              <div *ngIf="password.errors['minlength']">Password must be at least 6 characters</div>
+              <div *ngIf="password.errors['required']">{{ 'loginPage.passwordIsRequiredErrorText' | translate }}</div>
+              <div *ngIf="password.errors['minlength']">{{ 'loginPage.passwordMinLengthErrorText' | translate }}</div>
+              <div *ngIf="password.errors['maxlength']">{{ 'loginPage.passwordMaxLengthErrorText' | translate }}
+              </div>
             </div>
           </mat-form-field>
         </div>
         <div class="mt-2 text-end">
-          <a class="fw-medium border-bottom-hover position-relative">
-            Forgot Password
+          <a class="fw-medium border-bottom-hover position-relative" [routerLink]="['/auth/forgot-password']">
+            {{ 'loginPage.forgotPasswordText' | translate }}
           </a>
         </div>
         <div class="button-wrapper mt-5">
@@ -39,12 +46,13 @@
             {{ ( submitted ? 'loginPage.loggingInTitle' : 'loginPage.loginTitle' ) | translate}}
           </button>
         </div>
-    </div>
+      </div>
     </form>
   </div>
   <!-- end -->
   <div class="form-bg d-lg-flex align-items-center justify-contetnt-center h-100 position-relative">
-    <img rel="preload" width="1152" height="1080" class="form-bg-img w-100 h-100" src="{{CDN_URL}}assets/images/login-bg.jpg" alt="Login background">
+    <img rel="preload" width="1152" height="1080" class="form-bg-img w-100 h-100" src="{{CDN_URL}}assets/images/login-bg.jpg"
+      alt="Login background">
     <div class="welcome-content w-100 mx-auto text-center">
       <div class="big-title">
         {{ 'loginPage.welcomeToText' | translate }} <strong> {{ 'loginPage.logoTitle' | translate }}</strong>
