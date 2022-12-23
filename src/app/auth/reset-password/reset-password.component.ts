@@ -18,6 +18,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
 
   submitted: boolean = false;
   passwordToggle = true;
+  confirmpasswordToggle = true;
 
   readonly CDN_URL = environment.contentful.CDN_URL;
   readonly passwordMinLenght: number = Constants.generalConstant.passwordMinLenght;
