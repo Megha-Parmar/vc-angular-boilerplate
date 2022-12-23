@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 
 const authComponent = [
   LoginComponent,
+  ForgotPasswordComponent
 ];
 
 const routes: Routes = [

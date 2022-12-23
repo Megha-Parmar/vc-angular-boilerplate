@@ -1,7 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  FormBuilder, FormControl, FormGroup, NgForm, Validators
-} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
@@ -17,7 +15,6 @@ import { environment } from 'src/environments/environment';
 })
 export class ForgotPasswordComponent implements OnInit, OnDestroy {
 
-  forgotPasswordForm: FormGroup | undefined;
   submitted: boolean = false;
   passwordToggle = true;
 
@@ -27,21 +24,15 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     private _authenticationService: AuthenticationService,
-    public _formBuilder: FormBuilder,
     private _toasterService: ToasterService,
     private _loaderService: LoaderService,
     private _encryptDecryptService: EncryptDecryptService,
   ) { }
 
   ngOnInit(): void {
-    this.initializeForm();
+
   }
 
-  initializeForm(): void {
-    this.forgotPasswordForm = this._formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
-    });
-  }
 
   onSubmit(form: NgForm) {
     if (form.invalid) {
