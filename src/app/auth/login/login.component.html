@@ -24,7 +24,7 @@
             <input matInput [type]="passwordToggle ? 'password' : 'text'" name="password" ngModel #password="ngModel" class="form-control"
               [ngClass]="{ 'is-invalid': adminLoginForm.submitted && password.invalid }" required [minlength]="passwordMinLenght"
               [maxlength]="passwordMaxLenght">
-            <button mat-icon-button matSuffix type="button" (click)="passwordToggle = !passwordToggle" [attr.aria-label]="'Hide password'"
+            <button class="eye-icon border-0" mat-icon-button matSuffix type="button" (click)="passwordToggle = !passwordToggle" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="passwordToggle">
               <mat-icon>{{passwordToggle ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
