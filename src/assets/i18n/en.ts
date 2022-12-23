@@ -18,7 +18,9 @@ export const locale = {
       invalidPromoCode: 'Please enter valid promocode.',
       forbidden403: 'The page you are trying to reach is forbidden.',
       serviceUnavailable: 'Service Unavailable',
-      general: 'Oops!! Something went wrong. Please try again later.'
+      general: 'Oops!! Something went wrong. Please try again later.',
+      submitTitle: "Submit",
+      submittingTitle: "Submitting",
     },
     loginPage: {
       loginTitle: 'Login',
@@ -42,12 +44,9 @@ export const locale = {
       emailTitle: 'E - mail',
       emailIsRequiredErrorText: 'E - mail is required',
       invalidEmailErrorText: 'Enter valid E - mail',
-      submitText: 'Submit',
       LoginText: 'Login',
-      loggingInTitle: 'Logging In',
       welcomeToText: 'Welcome to',
-      loggedIn: 'You are successfully logged in.',
-      loggedOut: 'You are successfully logged out.',
+      mailSentText: 'Email sent to your registered email address, please check it and proceed for forgot password.',
     },
     homePage: {
       notLoggedIn: 'We couldn\'t log you in.',

@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { EncryptDecryptService } from 'src/app/core/services/encrypt-decrypt.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { environment } from 'src/environments/environment';
@@ -26,7 +25,6 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     private _authenticationService: AuthenticationService,
     private _toasterService: ToasterService,
     private _loaderService: LoaderService,
-    private _encryptDecryptService: EncryptDecryptService,
   ) { }
 
   ngOnInit(): void {
@@ -48,9 +46,8 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     this._authenticationService.loginUser(params).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (resp: any) => {
         if (resp && resp.data) {
-          console.log('resp)', resp);
-          this._toasterService.notifySnackbarMsg('loginPage', 'loggedIn', 'success');
-          this.router.navigate(['/dashboard']);
+          this._toasterService.notifySnackbarMsg('forgotPasswordPage', 'mailSentText', 'success');
+          this.router.navigate(['/login']);
         }
         this._loaderService.showHideLoader(false);
         this.submitted = false;
