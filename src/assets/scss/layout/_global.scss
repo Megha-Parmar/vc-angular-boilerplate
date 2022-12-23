@@ -65,6 +65,12 @@ ol {
 img {
     max-width: 100%;
 }
+.font-primary {
+    color: var(--primary);
+}
+.font-secondary {
+    color: var(--secondary);
+}
 .big-title {
     font-size: 28px;
     line-height: 30px;
@@ -91,9 +97,11 @@ img {
         background: var(--primary);
         @extend .trans;
     }
-    &:hover {
-        &::after {
-            max-width: 100%;
+    @include bp(lg-min) {
+        &:hover {
+            &::after {
+                max-width: 100%;
+            }
         }
     }
 }
@@ -110,7 +118,7 @@ img {
     &::before {
         content: "";
         position: absolute;
-        top: -2px;
+        top: -1px;
         left: 5px;
         border-left: 7px solid var(--danger);
         border-top: 7px solid transparent;

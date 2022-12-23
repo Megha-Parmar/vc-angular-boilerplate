@@ -93,6 +93,21 @@
 .mx-auto {
     margin: 0 auto;
 }
+.fw-light {
+    font-weight: 300;
+}
+.fw-normal {
+    font-weight: 400;
+}
+.fw-medium {
+    font-weight: 500;
+}
+.fw-semi-bold {
+    font-weight: 600;
+}
+.fw-bold {
+    font-weight: 700;
+}
 .d-inline-block {
     display: inline-block;
 }
@@ -101,6 +116,9 @@
 }
 .d-flex {
     display: flex;
+}
+.d-inline-flex {
+    display: inline-flex;
 }
 .flex-row {
     flex-direction: row;

@@ -89,3 +89,8 @@
         }
     }
 }
+@include bp(md-max) {
+    a {
+        color: var(--white);
+    }
+}
