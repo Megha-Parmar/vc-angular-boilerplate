@@ -1,0 +1,18 @@
+.mat-mdc-snack-bar-container {
+  min-width: 300px;
+  max-width: 400px;
+  width: 100%;
+  color: var(--white);
+  &.success-snackbar {
+    --mdc-snackbar-container-color: var(--success);
+  }
+  &.info-snackbar {
+    --mdc-snackbar-container-color: var(--info);
+  }
+  &.warning-snackbar {
+    --mdc-snackbar-container-color: var(--warning);
+  }
+  &.error-snackbar {
+    --mdc-snackbar-container-color: var(--danger);
+  }
+}
