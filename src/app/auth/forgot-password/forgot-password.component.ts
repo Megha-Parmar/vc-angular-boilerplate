@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import {
+  FormBuilder, FormControl, FormGroup, NgForm, Validators
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { Constants } from 'src/app/core/constants/app.constants';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { EncryptDecryptService } from 'src/app/core/services/encrypt-decrypt.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
@@ -10,20 +11,17 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class ForgotPasswordComponent implements OnInit, OnDestroy {
 
-  loginForm: FormGroup | undefined;
+  forgotPasswordForm: FormGroup | undefined;
   submitted: boolean = false;
   passwordToggle = true;
 
   readonly CDN_URL = environment.contentful.CDN_URL;
-  readonly passwordMinLenght: number = Constants.generalConstant.passwordMinLenght;
-  readonly passwordMaxLenght: number = Constants.generalConstant.passwordMaxLenght;
-
   private unSubscriber: Subject<void> = new Subject<void>();
 
   constructor(
@@ -40,13 +38,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   initializeForm(): void {
-    this.loginForm = this._formBuilder.group({
+    this.forgotPasswordForm = this._formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(this.passwordMinLenght),
-        Validators.maxLength(this.passwordMaxLenght)
-      ]),
     });
   }
 
@@ -64,8 +57,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this._authenticationService.loginUser(params).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (resp: any) => {
         if (resp && resp.data) {
-          this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp.data);
-          this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.token, resp.data.token);
           console.log('resp)', resp);
           this._toasterService.notifySnackbarMsg('loginPage', 'loggedIn', 'success');
           this.router.navigate(['/dashboard']);
@@ -84,4 +75,5 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.unSubscriber.next();
     this.unSubscriber.complete();
   }
+
 }
