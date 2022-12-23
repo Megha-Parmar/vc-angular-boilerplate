@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUserProfile();
+    // this.getUserProfile();
   }
 
   getUserProfile(): void {

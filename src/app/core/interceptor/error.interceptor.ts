@@ -41,7 +41,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         } else if (error.status === 403) {
           this.is403Page();
         } else if (error.status === 404) {
-          this.is404Page();
+          this.is404Page(request.url);
         } else if (error.status === 422) {
           this.is422Page();
         } else if (error.status === 429) {
@@ -85,8 +85,12 @@ export class ErrorInterceptor implements HttpInterceptor {
     this._router.navigate(['auth/login']);
   }
 
-  is404Page() {
-    this._toasterService.notifySnackbarMsg('loginForm', 'credentialValid', 'error');
+  is404Page(currentUrl: string) {
+    if (currentUrl.endsWith('login')) {
+      this._toasterService.notifySnackbarMsg('loginPage', 'credentialValid', 'error');
+    } else {
+      this._router.navigate(['/error/not-found']);
+    }
   }
 
   is422Page() {

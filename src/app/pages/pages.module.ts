@@ -1,8 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
-
-
 import { AdminCoreModule } from 'src/app/core/core.module';
 import { LayoutModule } from 'src/app/layouts/layout.module';
 import { PagesRoutingModule } from 'src/app/pages/pages-routing.module';
@@ -17,7 +14,6 @@ import { PagesComponent } from 'src/app/pages/pages.component';
     PagesRoutingModule,
     LayoutModule,
     AdminCoreModule,
-    TranslateModule
   ]
 })
 export class PagesModule { }

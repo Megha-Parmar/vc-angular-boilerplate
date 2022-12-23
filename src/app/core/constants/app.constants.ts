@@ -11,7 +11,7 @@ export class Constants {
   };
 
   public static APIRoutes = {
-    userLogin: 'login',
+    userLogin: 'auth/client_login',
     userForgotPassword: 'forgotPassword',
     userResetPassword: 'resetPassword/',
     userUpdatePassword: 'settings/updatePassword/',

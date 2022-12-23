@@ -35,6 +35,7 @@ export const locale = {
       welcomeToText: 'Welcome to',
       loggedIn: 'You are successfully logged in.',
       loggedOut: 'You are successfully logged out.',
+      credentialValid: 'Incorrect email or password',
     },
     forgotPasswordPage: {
       forgotPasswordTitle: 'Forgot Password',

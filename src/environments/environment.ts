@@ -4,6 +4,6 @@ export const environment = {
   contentful: {
     BASE_URL: 'http://localhost:4200/',
     CDN_URL: 'http://localhost:4200/',
-    API_URL: 'https://royalnavy-api.focalat.com/admin/',
+    API_URL: 'https://uat-everyticket-api.everycred.com/v1/',
   }
 };

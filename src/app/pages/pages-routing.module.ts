@@ -17,6 +17,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./profile/profile.module').then((m) => m.ProfileModule),
       },
+      { path: 'events', redirectTo: '/events/list', pathMatch: 'full', },
       {
         path: 'events/list',
         loadChildren: () =>

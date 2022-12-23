@@ -14,6 +14,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pages.module').then((m) => m.PagesModule),
     canMatch: [AuthGuardService],
   },
+  {
+    path: 'error',
+    loadChildren: () => import('./error-routes/error-routes.module')
+      .then(m => m.ErrorRoutesModule),
+    //  component: Error403Component
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
