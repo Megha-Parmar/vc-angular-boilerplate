@@ -18,6 +18,16 @@ const routes: Routes = [
           import('./profile/profile.module').then((m) => m.ProfileModule),
       },
       {
+        path: 'events/list',
+        loadChildren: () =>
+          import('./events/event-list/event-list.module').then((m) => m.EventListModule),
+      },
+      {
+        path: 'events/add',
+        loadChildren: () =>
+          import('./events/event-add/event-add.module').then((m) => m.EventAddModule),
+      },
+      {
         path: 'error',
         loadChildren: () => import('./../error-routes/error-routes.module').then(m => m.ErrorRoutesModule),
         //  component: Error403Component
