@@ -87,13 +87,10 @@
                 }
             }
         }
+        .eye-icon {
+            background: none;
+            padding-right: 16px;
+            color: var(--primary);
+        }
     }
 }
-
-// input:-webkit-autofill,
-// input:-webkit-autofill:hover,
-// input:-webkit-autofill:focus,
-// input:-webkit-autofill:active  {
-//     -webkit-box-shadow: 0 0 0 40px #292a38 inset;
-//     -webkit-text-fill-color: var(--white);
-// }
