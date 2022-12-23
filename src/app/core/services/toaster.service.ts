@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class ToasterService {
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-  duration = 5000;
+  duration = 50000000000;
   currentLang: string = environment.DEFAULT_LANGUAGE;
 
   constructor(
