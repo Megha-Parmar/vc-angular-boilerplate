@@ -18,7 +18,7 @@
             </div>
           </mat-form-field>
         </div>
-        <div class="form-field">
+        <div class="form-field mb-0">
           <mat-form-field class="form-input" appearance="outline">
             <mat-label>Password</mat-label>
             <input matInput type="password" name="password" ngModel #password="ngModel" class="form-control"
@@ -28,6 +28,11 @@
               <div *ngIf="password.errors['minlength']">Password must be at least 6 characters</div>
             </div>
           </mat-form-field>
+        </div>
+        <div class="mt-2 text-end">
+          <a class="fw-medium border-bottom-hover position-relative">
+            Forgot Password
+          </a>
         </div>
         <div class="button-wrapper mt-5">
           <button mat-button class="primary-btn w-100 trans" [disabled]="submitted" [ngClass]="{ 'disabled': submitted }">
