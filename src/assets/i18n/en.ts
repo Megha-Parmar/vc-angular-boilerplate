@@ -42,6 +42,7 @@ export const locale = {
       emailTitle: 'E - mail',
       emailIsRequiredErrorText: 'E - mail is required',
       invalidEmailErrorText: 'Enter valid E - mail',
+      submitText: 'Submit',
       LoginText: 'Login',
       loggingInTitle: 'Logging In',
       welcomeToText: 'Welcome to',
