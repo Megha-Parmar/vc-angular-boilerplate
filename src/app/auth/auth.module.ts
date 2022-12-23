@@ -7,11 +7,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminCoreModule } from 'src/app/core/core.module';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 const authComponent = [
   LoginComponent,
-  ForgotPasswordComponent
+  ForgotPasswordComponent,
+  ResetPasswordComponent
 ];
 
 const routes: Routes = [
@@ -21,13 +23,17 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: 'forgot-password',
     component: ForgotPasswordComponent
   },
   {
-    path: 'login',
-    component: LoginComponent
-  },
+    path: 'reset-password/:id',
+    component: ResetPasswordComponent
+  }
 ];
 
 @NgModule({

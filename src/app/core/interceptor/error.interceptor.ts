@@ -29,7 +29,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error.status === 0) {
           this._toasterService.notifySnackbarMsg('generalError', 'UnhandledException', 'error');
         } else if (error.status === 400) {
-          if (request.url.includes('/login')) {
+          if (request.url.includes('/login') || request.url.includes('/forgotPassword')) {
             this.userNotFound(error.error.message);
           } else {
             this.is400Page();

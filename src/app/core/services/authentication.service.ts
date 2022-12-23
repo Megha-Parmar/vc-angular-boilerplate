@@ -9,7 +9,8 @@ import { ToasterService } from './toaster.service';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
-  loginAPI: string = String(Constants.APIRoutes.userLogin);
+  readonly loginAPI = Constants.APIRoutes.userLogin;
+  readonly forgotPasswordAPI = Constants.APIRoutes.userForgotPassword;
 
   constructor(
     public _httpClient: HttpClient,
@@ -21,6 +22,16 @@ export class AuthenticationService {
 
   loginUser(params: LoginModel) {
     return this._httpClient.post<LoginModel>(this.loginAPI, { params }).pipe(map((user: any) => {
+      if (user && user?.data) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        return user;
+      }
+    })
+    );
+  }
+
+  forgotPassword(params: LoginModel) {
+    return this._httpClient.post<LoginModel>(this.forgotPasswordAPI, { params }).pipe(map((user: any) => {
       if (user && user?.data) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         return user;

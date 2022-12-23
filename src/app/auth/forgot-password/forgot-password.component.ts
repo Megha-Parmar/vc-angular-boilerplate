@@ -43,7 +43,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
       password: form.value.password,
     };
     console.log('params', params);
-    this._authenticationService.loginUser(params).pipe(takeUntil(this.unSubscriber)).subscribe({
+    this._authenticationService.forgotPassword(params).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (resp: any) => {
         if (resp && resp.data) {
           this._toasterService.notifySnackbarMsg('forgotPasswordPage', 'mailSentText', 'success');

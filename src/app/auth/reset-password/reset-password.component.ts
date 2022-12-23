@@ -10,11 +10,11 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class ResetPasswordComponent implements OnInit, OnDestroy {
 
   submitted: boolean = false;
   passwordToggle = true;
