@@ -10,7 +10,7 @@ import { LoaderService } from './core/services/loader.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, AfterContentInit, OnDestroy {
-
+  isOpended = false;
   title = 'vc-angular-boilerplate';
   selectedLanguage = '';
 

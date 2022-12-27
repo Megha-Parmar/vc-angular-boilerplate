@@ -1,8 +1,8 @@
-<div fxLayout="row" class="page-wrapper">
+<div fxLayout="row" class="page-wrapper d-flex">
+  <app-sidebar [isOpended]="isOpen"></app-sidebar>
   <div class="content-wrapper position-relative">
     <app-header></app-header>
     <div class="content-area custom-scrollbar">
-      <app-sidebar></app-sidebar>
       <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>

@@ -1,0 +1,98 @@
+@import "responsive";
+
+.sidebar-wrapper {
+    width: 100%;
+    overflow: visible;
+    z-index: 99;
+    @include bp(sm-max) {
+        position: absolute;
+    }
+    .sidebar-nav {
+        width: 250px;
+        height: 100vh;
+        border-right: 0;
+        background: var(--primary);
+        .sidebar-top {
+            padding: 20px;
+            .mobile-close {
+                display: none;
+                @include bp(sm-max) {
+                    display: block;
+                    position: absolute;
+                    right: 16px;
+                    color: var(--white);
+                    border-radius: 50px;
+                    text-align: center;
+                    line-height: 27px;
+                    cursor: pointer;
+                }
+            }
+            .logo {
+                border: 3px var(--white) solid;
+                max-width: 55px;
+                height: auto;
+            }
+        }
+        .custom-scrollbar {
+            padding-bottom: 15px;
+            height: calc(100% - 115px);
+            margin-right: 1px;
+        }
+        .sidebar-menu {
+            .menu-list {
+                position: relative;
+                .menu-item {
+                    font-size: 16px;
+                    color: var(--white);
+                    padding: 15px 20px;
+                    span {
+                        margin-left: 5px;
+                    }
+                    &:hover,
+                    &.active {
+                        background: var(--secondary);
+                    }
+                }
+                & > ul {
+                    background: var(--primary-100);
+                    .menu-list {
+                        .menu-item {
+                            padding-left: 50px;
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.sidenav-button {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    background: var(--secondary);
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    @include bp(sm-max) {
+        position: fixed;
+    }
+}
+@include bp(sm-max) {
+    .sidebar-wrapper {
+        .mat-drawer-opened {
+            &::after {
+                content: "";
+                position: fixed;
+                background-color: rgb(0 0 0 / 50%);
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 250px;
+                z-index: -1;
+            }
+        }
+    }
+}
