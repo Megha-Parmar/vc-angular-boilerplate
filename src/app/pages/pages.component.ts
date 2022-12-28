@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { CommonEventService } from '../core/services/common-event.service';
 import { WindowService } from '../core/services/native-window.service';
 
 @Component({
@@ -10,9 +11,11 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   isOpen = true;
   windowRef: Window;
+  showOverlay = false;
 
   constructor(
     private _windowService: WindowService,
+    private CommonEventService: CommonEventService
   ) {
     this.windowRef = this._windowService.getWindow() || window;
   }
@@ -20,6 +23,11 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     console.log('isOpened', this.isOpen)
     this.setDefaultSideNav();
+    this.CommonEventService.sidebarOverlay.subscribe({
+      next: (showOverlay: boolean) =>{
+        this.showOverlay = showOverlay;
+      }
+    })
   }
 
   ngAfterViewInit(): void {

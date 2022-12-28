@@ -1,7 +1,7 @@
 <mat-drawer-container class="sidebar-wrapper" autosize>
   <mat-drawer #drawer class="sidebar-nav" mode="side" [opened]="isOpended">
     <div class="sidebar-top">
-      <mat-icon class="mobile-close" (click)="drawer.toggle()">close</mat-icon>
+      <mat-icon class="mobile-close position-absolute align-items-center justify-content-center" (click)="drawer.toggle(); removeOverlay()">close</mat-icon>
       <a routerLink="" title="">
         <img class="logo" rel="preload" src="{{CDN_URL}}assets/images/logo.svg" title="" width="68"
           height="82" alt="" />
@@ -23,7 +23,7 @@
     </div>
   </mat-drawer>
 
-  <div class="sidenav-button d-flex align-items-center justify-content-center" (click)="drawer.toggle()">
+  <div class="sidenav-button d-flex align-items-center justify-content-center" (click)="drawer.toggle(); addLayout()">
     <mat-icon>menu</mat-icon>
   </div>
 </mat-drawer-container>

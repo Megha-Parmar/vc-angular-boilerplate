@@ -1,0 +1,44 @@
+@import "responsive";
+
+.cdk-overlay-container {
+    .mat-mdc-menu-panel.custom-dropdown {
+        margin-top: 15px;
+        min-height: auto;
+        overflow: inherit;
+        &::before {
+            content: "";
+            top: 0;
+            right: 10px;
+            position: absolute;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid var(--primary);
+            transform: rotate(-45deg);
+        }
+        .mat-mdc-menu-content,
+        .mat-mdc-menu-content:not(:empty) {
+            background: var(--primary);
+            padding: 0;
+            .mat-mdc-menu-item {
+                transition: all 400ms;
+                &:hover {
+                    background: var(--secondary);
+                }
+                span {
+                    color: var(--white);
+                    letter-spacing: 0;
+                    @include bp(sm-max) {
+                        font-size: 14px;
+                    }
+                }
+                .mat-icon {
+                    color: var(--white);
+                    font-size: 23px;
+                    height: 22px;
+                    width: 22px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

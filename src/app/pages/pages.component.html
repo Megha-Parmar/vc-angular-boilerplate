@@ -1,4 +1,4 @@
-<div fxLayout="row" class="page-wrapper d-flex">
+<div fxLayout="row" class="page-wrapper d-flex" [class]="{'overlay':showOverlay}">
   <app-sidebar [isOpended]="isOpen"></app-sidebar>
   <div class="content-wrapper position-relative">
     <app-header></app-header>

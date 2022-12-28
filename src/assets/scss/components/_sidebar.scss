@@ -17,20 +17,19 @@
             .mobile-close {
                 display: none;
                 @include bp(sm-max) {
-                    display: block;
-                    position: absolute;
-                    right: 16px;
+                    display: flex;
                     color: var(--white);
-                    border-radius: 50px;
-                    text-align: center;
-                    line-height: 27px;
-                    cursor: pointer;
+                    top: 0;
+                    right: 0;
+                    width: 36px;
+                    height: 36px;
+                    background: var(--secondary);
                 }
             }
             .logo {
-                border: 3px var(--white) solid;
-                max-width: 55px;
+                width: auto;
                 height: auto;
+                max-width: 130px;
             }
         }
         .custom-scrollbar {
@@ -78,21 +77,5 @@
     cursor: pointer;
     @include bp(sm-max) {
         position: fixed;
-    }
-}
-@include bp(sm-max) {
-    .sidebar-wrapper {
-        .mat-drawer-opened {
-            &::after {
-                content: "";
-                position: fixed;
-                background-color: rgb(0 0 0 / 50%);
-                width: 100vw;
-                height: 100vh;
-                top: 0;
-                left: 250px;
-                z-index: -1;
-            }
-        }
     }
 }
