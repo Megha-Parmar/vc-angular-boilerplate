@@ -73,7 +73,7 @@
         .welcome-content {
             max-width: 700px;
             padding: 5% 2%;
-            background: var(----white-shade-100);
+            background: var(--white-shade-100);
             border-radius: 10px;
             z-index: 1;
             @include bp(md-max) {
