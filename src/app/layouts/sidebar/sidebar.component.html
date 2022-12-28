@@ -1,6 +1,26 @@
 <mat-drawer-container class="sidebar-wrapper" autosize>
   <mat-drawer #drawer class="sidebar-nav" mode="side" [opened]="isOpended">
-    <p>Auto-resizing sidenav</p>
+    <div class="sidebar-top">
+      <mat-icon class="mobile-close" (click)="drawer.toggle()">close</mat-icon>
+      <a routerLink="" title="">
+        <img class="logo" rel="preload" src="{{CDN_URL}}assets/images/logo.svg" title="" width="68"
+          height="82" alt="" />
+      </a>
+    </div>
+    <!-- end -->
+    <div class="custom-scrollbar">
+      <ul class="sidebar-menu">
+        <li class="menu-list">
+          <a class="menu-item d-flex align-items-center" [routerLink]="'/dashboard'" routerLinkActive="active" title="Dashboard">Dashboard</a>
+        </li>
+        <li class="menu-list">
+          <a class="menu-item d-flex align-items-center" [routerLink]="'/events'" routerLinkActive="active" title="Events">Events</a>
+        </li>
+        <li class="menu-list">
+          <a class="menu-item d-flex align-items-center" [routerLink]="'/profile'" routerLinkActive="active" title="Profile">Profile</a>
+        </li>
+      </ul>
+    </div>
   </mat-drawer>
 
   <div class="sidenav-button d-flex align-items-center justify-content-center" (click)="drawer.toggle()">

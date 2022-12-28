@@ -8,6 +8,7 @@ import { LayoutMaterialModule } from './../core/layout-material.module';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     CommonMaterialModule,
     MatSidenavModule,
     MatListModule,
+    MatMenuModule
   ],
   exports: [
     HeaderComponent,
