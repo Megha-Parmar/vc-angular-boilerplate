@@ -11,10 +11,14 @@ import { environment } from 'src/environments/environment';
 
 export class SidebarComponent{
   readonly CDN_URL = environment.contentful.CDN_URL;
-  @Input() isOpended: boolean | undefined;
+  @Input() isOpended = true;
+
   constructor(
     private CommonEventService: CommonEventService
-  ) { }
+  ) {
+
+
+  }
 
   addLayout() {
     this.CommonEventService.sidebarOverlay.next(true);

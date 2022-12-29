@@ -1,3 +1,4 @@
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonEventService } from '../core/services/common-event.service';
 import { WindowService } from '../core/services/native-window.service';
@@ -15,19 +16,27 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private _windowService: WindowService,
-    private CommonEventService: CommonEventService
+    private CommonEventService: CommonEventService,
+    private breakpointObserver: BreakpointObserver
   ) {
     this.windowRef = this._windowService.getWindow() || window;
   }
 
   ngOnInit(): void {
+    // detect screen size changes
+    this.breakpointObserver.observe([
+      "(max-width: 991px)"
+    ]).subscribe((result: BreakpointState) => {
+      this.isOpen = !result.matches;
+    });
+
     console.log('isOpened', this.isOpen)
     this.setDefaultSideNav();
     this.CommonEventService.sidebarOverlay.subscribe({
       next: (showOverlay: boolean) =>{
         this.showOverlay = showOverlay;
       }
-    })
+    });
   }
 
   ngAfterViewInit(): void {

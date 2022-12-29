@@ -11,13 +11,16 @@
     <div class="custom-scrollbar">
       <ul class="sidebar-menu">
         <li class="menu-list">
-          <a class="menu-item d-flex align-items-center" [routerLink]="'/dashboard'" routerLinkActive="active" title="Dashboard">Dashboard</a>
+          <a class="menu-item d-flex align-items-center" [routerLink]="'/dashboard'" routerLinkActive="active" title="Dashboard">
+            <mat-icon>dashboard</mat-icon>
+            <span>Dashboard</span>
+          </a>
         </li>
         <li class="menu-list">
-          <a class="menu-item d-flex align-items-center" [routerLink]="'/events'" routerLinkActive="active" title="Events">Events</a>
-        </li>
-        <li class="menu-list">
-          <a class="menu-item d-flex align-items-center" [routerLink]="'/profile'" routerLinkActive="active" title="Profile">Profile</a>
+          <a class="menu-item d-flex align-items-center" [routerLink]="'/events'" routerLinkActive="active" title="Events">
+            <mat-icon>event</mat-icon>
+            <span>Events</span>
+          </a>
         </li>
       </ul>
     </div>
