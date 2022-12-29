@@ -1,5 +1,6 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CommonEventService } from '../core/services/common-event.service';
 import { WindowService } from '../core/services/native-window.service';
 
@@ -13,6 +14,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
   isOpen = true;
   windowRef: Window;
   showOverlay = false;
+  private breakpointObserver$!: Subscription;
 
   constructor(
     private _windowService: WindowService,
@@ -24,9 +26,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     // detect screen size changes
-    this.breakpointObserver.observe([
-      "(max-width: 991px)"
-    ]).subscribe((result: BreakpointState) => {
+    this.breakpointObserver$ = this.breakpointObserver.observe(["(max-width: 991px)"]).subscribe((result: BreakpointState) => {
       this.isOpen = !result.matches;
     });
 
@@ -56,7 +56,8 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
+    if(this.breakpointObserver$) {
+      this.breakpointObserver$.unsubscribe();
+    }
   }
-
 }

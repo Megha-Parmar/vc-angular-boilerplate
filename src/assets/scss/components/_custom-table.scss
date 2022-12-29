@@ -1,0 +1,99 @@
+@import "responsive";
+.table-wrapper {
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--black-shade-300);
+    .mat-mdc-header-cell {
+        background: var(--primary);
+        color: var(--white);
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .mat-mdc-paginator {
+        background: var(--white-300);
+    }
+    .mat-cell {
+        .mat-focus-indicator {
+            padding: 0;
+            min-width: 40px;
+            @include bp(md-max) {
+                text-align: right;
+            }
+        }
+    }
+    .mobile-label {
+        display: none;
+    }
+    .mat-mdc-table {
+        ng-container {
+            width: 25%;
+        }
+    }
+    @include bp(md-max) {
+        .mat-mdc-table {
+            min-width: inherit;
+            .mat-mdc-header-row {
+                display: none;
+            }
+            .mat-mdc-row {
+                height: auto;
+                display: block;
+                border: none;
+                .mat-mdc-cell {
+                    font-size: 14px;
+                    font-weight: 500;
+                    border-bottom: 1px solid var(--black-shade-100);
+                    justify-content: flex-end;
+                    padding: 8px 16px 8px 47%;
+                    position: relative;
+                    color: var(--primary);
+                    &:before {
+                        content: attr(data-label);
+                        position: absolute;
+                        left: 16px;
+                        top: 50%;
+                        width: calc(45% - 15px);
+                        color: var(--gray);
+                        transform: translateY(-50%);
+                    }
+                    &:nth-child(even) {
+                        background: var(--white-100);
+                    }
+                }
+                .mat-mdc-cell {
+                    &:last-child {
+                        border-bottom-width: 5px;
+                    }
+                }
+                &:after {
+                    display: none;
+                }
+            }
+        }
+    }
+    @include bp(xs-max) {
+        .mat-paginator-container {
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            .mat-paginator-range-label {
+                margin: 0 auto;
+                width: 100%;
+                text-align: right;
+            }
+            .mat-paginator-page-size {
+                flex-wrap: wrap;
+                margin-right: 0;
+                margin-top: 15px;
+                justify-content: flex-start;
+            }
+            .mat-paginator-range-actions {
+                flex-wrap: wrap;
+                margin-top: 15px;
+                justify-content: flex-end;
+            }
+            .mat-icon-button {
+                width: 20px;
+            }
+        }
+    }
+}

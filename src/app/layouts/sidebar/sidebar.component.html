@@ -1,4 +1,4 @@
-<mat-drawer-container class="sidebar-wrapper" autosize>
+<mat-drawer-container class="sidebar-wrapper w-100" autosize>
   <mat-drawer #drawer class="sidebar-nav" mode="side" [opened]="isOpended">
     <div class="sidebar-top">
       <mat-icon class="mobile-close position-absolute align-items-center justify-content-center" (click)="drawer.toggle(); removeOverlay()">close</mat-icon>
@@ -26,7 +26,7 @@
     </div>
   </mat-drawer>
 
-  <div class="sidenav-button d-flex align-items-center justify-content-center" (click)="drawer.toggle(); addLayout()">
+  <div class="sidenav-button d-flex align-items-center justify-content-center position-absolute" (click)="drawer.toggle(); addLayout()">
     <mat-icon>menu</mat-icon>
   </div>
 </mat-drawer-container>

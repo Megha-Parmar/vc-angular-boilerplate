@@ -128,11 +128,6 @@ img {
         transform: rotate(135deg);
     }
 }
-body {
-    .mat-drawer-inner-container {
-        overflow: hidden;
-    }
-    .mat-drawer-content {
-        overflow: inherit;
-    }
+.mat-sort-header-arrow {
+    color: var(--white);
 }

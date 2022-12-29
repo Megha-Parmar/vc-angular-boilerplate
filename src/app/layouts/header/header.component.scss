@@ -1,10 +1,7 @@
 @import "../../../assets/scss/components/responsive";
 
 .header-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    bottom: auto;
     padding: 0 24px;
     background: var(--white);
     box-shadow: 0 0 5px var(--black-shade-100);

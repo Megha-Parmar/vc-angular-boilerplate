@@ -1,8 +1,8 @@
-<div fxLayout="row" class="page-wrapper d-flex" [class]="{'overlay':showOverlay}">
+<div fxLayout="row" class="page-wrapper d-flex h-100" [class]="{'overlay':showOverlay}">
   <app-sidebar [isOpended]="isOpen"></app-sidebar>
-  <div class="content-wrapper position-relative">
+  <div class="content-wrapper position-relative w-100 h-100">
     <app-header></app-header>
-    <div class="content-area custom-scrollbar">
+    <div class="content-area w-100 custom-scrollbar">
       <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>
