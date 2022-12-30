@@ -11,7 +11,7 @@
           <mat-form-field appearance="outline" class="form-input">
             <mat-label>{{ 'loginPage.emailTitle' | translate }}</mat-label>
             <input matInput type="text" name="email" ngModel #email="ngModel" class="form-control"
-              [ngClass]="{ 'is-invalid': adminLoginForm.submitted && email.invalid }" required email disabled>
+              [ngClass]="{ 'is-invalid': adminLoginForm.submitted && email.invalid }" required email>
             <div *ngIf="adminLoginForm.submitted && email.errors" class="error-message">
               <div *ngIf="email.errors['required']">{{ 'loginPage.emailIsRequiredErrorText' | translate }}</div>
               <div *ngIf="email.errors['email']">{{ 'loginPage.invalidEmailErrorText' | translate }}</div>
