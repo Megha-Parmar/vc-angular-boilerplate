@@ -64,6 +64,14 @@ export const locale = {
       welcomeToText: 'Welcome to',
       mailSentText: 'Email sent to your registered email address, please check it and proceed for forgot password.',
     },
+    eventListPage: {
+      titleText: 'Title',
+      bannerText: 'Banner',
+      statusText: 'Status',
+      createdDateText: 'Created Date',
+      event: 'Events',
+      generalInfo: 'General Info.',
+    },
     homePage: {
       notLoggedIn: 'We couldn\'t log you in.',
     },
