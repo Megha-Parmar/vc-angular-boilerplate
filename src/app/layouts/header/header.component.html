@@ -1,19 +1,18 @@
 <div class="header-wrapper d-flex align-items-center justify-content-end position-absolute">
   <div class="user-menu position-relative" fxLayout="row" fxLayoutAlign="space-between center">
-    <button class="user-name trans p-0 border-0 d-flex align-items-center" [matMenuTriggerFor]="menu"
-      title="Logout">
+    <button class="user-name trans p-0 border-0 d-flex align-items-center" [matMenuTriggerFor]="menu" title="Logout">
       <span class="user-img-box d-flex align-items-center justify-content-center">
         <!-- <img rel="preload" class="user-img"
           title="" width="40" height="40" alt="" /> -->
-          <mat-icon>person</mat-icon>
+        <mat-icon>person</mat-icon>
       </span>
-      <strong class="ml-2">User name</strong>
+      <strong class="ml-2">{{adminProfile?.name}}</strong>
     </button>
     <mat-menu #menu="matMenu" class="custom-dropdown" yPosition="above" xPosition="before">
-      <button mat-menu-item >
+      <button mat-menu-item>
         <mat-icon>mood</mat-icon>Profile
       </button>
-      <button mat-menu-item >
+      <button mat-menu-item>
         <mat-icon>lock</mat-icon>Change Password
       </button>
       <button mat-menu-item (click)="goToLogout()">
