@@ -30,7 +30,6 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
       this.isOpen = !result.matches;
     });
 
-    console.log('isOpened', this.isOpen)
     this.setDefaultSideNav();
     this.CommonEventService.sidebarOverlay.subscribe({
       next: (showOverlay: boolean) =>{

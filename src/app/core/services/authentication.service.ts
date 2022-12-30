@@ -38,7 +38,6 @@ export class AuthenticationService {
     return this._httpClient.post<LoginModel>(this.loginAPI, params).pipe(map((user: any) => {
       if (user && user?.data) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        console.log('aaa' , user.data.data);
         this.currentUserSubject.next(user.data.data);
         return user;
       }

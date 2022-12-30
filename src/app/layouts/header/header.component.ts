@@ -30,7 +30,6 @@ export class HeaderComponent implements OnInit {
 
   getUserProfile(): void {
     this.adminProfile = this._authenticationService.currentUserValue;
-    console.log('this.adminProfile' , this.adminProfile)
   }
 
   goToLogout(): void {

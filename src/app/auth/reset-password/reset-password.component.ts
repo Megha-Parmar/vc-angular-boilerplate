@@ -46,7 +46,6 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
       email: form.value?.email,
       password: form.value.password,
     };
-    console.log('params', params);
     this._authenticationService.loginUser(params).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (resp: any) => {
         if (resp && resp.data) {

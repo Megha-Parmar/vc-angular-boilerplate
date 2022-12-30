@@ -42,7 +42,6 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
       email: form.value?.email,
       password: form.value.password,
     };
-    console.log('params', params);
     this._authenticationService.forgotPassword(params).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (resp: any) => {
         if (resp && resp.data) {
