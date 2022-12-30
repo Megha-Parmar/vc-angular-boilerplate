@@ -7,7 +7,6 @@
   </div>
 </div>
 
-
 <div class="">
   <mat-form-field>
     <input matInput placeholder="Filter">
@@ -25,7 +24,15 @@
     <!-- end -->
     <ng-container matColumnDef="vertical_banner_image">
       <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.bannerText" | translate }} </mat-header-cell>
-      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.titleText' | translate"> {{row.vertical_banner_image}} </mat-cell>
+      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.titleText' | translate">
+
+        <ng-container *ngIf="row.vertical_banner_image">
+          <img height="50" width="100" alt="event-img" class="" [src]="row.vertical_banner_image" />
+        </ng-container>
+        <ng-container *ngIf="!row.vertical_banner_image && row.horizontal_banner_image">
+          <img height="50" width="100" alt="event-img" class="" [src]="row.horizontal_banner_image" />
+        </ng-container>
+      </mat-cell>
     </ng-container>
     <!-- end -->
     <ng-container matColumnDef="is_published">
