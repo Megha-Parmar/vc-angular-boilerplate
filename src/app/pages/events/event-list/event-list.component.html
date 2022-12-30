@@ -37,12 +37,14 @@
     <!-- end -->
     <ng-container matColumnDef="is_published">
       <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.statusText" | translate }} </mat-header-cell>
-      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.statusText' | translate"> {{row.is_published}} </mat-cell>
+      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.statusText' | translate">
+        {{ row.is_published === true ? "Published" : "Draft" }}
+      </mat-cell>
     </ng-container>
     <!-- end -->
     <ng-container matColumnDef="created_at">
       <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.createdDateText" | translate }} </mat-header-cell>
-      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.createdDateText' | translate"> {{row.created_at}} </mat-cell>
+      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.createdDateText' | translate"> {{row.created_at | date}} </mat-cell>
     </ng-container>
     <!-- end -->
     <ng-container matColumnDef="action">
