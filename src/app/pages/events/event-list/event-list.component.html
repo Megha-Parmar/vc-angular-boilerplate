@@ -1,8 +1,20 @@
-<div class="example-header">
+<div>
+  <span class=""><mat-icon class="mr-5">event</mat-icon> Events</span>
+  <div class="">
+    <button mat-button class="" [routerLink]="['/events/add']">
+      {{ "eventListPage.addText" | translate }}
+    </button>
+  </div>
+</div>
+
+
+<div class="">
   <mat-form-field>
-    <input matInput  placeholder="Filter">
+    <input matInput placeholder="Filter">
   </mat-form-field>
 </div>
+
+<p *ngIf="dataSource"> {{ "eventListPage.totalEventText" | translate }} : {{ dataSource!.filteredData!.length }}</p>
 
 <div class="table-wrapper" *ngIf="dataSource">
   <mat-table [dataSource]="dataSource" matSort>

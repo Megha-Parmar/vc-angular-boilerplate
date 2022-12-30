@@ -70,7 +70,8 @@ export const locale = {
       statusText: 'Status',
       createdDateText: 'Created Date',
       actionText: 'Action',
-      event: 'Events',
+      totalEventText: 'Total Events',
+      addText: 'Add New',
       generalInfo: 'General Info.',
     },
     homePage: {
