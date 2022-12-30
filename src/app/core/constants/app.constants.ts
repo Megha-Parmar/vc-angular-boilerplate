@@ -17,6 +17,7 @@ export class Constants {
     userUpdatePassword: 'settings/updatePassword/',
     getUserProfile: 'settings/adminProfile/',
     updateUserProfile: 'settings/updateAdminProfile/',
+    getEventList: 'cap/event/list/map',
 
     getCategoryList: 'category/getCategory/',
     createCategory: 'category/createCategory/',

@@ -4,32 +4,37 @@
   </mat-form-field>
 </div> -->
 
-<div class="table-wrapper">
+<div class="table-wrapper" *ngIf="dataSource">
   <mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-      <mat-cell *matCellDef="let row" [attr.data-label]="'ID'"> {{row.id}} </mat-cell>
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.titleText" | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.titleText' | translate"> {{row.title}} </mat-cell>
     </ng-container>
     <!-- end -->
-    <ng-container matColumnDef="progress">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Progress </mat-header-cell>
-      <mat-cell *matCellDef="let row" [attr.data-label]="'Progress'"> {{row.progress}}% </mat-cell>
+    <ng-container matColumnDef="vertical_banner_image">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.bannerText" | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.titleText' | translate"> {{row.vertical_banner_image}} </mat-cell>
     </ng-container>
     <!-- end -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-      <mat-cell *matCellDef="let row" [attr.data-label]="'Name'"> {{row.name}} </mat-cell>
+    <ng-container matColumnDef="is_published">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.statusText" | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.statusText' | translate"> {{row.is_published}} </mat-cell>
     </ng-container>
     <!-- end -->
-    <ng-container matColumnDef="color">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
-      <mat-cell *matCellDef="let row" [style.color]="row.color" [attr.data-label]="'Color'"> {{row.color}} </mat-cell>
+    <ng-container matColumnDef="created_at">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.createdDateText" | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.createdDateText' | translate">
+        <button class="secondary-text" mat-icon-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
     </ng-container>
-  <!-- end -->
+
+
+    <!-- end -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;">
     </mat-row>
   </mat-table>
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
-
