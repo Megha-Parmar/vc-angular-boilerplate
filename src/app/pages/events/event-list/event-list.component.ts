@@ -47,18 +47,20 @@ export class EventListComponent implements OnInit, OnDestroy {
     this.eventService.getEventList().pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (result: any) => {
         if (result && result.data) {
-          if (result.data) {
-            const events = result.data;
-            this.dataSource = new MatTableDataSource(events);
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-            console.log('aaabbcc', this.dataSource);
-          }
-
-          // this.dataSource = new MatTableDataSource(this.eventList);
+          this.dataSource = new MatTableDataSource(result.data);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
         }
       }
     });
+  }
+
+  /**
+   * This function navigates to the edit page of the Event with the id that is passed in.
+   * @param {string} id - string - the id of the Event to edit
+   */
+  editEvent(id: string): void {
+    this._router.navigate([`/events/${id}/edit`]);
   }
 
   ngOnDestroy(): void {

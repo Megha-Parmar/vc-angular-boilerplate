@@ -29,6 +29,11 @@ const routes: Routes = [
           import('./events/event-add/event-add.module').then((m) => m.EventAddModule),
       },
       {
+        path: 'events/:id/edit',
+        loadChildren: () =>
+          import('./events/event-add/event-add.module').then((m) => m.EventAddModule),
+      },
+      {
         path: 'error',
         loadChildren: () => import('./../error-routes/error-routes.module').then(m => m.ErrorRoutesModule),
         //  component: Error403Component

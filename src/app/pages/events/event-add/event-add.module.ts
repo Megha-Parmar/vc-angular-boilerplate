@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AdminCoreModule } from 'src/app/core/core.module';
 import { EventAddRoutingModule } from './event-add-routing.module';
 import { EventAddComponent } from './event-add.component';
 
@@ -7,7 +8,8 @@ import { EventAddComponent } from './event-add.component';
   declarations: [EventAddComponent],
   imports: [
     CommonModule,
-    EventAddRoutingModule
+    EventAddRoutingModule,
+    AdminCoreModule
   ]
 })
 export class EventAddModule { }

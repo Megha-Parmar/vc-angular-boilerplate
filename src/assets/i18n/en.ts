@@ -72,7 +72,11 @@ export const locale = {
       actionText: 'Action',
       totalEventText: 'Total Events',
       addText: 'Add New',
-      generalInfo: 'General Info.',
+    },
+    eventAddEditPage: {
+      addEventText: 'Add Event',
+      editEventText: 'Edit Event',
+
     },
     homePage: {
       notLoggedIn: 'We couldn\'t log you in.',

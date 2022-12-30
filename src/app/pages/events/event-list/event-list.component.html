@@ -41,7 +41,7 @@
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.actionText" | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.actionText' | translate">
-        <button class="secondary-text" mat-icon-button>
+        <button class="secondary-text" mat-icon-button (click)="editEvent(row.uuid)">
           <mat-icon>edit</mat-icon>
         </button>
         <button class="secondary-text" mat-icon-button>
