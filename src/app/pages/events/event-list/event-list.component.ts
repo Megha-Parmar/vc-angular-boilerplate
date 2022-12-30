@@ -55,6 +55,14 @@ export class EventListComponent implements OnInit, OnDestroy {
     });
   }
 
+  applyFilter(event: KeyboardEvent): void {
+    if (event) {
+      let filterValue = this.filterValue.trim(); // Remove whitespace
+      filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+      this.dataSource.filter = filterValue;
+    }
+  }
+
   /**
    * This function navigates to the edit page of the Event with the id that is passed in.
    * @param {string} id - string - the id of the Event to edit

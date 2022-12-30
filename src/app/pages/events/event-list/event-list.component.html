@@ -9,7 +9,7 @@
 
 <div class="">
   <mat-form-field>
-    <input matInput placeholder="Filter">
+    <input matInput placeholder="Filter" [(ngModel)]="filterValue" (keyup)="applyFilter($event)" (keydown)="$event.stopPropagation()">
   </mat-form-field>
 </div>
 
