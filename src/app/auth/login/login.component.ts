@@ -45,11 +45,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       email: form.value?.email,
       password: form.value.password,
     };
-    console.log('params', params);
     this._authenticationService.loginUser(params).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (resp: any) => {
         if (resp && resp.data) {
-          this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp.data);
+          this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp.data.data);
           this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.token, resp.data.access_token);
           this._toasterService.notifySnackbarMsg('loginPage', 'loggedIn', 'success');
           this.router.navigate(['/dashboard']);
