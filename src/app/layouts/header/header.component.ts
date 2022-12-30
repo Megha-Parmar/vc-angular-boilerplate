@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
 
   goToLogout(): void {
     this._authenticationService.logoutUser();
+    this._toasterService.notifySnackbarMsg('loginPage', 'loggedOut', 'success');
     this._router.navigate(['/auth/login']);
   }
 

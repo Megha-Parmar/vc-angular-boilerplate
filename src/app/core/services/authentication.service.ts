@@ -4,7 +4,6 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Constants } from '../constants/app.constants';
 import { LoginModel, loginResponse } from '../models/user.model';
 import { EncryptDecryptService } from './encrypt-decrypt.service';
-import { ToasterService } from './toaster.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -20,7 +19,6 @@ export class AuthenticationService {
   constructor(
     public _httpClient: HttpClient,
     public _encryptDecryptService: EncryptDecryptService,
-    public _toasterService: ToasterService,
   ) {
     if (this._encryptDecryptService.getDecryptedLocalStorage(Constants.storageKeys.currentUser)) {
       this.currentUserSubject = new BehaviorSubject<loginResponse>(this._encryptDecryptService.getDecryptedLocalStorage(Constants.storageKeys.currentUser));
@@ -59,7 +57,6 @@ export class AuthenticationService {
     this._encryptDecryptService.removeEncryptedLocalStorage(Constants.storageKeys.currentUser);
     this._encryptDecryptService.removeEncryptedLocalStorage(Constants.storageKeys.token);
     this.currentUserSubject.next('');
-    this._toasterService.notifySnackbarMsg('loginPage', 'loggedOut', 'success');
   }
 
 
