@@ -17,7 +17,7 @@ import { EventListModel } from './../../../core/models/event.model';
 export class EventListComponent implements OnInit, OnDestroy {
 
   displayedColumns = ['title', 'vertical_banner_image', 'is_published', 'created_at', 'action'];
-  dataSource: MatTableDataSource<EventListModel> | undefined;
+  dataSource: MatTableDataSource<EventListModel>;
 
   pagination: number[] = Constants.paginationArray;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
