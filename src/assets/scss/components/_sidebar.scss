@@ -1,3 +1,4 @@
+@import "custom-scrollbar";
 @import "responsive";
 
 .sidebar-wrapper {
@@ -11,6 +12,9 @@
         height: 100vh;
         border-right: 0;
         background: var(--primary);
+        .mat-drawer-inner-container {
+            overflow: hidden;
+        }
         .sidebar-top {
             padding: 20px;
             .mobile-close {
@@ -19,6 +23,7 @@
                     display: flex;
                     color: var(--white);
                     top: 0;
+                    left: auto;
                     right: 0;
                     width: 36px;
                     height: 36px;

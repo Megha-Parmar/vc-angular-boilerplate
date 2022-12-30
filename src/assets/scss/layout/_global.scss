@@ -131,3 +131,11 @@ img {
 .mat-sort-header-arrow {
     color: var(--white);
 }
+body {
+    .mat-drawer-inner-container {
+        overflow: hidden;
+    }
+    .mat-drawer-content {
+        overflow: inherit;
+    }
+}

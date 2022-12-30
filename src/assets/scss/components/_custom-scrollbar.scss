@@ -1,0 +1,26 @@
+.custom-scrollbar,
+.mat-dialog-content {
+  overflow: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray) var(--gray-300);
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: var(--gray-300);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: var(--gray);
+    background-clip: padding-box;
+  }
+}
