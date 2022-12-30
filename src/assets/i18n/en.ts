@@ -69,6 +69,7 @@ export const locale = {
       bannerText: 'Banner',
       statusText: 'Status',
       createdDateText: 'Created Date',
+      actionText: 'Action',
       event: 'Events',
       generalInfo: 'General Info.',
     },

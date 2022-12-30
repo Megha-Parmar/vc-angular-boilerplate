@@ -23,9 +23,17 @@
     <!-- end -->
     <ng-container matColumnDef="created_at">
       <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.createdDateText" | translate }} </mat-header-cell>
-      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.createdDateText' | translate">
+      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.createdDateText' | translate"> {{row.created_at}} </mat-cell>
+    </ng-container>
+    <!-- end -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.actionText" | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.actionText' | translate">
         <button class="secondary-text" mat-icon-button>
           <mat-icon>edit</mat-icon>
+        </button>
+        <button class="secondary-text" mat-icon-button>
+          <mat-icon>delete</mat-icon>
         </button>
       </mat-cell>
     </ng-container>
@@ -36,5 +44,5 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;">
     </mat-row>
   </mat-table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="pagination"></mat-paginator>
 </div>
