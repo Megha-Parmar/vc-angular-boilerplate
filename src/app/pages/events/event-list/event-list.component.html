@@ -1,69 +1,129 @@
-<div>
-  <span class=""><mat-icon class="mr-5">event</mat-icon> Events</span>
-  <div class="">
-    <button mat-button class="" [routerLink]="['/events/add']">
-      {{ "eventListPage.addText" | translate }}
-    </button>
+<div class="breadcrumbs d-flex justify-content-between align-items-center">
+  <div class="d-flex align-items-center">
+    <mat-icon>event</mat-icon>
+    <span class="ml-1">Events</span>
   </div>
+  <button mat-button class="secondary-btn" [routerLink]="['/events/add']">
+    {{ "eventListPage.addText" | translate }}
+  </button>
 </div>
 
-<div class="">
-  <mat-form-field>
-    <input matInput placeholder="Filter" [(ngModel)]="filterValue" (keyup)="applyFilter($event)" (keydown)="$event.stopPropagation()">
-  </mat-form-field>
-</div>
-
-<p *ngIf="dataSource"> {{ "eventListPage.totalEventText" | translate }} : {{ dataSource!.filteredData!.length }}</p>
-
-<div class="table-wrapper" *ngIf="dataSource">
-  <mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.titleText" | translate }} </mat-header-cell>
-      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.titleText' | translate"> {{row.title}} </mat-cell>
-    </ng-container>
-    <!-- end -->
-    <ng-container matColumnDef="vertical_banner_image">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.bannerText" | translate }} </mat-header-cell>
-      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.titleText' | translate">
-
-        <ng-container *ngIf="row.vertical_banner_image">
-          <img height="50" width="100" alt="event-img" class="" [src]="row.vertical_banner_image" />
-        </ng-container>
-        <ng-container *ngIf="!row.vertical_banner_image && row.horizontal_banner_image">
-          <img height="50" width="100" alt="event-img" class="" [src]="row.horizontal_banner_image" />
-        </ng-container>
-      </mat-cell>
-    </ng-container>
-    <!-- end -->
-    <ng-container matColumnDef="is_published">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.statusText" | translate }} </mat-header-cell>
-      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.statusText' | translate">
-        {{ row.is_published === true ? "Published" : "Draft" }}
-      </mat-cell>
-    </ng-container>
-    <!-- end -->
-    <ng-container matColumnDef="created_at">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.createdDateText" | translate }} </mat-header-cell>
-      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.createdDateText' | translate"> {{row.created_at | date}} </mat-cell>
-    </ng-container>
-    <!-- end -->
-    <ng-container matColumnDef="action">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "eventListPage.actionText" | translate }} </mat-header-cell>
-      <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.actionText' | translate">
-        <button class="secondary-text" mat-icon-button (click)="editEvent(row.uuid)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button class="secondary-text" mat-icon-button>
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-cell>
-    </ng-container>
-
-
-    <!-- end -->
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;">
-    </mat-row>
-  </mat-table>
-  <mat-paginator [pageSizeOptions]="pagination"></mat-paginator>
+<div class="page-wrapper custom-scrollbar">
+  <div class="d-flex align-items-center justify-content-between mt-2 mb-2">
+    <strong *ngIf="dataSource">
+      {{ "eventListPage.totalEventText" | translate }} :
+      {{ dataSource!.filteredData!.length }}
+    </strong>
+    <div class="form-field w-25">
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Filter"
+          [(ngModel)]="filterValue"
+          (keyup)="applyFilter($event)"
+          (keydown)="$event.stopPropagation()"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="table-wrapper" *ngIf="dataSource">
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "eventListPage.titleText" | translate }}
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let row"
+          [attr.data-label]="'eventListPage.titleText' | translate"
+        >
+          {{ row.title }}
+        </mat-cell>
+      </ng-container>
+      <!-- end -->
+      <ng-container matColumnDef="vertical_banner_image">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "eventListPage.bannerText" | translate }}
+        </mat-header-cell>
+        <mat-cell
+          class="image-box d-flex align-items-center justify-content-center"
+          *matCellDef="let row"
+          [attr.data-label]="'eventListPage.titleText' | translate"
+        >
+          <ng-container *ngIf="row.vertical_banner_image">
+            <div class="table-img-wrapper">
+              <img
+                height="50"
+                width="100"
+                alt="event-img"
+                class=""
+                [src]="row.vertical_banner_image"
+              />
+            </div>
+          </ng-container>
+          <ng-container
+            *ngIf="!row.vertical_banner_image && row.horizontal_banner_image"
+          >
+            <div class="table-img-wrapper">
+              <img
+                height="50"
+                width="100"
+                alt="event-img"
+                class=""
+                [src]="row.horizontal_banner_image"
+              />
+            </div>
+          </ng-container>
+        </mat-cell>
+      </ng-container>
+      <!-- end -->
+      <ng-container matColumnDef="is_published">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "eventListPage.statusText" | translate }}
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let row"
+          [attr.data-label]="'eventListPage.statusText' | translate"
+        >
+          {{ row.is_published === true ? "Published" : "Draft" }}
+        </mat-cell>
+      </ng-container>
+      <!-- end -->
+      <ng-container matColumnDef="created_at">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "eventListPage.createdDateText" | translate }}
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let row"
+          [attr.data-label]="'eventListPage.createdDateText' | translate"
+        >
+          {{ row.created_at | date }}
+        </mat-cell>
+      </ng-container>
+      <!-- end -->
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "eventListPage.actionText" | translate }}
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let row"
+          [attr.data-label]="'eventListPage.actionText' | translate"
+        >
+          <button
+            class="secondary-text"
+            mat-icon-button
+            (click)="editEvent(row.uuid)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button class="secondary-text" mat-icon-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <!-- end -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="pagination"></mat-paginator>
+  </div>
 </div>

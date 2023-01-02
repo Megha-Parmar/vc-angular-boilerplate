@@ -1,7 +1,7 @@
 @import "../../assets/scss/components/custom-scrollbar";
 @import "../../assets/scss/components/responsive";
 
-.page-wrapper {
+.page-layout {
     overflow: hidden;
     @include bp(sm-max) {
         &::before {
@@ -19,13 +19,12 @@
         }
     }
     .content-wrapper {
-        overflow: auto;
+        overflow: hidden;
         .content-area {
-            padding: 90px 24px 60px;
+            padding-top: 70px;
             height: 100%;
             background: var(--white-100);
             @include bp(sm-max) {
-                padding: 90px 20px 30px;
                 min-height: calc(100% - 37px);
                 height: auto;
             }

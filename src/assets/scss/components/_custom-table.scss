@@ -1,6 +1,6 @@
 @import "responsive";
 .table-wrapper {
-    border-radius: 6px;
+    border-radius: 4px;
     overflow: hidden;
     border: 1px solid var(--black-shade-300);
     .mat-mdc-header-cell {
@@ -12,12 +12,20 @@
     .mat-mdc-paginator {
         background: var(--white-300);
     }
-    .mat-cell {
+    .mat-mdc-cell {
         .mat-focus-indicator {
             padding: 0;
             min-width: 40px;
             @include bp(md-max) {
                 text-align: right;
+            }
+        }
+        .table-img-wrapper {
+            max-width: 35px;
+            padding: 5px 0;
+            img {
+                width: auto;
+                height: auto;
             }
         }
     }

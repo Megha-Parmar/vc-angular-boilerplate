@@ -31,12 +31,10 @@
                     }
                 }
             }
-            .button-wrapper {
-                .primary-btn {
-                    @include bp(md-max) {
-                        background: var(--white);
-                        color: var(--primary);
-                    }
+            .primary-btn {
+                @include bp(md-max) {
+                    background: var(--white);
+                    color: var(--primary);
                 }
             }
         }

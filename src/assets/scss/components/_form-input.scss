@@ -1,7 +1,9 @@
 @import "responsive";
 
 .form-field {
-    margin-bottom: 25px;
+    & ~ .form-field {
+        margin-top: 25px;
+    }
     .mat-mdc-form-field {
         width: 100%;
         .mdc-text-field--outlined:not(.mdc-text-field--disabled) {
