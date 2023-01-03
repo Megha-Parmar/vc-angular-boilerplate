@@ -22,12 +22,12 @@
         overflow: hidden;
         .content-area {
             padding-top: 70px;
+            padding-bottom: 105px;
             height: 100%;
             background: var(--white-100);
-            @include bp(sm-max) {
-                min-height: calc(100% - 37px);
-                height: auto;
-            }
+            // @include bp(sm-max) {
+            //     padding-bottom: 70px;
+            // }
         }
     }
     router-outlet + * {

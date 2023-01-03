@@ -1,18 +1,30 @@
 @import "responsive";
 .table-wrapper {
-    border-radius: 4px;
     overflow: hidden;
-    border: 1px solid var(--black-shade-300);
+    @include bp(md-max) {
+        border: 1px var(--gray-200) solid;
+    }
     .mat-mdc-header-cell {
+        border: 0;
         background: var(--primary);
         color: var(--white);
         font-size: 16px;
         font-weight: 500;
-    }
-    .mat-mdc-paginator {
-        background: var(--white-300);
+        & ~ .mat-mdc-header-cell {
+            justify-content: center;
+            @include bp(md-min) {
+                border-left: 1px var(--gray-200) solid;
+            }
+        }
     }
     .mat-mdc-cell {
+        border-bottom: 0;
+        & ~ .mat-mdc-cell {
+            justify-content: center;
+            @include bp(md-min) {
+                border-left: 1px var(--gray-200) solid;
+            }
+        }
         .mat-focus-indicator {
             padding: 0;
             min-width: 40px;
@@ -21,11 +33,28 @@
             }
         }
         .table-img-wrapper {
-            max-width: 35px;
+            max-width: 30px;
             padding: 5px 0;
             img {
                 width: auto;
                 height: auto;
+            }
+        }
+    }
+    .action-button {
+        button {
+            border: 0;
+            background: none;
+            opacity: 0.85;
+            color: var(--primary);
+            &:hover {
+                opacity: 1;
+                &.edit-button {
+                    color: var(--info);
+                }
+                &.delete-button {
+                    color: var(--danger);
+                }
             }
         }
     }
@@ -35,6 +64,12 @@
     .mat-mdc-table {
         ng-container {
             width: 25%;
+        }
+    }
+    .mat-mdc-paginator {
+        border-top: 2px var(--gray-100) solid;
+        .mat-mdc-paginator-container {
+            justify-content: space-between;
         }
     }
     @include bp(md-max) {

@@ -42,11 +42,11 @@ body {
 a,
 button {
     cursor: pointer;
+    @extend .trans;
 }
 a {
     color: var(--primary);
     text-decoration: none;
-    @extend .trans;
 }
 p {
     margin-top: 0;
@@ -128,8 +128,32 @@ img {
         transform: rotate(135deg);
     }
 }
-.mat-sort-header-arrow {
-    color: var(--white);
+.table-wrapper {
+    .mat-mdc-table {
+        .mat-mdc-row {
+            @include bp(md-min) {
+                &:nth-child(even) {
+                    background: var(--white-100);
+                }
+                &:hover {
+                    &:nth-child(even) {
+                        background: var(--white-100);
+                    }
+                }
+            }
+        }
+    }
+    .mat-mdc-header-row {
+        min-height: 46px;
+    }
+    .mat-sort-header-arrow {
+        position: absolute;
+        right: -15px;
+        color: var(--white);
+    }
+    .mat-mdc-paginator-container {
+        justify-content: space-between;
+    }
 }
 body {
     .mat-drawer-inner-container {

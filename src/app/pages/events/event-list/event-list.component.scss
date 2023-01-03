@@ -1,14 +1,26 @@
 @import "../../../../assets/scss/components/custom-table";
+@import "../../../../assets/scss/components/custom-card";
 @import "../../../../assets/scss/components/custom-scrollbar";
 
+.event-list {
+    padding: 24px;
+    @include bp(sm-max) {
+        padding: 16px;
+    }
+}
 
 .breadcrumbs {
     position: sticky;
     top: 0;
     color: var(--white);
     background: var(--primary);
-    padding: 7px 16px;
+    padding: 10px 16px;
     z-index: 1;
+    .heading {
+        span {
+            font-size: 18px;
+        }
+    }
     .secondary-btn {
         line-height: 40px;
         height: 40px;
@@ -19,6 +31,7 @@
     }
 }
 .page-wrapper {
-    padding: 0 24px 115px;
+    padding: 0 24px 30px;
     height: 100%;
+    margin: 5px 0;
 }

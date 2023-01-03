@@ -6,7 +6,7 @@
     color: var(--white);
     z-index: 2;
     @include bp(sm-max) {
-        position: static;
+        // position: static;
         padding: 10px 15px;
         p {
             font-size: 14px;
