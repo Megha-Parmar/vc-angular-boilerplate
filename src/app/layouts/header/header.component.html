@@ -9,7 +9,7 @@
       <strong class="ml-2">{{adminProfile?.name}}</strong>
     </button>
     <mat-menu #menu="matMenu" class="custom-dropdown" yPosition="above" xPosition="before">
-      <button mat-menu-item>
+      <button mat-menu-item (click)="goToProfile()">
         <mat-icon>mood</mat-icon>Profile
       </button>
       <button mat-menu-item>

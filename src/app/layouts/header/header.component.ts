@@ -32,6 +32,10 @@ export class HeaderComponent implements OnInit {
     this.adminProfile = this._authenticationService.currentUserValue;
   }
 
+  goToProfile(): void {
+    this._router.navigate(['/profile']);
+  }
+
   goToLogout(): void {
     this._authenticationService.logoutUser();
     this._toasterService.notifySnackbarMsg('loginPage', 'loggedOut', 'success');
