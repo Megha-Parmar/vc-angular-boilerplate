@@ -131,12 +131,14 @@ img {
 .table-wrapper {
     .mat-mdc-table {
         .mat-mdc-row {
-            &:nth-child(even) {
-                background: var(--white-100);
-            }
-            &:hover {
+            @include bp(md-min) {
                 &:nth-child(even) {
                     background: var(--white-100);
+                }
+                &:hover {
+                    &:nth-child(even) {
+                        background: var(--white-100);
+                    }
                 }
             }
         }

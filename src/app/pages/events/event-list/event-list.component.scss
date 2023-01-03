@@ -4,6 +4,9 @@
 
 .event-list {
     padding: 24px;
+    @include bp(sm-max) {
+        padding: 16px;
+    }
 }
 
 .breadcrumbs {

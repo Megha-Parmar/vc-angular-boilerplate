@@ -1,6 +1,9 @@
 @import "responsive";
 .table-wrapper {
     overflow: hidden;
+    @include bp(md-max) {
+        border: 1px var(--gray-200) solid;
+    }
     .mat-mdc-header-cell {
         border: 0;
         background: var(--primary);
@@ -9,13 +12,18 @@
         font-weight: 500;
         & ~ .mat-mdc-header-cell {
             justify-content: center;
+            @include bp(md-min) {
+                border-left: 1px var(--gray-200) solid;
+            }
         }
     }
     .mat-mdc-cell {
         border-bottom: 0;
         & ~ .mat-mdc-cell {
             justify-content: center;
-            border-left: 1px var(--gray-200) solid;
+            @include bp(md-min) {
+                border-left: 1px var(--gray-200) solid;
+            }
         }
         .mat-focus-indicator {
             padding: 0;
