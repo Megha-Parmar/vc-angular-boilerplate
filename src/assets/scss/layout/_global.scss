@@ -129,10 +129,20 @@ img {
     }
 }
 .table-wrapper {
-    .mat-mdc-row {
-        &:nth-child(even) {
-            background: var(--white-100);
+    .mat-mdc-table {
+        .mat-mdc-row {
+            &:nth-child(even) {
+                background: var(--white-100);
+            }
+            &:hover {
+                &:nth-child(even) {
+                    background: var(--white-100);
+                }
+            }
         }
+    }
+    .mat-mdc-header-row {
+        min-height: 46px;
     }
     .mat-sort-header-arrow {
         position: absolute;

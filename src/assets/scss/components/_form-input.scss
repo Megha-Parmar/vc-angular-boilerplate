@@ -94,3 +94,19 @@
         }
     }
 }
+
+/*----- For event-list page -----*/
+
+.event-list {
+    .form-field {
+        .mat-mdc-form-field {
+            .mat-mdc-form-field-infix {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                display: flex;
+                align-items: center;
+                min-height: 46px;
+            }
+        }
+    }
+}

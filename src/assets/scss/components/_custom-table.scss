@@ -1,8 +1,6 @@
 @import "responsive";
 .table-wrapper {
-    border-radius: 4px;
     overflow: hidden;
-    border: 1px solid var(--black-shade-300);
     .mat-mdc-header-cell {
         border: 0;
         background: var(--primary);
@@ -14,8 +12,10 @@
         }
     }
     .mat-mdc-cell {
+        border-bottom: 0;
         & ~ .mat-mdc-cell {
             justify-content: center;
+            border-left: 1px var(--gray-200) solid;
         }
         .mat-focus-indicator {
             padding: 0;
@@ -38,14 +38,15 @@
             border: 0;
             background: none;
             opacity: 0.85;
-            &.edit-button {
-                color: var(--info);
-            }
-            &.delete-button {
-                color: var(--danger);
-            }
+            color: var(--primary);
             &:hover {
                 opacity: 1;
+                &.edit-button {
+                    color: var(--info);
+                }
+                &.delete-button {
+                    color: var(--danger);
+                }
             }
         }
     }
@@ -58,7 +59,7 @@
         }
     }
     .mat-mdc-paginator {
-        background: var(--gray-200);
+        border-top: 2px var(--gray-100) solid;
         .mat-mdc-paginator-container {
             justify-content: space-between;
         }
