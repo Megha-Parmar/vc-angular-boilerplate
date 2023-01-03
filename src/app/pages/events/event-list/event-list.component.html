@@ -19,13 +19,8 @@
       </strong>
       <div class="form-field w-25">
         <mat-form-field appearance="outline">
-          <input
-            matInput
-            placeholder="Filter"
-            [(ngModel)]="filterValue"
-            (keyup)="applyFilter($event)"
-            (keydown)="$event.stopPropagation()"
-          />
+          <input matInput placeholder="Filter" [(ngModel)]="filterValue" (keyup)="applyFilter($event)"
+            (keydown)="$event.stopPropagation()" />
         </mat-form-field>
       </div>
     </div>
@@ -36,10 +31,7 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "eventListPage.titleText" | translate }}
           </mat-header-cell>
-          <mat-cell
-            *matCellDef="let row"
-            [attr.data-label]="'eventListPage.titleText' | translate"
-          >
+          <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.titleText' | translate">
             {{ row.title }}
           </mat-cell>
         </ng-container>
@@ -48,33 +40,16 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "eventListPage.bannerText" | translate }}
           </mat-header-cell>
-          <mat-cell
-            class="image-box d-flex align-items-center justify-content-center"
-            *matCellDef="let row"
-            [attr.data-label]="'eventListPage.titleText' | translate"
-          >
+          <mat-cell class="image-box d-flex align-items-center justify-content-center" *matCellDef="let row"
+            [attr.data-label]="'eventListPage.bannerText' | translate">
             <ng-container *ngIf="row.vertical_banner_image">
               <div class="table-img-wrapper d-flex">
-                <img
-                  height="50"
-                  width="100"
-                  alt="event-img"
-                  class=""
-                  [src]="row.vertical_banner_image"
-                />
+                <img height="50" width="100" alt="event-img" class="" [src]="row.vertical_banner_image" />
               </div>
             </ng-container>
-            <ng-container
-              *ngIf="!row.vertical_banner_image && row.horizontal_banner_image"
-            >
+            <ng-container *ngIf="!row.vertical_banner_image && row.horizontal_banner_image">
               <div class="table-img-wrapper d-flex">
-                <img
-                  height="50"
-                  width="100"
-                  alt="event-img"
-                  class=""
-                  [src]="row.horizontal_banner_image"
-                />
+                <img height="50" width="100" alt="event-img" class="" [src]="row.horizontal_banner_image" />
               </div>
             </ng-container>
           </mat-cell>
@@ -84,10 +59,7 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "eventListPage.statusText" | translate }}
           </mat-header-cell>
-          <mat-cell
-            *matCellDef="let row"
-            [attr.data-label]="'eventListPage.statusText' | translate"
-          >
+          <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.statusText' | translate">
             {{ row.is_published === true ? "Published" : "Draft" }}
           </mat-cell>
         </ng-container>
@@ -96,10 +68,7 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "eventListPage.createdDateText" | translate }}
           </mat-header-cell>
-          <mat-cell
-            *matCellDef="let row"
-            [attr.data-label]="'eventListPage.createdDateText' | translate"
-          >
+          <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.createdDateText' | translate">
             {{ row.created_at | date }}
           </mat-cell>
         </ng-container>
@@ -108,16 +77,8 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "eventListPage.actionText" | translate }}
           </mat-header-cell>
-          <mat-cell
-            class="action-button"
-            *matCellDef="let row"
-            [attr.data-label]="'eventListPage.actionText' | translate"
-          >
-            <button
-              class="edit-button"
-              mat-icon-button
-              (click)="editEvent(row.uuid)"
-            >
+          <mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'eventListPage.actionText' | translate">
+            <button class="edit-button" mat-icon-button (click)="editEvent(row.uuid)">
               <mat-icon>edit</mat-icon>
             </button>
             <button class="delete-button" mat-icon-button>
