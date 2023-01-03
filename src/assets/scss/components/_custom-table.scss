@@ -4,15 +4,19 @@
     overflow: hidden;
     border: 1px solid var(--black-shade-300);
     .mat-mdc-header-cell {
+        border: 0;
         background: var(--primary);
         color: var(--white);
         font-size: 16px;
         font-weight: 500;
-    }
-    .mat-mdc-paginator {
-        background: var(--white-300);
+        & ~ .mat-mdc-header-cell {
+            justify-content: center;
+        }
     }
     .mat-mdc-cell {
+        & ~ .mat-mdc-cell {
+            justify-content: center;
+        }
         .mat-focus-indicator {
             padding: 0;
             min-width: 40px;
@@ -21,11 +25,27 @@
             }
         }
         .table-img-wrapper {
-            max-width: 35px;
+            max-width: 30px;
             padding: 5px 0;
             img {
                 width: auto;
                 height: auto;
+            }
+        }
+    }
+    .action-button {
+        button {
+            border: 0;
+            background: none;
+            opacity: 0.85;
+            &.edit-button {
+                color: var(--info);
+            }
+            &.delete-button {
+                color: var(--danger);
+            }
+            &:hover {
+                opacity: 1;
             }
         }
     }
@@ -35,6 +55,12 @@
     .mat-mdc-table {
         ng-container {
             width: 25%;
+        }
+    }
+    .mat-mdc-paginator {
+        background: var(--gray-200);
+        .mat-mdc-paginator-container {
+            justify-content: space-between;
         }
     }
     @include bp(md-max) {
