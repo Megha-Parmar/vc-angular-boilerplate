@@ -5,17 +5,16 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
+import { EventListModel } from 'src/app/core/models/event.model';
 import { EventService } from 'src/app/core/services/event.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
-import { EventListModel } from './../../../core/models/event.model';
 
 @Component({
-  selector: 'app-event-list',
-  templateUrl: './event-list.component.html',
-  styleUrls: ['./event-list.component.scss']
+  selector: 'app-discount-list',
+  templateUrl: './discount-list.component.html',
+  styleUrls: ['./discount-list.component.scss']
 })
-export class EventListComponent implements OnInit, OnDestroy {
-
+export class DiscountListComponent implements OnInit, OnDestroy {
   displayedColumns = ['title', 'vertical_banner_image', 'is_published', 'created_at', 'action'];
   dataSource: MatTableDataSource<EventListModel>;
 

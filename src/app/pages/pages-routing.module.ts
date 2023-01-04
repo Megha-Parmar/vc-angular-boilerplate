@@ -17,22 +17,38 @@ const routes: Routes = [
         loadChildren: () =>
           import('./profile/profile.module').then((m) => m.ProfileModule),
       },
-      { path: 'events', redirectTo: '/events/list', pathMatch: 'full', },
+      { path: 'event', redirectTo: '/event/list', pathMatch: 'full', },
       {
-        path: 'events/list',
+        path: 'event/list',
         loadChildren: () =>
           import('./events/event-list/event-list.module').then((m) => m.EventListModule),
       },
       {
-        path: 'events/add',
+        path: 'event/add',
         loadChildren: () =>
           import('./events/event-add/event-add.module').then((m) => m.EventAddModule),
       },
       {
-        path: 'events/:id/edit',
+        path: 'event/:id/edit',
         loadChildren: () =>
           import('./events/event-add/event-add.module').then((m) => m.EventAddModule),
       },
+      { path: 'discount', redirectTo: '/discount/list', pathMatch: 'full', },
+      {
+        path: 'discount/list',
+        loadChildren: () =>
+          import('./discount/discount-list/discount-list.module').then((m) => m.DiscountListModule),
+      },
+      // {
+      //   path: 'event/add',
+      //   loadChildren: () =>
+      //     import('./discount/discount-add/discount-add.module').then((m) => m.EventAddModule),
+      // },
+      // {
+      //   path: 'discount/:id/edit',
+      //   loadChildren: () =>
+      //     import('./discount/discount-add/discount-add.module').then((m) => m.EventAddModule),
+      // },
       {
         path: 'error',
         loadChildren: () => import('./../error-routes/error-routes.module').then(m => m.ErrorRoutesModule),

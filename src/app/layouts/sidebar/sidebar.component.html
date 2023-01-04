@@ -1,10 +1,10 @@
 <mat-drawer-container class="sidebar-wrapper w-100" autosize>
   <mat-drawer #drawer class="sidebar-nav" mode="side" [opened]="isOpended">
     <div class="sidebar-top">
-      <mat-icon class="mobile-close position-absolute align-items-center justify-content-center" (click)="drawer.toggle(); removeOverlay()">close</mat-icon>
+      <mat-icon class="mobile-close position-absolute align-items-center justify-content-center"
+        (click)="drawer.toggle(); removeOverlay()">close</mat-icon>
       <a routerLink="" title="">
-        <img class="logo" rel="preload" src="{{CDN_URL}}assets/images/logo.svg" title="" width="68"
-          height="82" alt="" />
+        <img class="logo" rel="preload" src="{{CDN_URL}}assets/images/logo.svg" title="" width="68" height="82" alt="" />
       </a>
     </div>
     <!-- end -->
@@ -17,9 +17,15 @@
           </a>
         </li>
         <li class="menu-list">
-          <a class="menu-item d-flex align-items-center" [routerLink]="'/events'" routerLinkActive="active" title="Events">
+          <a class="menu-item d-flex align-items-center" [routerLink]="'/event'" routerLinkActive="active" title="Event">
             <mat-icon>event</mat-icon>
             <span>Events</span>
+          </a>
+        </li>
+        <li class="menu-list">
+          <a class="menu-item d-flex align-items-center" [routerLink]="'/discount'" routerLinkActive="active" title="Discount">
+            <mat-icon>discount</mat-icon>
+            <span>Discount</span>
           </a>
         </li>
       </ul>
