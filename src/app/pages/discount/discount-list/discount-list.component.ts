@@ -5,8 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
-import { EventListModel } from 'src/app/core/models/event.model';
-import { EventService } from 'src/app/core/services/event.service';
+import { DiscountListModel } from 'src/app/core/models/discount.model';
+import { DiscountService } from 'src/app/core/services/discount.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 
 @Component({
@@ -15,8 +15,8 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
   styleUrls: ['./discount-list.component.scss']
 })
 export class DiscountListComponent implements OnInit, OnDestroy {
-  displayedColumns = ['title', 'vertical_banner_image', 'is_published', 'created_at', 'action'];
-  dataSource: MatTableDataSource<EventListModel>;
+  displayedColumns = ['title', 'discount_code', 'is_published', 'created_at', 'action'];
+  dataSource: MatTableDataSource<DiscountListModel>;
 
   pagination: number[] = Constants.paginationArray;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -27,7 +27,7 @@ export class DiscountListComponent implements OnInit, OnDestroy {
 
   constructor(
     private _router: Router,
-    private eventService: EventService,
+    private _discountService: DiscountService,
     private _toasterService: ToasterService,
   ) {
     this.dataSource = new MatTableDataSource();
@@ -39,11 +39,11 @@ export class DiscountListComponent implements OnInit, OnDestroy {
    */
 
   ngOnInit() {
-    this.getEventList();
+    this.getDiscountList();
   }
 
-  getEventList(): void {
-    this.eventService.getEventList().pipe(takeUntil(this.unSubscriber)).subscribe({
+  getDiscountList(): void {
+    this._discountService.getDiscountList().pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (result: any) => {
         if (result && result.data) {
           this.dataSource = new MatTableDataSource(result.data);

@@ -35,22 +35,12 @@
           </mat-cell>
         </ng-container>
         <!-- end -->
-        <ng-container matColumnDef="vertical_banner_image">
+        <ng-container matColumnDef="discount_code">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "eventListPage.bannerText" | translate }}
+            {{ "eventListPage.titleText" | translate }}
           </mat-header-cell>
-          <mat-cell class="image-box d-flex align-items-center justify-content-center" *matCellDef="let row"
-            [attr.data-label]="'eventListPage.bannerText' | translate">
-            <ng-container *ngIf="row.vertical_banner_image">
-              <div class="table-img-wrapper d-flex">
-                <img height="50" width="100" alt="event-img" class="" [src]="row.vertical_banner_image" />
-              </div>
-            </ng-container>
-            <ng-container *ngIf="!row.vertical_banner_image && row.horizontal_banner_image">
-              <div class="table-img-wrapper d-flex">
-                <img height="50" width="100" alt="event-img" class="" [src]="row.horizontal_banner_image" />
-              </div>
-            </ng-container>
+          <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.titleText' | translate">
+            {{ row.discount_code }}
           </mat-cell>
         </ng-container>
         <!-- end -->

@@ -12,12 +12,14 @@ export class Constants {
 
   public static APIRoutes = {
     userLogin: 'auth/client_login',
+    getEventList: 'cap/event/list/map',
+    getDiscountList: 'cap/discount/list',
+
     userForgotPassword: 'forgotPassword',
     userResetPassword: 'resetPassword/',
     userUpdatePassword: 'settings/updatePassword/',
     getUserProfile: 'settings/adminProfile/',
     updateUserProfile: 'settings/updateAdminProfile/',
-    getEventList: 'cap/event/list/map',
 
     getCategoryList: 'category/getCategory/',
     createCategory: 'category/createCategory/',

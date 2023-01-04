@@ -28,7 +28,7 @@ export class EventListComponent implements OnInit, OnDestroy {
 
   constructor(
     private _router: Router,
-    private eventService: EventService,
+    private _eventService: EventService,
     private _toasterService: ToasterService,
   ) {
     this.dataSource = new MatTableDataSource();
@@ -44,7 +44,7 @@ export class EventListComponent implements OnInit, OnDestroy {
   }
 
   getEventList(): void {
-    this.eventService.getEventList().pipe(takeUntil(this.unSubscriber)).subscribe({
+    this._eventService.getEventList().pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (result: any) => {
         if (result && result.data) {
           this.dataSource = new MatTableDataSource(result.data);
