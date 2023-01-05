@@ -1,1 +1,48 @@
-{{ (staffId ? "staffAddEditViewPage.editStaffText" : "staffAddEditViewPage.addStaffText" ) | translate }}
+<div class="form-wrapper h-100 d-flex align-items-center position-relative">
+  <div class="form-left">
+    <form class="form-main" #staffAddEditForm="ngForm" (ngSubmit)="onSubmit(staffAddEditForm)" novalidate>
+      <div class="form-info w-100">
+        <div class="big-title mt-2 mb-4">
+          {{ (staffId ? "staffAddEditViewPage.editStaffText" : "staffAddEditViewPage.addStaffText" ) | translate }}
+        </div>
+        <div class="form-field">
+          <mat-form-field appearance="outline" class="form-input">
+            <mat-label>{{ 'staffAddEditViewPage.nameText' | translate }}</mat-label>
+            <input matInput type="text" name="name" ngModel #name="ngModel" class="form-control"
+              [ngClass]="{ 'is-invalid': staffAddEditForm.submitted && name.invalid }" required>
+            <div *ngIf="staffAddEditForm.submitted && name.errors" class="error-message">
+              <div *ngIf="name.errors['required']">{{ 'staffAddEditViewPage.nameIsRequiredErrorText' | translate }}</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="form-field mb-0">
+          <mat-form-field appearance="outline" class="form-input">
+            <mat-label>{{ 'staffAddEditViewPage.emailText' | translate }}</mat-label>
+            <input matInput type="text" name="email" ngModel #email="ngModel" class="form-control"
+              [ngClass]="{ 'is-invalid': staffAddEditForm.submitted && email.invalid }" required email>
+            <div *ngIf="staffAddEditForm.submitted && email.errors" class="error-message">
+              <div *ngIf="email.errors['required']">{{ 'staffAddEditViewPage.emailIsRequiredErrorText' | translate }}</div>
+              <div *ngIf="email.errors['email']">{{ 'staffAddEditViewPage.invalidEmailErrorText' | translate }}</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="form-field mb-0">
+          <mat-form-field appearance="outline" class="form-input">
+            <mat-label>{{ 'staffAddEditViewPage.roleText' | translate }}</mat-label>
+            <input matInput type="text" name="role" ngModel #role="ngModel" class="form-control"
+              [ngClass]="{ 'is-invalid': staffAddEditForm.submitted && role.invalid }" required>
+            <div *ngIf="staffAddEditForm.submitted && role.errors" class="error-message">
+              <div *ngIf="role.errors['required']">{{ 'staffAddEditViewPage.roleIsRequiredErrorText' | translate }}</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="mt-5">
+          <button mat-button class="primary-btn w-100 trans" [disabled]="submitted" [ngClass]="{ 'disabled': submitted }">
+            {{ ( submitted ? 'staffAddEditViewPage.submitText' : 'staffAddEditViewPage.submitText' ) | translate}}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- end -->
+</div>

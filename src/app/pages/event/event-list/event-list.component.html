@@ -77,7 +77,7 @@
             {{ "eventListPage.actionText" | translate }}
           </mat-header-cell>
           <mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'eventListPage.actionText' | translate">
-            <button class="edit-button" mat-icon-button (click)="editEvent(row.uuid)">
+            <button class="edit-button" mat-icon-button (click)="editEvent(row.uuid)" disabled>
               <mat-icon>edit</mat-icon>
             </button>
             <button class="delete-button" mat-icon-button>

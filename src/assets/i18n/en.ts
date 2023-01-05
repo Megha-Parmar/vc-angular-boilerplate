@@ -113,6 +113,13 @@ export const locale = {
     staffAddEditViewPage: {
       addStaffText: 'Add Staff',
       editStaffText: 'Edit Staff',
+      nameText: 'Name',
+      emailText: 'Email',
+      roleText: 'Role',
+      nameIsRequiredErrorText: 'Name is required',
+      emailIsRequiredErrorText: 'E-mail is required',
+      roleIsRequiredErrorText: 'Role is required',
+      submitText: 'Submit',
     },
     homePage: {
       notLoggedIn: 'We couldn\'t log you in.',
