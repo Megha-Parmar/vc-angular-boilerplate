@@ -39,16 +39,21 @@ const routes: Routes = [
         loadChildren: () =>
           import('./discount/discount-list/discount-list.module').then((m) => m.DiscountListModule),
       },
-      // {
-      //   path: 'event/add',
-      //   loadChildren: () =>
-      //     import('./discount/discount-add/discount-add.module').then((m) => m.EventAddModule),
-      // },
-      // {
-      //   path: 'discount/:id/edit',
-      //   loadChildren: () =>
-      //     import('./discount/discount-add/discount-add.module').then((m) => m.EventAddModule),
-      // },
+      {
+        path: 'discount/add',
+        loadChildren: () =>
+          import('./discount/discount-add/discount-add.module').then((m) => m.DiscountAddModule),
+      },
+      {
+        path: 'discount/:id/edit',
+        loadChildren: () =>
+          import('./discount/discount-add/discount-add.module').then((m) => m.DiscountAddModule),
+      },
+      {
+        path: 'discount/:id/view',
+        loadChildren: () =>
+          import('./discount/discount-add/discount-add.module').then((m) => m.DiscountAddModule),
+      },
       {
         path: 'error',
         loadChildren: () => import('./../error-routes/error-routes.module').then(m => m.ErrorRoutesModule),

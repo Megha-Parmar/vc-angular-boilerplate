@@ -2,11 +2,16 @@ export const locale = {
   lang: 'es',
   data: {
     appPage: {
-      backendNotProvideData: 'ES - Static data is not available, please try again later.',
+      backendNotProvideData: 'Static data is not available, please try again later.',
     },
     headerPage: {
       quoteRequestLoginRequired: 'You need to login for a quote request.',
       quoteRequestShipperLoginRequired: 'You need to login as a shipper for a quote request.',
+    },
+    sidebarPage: {
+      dashboardText: 'Dashboard',
+      eventstext: 'Manage Events',
+      discountstext: 'Manage Discounts',
     },
     generalError: {
       UnhandledException: 'Unhandled Exception',
@@ -18,7 +23,9 @@ export const locale = {
       invalidPromoCode: 'Please enter valid promocode.',
       forbidden403: 'The page you are trying to reach is forbidden.',
       serviceUnavailable: 'Service Unavailable',
-      general: 'Oops!! Something went wrong. Please try again later.'
+      general: 'Oops!! Something went wrong. Please try again later.',
+      submitTitle: "Submit",
+      submittingTitle: "Submitting",
     },
     loginPage: {
       loginTitle: 'Login',
@@ -77,14 +84,20 @@ export const locale = {
       editEventText: 'Edit Event',
     },
     discountListPage: {
-      pageText: 'Discount',
-      titleText: 'Title',
-      bannerText: 'Banner',
+      pageText: 'Discounts',
+      discountText: 'Discount',
+      discountCodeText: 'Discount Code',
+      discountAmountText: 'Amount',
+      couponPerUserText: 'Coupon Per User',
       statusText: 'Status',
-      createdDateText: 'Created Date',
       actionText: 'Action',
-      totalEventText: 'Total Events',
+      totalDiscountText: 'Total Discounts',
       addText: 'Add New',
+    },
+    discountsAddEditViewPage: {
+      addDiscountText: 'Add Discount',
+      editDiscountText: 'Edit Discount',
+      viewDiscountText: 'View Discount',
     },
     homePage: {
       notLoggedIn: 'We couldn\'t log you in.',

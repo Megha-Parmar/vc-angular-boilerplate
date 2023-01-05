@@ -5,8 +5,8 @@
       <span class="ml-1">{{ "discountListPage.pageText" | translate }}</span>
     </div>
   </div>
-  <button mat-button class="secondary-btn" [routerLink]="['/event/add']">
-    {{ "eventListPage.addText" | translate }}
+  <button mat-button class="secondary-btn" [routerLink]="['/discount/add']">
+    {{ "discountListPage.addText" | translate }}
   </button>
 </div>
 
@@ -14,7 +14,7 @@
   <div class="custom-card event-list mt-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
       <strong *ngIf="dataSource">
-        {{ "eventListPage.totalEventText" | translate }} : {{ dataSource!.filteredData!.length }}
+        {{ "discountListPage.totalDiscountText" | translate }} : {{ dataSource!.filteredData!.length }}
       </strong>
       <div class="form-field w-25">
         <mat-form-field appearance="outline">
@@ -28,46 +28,58 @@
       <mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="title">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "eventListPage.titleText" | translate }}
+            {{ "discountListPage.discountText" | translate }}
           </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.titleText' | translate">
+          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountText' | translate">
             {{ row.title }}
           </mat-cell>
         </ng-container>
         <!-- end -->
         <ng-container matColumnDef="discount_code">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "eventListPage.titleText" | translate }}
+            {{ "discountListPage.discountCodeText" | translate }}
           </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.titleText' | translate">
+          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountCodeText' | translate">
             {{ row.discount_code }}
+          </mat-cell>
+        </ng-container>
+        <!-- end -->
+        <ng-container matColumnDef="discount_value">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "discountListPage.discountAmountText" | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountAmountText' | translate">
+            {{ row.discount_type === 'flat' ? '₹' : '' }}{{ row.discount_value }}{{ row.discount_type === 'percentage' ? '%' : '' }}
           </mat-cell>
         </ng-container>
         <!-- end -->
         <ng-container matColumnDef="is_published">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "eventListPage.statusText" | translate }}
+            {{ "discountListPage.couponPerUserText" | translate }}
           </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.statusText' | translate">
-            {{ row.is_published === true ? "Published" : "Draft" }}
+          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.couponPerUserText' | translate">
+            {{ row.max_avail_limit_per_user }}
           </mat-cell>
         </ng-container>
         <!-- end -->
-        <ng-container matColumnDef="created_at">
+        <ng-container matColumnDef="max_avail_limit_per_user">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "eventListPage.createdDateText" | translate }}
+            {{ "discountListPage.statusText" | translate }}
           </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.createdDateText' | translate">
-            {{ row.created_at | date }}
+          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.statusText' | translate">
+            {{ row.is_published === true ? "Published" : "Draft" }}
           </mat-cell>
         </ng-container>
         <!-- end -->
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "eventListPage.actionText" | translate }}
+            {{ "discountListPage.actionText" | translate }}
           </mat-header-cell>
-          <mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'eventListPage.actionText' | translate">
-            <button class="edit-button" mat-icon-button (click)="editEvent(row.uuid)">
+          <mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'discountListPage.actionText' | translate">
+            <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid , 'view')" *ngIf="row.is_published">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid, 'edit')" *ngIf="!row.is_published">
               <mat-icon>edit</mat-icon>
             </button>
             <button class="delete-button" mat-icon-button>

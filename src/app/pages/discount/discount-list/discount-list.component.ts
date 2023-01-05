@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
 import { DiscountListModel } from 'src/app/core/models/discount.model';
+import { APIResponse } from 'src/app/core/models/user.model';
 import { DiscountService } from 'src/app/core/services/discount.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 
@@ -15,7 +16,7 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
   styleUrls: ['./discount-list.component.scss']
 })
 export class DiscountListComponent implements OnInit, OnDestroy {
-  displayedColumns = ['title', 'discount_code', 'is_published', 'created_at', 'action'];
+  displayedColumns = ['title', 'discount_code', 'discount_value', 'is_published', 'max_avail_limit_per_user', 'action'];
   dataSource: MatTableDataSource<DiscountListModel>;
 
   pagination: number[] = Constants.paginationArray;
@@ -44,7 +45,7 @@ export class DiscountListComponent implements OnInit, OnDestroy {
 
   getDiscountList(): void {
     this._discountService.getDiscountList().pipe(takeUntil(this.unSubscriber)).subscribe({
-      next: (result: any) => {
+      next: (result: APIResponse<DiscountListModel[]>) => {
         if (result && result.data) {
           this.dataSource = new MatTableDataSource(result.data);
           this.dataSource.paginator = this.paginator;
@@ -66,8 +67,13 @@ export class DiscountListComponent implements OnInit, OnDestroy {
    * This function navigates to the edit page of the Event with the id that is passed in.
    * @param {string} id - string - the id of the Event to edit
    */
-  editEvent(id: string): void {
-    this._router.navigate([`/event/${id}/edit`]);
+  editDiscount(id: string, page: string): void {
+    if (page === 'view') {
+      this._router.navigate([`/discount/${id}/view`]);
+    } else {
+      this._router.navigate([`/discount/${id}/edit`]);
+    }
+
   }
 
   ngOnDestroy(): void {

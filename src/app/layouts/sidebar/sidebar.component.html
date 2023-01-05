@@ -11,21 +11,24 @@
     <div class="custom-scrollbar">
       <ul class="sidebar-menu">
         <li class="menu-list">
-          <a class="menu-item d-flex align-items-center" [routerLink]="'/dashboard'" routerLinkActive="active" title="Dashboard">
+          <a class="menu-item d-flex align-items-center" [routerLink]="'/dashboard'" routerLinkActive="active"
+            [title]="'sidebarPage.dashboardText' | translate">
             <mat-icon>dashboard</mat-icon>
-            <span>Dashboard</span>
+            <span>{{ "sidebarPage.dashboardText" | translate }}</span>
           </a>
         </li>
         <li class="menu-list">
-          <a class="menu-item d-flex align-items-center" [routerLink]="'/event'" routerLinkActive="active" title="Event">
+          <a class="menu-item d-flex align-items-center" [routerLink]="'/event'" routerLinkActive="active"
+            [title]="'sidebarPage.eventstext' | translate">
             <mat-icon>event</mat-icon>
-            <span>Events</span>
+            <span>{{ "sidebarPage.eventstext" | translate }}</span>
           </a>
         </li>
         <li class="menu-list">
-          <a class="menu-item d-flex align-items-center" [routerLink]="'/discount'" routerLinkActive="active" title="Discount">
+          <a class="menu-item d-flex align-items-center" [routerLink]="'/discount'" routerLinkActive="active"
+            [title]="'sidebarPage.discountstext' | translate">
             <mat-icon>discount</mat-icon>
-            <span>Discount</span>
+            <span>{{ "sidebarPage.discountstext" | translate }}</span>
           </a>
         </li>
       </ul>

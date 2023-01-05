@@ -4,7 +4,6 @@ import { EventAddComponent } from './event-add.component';
 
 const routes: Routes = [
   { path: '', component: EventAddComponent },
-  // { path: '', redirectTo: 'add', pathMatch: 'full' },
   { path: 'add', component: EventAddComponent },
   { path: ':id/edit', component: EventAddComponent },
 ];

@@ -45,7 +45,7 @@ export class EventListComponent implements OnInit, OnDestroy {
 
   getEventList(): void {
     this._eventService.getEventList().pipe(takeUntil(this.unSubscriber)).subscribe({
-      next: (result: any) => {
+      next: (result) => {
         if (result && result.data) {
           this.dataSource = new MatTableDataSource(result.data);
           this.dataSource.paginator = this.paginator;

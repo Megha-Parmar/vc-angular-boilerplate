@@ -1,1 +1,9 @@
-<p>discount-add works!</p>
+<ng-container *ngIf="discountId && isViewPage">
+  {{ "discountsAddEditViewPage.viewDiscountText" | translate }}
+</ng-container>
+<ng-container *ngIf="discountId && !isViewPage">
+  {{ "discountsAddEditViewPage.editDiscountText" | translate }}
+</ng-container>
+<ng-container *ngIf="!discountId">
+  {{ "discountsAddEditViewPage.addDiscountText" | translate }}
+</ng-container>
