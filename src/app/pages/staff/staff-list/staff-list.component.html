@@ -14,7 +14,7 @@
   <div class="custom-card event-list mt-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
       <strong *ngIf="dataSource">
-        {{ "discountListPage.totalDiscountText" | translate }} : {{ dataSource!.filteredData!.length }}
+        {{ "staffListPage.totalDiscountText" | translate }} : {{ dataSource!.filteredData!.length }}
       </strong>
       <div class="form-field w-25">
         <mat-form-field appearance="outline">
@@ -26,56 +26,48 @@
     <!-- end -->
     <div class="table-wrapper" *ngIf="dataSource">
       <mat-table [dataSource]="dataSource" matSort>
-        <ng-container matColumnDef="title">
+        <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "discountListPage.discountText" | translate }}
+            {{ "staffListPage.nameText" | translate }}
           </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountText' | translate">
-            {{ row.title }}
+          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.nameText' | translate">
+            {{ row.name }}
           </mat-cell>
         </ng-container>
         <!-- end -->
-        <ng-container matColumnDef="discount_code">
+        <ng-container matColumnDef="email">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "discountListPage.discountCodeText" | translate }}
+            {{ "staffListPage.emailText" | translate }}
           </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountCodeText' | translate">
-            {{ row.discount_code }}
+          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.emailText' | translate">
+            {{ row.email }}
           </mat-cell>
         </ng-container>
         <!-- end -->
-        <ng-container matColumnDef="discount_value">
+        <ng-container matColumnDef="role">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "discountListPage.discountAmountText" | translate }}
+            {{ "staffListPage.roleText" | translate }}
           </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountAmountText' | translate">
-            {{ row.discount_type === 'flat' ? '₹' : '' }}{{ row.discount_value }}{{ row.discount_type === 'percentage' ? '%' : '' }}
+          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.roleText' | translate">
+            {{ row.role }}
           </mat-cell>
         </ng-container>
         <!-- end -->
-        <ng-container matColumnDef="is_published">
+        <ng-container matColumnDef="status">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "discountListPage.couponPerUserText" | translate }}
+            {{ "staffListPage.statusText" | translate }}
           </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.couponPerUserText' | translate">
-            {{ row.max_avail_limit_per_user }}
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <ng-container matColumnDef="max_avail_limit_per_user">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "discountListPage.statusText" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.statusText' | translate">
-            {{ row.is_published === true ? "Published" : "Draft" }}
+          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.statusText' | translate">
+            <mat-slide-toggle (toggleChange)="updateStaffStatus(row.uuid, row.status)" [checked]="row.status">
+            </mat-slide-toggle>
           </mat-cell>
         </ng-container>
         <!-- end -->
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "discountListPage.actionText" | translate }}
+            {{ "staffListPage.actionText" | translate }}
           </mat-header-cell>
-          <mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'discountListPage.actionText' | translate">
+          <mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'staffListPage.actionText' | translate">
             <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid)">
               <mat-icon>edit</mat-icon>
             </button>

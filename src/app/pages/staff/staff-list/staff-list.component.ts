@@ -5,9 +5,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
-import { DiscountListModel } from 'src/app/core/models/discount.model';
 import { APIResponse } from 'src/app/core/models/general.model';
-import { DiscountService } from 'src/app/core/services/discount.service';
+import { StaffListModel } from 'src/app/core/models/staff.model';
+import { LoaderService } from 'src/app/core/services/loader.service';
+import { StaffService } from 'src/app/core/services/staff.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 
 @Component({
@@ -16,8 +17,8 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
   styleUrls: ['./staff-list.component.scss']
 })
 export class StaffListComponent implements OnInit, OnDestroy {
-  displayedColumns = ['title', 'discount_code', 'discount_value', 'is_published', 'max_avail_limit_per_user', 'action'];
-  dataSource: MatTableDataSource<DiscountListModel>;
+  displayedColumns = ['name', 'email', 'role', 'status', 'action'];
+  dataSource: MatTableDataSource<StaffListModel>;
 
   pagination: number[] = Constants.paginationArray;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -28,33 +29,50 @@ export class StaffListComponent implements OnInit, OnDestroy {
 
   constructor(
     private _router: Router,
-    private _discountService: DiscountService,
+    private _staffService: StaffService,
     private _toasterService: ToasterService,
+    private _loaderService: LoaderService,
   ) {
     this.dataSource = new MatTableDataSource();
   }
 
   /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
+   *
+   *
+   * @memberof StaffListComponent
    */
-
   ngOnInit() {
-    this.getDiscountList();
+    this._loaderService.showHideLoader(true);
+    this.getStaffList();
   }
 
-  getDiscountList(): void {
-    this._discountService.getDiscountList().pipe(takeUntil(this.unSubscriber)).subscribe({
-      next: (result: APIResponse<DiscountListModel[]>) => {
+  /**
+   *
+   *
+   * @memberof StaffListComponent
+   */
+  getStaffList(): void {
+    this._staffService.getStaffList().pipe(takeUntil(this.unSubscriber)).subscribe({
+      next: (result: APIResponse<StaffListModel[]>) => {
         if (result && result.data) {
           this.dataSource = new MatTableDataSource(result.data);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         }
-      }
+        this._loaderService.showHideLoader(false);
+      },
+      error: () => {
+        this._loaderService.showHideLoader(false);
+      },
     });
   }
 
+  /**
+   *
+   *
+   * @param {KeyboardEvent} event
+   * @memberof StaffListComponent
+   */
   applyFilter(event: KeyboardEvent): void {
     if (event) {
       let filterValue = this.filterValue.trim(); // Remove whitespace
@@ -69,6 +87,27 @@ export class StaffListComponent implements OnInit, OnDestroy {
    */
   editDiscount(id: string): void {
     this._router.navigate([`/discount/${id}/edit`]);
+  }
+
+  /**
+   *
+   *
+   * @param {string} id
+   * @param {boolean} status
+   * @memberof StaffListComponent
+   */
+
+  updateStaffStatus(id: string, status: boolean): void {
+    const staffStatus = status === true ? false : true;
+    this._loaderService.showHideLoader(true);
+    this._staffService.updateStaffStatus(id, staffStatus).pipe(takeUntil(this.unSubscriber)).subscribe({
+      next: (res) => {
+        // this._toasterService.displaySnackBar(MessageConstant.successMessage.staffStatusUpdateSuccessfully, messageType.success)
+        this.getStaffList()
+      }, error: () => {
+        this._loaderService.showHideLoader(false);
+      }
+    })
   }
 
   ngOnDestroy(): void {

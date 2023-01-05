@@ -102,10 +102,9 @@ export const locale = {
     },
     staffListPage: {
       pageText: 'Staff',
-      discountText: 'Staff',
-      discountCodeText: 'Discount Code',
-      discountAmountText: 'Amount',
-      couponPerUserText: 'Coupon Per User',
+      nameText: 'Name',
+      emailText: 'Email',
+      roleText: 'Role',
       statusText: 'Status',
       actionText: 'Action',
       totalDiscountText: 'Total Staff',
