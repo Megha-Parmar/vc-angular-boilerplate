@@ -35,11 +35,3 @@ export interface CurrentUser {
   userName: string;
   email: string;
 }
-
-
-export interface APIResponse<T> {
-  status?: string;
-  data?: T;
-  error?: T;
-  message?: string;
-}

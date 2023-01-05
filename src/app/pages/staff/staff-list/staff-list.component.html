@@ -1,1 +1,95 @@
-<p>staff-list works!</p>
+<div class="breadcrumbs d-flex justify-content-between align-items-center">
+  <div class="d-flex flex-column">
+    <div class="d-flex align-items-center">
+      <mat-icon>supervisor_account</mat-icon>
+      <span class="ml-1">{{ "staffListPage.pageText" | translate }}</span>
+    </div>
+  </div>
+  <button mat-button class="secondary-btn" [routerLink]="['/discount/add']">
+    {{ "staffListPage.addText" | translate }}
+  </button>
+</div>
+
+<div class="page-wrapper custom-scrollbar">
+  <div class="custom-card event-list mt-4">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <strong *ngIf="dataSource">
+        {{ "discountListPage.totalDiscountText" | translate }} : {{ dataSource!.filteredData!.length }}
+      </strong>
+      <div class="form-field w-25">
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Filter" [(ngModel)]="filterValue" (keyup)="applyFilter($event)"
+            (keydown)="$event.stopPropagation()" />
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- end -->
+    <div class="table-wrapper" *ngIf="dataSource">
+      <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "discountListPage.discountText" | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountText' | translate">
+            {{ row.title }}
+          </mat-cell>
+        </ng-container>
+        <!-- end -->
+        <ng-container matColumnDef="discount_code">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "discountListPage.discountCodeText" | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountCodeText' | translate">
+            {{ row.discount_code }}
+          </mat-cell>
+        </ng-container>
+        <!-- end -->
+        <ng-container matColumnDef="discount_value">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "discountListPage.discountAmountText" | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountAmountText' | translate">
+            {{ row.discount_type === 'flat' ? '₹' : '' }}{{ row.discount_value }}{{ row.discount_type === 'percentage' ? '%' : '' }}
+          </mat-cell>
+        </ng-container>
+        <!-- end -->
+        <ng-container matColumnDef="is_published">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "discountListPage.couponPerUserText" | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.couponPerUserText' | translate">
+            {{ row.max_avail_limit_per_user }}
+          </mat-cell>
+        </ng-container>
+        <!-- end -->
+        <ng-container matColumnDef="max_avail_limit_per_user">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "discountListPage.statusText" | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.statusText' | translate">
+            {{ row.is_published === true ? "Published" : "Draft" }}
+          </mat-cell>
+        </ng-container>
+        <!-- end -->
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "discountListPage.actionText" | translate }}
+          </mat-header-cell>
+          <mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'discountListPage.actionText' | translate">
+            <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="delete-button" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+        <!-- end -->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="pagination"></mat-paginator>
+    </div>
+  </div>
+  <!-- end -->
+</div>

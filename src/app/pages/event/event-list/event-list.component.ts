@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
-import { APIResponse } from 'src/app/core/models/user.model';
+import { APIResponse } from 'src/app/core/models/general.model';
 import { EventService } from 'src/app/core/services/event.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { EventListModel } from './../../../core/models/event.model';

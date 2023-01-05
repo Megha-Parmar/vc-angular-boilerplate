@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
 import { DiscountListModel } from 'src/app/core/models/discount.model';
-import { APIResponse } from 'src/app/core/models/user.model';
+import { APIResponse } from 'src/app/core/models/general.model';
 import { DiscountService } from 'src/app/core/services/discount.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 

@@ -54,6 +54,22 @@ const routes: Routes = [
         loadChildren: () =>
           import('./discount/discount-add/discount-add.module').then((m) => m.DiscountAddModule),
       },
+      { path: 'staff', redirectTo: '/staff/list', pathMatch: 'full', },
+      {
+        path: 'staff/list',
+        loadChildren: () =>
+          import('./staff/staff-list/staff-list.module').then((m) => m.StaffListModule),
+      },
+      // {
+      //   path: 'discount/add',
+      //   loadChildren: () =>
+      //     import('./discount/discount-add/discount-add.module').then((m) => m.DiscountAddModule),
+      // },
+      // {
+      //   path: 'discount/:id/edit',
+      //   loadChildren: () =>
+      //     import('./discount/discount-add/discount-add.module').then((m) => m.DiscountAddModule),
+      // },
       {
         path: 'error',
         loadChildren: () => import('./../error-routes/error-routes.module').then(m => m.ErrorRoutesModule),

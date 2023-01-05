@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EventListModel } from 'src/app/core/models/event.model';
-import { APIResponse } from 'src/app/core/models/user.model';
+import { APIResponse } from 'src/app/core/models/general.model';
 import { Constants } from '../constants/app.constants';
 
 @Injectable({

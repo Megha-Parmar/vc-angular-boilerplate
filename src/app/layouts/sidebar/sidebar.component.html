@@ -31,6 +31,13 @@
             <span>{{ "sidebarPage.discountstext" | translate }}</span>
           </a>
         </li>
+        <li class="menu-list">
+          <a class="menu-item d-flex align-items-center" [routerLink]="'/staff'" routerLinkActive="active"
+            [title]="'sidebarPage.stafftext' | translate">
+            <mat-icon>supervisor_account</mat-icon>
+            <span>{{ "sidebarPage.stafftext" | translate }}</span>
+          </a>
+        </li>
       </ul>
     </div>
   </mat-drawer>

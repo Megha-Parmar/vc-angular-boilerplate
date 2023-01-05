@@ -12,6 +12,7 @@ export const locale = {
       dashboardText: 'Dashboard',
       eventstext: 'Manage Events',
       discountstext: 'Manage Discounts',
+      stafftext: 'Manage Staff',
     },
     generalError: {
       UnhandledException: 'Unhandled Exception',
@@ -95,6 +96,22 @@ export const locale = {
       addText: 'Add New',
     },
     discountsAddEditViewPage: {
+      addDiscountText: 'Add Discount',
+      editDiscountText: 'Edit Discount',
+      viewDiscountText: 'View Discount',
+    },
+    staffListPage: {
+      pageText: 'Staff',
+      discountText: 'Staff',
+      discountCodeText: 'Discount Code',
+      discountAmountText: 'Amount',
+      couponPerUserText: 'Coupon Per User',
+      statusText: 'Status',
+      actionText: 'Action',
+      totalDiscountText: 'Total Staff',
+      addText: 'Add New',
+    },
+    staffAddEditViewPage: {
       addDiscountText: 'Add Discount',
       editDiscountText: 'Edit Discount',
       viewDiscountText: 'View Discount',
