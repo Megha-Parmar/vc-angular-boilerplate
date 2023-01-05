@@ -111,9 +111,8 @@ export const locale = {
       addText: 'Add New',
     },
     staffAddEditViewPage: {
-      addDiscountText: 'Add Discount',
-      editDiscountText: 'Edit Discount',
-      viewDiscountText: 'View Discount',
+      addStaffText: 'Add Staff',
+      editStaffText: 'Edit Staff',
     },
     homePage: {
       notLoggedIn: 'We couldn\'t log you in.',

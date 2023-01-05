@@ -47,7 +47,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
       password: form.value.password,
     };
     this._authenticationService.loginUser(params).pipe(takeUntil(this.unSubscriber)).subscribe({
-      next: (resp: any) => {
+      next: (resp) => {
         if (resp && resp.data) {
           this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp.data);
           this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.token, resp.data.token);

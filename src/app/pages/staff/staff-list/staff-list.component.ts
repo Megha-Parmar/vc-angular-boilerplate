@@ -86,7 +86,7 @@ export class StaffListComponent implements OnInit, OnDestroy {
    * @param {string} id - string - the id of the Event to edit
    */
   editDiscount(id: string): void {
-    this._router.navigate([`/discount/${id}/edit`]);
+    this._router.navigate([`/staff/${id}/edit`]);
   }
 
   /**

@@ -60,16 +60,16 @@ const routes: Routes = [
         loadChildren: () =>
           import('./staff/staff-list/staff-list.module').then((m) => m.StaffListModule),
       },
-      // {
-      //   path: 'discount/add',
-      //   loadChildren: () =>
-      //     import('./discount/discount-add/discount-add.module').then((m) => m.DiscountAddModule),
-      // },
-      // {
-      //   path: 'discount/:id/edit',
-      //   loadChildren: () =>
-      //     import('./discount/discount-add/discount-add.module').then((m) => m.DiscountAddModule),
-      // },
+      {
+        path: 'staff/add',
+        loadChildren: () =>
+          import('./staff/staff-add/staff-add.module').then((m) => m.StaffAddModule),
+      },
+      {
+        path: 'staff/:id/edit',
+        loadChildren: () =>
+          import('./staff/staff-add/staff-add.module').then((m) => m.StaffAddModule),
+      },
       {
         path: 'error',
         loadChildren: () => import('./../error-routes/error-routes.module').then(m => m.ErrorRoutesModule),
