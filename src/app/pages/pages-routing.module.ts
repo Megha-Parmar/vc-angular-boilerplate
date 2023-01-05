@@ -21,17 +21,17 @@ const routes: Routes = [
       {
         path: 'event/list',
         loadChildren: () =>
-          import('./events/event-list/event-list.module').then((m) => m.EventListModule),
+          import('./event/event-list/event-list.module').then((m) => m.EventListModule),
       },
       {
         path: 'event/add',
         loadChildren: () =>
-          import('./events/event-add/event-add.module').then((m) => m.EventAddModule),
+          import('./event/event-add/event-add.module').then((m) => m.EventAddModule),
       },
       {
         path: 'event/:id/edit',
         loadChildren: () =>
-          import('./events/event-add/event-add.module').then((m) => m.EventAddModule),
+          import('./event/event-add/event-add.module').then((m) => m.EventAddModule),
       },
       { path: 'discount', redirectTo: '/discount/list', pathMatch: 'full', },
       {
