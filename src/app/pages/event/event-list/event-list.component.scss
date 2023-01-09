@@ -3,35 +3,47 @@
 @import "../../../../assets/scss/components/custom-scrollbar";
 
 .event-list {
-    padding: 24px;
-    @include bp(sm-max) {
-        padding: 16px;
-    }
+  padding: 24px;
+  @include bp(sm-max) {
+    padding: 16px;
+  }
 }
 
 .breadcrumbs {
-    position: sticky;
-    top: 0;
-    color: var(--white);
-    background: var(--primary);
-    padding: 10px 16px;
-    z-index: 1;
-    .heading {
-        span {
-            font-size: 18px;
-        }
+  position: sticky;
+  top: 0;
+  color: var(--white);
+  background: var(--primary);
+  padding: 10px 16px;
+  z-index: 1;
+  .heading {
+    span {
+      font-size: 18px;
     }
-    .secondary-btn {
-        line-height: 40px;
-        height: 40px;
-        &:hover {
-            background: var(--white);
-            color: var(--primary);
-        }
+  }
+  .secondary-btn {
+    line-height: 40px;
+    height: 40px;
+    &:hover {
+      background: var(--white);
+      color: var(--primary);
     }
+  }
 }
 .page-wrapper {
-    padding: 0 24px 30px;
-    height: 100%;
-    margin: 5px 0;
+  padding: 0 24px 30px;
+  height: 100%;
+  margin: 5px 0;
+}
+
+.disabled-btn {
+  color: #1010104d !important;
+  cursor: no-drop;
+}
+
+.mat-row {
+  .mat-cell {
+    padding: 8px 8px 8px 8px;
+    font-weight: 500;
+  }
 }

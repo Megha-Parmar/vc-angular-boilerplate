@@ -77,10 +77,12 @@
             {{ "eventListPage.actionText" | translate }}
           </mat-header-cell>
           <mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'eventListPage.actionText' | translate">
-            <button class="edit-button" mat-icon-button (click)="editEvent(row.uuid)" disabled>
+            <button class="edit-button" mat-icon-button (click)="editEvent(row.uuid)" [disabled]="!row.status"
+              [ngClass]="{'disabled-btn': !row.status}">
               <mat-icon>edit</mat-icon>
             </button>
-            <button class="delete-button" mat-icon-button>
+            <button class="delete-button" mat-icon-button [disabled]="!row.status || row.is_published"
+              [ngClass]="{'disabled-btn':!row.status || row.is_published}">
               <mat-icon>delete</mat-icon>
             </button>
           </mat-cell>
@@ -88,6 +90,10 @@
         <!-- end -->
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell custom-empty-class" colspan="4">No Data to Display</td>
+        </tr>
       </mat-table>
       <mat-paginator [pageSizeOptions]="pagination"></mat-paginator>
     </div>

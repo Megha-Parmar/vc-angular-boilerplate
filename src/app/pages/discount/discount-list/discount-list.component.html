@@ -90,6 +90,10 @@
         <!-- end -->
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell custom-empty-class" colspan="4">No Data to Display</td>
+        </tr>
       </mat-table>
       <mat-paginator [pageSizeOptions]="pagination"></mat-paginator>
     </div>
