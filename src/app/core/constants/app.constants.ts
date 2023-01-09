@@ -16,6 +16,8 @@ export class Constants {
     getDiscountList: 'cap/discount/list',
     getStaffList: 'cap/staff/list',
     updateStaffStatus: 'cap/staff/status/update/',
+    getRoleList: 'cap/role/list',
+    getStaffById: 'cap/staff/retrieve/',
 
     userForgotPassword: 'forgotPassword',
     userResetPassword: 'resetPassword/',

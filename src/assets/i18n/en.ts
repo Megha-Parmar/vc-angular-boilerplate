@@ -118,6 +118,7 @@ export const locale = {
       roleText: 'Role',
       nameIsRequiredErrorText: 'Name is required',
       emailIsRequiredErrorText: 'E-mail is required',
+      invalidEmailErrorText: 'Enter valid E-mail',
       roleIsRequiredErrorText: 'Role is required',
       submitText: 'Submit',
     },

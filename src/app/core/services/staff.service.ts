@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Constants } from '../constants/app.constants';
 import { APIResponse } from '../models/general.model';
-import { StaffListModel } from '../models/staff.model';
+import { StaffListModel, StaffModel, StaffRoleModel } from '../models/staff.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,14 @@ export class StaffService {
 
   updateStaffStatus(id: string, status: boolean): Observable<APIResponse<StaffListModel>> {
     return this._httpClient.post<APIResponse<StaffListModel>>(Constants.APIRoutes.updateStaffStatus + id + '?staff_uuid=' + id, { "status": status });
+  }
+
+  getRoleList(): Observable<APIResponse<StaffRoleModel[]>> {
+    return this._httpClient.get<APIResponse<StaffRoleModel[]>>(Constants.APIRoutes.getRoleList)
+  }
+
+  getStaffById(id: string): Observable<APIResponse<StaffModel>> {
+    return this._httpClient.get<APIResponse<StaffModel>>(Constants.APIRoutes.getStaffById + id + '?staff_uuid=' + id);
   }
 
 }

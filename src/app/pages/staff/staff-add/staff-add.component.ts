@@ -3,11 +3,15 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
+import { APIResponse } from 'src/app/core/models/general.model';
+import { StaffRoleModel } from 'src/app/core/models/staff.model';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { EncryptDecryptService } from 'src/app/core/services/encrypt-decrypt.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
+import { StaffService } from 'src/app/core/services/staff.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { environment } from 'src/environments/environment';
+import { StaffModel } from './../../../core/models/staff.model';
 
 @Component({
   selector: 'app-staff-add',
@@ -20,6 +24,9 @@ export class StaffAddComponent implements OnInit, OnDestroy {
 
   submitted: boolean = false;
   readonly CDN_URL = environment.contentful.CDN_URL;
+  staffRoleList!: StaffRoleModel[];
+  staffAddEditForm!: StaffModel;
+  staffAddEditDetails!: StaffModel;
 
   private unSubscriber: Subject<void> = new Subject<void>();
 
@@ -30,6 +37,7 @@ export class StaffAddComponent implements OnInit, OnDestroy {
     private _toasterService: ToasterService,
     private _loaderService: LoaderService,
     private _encryptDecryptService: EncryptDecryptService,
+    private _staffService: StaffService,
   ) {
     if (this._activatedRoute.snapshot.paramMap.get('id')) {
       this.staffId = this._activatedRoute.snapshot.paramMap.get('id') as string;
@@ -37,6 +45,52 @@ export class StaffAddComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getRoleList();
+    this.getStaffById();
+
+    this.staffAddEditDetails = {
+      name: '',
+      email: ''
+    };
+
+  }
+
+  getStaffById(): void {
+    this._staffService.getStaffById(this.staffId).pipe(takeUntil(this.unSubscriber)).subscribe({
+      next: (res: APIResponse<any>) => {
+        this.setFormDetails(res?.data);
+        // this.staffAddEditForm.controls["email"].setValue("1");
+        // this.staffForm = {
+        //   name: res.data.name,
+        //   email: res.data.email,
+        // }
+      }
+    })
+  }
+
+  setFormDetails(res: any) {
+    console.log('aa', res);
+    this.staffAddEditDetails.name = res.name;
+    this.staffAddEditDetails.email = res.email;
+    console.log('new', res);
+    // this.staffModel.email = res?.email;
+  }
+
+  getRoleList(): void {
+    this._staffService.getRoleList().pipe(takeUntil(this.unSubscriber)).subscribe({
+      next: (result: APIResponse<StaffRoleModel[]>) => {
+        if (result && result.data) {
+          this.staffRoleList = result.data;
+        }
+        this._loaderService.showHideLoader(false);
+      }, error: () => {
+        this._loaderService.showHideLoader(false);
+      },
+    });
+  }
+
+  trackByMethod(index: number, el: any): number {
+    return el.id || index;
   }
 
   onSubmit(form: NgForm) {
@@ -45,6 +99,7 @@ export class StaffAddComponent implements OnInit, OnDestroy {
     }
     this.submitted = true;
     this._loaderService.showHideLoader(true);
+    console.log('aa', form.value)
     const params = {
       email: form.value?.email,
       password: '',
