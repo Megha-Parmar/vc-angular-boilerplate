@@ -29,20 +29,11 @@ export class StaffService {
   }
 
   createUpdateStaff(uuid: string, param: StaffModel): Observable<APIResponse<StaffModel>> {
-
     if (uuid) {
       return this._httpClient.put<APIResponse<StaffModel>>(Constants.APIRoutes.staffUpdateApi + uuid + '?staff_uuid=' + uuid, param);
     } else {
       return this._httpClient.post<APIResponse<StaffModel>>(Constants.APIRoutes.staffCreateApi, param);
     }
-  }
-
-  createStaff(param: StaffModel): Observable<APIResponse<StaffModel>> {
-    return this._httpClient.post<APIResponse<StaffModel>>(Constants.APIRoutes.staffCreateApi, param);
-  }
-
-  updateStaff(uuid: string, param: StaffModel): Observable<APIResponse<StaffModel>> {
-    return this._httpClient.put<APIResponse<StaffModel>>(Constants.APIRoutes.staffUpdateApi + uuid + '?staff_uuid=' + uuid, param);
   }
 
 }

@@ -102,7 +102,7 @@ export class StaffListComponent implements OnInit, OnDestroy {
     this._loaderService.showHideLoader(true);
     this._staffService.updateStaffStatus(id, staffStatus).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (res) => {
-        // this._toasterService.displaySnackBar(MessageConstant.successMessage.staffStatusUpdateSuccessfully, messageType.success)
+        this._toasterService.notifySnackbarMsg('staffListPage.staffStatusUpdateSuccessfully', 'success');
         this.getStaffList()
       }, error: () => {
         this._loaderService.showHideLoader(false);

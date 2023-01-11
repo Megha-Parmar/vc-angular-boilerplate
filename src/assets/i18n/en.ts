@@ -109,6 +109,7 @@ export const locale = {
       actionText: 'Action',
       totalDiscountText: 'Total Staff',
       addText: 'Add New',
+      staffStatusUpdateSuccessfully: 'Staff status updated successfully',
     },
     staffAddEditViewPage: {
       addStaffText: 'Add Staff',
@@ -121,6 +122,8 @@ export const locale = {
       invalidEmailErrorText: 'Enter valid E-mail',
       roleIsRequiredErrorText: 'Role is required',
       submitText: 'Submit',
+      staffCreatedSuccessfully: 'Staff created successfully',
+      staffUpdatedSuccessfully: 'Staff updated successfully',
     },
     homePage: {
       notLoggedIn: 'We couldn\'t log you in.',
