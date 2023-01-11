@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { AdminCoreModule } from 'src/app/core/core.module';
+import { BreadcrumbModule } from 'src/app/layouts/breadcrumb/breadcrumb.module';
 import { StaffAddRoutingModule } from './staff-add-routing.module';
 import { StaffAddComponent } from './staff-add.component';
 
@@ -15,7 +16,8 @@ import { StaffAddComponent } from './staff-add.component';
     AdminCoreModule,
     MatIconModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    BreadcrumbModule
   ]
 })
 export class StaffAddModule { }
