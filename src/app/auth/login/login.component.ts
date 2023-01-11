@@ -5,7 +5,6 @@ import { Subject, takeUntil } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { EncryptDecryptService } from 'src/app/core/services/encrypt-decrypt.service';
-import { LoaderService } from 'src/app/core/services/loader.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { environment } from 'src/environments/environment';
 
@@ -29,7 +28,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     public router: Router,
     private _authenticationService: AuthenticationService,
     private _toasterService: ToasterService,
-    private _loaderService: LoaderService,
     private _encryptDecryptService: EncryptDecryptService,
   ) { }
 
@@ -49,7 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         if (resp && resp.data) {
           this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp.data.data);
           this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.token, resp.data.access_token);
-          this._toasterService.notifySnackbarMsg('loginPage', 'loggedIn', 'success');
+          this._toasterService.notifySnackbarMsg('loginPage.loggedIn', 'success');
           this.router.navigate(['/dashboard']);
         }
         this.submitted = false;

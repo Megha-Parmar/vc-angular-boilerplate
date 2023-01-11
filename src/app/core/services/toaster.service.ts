@@ -11,6 +11,7 @@ export class ToasterService {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   duration = 5000;
   currentLang: string = environment.DEFAULT_LANGUAGE;
+  msg!: string;
 
   constructor(
     private matToaster: MatSnackBar,
@@ -38,11 +39,11 @@ export class ToasterService {
     message: string,
     type: 'info' | 'error' | 'warning' | 'success',
   ) {
-    let msg = this.translateService.translations[this.currentLang][message];
-    if (msg === undefined) {
-      msg = message;
-    }
-    this.matToaster.open(msg, 'X', {
+    // let msg = this.translateService.translations[this.currentLang][message];
+    // if (msg === undefined) {
+    //   msg = message;
+    // }
+    this.matToaster.open(message, 'X', {
       duration: this.duration,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
@@ -51,15 +52,20 @@ export class ToasterService {
   }
 
   notifySnackbarMsg(
-    mainObject: string,
     message: string,
     type: 'info' | 'error' | 'warning' | 'success',
   ) {
-    let msg = this.translateService.translations[this.currentLang][mainObject][message];
-    if (msg === undefined) {
-      msg = message;
+    this.translateService.get(message).subscribe((text: string)=>{
+      this.msg = text;
+    });
+    if(this.msg === undefined){
+      this.msg = message;
     }
-    this.displaySnackBar(msg, type);
+    // let msg = this.translateService.translations[this.currentLang][mainObject][message];
+    // if (msg === undefined) {
+    //   msg = message;
+    // }
+    this.displaySnackBar(this.msg, type);
   }
 
 }

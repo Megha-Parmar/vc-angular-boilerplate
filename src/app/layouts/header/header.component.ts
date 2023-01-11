@@ -4,7 +4,6 @@ import { Subject } from 'rxjs';
 import { loginResponse } from 'src/app/core/models/user.model';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
-import { UserProfileService } from 'src/app/core/services/user-profile.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +20,6 @@ export class HeaderComponent implements OnInit {
     private _authenticationService: AuthenticationService,
     public _router: Router,
     private _toasterService: ToasterService,
-    private _userProfileService: UserProfileService,
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +36,7 @@ export class HeaderComponent implements OnInit {
 
   goToLogout(): void {
     this._authenticationService.logoutUser();
-    this._toasterService.notifySnackbarMsg('loginPage', 'loggedOut', 'success');
+    this._toasterService.notifySnackbarMsg('loginPage.loggedOut', 'success');
     this._router.navigate(['/auth/login']);
   }
 

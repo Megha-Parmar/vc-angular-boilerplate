@@ -113,7 +113,7 @@ export class StaffAddComponent implements OnInit, OnDestroy {
         if (resp && resp.data) {
           // this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp.data.data);
           // this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.token, resp.data.access_token);
-          // this._toasterService.notifySnackbarMsg('loginPage', 'loggedIn', 'success');
+          // this._toasterService.notifySnackbarMsg('loginPage.loggedIn', 'success');
           // this._router.navigate(['/dashboard']);
         }
         this._loaderService.showHideLoader(false);
