@@ -122,8 +122,13 @@ export const locale = {
       invalidEmailErrorText: 'Enter valid E-mail',
       roleIsRequiredErrorText: 'Role is required',
       submitText: 'Submit',
+      cancelText: 'Cancel',
       staffCreatedSuccessfully: 'Staff created successfully',
       staffUpdatedSuccessfully: 'Staff updated successfully',
+    },
+    dailogData: {
+      okText: 'Ok',
+      cancelText: 'Cancel',
     },
     homePage: {
       notLoggedIn: 'We couldn\'t log you in.',

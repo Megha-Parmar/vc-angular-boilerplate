@@ -104,7 +104,7 @@ export class StaffAddComponent implements OnInit, OnDestroy {
           } else {
             this._toasterService.notifySnackbarMsg('staffAddEditViewPage.staffCreatedSuccessfully', 'success');
           }
-          this._router.navigate(['/staff']);
+          this.redirectToStaffList();
         }
         this._loaderService.showHideLoader(false);
         this.submitted = false;
@@ -114,6 +114,10 @@ export class StaffAddComponent implements OnInit, OnDestroy {
         this.submitted = false;
       },
     });
+  }
+
+  redirectToStaffList(): void {
+    this._router.navigate(['/staff']);
   }
 
   ngOnDestroy(): void {

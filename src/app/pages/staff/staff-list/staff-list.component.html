@@ -71,7 +71,7 @@
             <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid)">
               <mat-icon>edit</mat-icon>
             </button>
-            <button class="delete-button" mat-icon-button>
+            <button class="delete-button" mat-icon-button (click)="deleteStaff(row.uuid , row.name)">
               <mat-icon>delete</mat-icon>
             </button>
           </mat-cell>

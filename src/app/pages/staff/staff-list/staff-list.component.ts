@@ -4,10 +4,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { ConfirmationComponent } from 'src/app/core/components/confirmation/confirmation.component';
 import { Constants } from 'src/app/core/constants/app.constants';
 import { APIResponse } from 'src/app/core/models/general.model';
 import { StaffListModel } from 'src/app/core/models/staff.model';
 import { LoaderService } from 'src/app/core/services/loader.service';
+import { PopupOpenService } from 'src/app/core/services/popup-open.service';
 import { StaffService } from 'src/app/core/services/staff.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 
@@ -32,6 +34,7 @@ export class StaffListComponent implements OnInit, OnDestroy {
     private _staffService: StaffService,
     private _toasterService: ToasterService,
     private _loaderService: LoaderService,
+    private _popupOpenService: PopupOpenService,
   ) {
     this.dataSource = new MatTableDataSource();
   }
@@ -108,6 +111,18 @@ export class StaffListComponent implements OnInit, OnDestroy {
         this._loaderService.showHideLoader(false);
       }
     })
+  }
+
+  deleteStaff(id: string, name: string): void {
+    const commonData = {
+      title: 'Re-login required.',
+      detail: `Do you want to delete staff`,
+      highLightedText: `${name} ?`,
+      okText: 'Ok',
+      cancelText: 'Cancel',
+      type: 'inactivity'
+    };
+    const dialogRef = this._popupOpenService.openPopup(ConfirmationComponent, commonData, '500px', true);
   }
 
   ngOnDestroy(): void {
