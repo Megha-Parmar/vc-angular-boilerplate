@@ -10,7 +10,7 @@
         <div class="form-field">
           <mat-form-field appearance="outline" class="form-input">
             <mat-label>{{ 'loginPage.emailTitle' | translate }}</mat-label>
-            <input matInput type="text" name="email" ngModel #email="ngModel" class="form-control"
+            <input matInput type="text" name="email" ngModel #email="ngModel" class="form-control" [autocomplete]="false"
               [ngClass]="{ 'is-invalid': adminLoginForm.submitted && email.invalid }" required email>
             <div *ngIf="adminLoginForm.submitted && email.errors" class="error-message">
               <div *ngIf="email.errors['required']">{{ 'loginPage.emailIsRequiredErrorText' | translate }}</div>
@@ -22,8 +22,8 @@
           <mat-form-field class="form-input" appearance="outline">
             <mat-label>{{ 'loginPage.passwordTitle' | translate }}</mat-label>
             <input matInput [type]="passwordToggle ? 'password' : 'text'" name="password" ngModel #password="ngModel" class="form-control"
-              [ngClass]="{ 'is-invalid': adminLoginForm.submitted && password.invalid }" required [minlength]="passwordMinLenght"
-              [maxlength]="passwordMaxLenght">
+              [ngClass]="{ 'is-invalid': adminLoginForm.submitted && password.invalid }" required [minlength]="passwordMinLength"
+              [maxlength]="passwordMaxLength">
             <button class="eye-icon border-0" mat-icon-button matSuffix type="button" (click)="passwordToggle = !passwordToggle" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="passwordToggle">
               <mat-icon>{{passwordToggle ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -36,11 +36,11 @@
             </div>
           </mat-form-field>
         </div>
-        <div class="mt-2 text-end">
+        <!-- <div class="mt-2 text-end">
           <a class="fw-medium border-bottom-hover position-relative" [routerLink]="['/auth/forgot-password']">
             {{ 'loginPage.forgotPasswordText' | translate }}
           </a>
-        </div>
+        </div> -->
         <div class="mt-5">
           <button class="primary-btn w-100 trans" [disabled]="submitted" [ngClass]="{ 'disabled': submitted }">
             {{ ( submitted ? 'loginPage.loggingInTitle' : 'loginPage.loginTitle' ) | translate}}

@@ -1,5 +1,6 @@
 
-import { Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 import { CommonEventService } from 'src/app/core/services/common-event.service';
 import { environment } from 'src/environments/environment';
 
@@ -18,6 +19,11 @@ export class SidebarComponent{
   ) {
 
 
+  }
+
+  closeSidebar(event: MatDrawer) {
+    this.CommonEventService.isMobileDevice() && event.toggle();
+    this.removeOverlay();
   }
 
   addLayout() {
