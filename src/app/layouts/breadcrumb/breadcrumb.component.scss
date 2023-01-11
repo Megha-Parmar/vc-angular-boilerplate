@@ -4,6 +4,7 @@
   color: var(--white);
   background: var(--primary);
   padding: 10px 16px;
+  max-height: 45px;
   z-index: 1;
   .heading {
     span {
@@ -18,16 +19,17 @@
     }
   }
   .secondary-btn {
-    line-height: 40px;
-    height: 40px;
+    padding: 0 15px;
+    line-height: 34px;
+    height: 34px;
     &:hover {
       background: var(--white);
       color: var(--primary);
     }
   }
+  .breadcrumb-divider {
+    color: var(--white);
+    margin: 0 8px;
+  }
 }
 
-.breadcrumb-divider {
-  color: var(--secondary);
-  margin: 0 8px;
-}

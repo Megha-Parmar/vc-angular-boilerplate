@@ -1,47 +1,65 @@
 @import "custom-scrollbar";
 .custom-modal {
     margin: 10px;
+    .close-btn {
+        position: absolute;
+        display: flex;
+        top: -15px;
+        right: -15px;
+        background: var(--primary);
+        color: var(--white);
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        &:hover {
+            background: var(--danger);
+        }
+    }
     .mat-mdc-dialog-container {
-        overflow: hidden;
         padding: 0;
         max-height: 85vh;
         .mat-mdc-dialog-content {
-            padding: 30px;
-            margin: 0;
+            margin-top: 30px;
+            padding: 0 30px 30px;
             color: var(--primary);
             text-shadow: none;
-            overflow-y: auto;
             @include bp(sm-max) {
                 padding: 20px;
             }
-            p {
+            .heading-content {
                 font-size: 24px;
                 line-height: 30px;
-                font-weight: 600;
                 @include bp(md-max) {
                     font-size: 18px;
                 }
             }
+            p {
+                font-size: 16px;
+                line-height: 24px;
+            }
         }
         .mat-mdc-dialog-actions {
-            padding: 10px 25px;
+            padding: 15px 20px;
             border-top: 1px solid var(--primary);
             background: var(--white-100);
             margin: 0;
             @include bp(md-max) {
-                padding: 5px 25px;
+                padding: 10px 20px;
             }
             button {
-                max-width: 100px;
-                width: 100%;
+                min-width: 100px;
                 height: 46px;
                 line-height: 46px;
                 @include bp(sm-max) {
-                    max-width: 80px;
+                    font-size: 14px;
                     height: 40px;
                     line-height: 40px;
                 }
             }
         }
+    }
+    .mdc-dialog__surface {
+        overflow: inherit;
+        padding: 2px;
     }
 }

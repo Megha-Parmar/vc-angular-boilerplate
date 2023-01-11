@@ -1,13 +1,13 @@
-<button class="close-btn" mat-icon-button aria-label="close icon" mat-dialog-close>
+<button class="close-btn border-0 border-radius align-items-center justify-content-center trans" aria-label="close icon" mat-dialog-close>
   <mat-icon>close</mat-icon>
 </button>
-<mat-dialog-content>
-  <p class="text-center">
+<mat-dialog-content class="text-center custom-scrollbar">
+  <div class="heading-content">
     <ng-container *ngIf="dailogData">
       <ng-container *ngIf="dailogData.detail"> {{ dailogData.detail }} </ng-container>
       <strong *ngIf="dailogData.highLightedText"> {{ dailogData.highLightedText }} </strong>
     </ng-container>
-  </p>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button class="secondary-btn text-uppercase" type="button" (click)="cancel()">
