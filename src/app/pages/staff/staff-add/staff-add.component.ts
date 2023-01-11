@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { Constants } from 'src/app/core/constants/app.constants';
 import { APIResponse } from 'src/app/core/models/general.model';
 import { StaffRoleModel } from 'src/app/core/models/staff.model';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
@@ -21,6 +20,7 @@ import { StaffModel } from './../../../core/models/staff.model';
 export class StaffAddComponent implements OnInit, OnDestroy {
 
   staffId: string = '';
+  selectedRole: string = '';
 
   submitted: boolean = false;
   readonly CDN_URL = environment.contentful.CDN_URL;
@@ -45,35 +45,29 @@ export class StaffAddComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getRoleList();
-    this.getStaffById();
-
     this.staffAddEditDetails = {
       name: '',
-      email: ''
+      email: '',
+      role: '',
     };
-
+    this.getRoleList();
+    if (this.staffId) {
+      this.getStaffById();
+    }
   }
 
   getStaffById(): void {
     this._staffService.getStaffById(this.staffId).pipe(takeUntil(this.unSubscriber)).subscribe({
-      next: (res: APIResponse<any>) => {
-        this.setFormDetails(res?.data);
-        // this.staffAddEditForm.controls["email"].setValue("1");
-        // this.staffForm = {
-        //   name: res.data.name,
-        //   email: res.data.email,
-        // }
+      next: (res: APIResponse<StaffModel>) => {
+        if (res && res.data) {
+          this.staffAddEditDetails = {
+            name: res.data?.name,
+            email: res.data?.email,
+            role: res.data?.role,
+          }
+        }
       }
     })
-  }
-
-  setFormDetails(res: any) {
-    console.log('aa', res);
-    this.staffAddEditDetails.name = res.name;
-    this.staffAddEditDetails.email = res.email;
-    console.log('new', res);
-    // this.staffModel.email = res?.email;
   }
 
   getRoleList(): void {
@@ -99,18 +93,23 @@ export class StaffAddComponent implements OnInit, OnDestroy {
     }
     this.submitted = true;
     this._loaderService.showHideLoader(true);
-    console.log('aa', form.value)
-    const params = {
+    let params = {
+      name: form.value?.name,
       email: form.value?.email,
-      password: '',
+      role: form.value?.role,
+      uuid: '',
     };
-    this._authenticationService.loginUser(params).pipe(takeUntil(this.unSubscriber)).subscribe({
+    if (this.staffId) {
+      params.uuid = this.staffId;
+    }
+    console.log('params', params)
+    this._staffService.updateStaff(this.staffId, params).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (resp: any) => {
         if (resp && resp.data) {
-          this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp.data.data);
-          this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.token, resp.data.access_token);
-          this._toasterService.notifySnackbarMsg('loginPage', 'loggedIn', 'success');
-          this._router.navigate(['/dashboard']);
+          // this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp.data.data);
+          // this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.token, resp.data.access_token);
+          // this._toasterService.notifySnackbarMsg('loginPage', 'loggedIn', 'success');
+          // this._router.navigate(['/dashboard']);
         }
         this._loaderService.showHideLoader(false);
         this.submitted = false;

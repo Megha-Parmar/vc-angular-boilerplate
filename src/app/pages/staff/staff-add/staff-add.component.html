@@ -51,8 +51,13 @@
         <div class="form-field mb-0">
           <mat-form-field appearance="outline" class="form-input">
             <mat-label>{{ 'staffAddEditViewPage.roleText' | translate }}</mat-label>
-            <input matInput type="text" name="role" ngModel #role="ngModel" class="form-control"
-              [ngClass]="{ 'is-invalid': staffAddEditForm.submitted && role.invalid }" required>
+            <mat-select name="role" ngModel #role="ngModel" class="form-control"
+              [ngClass]="{ 'is-invalid': staffAddEditForm.submitted && role.invalid }" [(ngModel)]="staffAddEditDetails.role" required
+              placeholder="Role">
+              <mat-option *ngFor="let staffRole of staffRoleList; let index=index; trackBy: trackByMethod;" [value]="staffRole.name">
+                {{staffRole.name}}
+              </mat-option>
+            </mat-select>
             <div *ngIf="staffAddEditForm.submitted && role.errors" class="error-message">
               <div *ngIf="role.errors['required']">{{ 'staffAddEditViewPage.roleIsRequiredErrorText' | translate }}</div>
             </div>

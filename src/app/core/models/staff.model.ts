@@ -18,4 +18,6 @@ export interface StaffRoleModel {
 export interface StaffModel {
   name: string;
   email: string;
+  role: string;
+  uuid?: string;
 }

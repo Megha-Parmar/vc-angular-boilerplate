@@ -18,6 +18,8 @@ export class Constants {
     updateStaffStatus: 'cap/staff/status/update/',
     getRoleList: 'cap/role/list',
     getStaffById: 'cap/staff/retrieve/',
+    staffCreateApi: 'cap/staff/create/',
+    staffUpdateApi: 'cap/staff/update/',
 
     userForgotPassword: 'forgotPassword',
     userResetPassword: 'resetPassword/',
