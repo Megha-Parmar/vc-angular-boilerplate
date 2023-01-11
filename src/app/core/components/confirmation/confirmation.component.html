@@ -5,15 +5,15 @@
   <p class="m-0 m-b-32">
     <ng-container *ngIf="dailogData">
       <ng-container *ngIf="dailogData.detail"> {{ dailogData.detail }} </ng-container>
-      <ng-container *ngIf="dailogData.highLightedText"> <strong> {{ dailogData.highLightedText }} </strong> </ng-container>
+      <strong *ngIf="dailogData.highLightedText"> {{ dailogData.highLightedText }} </strong>
     </ng-container>
   </p>
   <div class="btn-box" fxLayoutAlign="space-between center">
     <button class="cancel-btn text-uppercase" mat-flat-button type="button" (click)="cancel()">
-      {{dailogData?.cancelText || 'Cancel'}}
+      {{dailogData.cancelText || 'Cancel'}}
     </button>
     <button class="accept-btn text-uppercase" mat-flat-button type="submit">
-      {{dailogData?.okText || 'Accept'}}
+      {{dailogData.okText || 'Accept'}}
     </button>
   </div>
 </div>
