@@ -22,4 +22,5 @@ export interface StaffModel {
   role: string;
   uuid?: string;
   client_uuid?: string;
+  role_uuid?: string;
 }
