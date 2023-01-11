@@ -54,7 +54,7 @@
             <mat-select name="role" ngModel #role="ngModel" class="form-control"
               [ngClass]="{ 'is-invalid': staffAddEditForm.submitted && role.invalid }" [(ngModel)]="staffAddEditDetails.role" required
               placeholder="Role">
-              <mat-option *ngFor="let staffRole of staffRoleList; let index=index; trackBy: trackByMethod;" [value]="staffRole.name">
+              <mat-option *ngFor="let staffRole of staffRoleList; let index=index; trackBy: trackByMethod;" [value]="staffRole.uuid">
                 {{staffRole.name}}
               </mat-option>
             </mat-select>
