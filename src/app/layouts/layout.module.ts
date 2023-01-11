@@ -11,11 +11,16 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
+
+const CoreLayoutComponent = [
+  HeaderComponent,
+  FooterComponent,
+  SidebarComponent,
+];
+
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent,
-    SidebarComponent
+    CoreLayoutComponent
   ],
   imports: [
     RouterModule,
@@ -28,9 +33,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     TranslateModule
   ],
   exports: [
-    HeaderComponent,
-    FooterComponent,
-    SidebarComponent,
+    CoreLayoutComponent,
     LayoutMaterialModule,
     CommonMaterialModule,
     MatSidenavModule,

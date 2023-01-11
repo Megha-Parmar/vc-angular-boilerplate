@@ -4,7 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AdminCoreModule } from 'src/app/core/core.module';
-import { SharedMaterialTableModule } from './../../../shared/shared-material-table.module';
+import { BreadcrumbModule } from 'src/app/layouts/breadcrumb/breadcrumb.module';
+import { SharedMaterialTableModule } from 'src/app/shared/shared-material-table.module';
 import { StaffListRoutingModule } from './staff-list-routing.module';
 import { StaffListComponent } from './staff-list.component';
 
@@ -17,7 +18,8 @@ import { StaffListComponent } from './staff-list.component';
     MatInputModule,
     MatIconModule,
     MatSlideToggleModule,
-    AdminCoreModule
+    AdminCoreModule,
+    BreadcrumbModule
   ]
 })
 
