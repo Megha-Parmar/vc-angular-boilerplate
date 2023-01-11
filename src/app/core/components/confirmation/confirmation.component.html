@@ -8,4 +8,12 @@
       <ng-container *ngIf="dailogData.highLightedText"> <strong> {{ dailogData.highLightedText }} </strong> </ng-container>
     </ng-container>
   </p>
+  <div class="btn-box" fxLayoutAlign="space-between center">
+    <button class="cancel-btn text-uppercase" mat-flat-button type="button" (click)="cancel()">
+      {{dailogData?.cancelText || 'Cancel'}}
+    </button>
+    <button class="accept-btn text-uppercase" mat-flat-button type="submit">
+      {{dailogData?.okText || 'Accept'}}
+    </button>
+  </div>
 </div>
