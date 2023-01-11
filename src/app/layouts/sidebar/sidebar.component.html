@@ -11,28 +11,28 @@
     <div class="custom-scrollbar">
       <ul class="sidebar-menu">
         <li class="menu-list">
-          <a class="menu-item d-flex align-items-center" [routerLink]="'/dashboard'" routerLinkActive="active"
+          <a class="menu-item d-flex align-items-center" (click)="closeSidebar(drawer)" [routerLink]="'/dashboard'" routerLinkActive="active"
             [title]="'sidebarPage.dashboardText' | translate">
             <mat-icon>dashboard</mat-icon>
             <span>{{ "sidebarPage.dashboardText" | translate }}</span>
           </a>
         </li>
         <li class="menu-list">
-          <a class="menu-item d-flex align-items-center" [routerLink]="'/event'" routerLinkActive="active"
+          <a class="menu-item d-flex align-items-center" (click)="closeSidebar(drawer)" [routerLink]="'/event'" routerLinkActive="active"
             [title]="'sidebarPage.eventstext' | translate">
             <mat-icon>event</mat-icon>
             <span>{{ "sidebarPage.eventstext" | translate }}</span>
           </a>
         </li>
         <li class="menu-list">
-          <a class="menu-item d-flex align-items-center" [routerLink]="'/discount'" routerLinkActive="active"
+          <a class="menu-item d-flex align-items-center" (click)="closeSidebar(drawer)" [routerLink]="'/discount'" routerLinkActive="active"
             [title]="'sidebarPage.discountstext' | translate">
             <mat-icon>discount</mat-icon>
             <span>{{ "sidebarPage.discountstext" | translate }}</span>
           </a>
         </li>
         <li class="menu-list">
-          <a class="menu-item d-flex align-items-center" [routerLink]="'/staff'" routerLinkActive="active"
+          <a class="menu-item d-flex align-items-center" (click)="closeSidebar(drawer)" [routerLink]="'/staff'" routerLinkActive="active"
             [title]="'sidebarPage.stafftext' | translate">
             <mat-icon>supervisor_account</mat-icon>
             <span>{{ "sidebarPage.stafftext" | translate }}</span>

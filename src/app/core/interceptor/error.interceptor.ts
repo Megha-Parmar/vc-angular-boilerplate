@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
+import { LoaderService } from '../services/loader.service';
 import { ToasterService } from '../services/toaster.service';
 
 @Injectable()
@@ -14,12 +15,14 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor(
     private _toasterService: ToasterService,
     private _authenticationService: AuthenticationService,
-    private _router: Router
+    private _router: Router,
+    private _loaderService: LoaderService
   ) { }
 
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(catchError((error: HttpErrorResponse) => {
+      this._loaderService.showHideLoader(false);
       let errorMsg = '';
       if (error.error instanceof ErrorEvent) {
         console.log('This is client side error');

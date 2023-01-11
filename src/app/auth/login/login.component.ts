@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   passwordToggle = true;
 
   readonly CDN_URL = environment.contentful.CDN_URL;
-  readonly passwordMinLenght: number = Constants.generalConstant.passwordMinLenght;
-  readonly passwordMaxLenght: number = Constants.generalConstant.passwordMaxLenght;
+  readonly passwordMinLength: number = Constants.generalConstant.passwordMinLength;
+  readonly passwordMaxLength: number = Constants.generalConstant.passwordMaxLength;
 
   private unSubscriber: Subject<void> = new Subject<void>();
 
@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     }
     this.submitted = true;
-    this._loaderService.showHideLoader(true);
     const params = {
       email: form.value?.email,
       password: form.value.password,
@@ -53,11 +52,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           this._toasterService.notifySnackbarMsg('loginPage', 'loggedIn', 'success');
           this.router.navigate(['/dashboard']);
         }
-        this._loaderService.showHideLoader(false);
         this.submitted = false;
       },
       error: () => {
-        this._loaderService.showHideLoader(false);
         this.submitted = false;
       },
     });

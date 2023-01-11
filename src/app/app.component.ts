@@ -45,9 +45,6 @@ export class AppComponent implements OnInit, AfterContentInit, OnDestroy {
     this.translateService.use(lang);
   }
 
-
-  ngOnDestroy() {
-
-  }
+  ngOnDestroy() { }
 
 }
