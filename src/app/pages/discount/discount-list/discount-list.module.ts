@@ -3,6 +3,7 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { AdminCoreModule } from 'src/app/core/core.module';
+import { BreadcrumbModule } from 'src/app/layouts/breadcrumb/breadcrumb.module';
 import { SharedMaterialTableModule } from './../../../shared/shared-material-table.module';
 import { DiscountListRoutingModule } from './discount-list-routing.module';
 import { DiscountListComponent } from './discount-list.component';
@@ -15,7 +16,8 @@ import { DiscountListComponent } from './discount-list.component';
     SharedMaterialTableModule,
     MatInputModule,
     MatIconModule,
-    AdminCoreModule
+    AdminCoreModule,
+    BreadcrumbModule
   ]
 })
 
