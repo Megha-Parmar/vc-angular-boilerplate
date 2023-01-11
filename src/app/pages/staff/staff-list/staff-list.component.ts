@@ -122,7 +122,10 @@ export class StaffListComponent implements OnInit, OnDestroy {
       cancelText: 'Cancel',
       type: 'inactivity'
     };
-    const dialogRef = this._popupOpenService.openPopup(ConfirmationComponent, commonData, '500px', true);
+    const dialogRef = this._popupOpenService.openPopup(ConfirmationComponent, commonData, '100%', true, {
+      panelClass: 'custom-modal',
+      maxWidth: '500px',
+    });
   }
 
   ngOnDestroy(): void {

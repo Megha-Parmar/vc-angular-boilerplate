@@ -1,0 +1,47 @@
+@import "custom-scrollbar";
+.custom-modal {
+    margin: 10px;
+    .mat-mdc-dialog-container {
+        overflow: hidden;
+        padding: 0;
+        max-height: 85vh;
+        .mat-mdc-dialog-content {
+            padding: 30px;
+            margin: 0;
+            color: var(--primary);
+            text-shadow: none;
+            overflow-y: auto;
+            @include bp(sm-max) {
+                padding: 20px;
+            }
+            p {
+                font-size: 24px;
+                line-height: 30px;
+                font-weight: 600;
+                @include bp(md-max) {
+                    font-size: 18px;
+                }
+            }
+        }
+        .mat-mdc-dialog-actions {
+            padding: 10px 25px;
+            border-top: 1px solid var(--primary);
+            background: var(--white-100);
+            margin: 0;
+            @include bp(md-max) {
+                padding: 5px 25px;
+            }
+            button {
+                max-width: 100px;
+                width: 100%;
+                height: 46px;
+                line-height: 46px;
+                @include bp(sm-max) {
+                    max-width: 80px;
+                    height: 40px;
+                    line-height: 40px;
+                }
+            }
+        }
+    }
+}

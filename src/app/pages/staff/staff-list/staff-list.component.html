@@ -39,8 +39,8 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "staffListPage.emailText" | translate }}
           </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.emailText' | translate">
-            {{ row.email }}
+          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.emailText' | translate" title="{{ row.email }}">
+            <span class="text-truncate">{{ row.email }}</span>
           </mat-cell>
         </ng-container>
         <!-- end -->
