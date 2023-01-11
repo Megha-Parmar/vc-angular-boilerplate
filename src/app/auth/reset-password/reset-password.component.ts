@@ -21,8 +21,8 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
   confirmpasswordToggle = true;
 
   readonly CDN_URL = environment.contentful.CDN_URL;
-  readonly passwordMinLenght: number = Constants.generalConstant.passwordMinLenght;
-  readonly passwordMaxLenght: number = Constants.generalConstant.passwordMaxLenght;
+  readonly passwordMinLenght: number = Constants.generalConstant.passwordMinLength;
+  readonly passwordMaxLenght: number = Constants.generalConstant.passwordMaxLength;
 
   private unSubscriber: Subject<void> = new Subject<void>();
 
