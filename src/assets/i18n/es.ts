@@ -4,6 +4,16 @@ export const locale = {
     appPage: {
       backendNotProvideData: 'Static data is not available, please try again later.',
     },
+    iconList: {
+      eventIcon: 'event',
+      editIcon:'edit',
+      deleteIcon:'delete',
+      closeIcon:'close'
+    },
+    generalText: {
+      yesText:'Yes',
+      cancelText:'Cancel'
+    },
     headerPage: {
       quoteRequestLoginRequired: 'You need to login for a quote request.',
       quoteRequestShipperLoginRequired: 'You need to login as a shipper for a quote request.',
@@ -78,6 +88,8 @@ export const locale = {
       actionText: 'Action',
       totalEventText: 'Total Events',
       addText: 'Add New',
+      noDataDisplay:'No Data to Display',
+      deleteConformationText: 'Do you really want to delete event'
     },
     eventAddEditPage: {
       addEventText: 'Add Event',

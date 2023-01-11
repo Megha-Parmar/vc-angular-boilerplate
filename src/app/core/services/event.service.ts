@@ -17,4 +17,10 @@ export class EventService {
       Constants.APIRoutes.getEventList
     );
   }
+
+  deleteEvent(id: string): Observable<APIResponse<EventListModel>> {
+    return this._httpClient.delete<APIResponse<EventListModel>>(
+      Constants.APIRoutes.deleteEvent + id
+    );
+  }
 }

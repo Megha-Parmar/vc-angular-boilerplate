@@ -2,11 +2,13 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { DeleteConfirmationModule } from './components/delete-confirmation-dialog/delete-confirmation.module';
 
 const CoreModules = [
   FormsModule,
   ReactiveFormsModule,
   TranslateModule,
+  DeleteConfirmationModule
 ];
 
 @NgModule({
