@@ -11,6 +11,8 @@ export class PopupOpenService {
 
   openPopup(componentName: any, data: object = {}, width: string = '', closeOnNavigation = false, extraParams?: MatDialogConfig<any>) {
     const dialogRef = this.matDialog.open(componentName, {
+      autoFocus: false,
+      disableClose: true,
       width: width ? width : '500px',
       data: data ? data : '',
       closeOnNavigation: closeOnNavigation,

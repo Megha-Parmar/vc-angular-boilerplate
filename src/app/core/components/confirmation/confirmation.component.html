@@ -1,15 +1,11 @@
 <div class="p-relative p-t-32">
-  <button class="close-btn" mat-icon-button aria-label="close icon" [mat-dialog-close]="false">
+  <button class="close-btn" mat-icon-button aria-label="close icon" mat-dialog-close>
     <mat-icon>close</mat-icon>
   </button>
   <p class="m-0 m-b-32">
     <ng-container *ngIf="dailogData">
-      <ng-container *ngIf="dailogData.detail">
-        {{ dailogData.detail }}
-      </ng-container>
-      <ng-container *ngIf="dailogData.highLightedText">
-        <strong> {{ dailogData.highLightedText }} </strong>
-      </ng-container>
+      <ng-container *ngIf="dailogData.detail"> {{ dailogData.detail }} </ng-container>
+      <ng-container *ngIf="dailogData.highLightedText"> <strong> {{ dailogData.highLightedText }} </strong> </ng-container>
     </ng-container>
   </p>
 </div>
