@@ -30,9 +30,9 @@ export class ErrorInterceptor implements HttpInterceptor {
       } else {
         // server-side error
         if (error.status === 0) {
-          this._toasterService.notifySnackbarMsg('generalError', 'UnhandledException', 'error');
+          this._toasterService.notifySnackbarMsg('generalError.UnhandledException', 'error');
         } else if (error.status === 400) {
-          if (request.url.includes('/login') || request.url.includes('/forgotPassword')) {
+          if (request.url.includes('/client_login') || request.url.includes('/forgotPassword')) {
             this.userNotFound(error.error.message);
           } else {
             this.is400Page();
@@ -52,11 +52,11 @@ export class ErrorInterceptor implements HttpInterceptor {
         } else if (error.status === 500) {
           this.is500Page();
         } else if (error?.url?.includes('/logout') && error?.status === 200 && error?.statusText === 'OK') {
-          this._toasterService.notifySnackbarMsg('loginPage', 'loggedOut', 'success');
+          this._toasterService.notifySnackbarMsg('loginPage.loggedOut', 'success');
         } else {
           errorMsg = `Error Code: ${error.status}\nMessage: ${error.message}`;
           // this.toaster.displaySnackBar(errorMessage, 'error');
-          this._toasterService.notifySnackbarMsg('generalError', 'serviceUnavailable', 'error');
+          this._toasterService.notifySnackbarMsg('generalError.serviceUnavailable', 'error');
         }
       }
       console.log(errorMsg);
@@ -66,42 +66,42 @@ export class ErrorInterceptor implements HttpInterceptor {
   }
 
   userNotFound(msg: string) {
-    this._toasterService.displaySnackBar(msg, 'error');
+    this._toasterService.notifySnackbarMsg(msg, 'error');
   }
 
   is400Page() {
-    this._toasterService.notifySnackbarMsg('generalError', 'badRequest', 'error');
+    this._toasterService.notifySnackbarMsg('generalError.badRequest', 'error');
   }
 
   is401Page(): void {
-    this._toasterService.notifySnackbarMsg('generalError', 'unAuthorized', 'error');
+    this._toasterService.notifySnackbarMsg('generalError.unAuthorized', 'error');
   }
 
   is402Page(): void {
-    this._toasterService.notifySnackbarMsg('generalError', 'paymentRequired', 'error');
+    this._toasterService.notifySnackbarMsg('generalError.paymentRequired', 'error');
 
   }
 
   is403Page() {
-    this._toasterService.notifySnackbarMsg('generalError', 'forbidden403', 'error');
+    this._toasterService.notifySnackbarMsg('generalError.forbidden403', 'error');
     this._authenticationService.logoutUser();
     this._router.navigate(['auth/login']);
   }
 
   is404Page(currentUrl: string) {
     if (currentUrl.endsWith('login')) {
-      this._toasterService.notifySnackbarMsg('loginPage', 'credentialValid', 'error');
+      this._toasterService.notifySnackbarMsg('loginPage.credentialValid', 'error');
     } else {
       this._router.navigate(['/error/not-found']);
     }
   }
 
   is422Page() {
-    this._toasterService.notifySnackbarMsg('generalError', 'unprocessableEntity', 'error');
+    this._toasterService.notifySnackbarMsg('generalError.unprocessableEntity', 'error');
   }
 
   is429Page() {
-    this._toasterService.notifySnackbarMsg('generalError', 'tooManyRequest', 'error');
+    this._toasterService.notifySnackbarMsg('generalError.tooManyRequest', 'error');
   }
 
   is500Page() {

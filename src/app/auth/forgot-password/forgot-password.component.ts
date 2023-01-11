@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { LoaderService } from 'src/app/core/services/loader.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { environment } from 'src/environments/environment';
 
@@ -24,20 +23,15 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     public router: Router,
     private _authenticationService: AuthenticationService,
     private _toasterService: ToasterService,
-    private _loaderService: LoaderService,
   ) { }
 
-  ngOnInit(): void {
-
-  }
-
+  ngOnInit(): void { }
 
   onSubmit(form: NgForm) {
     if (form.invalid) {
       return;
     }
     this.submitted = true;
-    this._loaderService.showHideLoader(true);
     const params = {
       email: form.value?.email,
       password: form.value.password,
@@ -45,14 +39,12 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     this._authenticationService.forgotPassword(params).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (resp: any) => {
         if (resp && resp.data) {
-          this._toasterService.notifySnackbarMsg('forgotPasswordPage', 'mailSentText', 'success');
+          this._toasterService.notifySnackbarMsg('forgotPasswordPage.mailSentText', 'success');
           this.router.navigate(['/login']);
         }
-        this._loaderService.showHideLoader(false);
         this.submitted = false;
       },
       error: () => {
-        this._loaderService.showHideLoader(false);
         this.submitted = false;
       },
     });

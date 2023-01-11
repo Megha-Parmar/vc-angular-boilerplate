@@ -7,23 +7,17 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   {
     path: 'not-found',
-    data: {
-      title: 'Not Found View'
-    },
+    title:'Not Found',
     component: NotFoundComponent
   },
   {
     path: 'not-found-internal',
-    data: {
-      title: 'Error 500 View'
-    },
+    title: 'Internal Server Error',
     component: NotFoundInternalComponent
   },
   {
-    path: 'error-403',
-    data: {
-      title: 'Error 403 View'
-    },
+    path: 'forbidden',
+    title: 'Forbidden',
     component: Error403Component
   },
   { path: '**', redirectTo: 'not-found', pathMatch: 'full' },

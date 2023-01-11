@@ -23,15 +23,18 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    title:'Login'
   },
   {
     path: 'forgot-password',
-    component: ForgotPasswordComponent
+    component: ForgotPasswordComponent,
+    title:'Forgot Password'
   },
   {
     path: 'reset-password/:id',
-    component: ResetPasswordComponent
+    component: ResetPasswordComponent,
+    title:'Reset Password'
   }
 ];
 

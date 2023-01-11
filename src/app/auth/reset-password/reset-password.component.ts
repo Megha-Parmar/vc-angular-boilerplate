@@ -51,7 +51,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
         if (resp && resp.data) {
           this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp.data);
           this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.token, resp.data.token);
-          this._toasterService.notifySnackbarMsg('loginPage', 'loggedIn', 'success');
+          this._toasterService.notifySnackbarMsg('loginPage.loggedIn', 'success');
           this.router.navigate(['/dashboard']);
         }
         this._loaderService.showHideLoader(false);

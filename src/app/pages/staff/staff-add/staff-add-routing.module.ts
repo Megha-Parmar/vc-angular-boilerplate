@@ -3,9 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { StaffAddComponent } from './staff-add.component';
 
 const routes: Routes = [
-  { path: '', component: StaffAddComponent },
-  { path: 'add', component: StaffAddComponent },
-  { path: ':id/edit', component: StaffAddComponent },
+  { path: '', component: StaffAddComponent }
 ];
 
 @NgModule({
