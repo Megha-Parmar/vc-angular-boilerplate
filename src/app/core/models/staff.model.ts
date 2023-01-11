@@ -13,6 +13,7 @@ export interface StaffRoleModel {
   updated_at: string;
   role: string;
   uuid: string;
+  client_uuid: string;
 }
 
 export interface StaffModel {
@@ -20,4 +21,5 @@ export interface StaffModel {
   email: string;
   role: string;
   uuid?: string;
+  client_uuid?: string;
 }

@@ -60,11 +60,17 @@ export class StaffAddComponent implements OnInit, OnDestroy {
     this._staffService.getStaffById(this.staffId).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (res: APIResponse<StaffModel>) => {
         if (res && res.data) {
+          console.log('test' , res.data)
+          let client_uuid = '';
+          if(res.data?.client_uuid){
+            client_uuid = res.data?.client_uuid;
+          }
           this.staffAddEditDetails = {
             name: res.data?.name,
             email: res.data?.email,
-            role: res.data?.role,
+            role: client_uuid
           }
+          console.log('staffAddEditDetails' , this.staffAddEditDetails)
         }
       }
     })
@@ -97,13 +103,12 @@ export class StaffAddComponent implements OnInit, OnDestroy {
       name: form.value?.name,
       email: form.value?.email,
       role: form.value?.role,
-      uuid: '',
     };
     if (this.staffId) {
-      params.uuid = this.staffId;
+      // params.uuid = this.staffId;
     }
     console.log('params', params)
-    this._staffService.updateStaff(this.staffId, params).pipe(takeUntil(this.unSubscriber)).subscribe({
+    this._staffService.createUpdateStaff(this.staffId, params).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (resp: any) => {
         if (resp && resp.data) {
           // this._encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.currentUser, resp.data.data);
