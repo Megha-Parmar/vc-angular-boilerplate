@@ -20,6 +20,7 @@ export class Constants {
     getStaffById: 'cap/staff/retrieve/',
     staffCreateApi: 'cap/staff/create/',
     staffUpdateApi: 'cap/staff/update/',
+    deleteEvent: 'cap/event/delete/',
 
     userForgotPassword: 'forgotPassword',
     userResetPassword: 'resetPassword/',

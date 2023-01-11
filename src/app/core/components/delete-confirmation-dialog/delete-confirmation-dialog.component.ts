@@ -6,19 +6,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   selector: 'app-delete-confirmation-dialog',
   template: `
         <mat-dialog-content>
-        <div class="delete-icon">
-          <mat-icon>close</mat-icon>
-        </div>
-        <div class="text-center">
-          <p>
-            {{data | translate }}
-          </p>
-          </div>
+        <!-- <div class="delete-icon">
+          <button mat-dialog-close mat-icon-button>
+          <mat-icon>{{'iconList.closeIcon' | translate}}</mat-icon>
+          </button>
+        </div> -->
+        <p>{{ data.confirmationText | translate }} <strong>{{ data.details }} </strong> <span *ngIf="data.details">? </span> </p>
         </mat-dialog-content>
 
         <mat-dialog-actions class="d-flex" align='end'>
-        <button class="primary-btn trans" mat-button (click)='onConfirmation()' tabindex='1'>{{ 'categoryPage.yesText' | translate}}</button>
-        <button class="secondary-btn trans" mat-button type='button' mat-dialog-close tabindex='-1'>{{ 'categoryPage.noText' | translate}}</button>
+        <button class="primary-btn trans" mat-button (click)='onConfirmation()' tabindex='1'>{{ 'generalText.yesText' | translate }}</button>
+        <button class="secondary-btn trans" mat-button type='button' mat-dialog-close tabindex='-1'>{{ 'generalText.cancelText' | translate }}</button>
         </mat-dialog-actions>`,
   styles: [],
 })
