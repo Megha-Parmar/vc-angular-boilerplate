@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ConfirmationComponent } from 'src/app/core/components/confirmation/confirmation.component';
-import { Constants, messageType } from 'src/app/core/constants/app.constants';
+import { Constants } from 'src/app/core/constants/app.constants';
 import { APIResponse } from 'src/app/core/models/general.model';
 import { EventService } from 'src/app/core/services/event.service';
 import { PopupOpenService } from 'src/app/core/services/popup-open.service';
@@ -67,41 +67,32 @@ export class EventListComponent implements OnInit, OnDestroy {
     }
   }
 
-  deleteEvent(id: string): void {
-    this._eventService.deleteEvent(id).pipe(takeUntil(this.unSubscriber)).subscribe({next: (resp: APIResponse<EventListModel>) => {
-          if (resp) {
-            this._toasterService.notifySnackbarMsg(resp.message, messageType.success);
-            this.getEventList();
-          }
-        },
-      });
-  }
-
-  onDeleteConfirmation(id: string, name: string): void {
+  deleteEvent(id: string, name: string): void {
     const commonData = {
-      detail :'eventListPage.deleteConformationText',
+      detail: 'eventListPage.deleteConformationText',
       highLightedText: `${name} ?`,
       okText: 'Ok',
       cancelText: 'Cancel',
       type: 'inactivity'
     }
-
-    const dialogRef = this._popUpService.openPopup(ConfirmationComponent, commonData,'500px', true);
-    // const dialogRef = this._matDialog.open(DeleteConfirmationDialogComponent, {
-    //   data: {
-    //     confirmationText: 'eventListPage.deleteConformationText',
-    //     details: name,
-    //   },
-    //   disableClose:true,
-    //   autoFocus: false
-    // });
+    const dialogRef = this._popUpService.openPopup(ConfirmationComponent, commonData, '500px', true);
     dialogRef.afterClosed().subscribe((resp: boolean) => {
       if (resp) {
-        console.log(resp);
-
-        // this.deleteEvent(id);
+        this.deleteEventRecord(id);
       }
     });
+  }
+
+  deleteEventRecord(id: string): void {
+    this._eventService.deleteEvent(id).pipe(takeUntil(this.unSubscriber)).subscribe({
+      next: (res) => {
+        if (res) {
+          this._toasterService.notifySnackbarMsg('eventListPage.eventDeleteSuccessfully', 'success');
+        }
+        this.getEventList()
+      }, error: () => { }
+    })
+
   }
 
   /**

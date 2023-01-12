@@ -14,6 +14,7 @@ export class Constants {
     userLogin: 'auth/client_login',
     getEventList: 'cap/event/list/map',
     getDiscountList: 'cap/discount/list',
+    deleteDiscount: 'cap/discount/delete/',
     getStaffList: 'cap/staff/list',
     updateStaffStatus: 'cap/staff/status/update/',
     getRoleList: 'cap/role/list',
