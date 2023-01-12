@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { APIResponse } from 'src/app/core/models/general.model';
 import { StaffRoleModel } from 'src/app/core/models/staff.model';
-import { LoaderService } from 'src/app/core/services/loader.service';
 import { StaffService } from 'src/app/core/services/staff.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { environment } from 'src/environments/environment';
@@ -32,7 +31,6 @@ export class StaffAddComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     public _router: Router,
     private _toasterService: ToasterService,
-    private _loaderService: LoaderService,
     private _staffService: StaffService,
   ) {
     if (this._activatedRoute.snapshot.paramMap.get('id')) {
@@ -72,10 +70,7 @@ export class StaffAddComponent implements OnInit, OnDestroy {
         if (result && result.data) {
           this.staffRoleList = result.data;
         }
-        this._loaderService.showHideLoader(false);
-      }, error: () => {
-        this._loaderService.showHideLoader(false);
-      },
+      }, error: () => { },
     });
   }
 
@@ -88,7 +83,6 @@ export class StaffAddComponent implements OnInit, OnDestroy {
       return;
     }
     this.submitted = true;
-    this._loaderService.showHideLoader(true);
     let params = {
       name: form.value?.name,
       email: form.value?.email,
@@ -106,11 +100,9 @@ export class StaffAddComponent implements OnInit, OnDestroy {
           }
           this.redirectToStaffList();
         }
-        this._loaderService.showHideLoader(false);
         this.submitted = false;
       },
       error: () => {
-        this._loaderService.showHideLoader(false);
         this.submitted = false;
       },
     });

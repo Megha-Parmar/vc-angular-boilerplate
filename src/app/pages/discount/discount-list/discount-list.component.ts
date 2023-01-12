@@ -8,7 +8,6 @@ import { Constants } from 'src/app/core/constants/app.constants';
 import { DiscountListModel } from 'src/app/core/models/discount.model';
 import { APIResponse } from 'src/app/core/models/general.model';
 import { DiscountService } from 'src/app/core/services/discount.service';
-import { LoaderService } from 'src/app/core/services/loader.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 
 @Component({
@@ -31,7 +30,6 @@ export class DiscountListComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _discountService: DiscountService,
     private _toasterService: ToasterService,
-    private _loaderService: LoaderService,
   ) {
     this.dataSource = new MatTableDataSource();
   }
@@ -42,7 +40,6 @@ export class DiscountListComponent implements OnInit, OnDestroy {
    */
 
   ngOnInit() {
-    this._loaderService.showHideLoader(true);
     this.getDiscountList();
   }
 
@@ -54,11 +51,8 @@ export class DiscountListComponent implements OnInit, OnDestroy {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         }
-        this._loaderService.showHideLoader(false);
       },
-      error: () => {
-        this._loaderService.showHideLoader(false);
-      },
+      error: () => {},
     });
   }
 
