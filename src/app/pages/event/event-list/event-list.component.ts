@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { DeleteConfirmationDialogComponent } from 'src/app/core/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { ConfirmationComponent } from 'src/app/core/components/confirmation/confirmation.component';
 import { Constants, messageType } from 'src/app/core/constants/app.constants';
 import { APIResponse } from 'src/app/core/models/general.model';
 import { EventService } from 'src/app/core/services/event.service';
+import { PopupOpenService } from 'src/app/core/services/popup-open.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { EventListModel } from './../../../core/models/event.model';
 
@@ -32,8 +32,8 @@ export class EventListComponent implements OnInit, OnDestroy {
   constructor(
     private _router: Router,
     private _eventService: EventService,
-    private _matDialog: MatDialog,
-    private _toasterService: ToasterService
+    private _toasterService: ToasterService,
+    private _popUpService: PopupOpenService
   ) {
     this.dataSource = new MatTableDataSource();
   }
@@ -78,16 +78,27 @@ export class EventListComponent implements OnInit, OnDestroy {
   }
 
   onDeleteConfirmation(id: string, name: string): void {
-    const dialogRef = this._matDialog.open(DeleteConfirmationDialogComponent, {
-      data: {
-        confirmationText: 'eventListPage.deleteConformationText',
-        details: name,
-      },
-      disableClose:true,
-      autoFocus: false
-    });
+    const commonData = {
+      detail :'eventListPage.deleteConformationText',
+      highLightedText: `${name} ?`,
+      okText: 'Ok',
+      cancelText: 'Cancel',
+      type: 'inactivity'
+    }
+
+    const dialogRef = this._popUpService.openPopup(ConfirmationComponent, commonData,'500px', true);
+    // const dialogRef = this._matDialog.open(DeleteConfirmationDialogComponent, {
+    //   data: {
+    //     confirmationText: 'eventListPage.deleteConformationText',
+    //     details: name,
+    //   },
+    //   disableClose:true,
+    //   autoFocus: false
+    // });
     dialogRef.afterClosed().subscribe((resp: boolean) => {
       if (resp) {
+        console.log(resp);
+
         // this.deleteEvent(id);
       }
     });

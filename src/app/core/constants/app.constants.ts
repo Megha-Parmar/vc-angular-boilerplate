@@ -21,6 +21,10 @@ export class Constants {
     staffCreateApi: 'cap/staff/create',
     staffUpdateApi: 'cap/staff/update/',
     deleteEvent: 'cap/event/delete/',
+    getEventById: 'cap/event/retrieve/',
+    getAmenitiesList: 'cap/amenities',
+
+    checkFeaturedImage: 'cap/event/section/check',
 
     userForgotPassword: 'forgotPassword',
     userResetPassword: 'resetPassword/',
@@ -60,7 +64,33 @@ export class Constants {
     maxBannerSize: 1048576 * 5,
     maxLengthPattern: 100,
     maxLengthIPTCNumberPattern: 3,
+    urlPattern: /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/
   };
+
+  public static EditorToolbarConfig = [
+    { name: 'document', groups: ['mode', 'document', 'doctools'] },
+    { name: 'clipboard', groups: ['clipboard', 'undo'] },
+    {
+      name: 'paragraph',
+      groups: ['indent', 'blocks', 'align', 'bidi', 'paragraph'],
+    },
+    { name: 'styles', groups: ['styles'] },
+    { name: 'colors', groups: ['colors'] },
+    //  { name: 'tools', groups: ['tools'] },
+    { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+  ];
+
+  public static CkEditorConfig = {
+    allowedContent: true,
+    autoParagraph: true,
+    forcePasteAsPlainText: true,
+    toolbarGroups: Constants.EditorToolbarConfig,
+  }
+
+  public static AmenitiesOption = [
+    { value: true, viewValue: 'Allow' },
+    { value: false, viewValue: 'Not Allow' },
+  ];
 
   public static paginationArray = [10, 25, 50, 100];
 }
@@ -92,7 +122,10 @@ export class MessageConstant {
     invalidForm: 'Please enter all mandatory fields',
     invalidFooterLink: 'Please add atleast one footer link',
     invalidDashboardButton: 'Please provide atleast one button text',
-    renewPlanErrorMessage: "Please renew your plan to access the page"
+    renewPlanErrorMessage: "Please renew your plan to access the page",
+    horizonBannerSize: 'Banner size is invalid',
+    verticalBannerSize: 'Banner size is invalid',
+    featureBannerSize: 'Banner size is invalid',
   };
 
   public static successMessage = {
