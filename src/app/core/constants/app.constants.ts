@@ -10,6 +10,17 @@ export class Constants {
     token: 'token'
   };
 
+  public static DiscountType = [
+    { value: 0, viewValue: 'Percentage' },
+    { value: 1, viewValue: 'Flat' },
+  ];
+
+  public static DiscountOn = [
+    { value: 0, viewValue: 'Quantity' },
+    { value: 1, viewValue: 'Amount' },
+  ];
+
+
   public static APIRoutes = {
     userLogin: 'auth/client_login',
     getEventList: 'cap/event/list/map',

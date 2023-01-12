@@ -54,7 +54,9 @@ export class EventAddComponent implements OnInit, OnDestroy {
     private popupOpenService: PopupOpenService
   ) {
     if (this.activatedRoute.snapshot.paramMap.get('id')) {
-      this.eventId = this.updateEventId = this.activatedRoute.snapshot.paramMap.get('id') as string;
+      this.updateEventId = this.activatedRoute.snapshot.paramMap.get(
+        'id'
+      ) as string;
       this.getEventDetailsById();
     } else if (this.activatedRoute.snapshot.queryParams['id']) {
       this.editId = this.activatedRoute.snapshot.queryParams['id'];
