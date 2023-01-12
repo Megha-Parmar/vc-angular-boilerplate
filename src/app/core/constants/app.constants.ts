@@ -10,6 +10,16 @@ export class Constants {
     token: 'token'
   };
 
+  public static EventTypeOption = [
+    { value: 0, viewValue: 'Full Time' },
+    { value: 1, viewValue: 'Slot-wise' },
+  ];
+
+  public static SlotSection = [
+    { value: true, viewValue: 'Repeat' },
+    { value: false, viewValue: 'Does Not Repeat' },
+  ];
+
   public static APIRoutes = {
     userLogin: 'auth/client_login',
     getEventList: 'cap/event/list/map',
@@ -25,6 +35,8 @@ export class Constants {
     deleteEvent: 'cap/event/delete/',
     getEventById: 'cap/event/retrieve/',
     getAmenitiesList: 'cap/amenities',
+    createEvent: 'cap/event/create',
+    updateEvent: 'cap/event/update/',
 
     checkFeaturedImage: 'cap/event/section/check',
 
@@ -128,16 +140,24 @@ export class MessageConstant {
     horizonBannerSize: 'Banner size is invalid',
     verticalBannerSize: 'Banner size is invalid',
     featureBannerSize: 'Banner size is invalid',
+    featureImageValidation: 'Feature Image is required',
+    venueUrlMissingValidation: 'Please add venue url as you selected online option',
+    venueMissingValidation: 'Please select venue for onsite event',
+    dateEventNotFound: 'Please select valid date for event',
+
   };
 
   public static successMessage = {
     userLoggedIn: 'User Logged in Successfully.',
     userLoggedOut: 'You are successfully logged out.',
     passwordUpdatedSuccess: 'Your Password updated successfully.',
+    eventSubmittedSuccessfully: 'Event submitted successfully',
+    eventUpdatedSuccessfully: 'Event updated successfully',
     formSubmittedSuccessfully: 'Settings Updated Successfully!',
     mailSentSuccessfully: 'Password reset link sent to your E-mail address successfully.',
     profilePictureRemovedSuccessfully: 'Your profile picture removed successfully.',
-    damConfigsChangedSuccessfully: 'Your DAM details are updated successfully. Now, you will be logged out'
+    damConfigsChangedSuccessfully: 'Your DAM details are updated successfully. Now, you will be logged out',
+    eventCreatedSuccessfully: 'Event created successfully',
   };
 
   public static PatternValidation = {

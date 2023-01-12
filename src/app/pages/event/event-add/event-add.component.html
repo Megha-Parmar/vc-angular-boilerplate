@@ -78,8 +78,8 @@
                       </p>
                       <div class="form-filled">
                         <mat-button-toggle-group name="fontStyle" aria-label="Font Style" formControlName="venueType">
-                          <mat-button-toggle value="onsite">On Site</mat-button-toggle>
-                          <mat-button-toggle value="online">Online</mat-button-toggle>
+                          <mat-button-toggle value="onsite">{{ "eventAddEditPage.onSite" | translate }}</mat-button-toggle>
+                          <mat-button-toggle value="online">{{ "eventAddEditPage.online" | translate }}</mat-button-toggle>
                         </mat-button-toggle-group>
                       </div>
 
@@ -124,7 +124,8 @@
                       </div>
                       <a (click)="isSubVenue = !isSubVenue" class="font-14 text-secondary d-flex" *ngIf="
                         eventForm.controls['venueType'].value === 'onsite'
-                      "><span *ngIf="isSubVenue">-</span><span *ngIf="!isSubVenue">+</span> Add Additional Info
+                      "><span *ngIf="isSubVenue">-</span><span *ngIf="!isSubVenue">+</span> {{ "eventAddEditPage.addAdditionalInfo" |
+                        translate }}
                       </a>
                     </div>
 
@@ -148,14 +149,14 @@
                         </div>
                         <mat-error class="font-12"
                           *ngIf="getForm['start_date'].touched && (getForm['start_date'].errors || getForm['end_date'].errors)">
-                          Invalid Event Date range
+                          {{ "eventAddEditPage.invalidDateRangeError" | translate }}
                         </mat-error>
                       </div>
                     </div>
 
                     <div class="area-wrapper">
                       <p class="font-14 font-bold text-black-200 mb-20">
-                        Upload Image
+                        {{ "eventAddEditPage.uploadImage" | translate }}
                       </p>
                       <div fxLayout="row" fxLayoutAlign="space-between start">
                         <div fxFlex="48">
@@ -172,7 +173,7 @@
                             <div class="imagePreview hori" *ngIf="horizonBannerImage">
                               <img [src]="horizonBannerImage" [alt]="" class="image-box" />
                             </div>
-                            <mat-icon>image</mat-icon>
+                            <mat-icon>{{'iconList.imageIcon' | translate}}</mat-icon>
 
                             <input #imageInput type="file" (change)="onFileSelect($event, 1)" accept="{{ acceptFileType }}" required />
                             <p class="font-13 font-medium text-black-200">
@@ -209,7 +210,7 @@
                             <div class="imagePreview verticalbannerimg" *ngIf="verticalBannerImg">
                               <img [src]="verticalBannerImg" [alt]="" class="image-box" />
                             </div>
-                            <mat-icon>image</mat-icon>
+                            <mat-icon>{{'iconList.imageIcon' | translate}}</mat-icon>
                             <input type="file" (change)="onFileSelect($event, 2)" accept="{{ acceptFileType }}" required />
                             <p class="font-13 font-medium text-black-200 text-center">
                               {{ "eventAddEditPage.upload" | translate }}
@@ -233,15 +234,15 @@
 
                     <div class="area-wrapper">
                       <p class="font-14 font-bold text-black-200 mb-20">
-                        Access Ticket
+                        {{ "eventAddEditPage.accessTicket" | translate }}
                       </p>
                       <div fxLayout="row" fxLayoutAlign="space-between top">
                         <div class="form-filed" fxFlex="48" *ngIf="eventForm.controls['access_ticket_count'].value !== 0">
                           <div>
                             <mat-form-field appearance="outline">
                               <mat-label>{{"eventAddEditPage.ticketCount" | translate}}</mat-label>
-                              <input matInput id="full-name" type="number" min="0" placeholder="{{'eventAddEditPage.ticketCount' | translate}}"
-                              formControlName="access_ticket_count" />
+                              <input matInput id="full-name" type="number" min="0"
+                                placeholder="{{'eventAddEditPage.ticketCount' | translate}}" formControlName="access_ticket_count" />
                             </mat-form-field>
                           </div>
                           <mat-error class="font-12" *ngIf="getForm['access_ticket_count'].touched && getForm['access_ticket_count'].errors
@@ -249,13 +250,12 @@
                             {{ "eventAddEditPage.ticketCount" | translate }} {{ "eventAddEditPage.isRequired" | translate }}
                           </mat-error>
                           <p class="small-font">
-                            Note: access count is use for giving how many time
-                            customer have an access to use ticket.
+                            {{ "eventAddEditPage.ticketAccessNote" | translate }}
                           </p>
                         </div>
                         <div class="form-filed" fxFlex="48">
                           <mat-checkbox class="example-margin" [checked]="eventForm.controls['access_ticket_count'].value ===0 "
-                           (change)="selectFullDay($event)">Full Day Access</mat-checkbox>
+                            (change)="selectFullDay($event)">{{ "eventAddEditPage.fullDayAccess" | translate }}</mat-checkbox>
                         </div>
                       </div>
                     </div>
@@ -269,7 +269,7 @@
                           <mat-chip-grid #chipList aria-label="Select Amenitites">
                             <mat-chip-row *ngFor="let item of selectedAmenities" (removed)="remove(item)" [removable]="removable">
                               <span>{{ item.name }}</span>
-                              <mat-icon matChipRemove>cancel</mat-icon>
+                              <mat-icon matChipRemove>{{'iconList.cancelIcon' | translate}}</mat-icon>
                             </mat-chip-row>
                             <input #autocompleteTrigger="matAutocompleteTrigger" [matAutocomplete]="auto" placeholder="Select Amenities"
                               [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
@@ -282,28 +282,27 @@
                           </mat-autocomplete>
                           <button mat-icon-button matSuffix style="width: 34px; height: 34px" type="button"
                             (click)="openAuto(autocompleteTrigger)">
-                            <mat-icon style="width: 34px">expand_more</mat-icon>
+                            <mat-icon style="width: 34px">{{'iconList.expandMoreIcon' | translate}}</mat-icon>
                           </button>
                         </mat-form-field>
                       </div>
                       <div class="slot-wrapper" *ngIf="selectedAmenities.length > 0">
                         <div class="add-time-slot-wrapper p-20 d-flex justify-content-between align-items-center bg-white-50">
                           <p class="font-14 font-bold text-black-200">
-                            Added Amenities
+                            {{ "eventAddEditPage.addedAmenities" | translate }}
                           </p>
                         </div>
                         <div class="p-20 flex-wrap" fxLayout="row" fxLayoutAlign="start start">
                           <div class="aminities-box mr-15" *ngFor="let amenity of selectedAmenities" fxFlex="22">
                             <div class="add-time-slot-wrapper p-10 d-flex justify-content-between align-items-center bg-white-50">
                               {{ amenity.name }}
-
-                              <mat-icon (click)="remove(amenity)">close</mat-icon>
+                              <mat-icon (click)="remove(amenity)">{{'iconList.closeIcon' | translate}}</mat-icon>
                             </div>
                             <div class="p-20">
                               <mat-radio-group aria-label="Select an option" *ngFor="let item of amenitiesOption"
                                 (change)="getValue(item, amenity)">
-                                <mat-radio-button value="{{ item.value }}" [checked]="amenity.is_allowed === item.value">{{ item.viewValue
-                                  }}
+                                <mat-radio-button value="{{ item.value }}" [checked]="amenity.is_allowed === item.value">
+                                  {{ item.viewValue}}
                                 </mat-radio-button>
                               </mat-radio-group>
                             </div>
@@ -315,10 +314,7 @@
                     <div class="area-wrapper">
                       <div class="form-filed mt-15" fxflex="48">
                         <mat-checkbox class="example-margin" formControlName="is_banner" (change)="onSelect($event.checked, 'is_banner')">
-                          {{
-                          "eventAddEditPage.bannerImageConfirmationText"
-                          | translate
-                          }}
+                          {{"eventAddEditPage.bannerImageConfirmationText"| translate}}
                         </mat-checkbox>
                       </div>
                       <div fxLayout="row" fxLayoutAlign="space-between top">
@@ -326,23 +322,19 @@
                           <div class="form-filed" fxflex="48">
                             <mat-checkbox class="example-margin" formControlName="is_featured"
                               (change)="onSelect($event.checked, 'is_featured')">
-                              {{
-                              "eventAddEditPage.featureImgConfirmationText"
-                              | translate
-                              }}
+                              {{"eventAddEditPage.featureImgConfirmationText"| translate}}
                             </mat-checkbox>
                           </div>
                           <div class="featuredimage" *ngIf="eventForm.controls['is_featured'].value">
                             <div class="imagePreview">
                               <mat-label>
                                 <span class="font-medium text-black-200 font-14">
-                                  {{
-                                  "eventAddEditPage.featuredImage" | translate
-                                  }}</span>
+                                  {{"eventAddEditPage.featuredImage" | translate}}
+                                </span>
                               </mat-label>
                             </div>
                             <div class="form-filed upload-pic horizontal-banner">
-                              <mat-icon>image</mat-icon>
+                              <mat-icon>{{'iconList.imageIcon' | translate}}</mat-icon>
                               <img *ngIf="featuredImage" [src]="featuredImage" class="preview-image" alt="preview-image" />
                               <input type="file" (change)="onFileSelect($event, 3)" accept="{{ acceptFileType }}" />
                               <p class="font-13 font-medium text-black-200">
@@ -371,7 +363,8 @@
                   </form>
                 </mat-tab>
                 <mat-tab [disabled]="!eventInfo" label="Event Availability">
-                  <h2>Event Availability</h2>
+                  <app-event-availability *ngIf="eventInfo" [editId]="editId" [eventInfo]="eventInfo" [eventId]="updateEventId"
+                  [selectedIndex]="selected"></app-event-availability>
                 </mat-tab>
                 <mat-tab [disabled]="!eventInfo && !isTabEnable" label="More Details">
                   <h2>More Details</h2>

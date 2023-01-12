@@ -40,4 +40,14 @@ export class EventService {
       Constants.APIRoutes.getAmenitiesList
     );
   }
+
+  addEventForm(form: string, formValue: any): Observable<APIResponse<EventListModel>> {
+    return this._httpClient.post<APIResponse<EventListModel>>(
+      Constants.APIRoutes.createEvent + '?form=' + form, formValue
+    );
+  }
+
+  updateEvent(id: string, formName: string, param: any): Observable<any> {
+    return this._httpClient.put<any>(Constants.APIRoutes.updateEvent + id + '?event_uuid=' + id + '&form=' + formName, param);
+  }
 }
