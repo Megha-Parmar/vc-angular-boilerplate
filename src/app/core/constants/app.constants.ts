@@ -10,6 +10,16 @@ export class Constants {
     token: 'token'
   };
 
+  public static EventTypeOption = [
+    { value: 0, viewValue: 'Full Time' },
+    { value: 1, viewValue: 'Slot-wise' },
+  ];
+
+  public static SlotSection = [
+    { value: true, viewValue: 'Repeat' },
+    { value: false, viewValue: 'Does Not Repeat' },
+  ];
+
   public static APIRoutes = {
     userLogin: 'auth/client_login',
     getEventList: 'cap/event/list/map',
@@ -133,6 +143,7 @@ export class MessageConstant {
     featureImageValidation: 'Feature Image is required',
     venueUrlMissingValidation: 'Please add venue url as you selected online option',
     venueMissingValidation: 'Please select venue for onsite event',
+    dateEventNotFound: 'Please select valid date for event',
 
   };
 
@@ -145,7 +156,8 @@ export class MessageConstant {
     formSubmittedSuccessfully: 'Settings Updated Successfully!',
     mailSentSuccessfully: 'Password reset link sent to your E-mail address successfully.',
     profilePictureRemovedSuccessfully: 'Your profile picture removed successfully.',
-    damConfigsChangedSuccessfully: 'Your DAM details are updated successfully. Now, you will be logged out'
+    damConfigsChangedSuccessfully: 'Your DAM details are updated successfully. Now, you will be logged out',
+    eventCreatedSuccessfully: 'Event created successfully',
   };
 
   public static PatternValidation = {

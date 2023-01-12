@@ -12,7 +12,8 @@ export const locale = {
       closeIcon: 'close',
       imageIcon:'image',
       cancelIcon:'cancel',
-      expandMoreIcon:'expand_more'
+      expandMoreIcon:'expand_more',
+      clockIcon:'access_time'
     },
     headerPage: {
       quoteRequestLoginRequired: 'You need to login for a quote request.',
@@ -102,6 +103,8 @@ export const locale = {
       generalInfo: 'General Info.',
       updateEvent: 'Update',
       addEvent: 'Add',
+      edit: "Edit",
+      startDate:'Start Date',
       titleText: 'Title',
       description: 'Description',
       eventname: 'Title',
@@ -154,10 +157,14 @@ export const locale = {
       subVenue: 'Sub Venue (Optional)',
       uploadImage:'Upload Image',
       accessTicket:'Access Ticket',
+      addEventTime:'Add Event Time',
       ticketAccessNote:' Note: access count is use for giving how many time customer have an access to use ticket.',
       fullDayAccess:'Full Day Access',
       invalidDateRangeError:'Invalid Event Date range',
       addedAmenities:'Added Amenities',
+      dateExpiredNote: 'Note : This date is expired',
+      ticketCategoryType:'Ticket Category Type',
+      addCategoryType:'Add Category Type',
       horizonBanValidationHint: 'Image should be 800px X 450px and Only .JPG,.JPEG,.PNG file with max size of 5MB',
       verticalBanValidationHint: 'Image should be 200px X 300px and Only .JPG,.JPEG,.PNG file with max size of 5MB',
       featureBanValidationHint: 'Image should be 1360px X 120px and Only .JPG,.JPEG,.PNG file with max size of 5MB',

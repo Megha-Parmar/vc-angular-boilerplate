@@ -363,7 +363,8 @@
                   </form>
                 </mat-tab>
                 <mat-tab [disabled]="!eventInfo" label="Event Availability">
-                  <h2>Event Availability</h2>
+                  <app-event-availability *ngIf="eventInfo" [editId]="editId" [eventInfo]="eventInfo" [eventId]="updateEventId"
+                  [selectedIndex]="selected"></app-event-availability>
                 </mat-tab>
                 <mat-tab [disabled]="!eventInfo && !isTabEnable" label="More Details">
                   <h2>More Details</h2>

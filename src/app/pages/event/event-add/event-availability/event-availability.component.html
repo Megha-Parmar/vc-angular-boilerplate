@@ -1,0 +1,207 @@
+<form [formGroup]="eventAvailabilityForm" novalidate fxFlex="100" autocomplete="off">
+  <div class="area-wrapper">
+    <div class="d-flex justify-content-between">
+      <p class="font-14 font-bold text-black-200 mb-20">{{'eventAddEditPage.eventType' | translate}}</p>
+    </div>
+    <div>
+      <div class="form-filed" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="48">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{"eventAddEditPage.eventType" | translate}}</mat-label>
+            <mat-select name="event_type" formControlName="event_type" (selectionChange)="selectEventType($event)">
+              <mat-option *ngFor="let option of eventTypeOption" [value]="option.value">
+                {{ option.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="slot-wrapper">
+      <div class="add-time-slot-wrapper p-20 d-flex justify-content-between align-items-center bg-white-50">
+        <p class="font-14 font-bold text-black-200">{{"eventAddEditPage.addEventTime" | translate}}</p>
+        <button type="button" mat-flat-button color="secondary" class="common-button m-3" (click)="addSlotPrice('slot')" [disabled]="
+            !eventAvailabilityForm.value.startTime ||
+            !eventAvailabilityForm.value.endTime ||
+            !eventAvailabilityForm.value.capacity
+          " *ngIf="addButton === 'Add' && eventType === 1">
+          {{ "eventAddEditPage.addEvent" | translate }}
+        </button>
+        <button type="button" mat-flat-button color="secondary" class="common-button outline-button m-3" (click)="updateSlotPrice('slot')"
+          *ngIf="addButton === 'Edit'" [disabled]="
+          !eventAvailabilityForm.value.startTime ||
+          !eventAvailabilityForm.value.endTime ||
+          !eventAvailabilityForm.value.capacity">
+          {{ "eventAddEditPage.edit" | translate }} </button>
+      </div>
+      <div class="form-filed flex-wrap p-20" fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field appearance="outline" fxFlex="23"
+          *ngIf="eventType === 1 && (eventAvailabilityForm.value.event_type === 1||eventAvailabilityForm.value.event_type === 'slotwise')">
+          <mat-label>{{ "eventAddEditPage.eventDate" | translate }}</mat-label>
+          <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" formControlName="event_date"
+            [disabled]="eventAvailabilityForm.value.is_repeat===true" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="23">
+          <mat-label>{{ "eventAddEditPage.startTime" | translate }}*</mat-label>
+          <input matTimepicker #startTime="matTimepicker" (timeChange)="onStartTime()" [strict]="false" id="timepicker-example" mode="12h"
+            placeholder="Please select time..." formControlName="startTime" [maxDate]="maxTime" />
+          <mat-icon matSuffix (click)="startTime.showDialog()">{{'iconList.clockIcon' | translate}}</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="23">
+          <mat-label>{{ "eventAddEditPage.endTime" | translate }}*</mat-label>
+          <input matTimepicker #endTime="matTimepicker" [strict]="false" id="timepicker-example" mode="12h"
+            placeholder="Please select time..." formControlName="endTime" [minDate]="minTime" (timeChange)="onEndTime()" />
+          <mat-icon matSuffix (click)="endTime.showDialog()">{{'iconList.clockIcon' | translate}}</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="23">
+          <mat-label>{{ "eventAddEditPage.capacity" | translate }}</mat-label>
+          <input matInput type="number" placeholder="{{ 'eventAddEditPage.capacity' | translate }}" min="0" formControlName="capacity"
+            name="capacity" />
+        </mat-form-field>
+
+        <mat-form-field class="mt-15" appearance="outline" fxFlex="23"
+          *ngIf="eventType === 1 && (eventAvailabilityForm.value.event_type === 1||eventAvailabilityForm.value.event_type === 'slotwise')">
+          <mat-select name=" is_repeat" formControlName="is_repeat" (selectionChange)="onSelectionChange($event)">
+            <mat-option *ngFor="let option of slotSelectionOption" [value]="option.value">
+              {{ option.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="slot-wrapper p-20" fxLayout="row" fxLayoutAlign="space-between center"
+      *ngIf="(eventSlot.length > 0 && eventType === 1) || isEventSlotDisable">
+      <div class="timeSlot" *ngFor="let slot of eventSlot; let i = index">
+        <div class="eventContent">
+          <p>
+            <span>{{'eventAddEditPage.eventType' | translate}}</span><br /><span class="uppercase">{{
+              checkEventType(slot!.event_type)
+              }}</span>
+          </p>
+          <p *ngIf="slot!.event_date">
+            <span>{{'eventAddEditPage.startDate' | translate}}</span><br />
+            {{ slot!.event_date | date }}
+          </p>
+          <p>
+            <span>{{'eventAddEditPage.startTime' | translate}}</span><br />
+            {{ slot.start_time }}
+          </p>
+          <p>
+            <span>{{'eventAddEditPage.endTime' | translate}}</span><br />
+            {{ slot!.end_time }}
+          </p>
+          <p><span>{{'eventAddEditPage.capacity' | translate}}</span><br />{{ slot.capacity }}</p>
+          <p *ngIf="slot?.timezone">
+            <span>{{'eventAddEditPage.timezone' | translate}}</span><br />
+            {{ slot!.timezone }}
+          </p>
+          <!-- <p>
+            <span *ngIf="slot?.is_repeat"></span><br />
+            {{ slotSelectionOption[slot!.is_repeat]!.viewValue }}
+          </p> -->
+        </div>
+        <div class="eventAction">
+          <p>
+            <mat-icon (click)="deleteSlotPrice(slot, 'slot', i)">{{'iconList.closeIcon' | translate}}</mat-icon>
+          </p>
+          <p>
+            <mat-icon (click)="editSlotPrice(slot, i, 'slot')">{{'iconList.editIcon' | translate}}</mat-icon>
+          </p>
+        </div>
+        <div *ngIf="slot.event_date && (slot.event_date < eventInfo.start_date)">
+          {{'eventAddEditPage.dateExpiredNote' | translate}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="area-wrapper">
+    <p class="font-14 font-bold text-black-200 mb-20">{{'eventAddEditPage.ticketCategoryType' | translate}}</p>
+
+    <div class="slot-wrapper">
+      <div class="add-time-slot-wrapper p-20 d-flex justify-content-between align-items-center bg-white-50">
+        <p class="font-14 font-bold text-black-200">{{'eventAddEditPage.addCategoryType' | translate}}</p>
+        <div class="d-flex align-items-center justify-content-end">
+          <button type="button" mat-flat-button color="secondary" class="common-button outline-button mr-15" (click)="resetEventPrice()"
+            *ngIf="addEditEvent === 'Edit'">
+            {{'iconList.cancelIcon' | translate}}
+          </button>
+          <button type="button" *ngIf="addEditEvent === 'Add'" (click)="addSlotPrice('price')" mat-flat-button class="common-button"
+            color="secondary" [disabled]="
+              !eventAvailabilityForm.get('category_name')?.value ||
+              (eventAvailabilityForm.get('price')?.value  === null || eventAvailabilityForm.get('price')?.value  === undefined || eventAvailabilityForm.get('price')?.value  < 0 )
+            ">
+            {{ "eventAddEditPage.addEvent" | translate }}
+          </button>
+          <button type="button" *ngIf="addEditEvent === 'Edit'" (click)="updateSlotPrice('price')" mat-flat-button class="common-button"
+            [disabled]="
+          !eventAvailabilityForm.get('category_name')?.value ||
+          (eventAvailabilityForm.get('price')?.value  === null || eventAvailabilityForm.get('price')?.value  === undefined)
+        " color="secondary">
+            {{ "eventAddEditPage.edit" | translate }}
+          </button>
+        </div>
+      </div>
+      <div class="form-filed p-20" fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field appearance="outline" fxFlex="32">
+          <mat-label>{{
+            "eventAddEditPage.category_name" | translate
+            }}</mat-label>
+          <input matInput type="text" placeholder="{{ 'eventAddEditPage.category_name' | translate }}" formControlName="category_name"
+            name="category_name" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="32">
+          <mat-label>{{ "eventAddEditPage.price" | translate }}{{ 'DISCOUNTS_MANAGEMENT.inRupees' | translate }}</mat-label>
+          <input matInput type="number"
+            placeholder="{{ 'eventAddEditPage.price' | translate }}{{ 'DISCOUNTS_MANAGEMENT.inRupees' | translate }}"
+            formControlName="price" name="price" min="1" required />
+          <!-- <mat-select name="currency" formControlName="currency" class="currency-select">
+            <mat-option *ngFor="let option of currencyList" [value]="option.code">
+              {{ option.code }}
+            </mat-option>
+          </mat-select> -->
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="32">
+          <mat-label>{{ "eventAddEditPage.remark" | translate }}</mat-label>
+          <input matInput type="text" placeholder="{{ 'eventAddEditPage.remark' | translate }}" formControlName="remark" name="remark" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="slot-wrapper d-flex justify-content-between p-20" *ngIf="eventPrice.length > 0">
+      <div class="timeSlot" *ngFor="let price of eventPrice; let i = index">
+        <div class="eventContent categoryName">
+          <p><span>{{'eventAddEditPage.category_name' | translate}} </span><br />{{ price.category_name }}</p>
+          <p><span>{{'eventAddEditPage.price' | translate}} </span><br /> ₹{{ price.price }}</p>
+          <p><span>{{'eventAddEditPage.remark' | translate}} </span><br />{{ price.remark }}</p>
+        </div>
+        <div class="eventAction categoryName">
+          <p>
+            <mat-icon (click)="deleteSlotPrice(price, 'price', i)">{{'iconList.cancelIcon' | translate}}</mat-icon>
+          </p>
+          <p>
+            <mat-icon (click)="editSlotPrice(price, i, 'price')">{{'iconList.editIcon' | translate}}</mat-icon>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-wrapper">
+    <button type="button" mat-flat-button color="secondary" class="common-button outline-button mr-15" (click)="onCancel()">
+      {{'eventAddEditPage.cancel' | translate}}
+    </button>
+    <button mat-flat-button class="common-button next-button" type="button" (click)="onSubmit()" [disabled]="
+        eventAvailabilityForm.invalid &&
+        eventPrice.length < 1
+      ">
+      {{ "eventAddEditPage.next" | translate }}
+    </button>
+  </div>
+</form>
