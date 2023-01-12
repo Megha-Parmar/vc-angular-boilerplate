@@ -94,7 +94,8 @@ export const locale = {
       totalEventText: 'Total Events',
       addText: 'Add New',
       noDataDisplay: 'No Data to Display',
-      deleteConformationText: 'Do you really want to delete event'
+      deleteConformationText: 'Do you really want to delete event',
+      eventDeleteSuccessfully: 'Event deleted successfully',
     },
     eventAddEditPage: {
       addEventText: 'Add Event',
@@ -178,6 +179,7 @@ export const locale = {
       actionText: 'Action',
       totalDiscountText: 'Total Discounts',
       addText: 'Add New',
+      discountDeleteSuccessfully: 'Discount deleted successfully',
     },
     discountsAddEditViewPage: {
       addDiscountText: 'Add Discount',
@@ -194,7 +196,7 @@ export const locale = {
       totalDiscountText: 'Total Staff',
       addText: 'Add New',
       staffStatusUpdateSuccessfully: 'Staff status updated successfully',
-      staffStatusDeleteSuccessfully: 'Staff deleted successfully',
+      staffDeleteSuccessfully: 'Staff deleted successfully',
     },
     staffAddEditViewPage: {
       addStaffText: 'Add Staff',

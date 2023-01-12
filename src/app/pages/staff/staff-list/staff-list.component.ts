@@ -127,7 +127,7 @@ export class StaffListComponent implements OnInit, OnDestroy {
     this._staffService.deleteStaff(id).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (res) => {
         if (res) {
-          this._toasterService.notifySnackbarMsg('staffListPage.staffStatusDeleteSuccessfully', 'success');
+          this._toasterService.notifySnackbarMsg('staffListPage.staffDeleteSuccessfully', 'success');
         }
         this.getStaffList()
       }, error: () => { }

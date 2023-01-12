@@ -4,10 +4,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { ConfirmationComponent } from 'src/app/core/components/confirmation/confirmation.component';
 import { Constants } from 'src/app/core/constants/app.constants';
 import { DiscountListModel } from 'src/app/core/models/discount.model';
 import { APIResponse } from 'src/app/core/models/general.model';
 import { DiscountService } from 'src/app/core/services/discount.service';
+import { PopupOpenService } from 'src/app/core/services/popup-open.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 
 @Component({
@@ -30,6 +32,7 @@ export class DiscountListComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _discountService: DiscountService,
     private _toasterService: ToasterService,
+    private _popupOpenService: PopupOpenService,
   ) {
     this.dataSource = new MatTableDataSource();
   }
@@ -52,7 +55,7 @@ export class DiscountListComponent implements OnInit, OnDestroy {
           this.dataSource.sort = this.sort;
         }
       },
-      error: () => {},
+      error: () => { },
     });
   }
 
@@ -74,7 +77,37 @@ export class DiscountListComponent implements OnInit, OnDestroy {
     } else {
       this._router.navigate([`/discount/${id}/edit`]);
     }
+  }
 
+  deleteDiscount(id: string, name: string): void {
+    const commonData = {
+      title: 'Re-login required.',
+      detail: `Do you want to delete`,
+      highLightedText: `${name} ?`,
+      okText: 'Ok',
+      cancelText: 'Cancel',
+      type: 'inactivity'
+    };
+    const dialogRef = this._popupOpenService.openPopup(ConfirmationComponent, commonData, '90%', true, {
+      panelClass: 'custom-modal',
+      maxWidth: '500px',
+    });
+    dialogRef.afterClosed().subscribe((isDeleted: boolean) => {
+      if (isDeleted) {
+        this.deleteDiscountRecord(id);
+      }
+    });
+  }
+
+  deleteDiscountRecord(id: string): void {
+    this._discountService.deleteDiscount(id).pipe(takeUntil(this.unSubscriber)).subscribe({
+      next: (res) => {
+        if (res) {
+          this._toasterService.notifySnackbarMsg('discountListPage.discountDeleteSuccessfully', 'success');
+        }
+        this.getDiscountList()
+      }, error: () => { }
+    })
   }
 
   ngOnDestroy(): void {

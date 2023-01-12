@@ -73,7 +73,7 @@
             <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid, 'edit')" *ngIf="!row.is_published">
               <mat-icon>edit</mat-icon>
             </button>
-            <button class="delete-button" mat-icon-button>
+            <button class="delete-button" mat-icon-button (click)="deleteDiscount(row.uuid , row.discount_code)">
               <mat-icon>delete</mat-icon>
             </button>
           </mat-cell>
