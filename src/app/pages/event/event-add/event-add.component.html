@@ -388,3 +388,11 @@
     </div>
   </div>
 </div>
+<ng-container *ngIf="eventId">
+  <app-breadcrumb pageURL="/event" [pageSubText]="'eventAddEditPage.editEventText' | translate" icon="supervisor_account" redirectionURL=''
+    [pageText]="'eventListPage.pageText' | translate" addButtonText=""></app-breadcrumb>
+</ng-container>
+<ng-container *ngIf="!eventId">
+  <app-breadcrumb pageURL="/event" [pageSubText]="'eventAddEditPage.addEventText' | translate" [icon]="'iconList.eventIcon' | translate"
+    redirectionURL='' [pageText]="'eventListPage.pageText' | translate" addButtonText=""></app-breadcrumb>
+</ng-container>

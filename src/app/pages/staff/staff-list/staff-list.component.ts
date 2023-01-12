@@ -8,7 +8,6 @@ import { ConfirmationComponent } from 'src/app/core/components/confirmation/conf
 import { Constants } from 'src/app/core/constants/app.constants';
 import { APIResponse } from 'src/app/core/models/general.model';
 import { StaffListModel } from 'src/app/core/models/staff.model';
-import { LoaderService } from 'src/app/core/services/loader.service';
 import { PopupOpenService } from 'src/app/core/services/popup-open.service';
 import { StaffService } from 'src/app/core/services/staff.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
@@ -33,7 +32,6 @@ export class StaffListComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _staffService: StaffService,
     private _toasterService: ToasterService,
-    private _loaderService: LoaderService,
     private _popupOpenService: PopupOpenService,
   ) {
     this.dataSource = new MatTableDataSource();
@@ -45,7 +43,6 @@ export class StaffListComponent implements OnInit, OnDestroy {
    * @memberof StaffListComponent
    */
   ngOnInit() {
-    this._loaderService.showHideLoader(true);
     this.getStaffList();
   }
 
@@ -62,11 +59,7 @@ export class StaffListComponent implements OnInit, OnDestroy {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         }
-        this._loaderService.showHideLoader(false);
-      },
-      error: () => {
-        this._loaderService.showHideLoader(false);
-      },
+      }, error: () => { },
     });
   }
 
@@ -102,14 +95,11 @@ export class StaffListComponent implements OnInit, OnDestroy {
 
   updateStaffStatus(id: string, status: boolean): void {
     const staffStatus = status === true ? false : true;
-    this._loaderService.showHideLoader(true);
     this._staffService.updateStaffStatus(id, staffStatus).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (res) => {
         this._toasterService.notifySnackbarMsg('staffListPage.staffStatusUpdateSuccessfully', 'success');
         this.getStaffList()
-      }, error: () => {
-        this._loaderService.showHideLoader(false);
-      }
+      }, error: () => { }
     })
   }
 
@@ -122,7 +112,26 @@ export class StaffListComponent implements OnInit, OnDestroy {
       cancelText: 'Cancel',
       type: 'inactivity'
     };
-    const dialogRef = this._popupOpenService.openPopup(ConfirmationComponent, commonData, '500px', true);
+    const dialogRef = this._popupOpenService.openPopup(ConfirmationComponent, commonData, '90%', true, {
+      panelClass: 'custom-modal',
+      maxWidth: '500px',
+    });
+    dialogRef.afterClosed().subscribe((isDeleted: boolean) => {
+      if (isDeleted) {
+        this.deleteStaffRecord(id);
+      }
+    });
+  }
+
+  deleteStaffRecord(id: string): void {
+    this._staffService.deleteStaff(id).pipe(takeUntil(this.unSubscriber)).subscribe({
+      next: (res) => {
+        if (res) {
+          this._toasterService.notifySnackbarMsg('staffListPage.staffStatusDeleteSuccessfully', 'success');
+        }
+        this.getStaffList()
+      }, error: () => { }
+    })
   }
 
   ngOnDestroy(): void {

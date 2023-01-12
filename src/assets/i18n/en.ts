@@ -5,6 +5,7 @@ export const locale = {
       backendNotProvideData: 'Static data is not available, please try again later.',
     },
     iconList: {
+      dashboardIcon: 'dashboard',
       eventIcon: 'event',
       editIcon: 'edit',
       deleteIcon: 'delete',
@@ -79,6 +80,9 @@ export const locale = {
       LoginText: 'Back to Login',
       welcomeToText: 'Welcome to',
       mailSentText: 'Email sent to your registered email address, please check it and proceed for forgot password.',
+    },
+    dashboardPage: {
+      pageText: 'Welcome to dashboard !!!',
     },
     eventListPage: {
       pageText: 'Events',
@@ -190,6 +194,7 @@ export const locale = {
       totalDiscountText: 'Total Staff',
       addText: 'Add New',
       staffStatusUpdateSuccessfully: 'Staff status updated successfully',
+      staffStatusDeleteSuccessfully: 'Staff deleted successfully',
     },
     staffAddEditViewPage: {
       addStaffText: 'Add Staff',

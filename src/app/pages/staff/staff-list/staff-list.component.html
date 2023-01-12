@@ -1,14 +1,5 @@
-<div class="breadcrumbs d-flex justify-content-between align-items-center">
-  <div class="d-flex flex-column">
-    <div class="d-flex align-items-center">
-      <mat-icon>supervisor_account</mat-icon>
-      <span class="ml-1">{{ "staffListPage.pageText" | translate }}</span>
-    </div>
-  </div>
-  <button mat-button class="secondary-btn" [routerLink]="['/staff/add']">
-    {{ "staffListPage.addText" | translate }}
-  </button>
-</div>
+<app-breadcrumb pageURL="" pageSubText="" icon="supervisor_account" redirectionURL='/staff/add' [pageText]="'staffListPage.pageText' | translate"
+  [addButtonText]="'staffListPage.addText' | translate "></app-breadcrumb>
 
 <div class="page-wrapper custom-scrollbar">
   <div class="custom-card event-list mt-4">
@@ -39,8 +30,8 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "staffListPage.emailText" | translate }}
           </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.emailText' | translate">
-            {{ row.email }}
+          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.emailText' | translate" title="{{ row.email }}">
+            <span class="text-truncate">{{ row.email }}</span>
           </mat-cell>
         </ng-container>
         <!-- end -->

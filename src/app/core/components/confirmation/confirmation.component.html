@@ -1,19 +1,19 @@
-<div class="p-relative p-t-32">
-  <button class="close-btn" mat-icon-button aria-label="close icon" mat-dialog-close>
-    <mat-icon>close</mat-icon>
-  </button>
-  <p class="m-0 m-b-32">
+<button class="close-btn border-0 border-radius align-items-center justify-content-center trans" aria-label="close icon" mat-dialog-close>
+  <mat-icon>close</mat-icon>
+</button>
+<mat-dialog-content class="text-center custom-scrollbar">
+  <div class="heading-content">
     <ng-container *ngIf="dailogData">
-      <ng-container *ngIf="dailogData.detail"> {{ dailogData.detail | translate }} </ng-container>
-      <ng-container *ngIf="dailogData.highLightedText"> <strong> {{ dailogData.highLightedText }} </strong> </ng-container>
+      <ng-container *ngIf="dailogData.detail"> {{ dailogData.detail |  translate }} </ng-container>
+      <strong *ngIf="dailogData.highLightedText"> {{ dailogData.highLightedText }} </strong>
     </ng-container>
-  </p>
-  <div class="btn-box" fxLayoutAlign="space-between center">
-    <button class="cancel-btn text-uppercase" mat-flat-button type="button" (click)="cancel()">
-      {{dailogData?.cancelText || 'Cancel'}}
-    </button>
-    <button class="accept-btn text-uppercase" mat-flat-button type="submit">
-      {{dailogData?.okText || 'Accept'}}
-    </button>
   </div>
-</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="secondary-btn text-uppercase" type="button" mat-dialog-close>
+    {{dailogData.cancelText || 'Cancel'}}
+  </button>
+  <button class="primary-btn text-uppercase ml-2" type="button" (click)="onConfirmation()">
+    {{dailogData.okText || 'Ok'}}
+  </button>
+</mat-dialog-actions>

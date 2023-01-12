@@ -15,6 +15,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { AdminCoreModule } from 'src/app/core/core.module';
+import { BreadcrumbModule } from 'src/app/layouts/breadcrumb/breadcrumb.module';
 import { EventAddRoutingModule } from './event-add-routing.module';
 import { EventAddComponent } from './event-add.component';
 
@@ -38,8 +39,8 @@ import { EventAddComponent } from './event-add.component';
     MatNativeDateModule,
     MatInputModule,
     GooglePlaceModule,
-    CKEditorModule
-
+    CKEditorModule,
+    BreadcrumbModule
   ]
 })
 export class EventAddModule { }

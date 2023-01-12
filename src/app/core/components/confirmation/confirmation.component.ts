@@ -20,20 +20,11 @@ export class ConfirmationComponent implements OnInit {
   constructor(
     private dailogRef: MatDialogRef<ConfirmationComponent>,
     @Inject(MAT_DIALOG_DATA) public dailogData: DialogData
-  ) {
-    console.log('dailogData', dailogData);
-  }
+  ) { }
 
   ngOnInit(): void { }
-  cancel(): void {
-    this.dailogRef.close(false);
-  }
 
-  ok(): void {
-    if (this.dailogData?.type === 'reject-tc') {
-      this.dailogRef.close({ proceed: true, notes: this.notes });
-    } else {
-      this.dailogRef.close(true);
-    }
+  onConfirmation(): void {
+    this.dailogRef.close(true);
   }
 }
