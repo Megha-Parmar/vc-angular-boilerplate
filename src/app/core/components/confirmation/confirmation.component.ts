@@ -23,15 +23,8 @@ export class ConfirmationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { }
-  cancel(): void {
-    this.dailogRef.close(false);
-  }
 
-  ok(): void {
-    if (this.dailogData?.type === 'reject-tc') {
-      this.dailogRef.close({ proceed: true, notes: this.notes });
-    } else {
-      this.dailogRef.close(true);
-    }
+  onConfirmation(): void {
+    this.dailogRef.close(true);
   }
 }

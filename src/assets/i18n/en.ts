@@ -122,6 +122,7 @@ export const locale = {
       totalDiscountText: 'Total Staff',
       addText: 'Add New',
       staffStatusUpdateSuccessfully: 'Staff status updated successfully',
+      staffStatusDeleteSuccessfully: 'Staff deleted successfully',
     },
     staffAddEditViewPage: {
       addStaffText: 'Add Staff',

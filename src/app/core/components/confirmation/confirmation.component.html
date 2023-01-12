@@ -10,10 +10,10 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button class="secondary-btn text-uppercase" type="button" (click)="cancel()">
+  <button class="secondary-btn text-uppercase" type="button" mat-dialog-close>
     {{dailogData.cancelText || 'Cancel'}}
   </button>
-  <button class="primary-btn text-uppercase ml-2" type="submit">
-    {{dailogData.okText || 'Accept'}}
+  <button class="primary-btn text-uppercase ml-2" type="button" (click)="onConfirmation()">
+    {{dailogData.okText || 'Ok'}}
   </button>
 </mat-dialog-actions>

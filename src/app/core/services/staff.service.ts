@@ -36,4 +36,8 @@ export class StaffService {
     }
   }
 
+  deleteStaff(id: string): Observable<APIResponse<StaffModel>> {
+    return this._httpClient.delete<APIResponse<StaffModel>>(Constants.APIRoutes.deleteStaffApi + id);
+  }
+
 }
