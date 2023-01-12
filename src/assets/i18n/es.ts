@@ -10,10 +10,6 @@ export const locale = {
       deleteIcon:'delete',
       closeIcon:'close'
     },
-    generalText: {
-      yesText:'Yes',
-      cancelText:'Cancel'
-    },
     headerPage: {
       quoteRequestLoginRequired: 'You need to login for a quote request.',
       quoteRequestShipperLoginRequired: 'You need to login as a shipper for a quote request.',

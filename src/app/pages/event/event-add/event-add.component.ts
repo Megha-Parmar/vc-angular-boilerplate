@@ -353,6 +353,8 @@ export class EventAddComponent implements OnInit, OnDestroy {
   }
 
   getValue(value: any, amenities: ListingModel): void {
+    console.log(value);
+
     this.selectedAmenities.forEach((item) => {
       if (item.uuid === amenities.uuid) {
         item.is_allowed = value.value;

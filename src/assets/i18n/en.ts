@@ -9,11 +9,10 @@ export const locale = {
       eventIcon: 'event',
       editIcon: 'edit',
       deleteIcon: 'delete',
-      closeIcon: 'close'
-    },
-    generalText: {
-      yesText: 'Yes',
-      cancelText: 'Cancel'
+      closeIcon: 'close',
+      imageIcon:'image',
+      cancelIcon:'cancel',
+      expandMoreIcon:'expand_more'
     },
     headerPage: {
       quoteRequestLoginRequired: 'You need to login for a quote request.',
@@ -111,6 +110,9 @@ export const locale = {
       actionTitle: 'Action',
       isRequired: ' is Required',
       venue: 'Venue',
+      onSite: 'On Site',
+      online:'Online',
+      addAdditionalInfo:'Add Additional Info',
       tagline: 'Labels* (e.g. Open MIC | Live | Hindi,English | 16+)',
       ticketCount: 'Ticket Access Count',
       latitude: 'Latitude',
@@ -149,6 +151,12 @@ export const locale = {
       yes: 'Yes',
       upload: 'Browse Image',
       subVenue: 'Sub Venue (Optional)',
+      uploadImage:'Upload Image',
+      accessTicket:'Access Ticket',
+      ticketAccessNote:' Note: access count is use for giving how many time customer have an access to use ticket.',
+      fullDayAccess:'Full Day Access',
+      invalidDateRangeError:'Invalid Event Date range',
+      addedAmenities:'Added Amenities',
       horizonBanValidationHint: 'Image should be 800px X 450px and Only .JPG,.JPEG,.PNG file with max size of 5MB',
       verticalBanValidationHint: 'Image should be 200px X 300px and Only .JPG,.JPEG,.PNG file with max size of 5MB',
       featureBanValidationHint: 'Image should be 1360px X 120px and Only .JPG,.JPEG,.PNG file with max size of 5MB',

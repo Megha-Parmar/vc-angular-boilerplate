@@ -15,8 +15,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
         </mat-dialog-content>
 
         <mat-dialog-actions class="d-flex" align='end'>
-        <button class="primary-btn trans" mat-button (click)='onConfirmation()' tabindex='1'>{{ 'generalText.yesText' | translate }}</button>
-        <button class="secondary-btn trans" mat-button type='button' mat-dialog-close tabindex='-1'>{{ 'generalText.cancelText' | translate }}</button>
+        <button class="primary-btn trans" mat-button (click)='onConfirmation()' tabindex='1'>{{ 'dailogData.okText' | translate }}</button>
+        <button class="secondary-btn trans" mat-button type='button' mat-dialog-close tabindex='-1'>{{ 'dailogData.cancelText' | translate }}</button>
         </mat-dialog-actions>`,
   styles: [],
 })
