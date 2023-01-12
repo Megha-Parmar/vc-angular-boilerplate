@@ -75,7 +75,10 @@ export class EventListComponent implements OnInit, OnDestroy {
       cancelText: 'Cancel',
       type: 'inactivity'
     }
-    const dialogRef = this._popUpService.openPopup(ConfirmationComponent, commonData, '500px', true);
+    const dialogRef = this._popUpService.openPopup(ConfirmationComponent, commonData, '90%', true , {
+      panelClass: 'custom-modal',
+      maxWidth: '500px',
+    });
     dialogRef.afterClosed().subscribe((resp: boolean) => {
       if (resp) {
         this.deleteEventRecord(id);

@@ -4,16 +4,16 @@
 <mat-dialog-content class="text-center custom-scrollbar">
   <div class="heading-content">
     <ng-container *ngIf="dailogData">
-      <ng-container *ngIf="dailogData.detail"> {{ dailogData.detail |  translate }} </ng-container>
+      <ng-container *ngIf="dailogData.detail"> {{ dailogData.detail | translate }} </ng-container>
       <strong *ngIf="dailogData.highLightedText"> {{ dailogData.highLightedText }} </strong>
     </ng-container>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button class="secondary-btn text-uppercase" type="button" mat-dialog-close>
-    {{dailogData.cancelText || 'Cancel'}}
+    {{dailogData.cancelText || 'Cancel' | translate}}
   </button>
   <button class="primary-btn text-uppercase ml-2" type="button" (click)="onConfirmation()">
-    {{dailogData.okText || 'Ok'}}
+    {{dailogData.okText || 'Ok' | translate}}
   </button>
 </mat-dialog-actions>

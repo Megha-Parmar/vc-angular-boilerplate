@@ -25,6 +25,8 @@ export class Constants {
     deleteEvent: 'cap/event/delete/',
     getEventById: 'cap/event/retrieve/',
     getAmenitiesList: 'cap/amenities',
+    createEvent: 'cap/event/create',
+    updateEvent: 'cap/event/update/',
 
     checkFeaturedImage: 'cap/event/section/check',
 
@@ -128,12 +130,18 @@ export class MessageConstant {
     horizonBannerSize: 'Banner size is invalid',
     verticalBannerSize: 'Banner size is invalid',
     featureBannerSize: 'Banner size is invalid',
+    featureImageValidation: 'Feature Image is required',
+    venueUrlMissingValidation: 'Please add venue url as you selected online option',
+    venueMissingValidation: 'Please select venue for onsite event',
+
   };
 
   public static successMessage = {
     userLoggedIn: 'User Logged in Successfully.',
     userLoggedOut: 'You are successfully logged out.',
     passwordUpdatedSuccess: 'Your Password updated successfully.',
+    eventSubmittedSuccessfully: 'Event submitted successfully',
+    eventUpdatedSuccessfully: 'Event updated successfully',
     formSubmittedSuccessfully: 'Settings Updated Successfully!',
     mailSentSuccessfully: 'Password reset link sent to your E-mail address successfully.',
     profilePictureRemovedSuccessfully: 'Your profile picture removed successfully.',
