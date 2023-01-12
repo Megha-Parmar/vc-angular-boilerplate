@@ -64,3 +64,9 @@ export interface EventTagsModel {
   is_deleted?: boolean;
   uuid?: string;
 }
+
+export interface HomePageModel {
+  banner_event_exist: boolean
+  featured_event_exist: boolean
+}
+

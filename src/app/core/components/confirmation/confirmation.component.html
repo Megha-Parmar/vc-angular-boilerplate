@@ -4,7 +4,7 @@
 <mat-dialog-content class="text-center custom-scrollbar">
   <div class="heading-content">
     <ng-container *ngIf="dailogData">
-      <ng-container *ngIf="dailogData.detail"> {{ dailogData.detail }} </ng-container>
+      <ng-container *ngIf="dailogData.detail"> {{ dailogData.detail |  translate }} </ng-container>
       <strong *ngIf="dailogData.highLightedText"> {{ dailogData.highLightedText }} </strong>
     </ng-container>
   </div>

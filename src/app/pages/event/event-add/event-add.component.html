@@ -1,3 +1,393 @@
+<div class="breadcrumbs d-flex justify-content-between align-items-center">
+  <div class="d-flex flex-column">
+    <div class="d-flex align-items-center">
+      <mat-icon>{{'iconList.eventIcon' | translate}}</mat-icon>
+      <span class="ml-1">
+        <a [routerLink]="['/event']">{{ "eventListPage.pageText" | translate }}</a>
+      </span>
+      <i class="breadcrumb-divider">/</i>
+      <span class="ml-1"> {{ (eventId ? "eventAddEditPage.editEventText" : "eventAddEditPage.addEventText" ) | translate }} </span>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper custom-scrollbar">
+  <div class="form-wrapper">
+    <div class="my-proffile-form" fxFlex="100">
+      <div class="card">
+        <div class="admin-form">
+          <div fxLayout="row">
+            <div fxFlex="100">
+              <mat-tab-group class="event-management-tab" [selectedIndex]="selected"
+                (selectedIndexChange)="selected = $event; onTabChange($event)">
+                <mat-tab label="Basic Info">
+                  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" novalidate fxFlex="100" autocomplete="off">
+                    <div class="area-wrapper">
+                      <p class="font-14 font-bold text-black-200 mb-20">
+                        {{ "eventAddEditPage.generalInfo" | translate }}
+                      </p>
+                      <div class="form-filed">
+                        <div>
+                          <mat-form-field appearance="outline" fxFlex="100">
+                            <mat-label>
+                              {{
+                              "eventAddEditPage.titleText" | translate
+                              }}</mat-label>
+                            <input matInput id="full-name" type="text" placeholder="{{
+                              'eventAddEditPage.titleText' | translate
+                            }}" formControlName="title" />
+                          </mat-form-field>
+                        </div>
+                        <mat-error class="font-12"
+                          *ngIf="getForm['title'].touched && getForm['title'].errors && getForm['title'].errors['required']">
+                          {{ "eventAddEditPage.titleText" | translate
+                          }}{{ "eventAddEditPage.isRequired" | translate }}
+                        </mat-error>
+                      </div>
+                      <div class="form-filed">
+                        <div>
+                          <mat-form-field appearance="outline" fxFlex="100">
+                            <mat-label>{{
+                              "eventAddEditPage.tagline" | translate
+                              }}</mat-label>
+                            <input matInput id="full-name" type="text" placeholder="{{
+                              'eventAddEditPage.tagline' | translate
+                            }}" formControlName="tagline" />
+                          </mat-form-field>
+                        </div>
+                        <mat-error class="font-12"
+                          *ngIf="getForm['tagline'].touched && getForm['tagline'].errors && getForm['tagline'].errors['required']">
+                          {{ "eventAddEditPage.tagline" | translate
+                          }}{{ "eventAddEditPage.isRequired" | translate }}
+                        </mat-error>
+                      </div>
+                      <div class="form-filed ckeditor">
+                        <div>
+                          <mat-label class="small-font">
+                            {{
+                            "eventAddEditPage.description" | translate
+                            }}*</mat-label>
+                          <ckeditor name="description" formControlName="description" [config]="ckeConfig" required></ckeditor>
+                        </div>
+                        <mat-error class="font-12"
+                          *ngIf="getForm['description'].touched && getForm['description'].errors && getForm['description'].errors['required']">
+                          {{ "eventAddEditPage.description" | translate
+                          }}{{ "eventAddEditPage.isRequired" | translate }}
+                        </mat-error>
+                      </div>
+                    </div>
+
+                    <div class="area-wrapper">
+                      <p class="font-14 font-bold text-black-200 mb-20">
+                        {{ "eventAddEditPage.venue" | translate }}
+                      </p>
+                      <div class="form-filled">
+                        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" formControlName="venueType">
+                          <mat-button-toggle value="onsite">On Site</mat-button-toggle>
+                          <mat-button-toggle value="online">Online</mat-button-toggle>
+                        </mat-button-toggle-group>
+                      </div>
+
+                      <div class="form-filed mt-15" *ngIf="
+                        eventForm.controls['venueType'].value === 'onsite'
+                      ">
+                        <div>
+                          <mat-form-field appearance="outline" fxFlex="100">
+                            <mat-label>{{
+                              "eventAddEditPage.venue" | translate
+                              }}</mat-label>
+                            <input matInput ngx-google-places-autocomplete formControlName="venue"
+                              (onAddressChange)="AddressChange($event)" />
+                          </mat-form-field>
+                        </div>
+                        <mat-error class="font-12"
+                          *ngIf="getForm['venue'].touched && getForm['venue'].errors && getForm['venue'].errors['required']">
+                          {{ "eventAddEditPage.venue" | translate
+                          }}{{ "eventAddEditPage.isRequired" | translate }}
+                        </mat-error>
+                      </div>
+
+                      <div class="form-filed mt-15" *ngIf="eventForm.controls['venueType'].value === 'online'">
+                        <mat-form-field appearance="outline" fxFlex="100">
+                          <mat-label>{{
+                            "eventAddEditPage.enterVenueUrl" | translate
+                            }}</mat-label>
+                          <input matInput formControlName="venue_url" />
+                        </mat-form-field>
+                      </div>
+
+                      <div class="form-filed mt-15" *ngIf="
+                    isSubVenue &&
+                    eventForm.controls['venueType'].value === 'onsite'
+                    ">
+                        <mat-form-field appearance="outline" fxFlex="100">
+                          <mat-label>{{
+                            "eventAddEditPage.subVenue" | translate
+                            }}</mat-label>
+                          <input matInput formControlName="sub_venue" />
+                        </mat-form-field>
+                      </div>
+                      <a (click)="isSubVenue = !isSubVenue" class="font-14 text-secondary d-flex" *ngIf="
+                        eventForm.controls['venueType'].value === 'onsite'
+                      "><span *ngIf="isSubVenue">-</span><span *ngIf="!isSubVenue">+</span> Add Additional Info
+                      </a>
+                    </div>
+
+                    <div class="area-wrapper">
+                      <p class="font-14 font-bold text-black-200 mb-20">
+                        {{ "eventAddEditPage.selectDateRange" | translate }}
+                      </p>
+                      <div class="form-filed">
+                        <div>
+                          <mat-form-field appearance="outline" fxFlex="33">
+                            <mat-label>{{
+                              "eventAddEditPage.addDateRange" | translate
+                              }}</mat-label>
+                            <mat-date-range-input required [rangePicker]="picker" [min]="currentDate">
+                              <input matStartDate placeholder="Start date" formControlName="start_date" />
+                              <input matEndDate placeholder="End date" formControlName="end_date" />
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                          </mat-form-field>
+                        </div>
+                        <mat-error class="font-12"
+                          *ngIf="getForm['start_date'].touched && (getForm['start_date'].errors || getForm['end_date'].errors)">
+                          Invalid Event Date range
+                        </mat-error>
+                      </div>
+                    </div>
+
+                    <div class="area-wrapper">
+                      <p class="font-14 font-bold text-black-200 mb-20">
+                        Upload Image
+                      </p>
+                      <div fxLayout="row" fxLayoutAlign="space-between start">
+                        <div fxFlex="48">
+                          <div class="imagePreview">
+                            <div class="d-flex justify-content-between">
+                              <mat-label><span class="font-medium text-black-200 font-14">{{
+                                  "eventAddEditPage.horizonBannerImg"
+                                  | translate
+                                  }}*</span></mat-label>
+
+                            </div>
+                          </div>
+                          <div class="form-filed upload-pic horizontal-banner">
+                            <div class="imagePreview hori" *ngIf="horizonBannerImage">
+                              <img [src]="horizonBannerImage" [alt]="" class="image-box" />
+                            </div>
+                            <mat-icon>image</mat-icon>
+
+                            <input #imageInput type="file" (change)="onFileSelect($event, 1)" accept="{{ acceptFileType }}" required />
+                            <p class="font-13 font-medium text-black-200">
+                              {{ "eventAddEditPage.upload" | translate }}
+                            </p>
+                          </div>
+                          <p class="text-primary font-14">
+                            {{ "eventAddEditPage.needSample" | translate }}
+                            <a class="text-secondary font-14" href="assets/images/horizontal-banner-sample-image.png" download>{{
+                              "eventAddEditPage.download" | translate
+                              }}</a>
+                          </p>
+                          <p class="small-font">
+                            {{
+                            "eventAddEditPage.horizonBanValidationHint"
+                            | translate
+                            }}
+                          </p>
+                        </div>
+                        <div fxFlex="48">
+                          <div class="imagePreview">
+                            <div class="d-flex justify-content-between">
+                              <mat-label>
+                                <span class="font-medium text-black-200 font-14">{{
+                                  "eventAddEditPage.verticalBannerImg"
+                                  | translate
+                                  }}*</span>
+                              </mat-label>
+
+                            </div>
+                          </div>
+
+                          <div class="form-filed upload-pic verticalbanner">
+                            <div class="imagePreview verticalbannerimg" *ngIf="verticalBannerImg">
+                              <img [src]="verticalBannerImg" [alt]="" class="image-box" />
+                            </div>
+                            <mat-icon>image</mat-icon>
+                            <input type="file" (change)="onFileSelect($event, 2)" accept="{{ acceptFileType }}" required />
+                            <p class="font-13 font-medium text-black-200 text-center">
+                              {{ "eventAddEditPage.upload" | translate }}
+                            </p>
+                          </div>
+                          <p class="text-primary font-14">
+                            {{ "eventAddEditPage.needSample" | translate }}
+                            <a class="text-secondary font-14" href="assets/images/vertical-banner-sample-image.png" download>{{
+                              "eventAddEditPage.download" | translate
+                              }}</a>
+                          </p>
+                          <p class="small-font">
+                            {{
+                            "eventAddEditPage.verticalBanValidationHint"
+                            | translate
+                            }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="area-wrapper">
+                      <p class="font-14 font-bold text-black-200 mb-20">
+                        Access Ticket
+                      </p>
+                      <div fxLayout="row" fxLayoutAlign="space-between top">
+                        <div class="form-filed" fxFlex="48" *ngIf="eventForm.controls['access_ticket_count'].value !== 0">
+                          <div>
+                            <mat-form-field appearance="outline">
+                              <mat-label>{{"eventAddEditPage.ticketCount" | translate}}</mat-label>
+                              <input matInput id="full-name" type="number" min="0" placeholder="{{'eventAddEditPage.ticketCount' | translate}}"
+                              formControlName="access_ticket_count" />
+                            </mat-form-field>
+                          </div>
+                          <mat-error class="font-12" *ngIf="getForm['access_ticket_count'].touched && getForm['access_ticket_count'].errors
+                            && getForm['access_ticket_count'].errors['required']">
+                            {{ "eventAddEditPage.ticketCount" | translate }} {{ "eventAddEditPage.isRequired" | translate }}
+                          </mat-error>
+                          <p class="small-font">
+                            Note: access count is use for giving how many time
+                            customer have an access to use ticket.
+                          </p>
+                        </div>
+                        <div class="form-filed" fxFlex="48">
+                          <mat-checkbox class="example-margin" [checked]="eventForm.controls['access_ticket_count'].value ===0 "
+                           (change)="selectFullDay($event)">Full Day Access</mat-checkbox>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="area-wrapper">
+                      <div>
+                        <p class="font-14 font-bold text-black-200 mb-20">
+                          {{ "eventAddEditPage.amenitites" | translate }}
+                        </p>
+                        <mat-form-field class="example-chip-list">
+                          <mat-chip-grid #chipList aria-label="Select Amenitites">
+                            <mat-chip-row *ngFor="let item of selectedAmenities" (removed)="remove(item)" [removable]="removable">
+                              <span>{{ item.name }}</span>
+                              <mat-icon matChipRemove>cancel</mat-icon>
+                            </mat-chip-row>
+                            <input #autocompleteTrigger="matAutocompleteTrigger" [matAutocomplete]="auto" placeholder="Select Amenities"
+                              [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
+                          </mat-chip-grid>
+                          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedItem($event)" autoActiveFirstOption>
+                            <mat-option *ngFor="let item of amenitiesList" [value]="item.uuid">
+                              <mat-checkbox color="primary" style="padding: 0 12px" [checked]="item.checked"></mat-checkbox>
+                              {{ item.name }}
+                            </mat-option>
+                          </mat-autocomplete>
+                          <button mat-icon-button matSuffix style="width: 34px; height: 34px" type="button"
+                            (click)="openAuto(autocompleteTrigger)">
+                            <mat-icon style="width: 34px">expand_more</mat-icon>
+                          </button>
+                        </mat-form-field>
+                      </div>
+                      <div class="slot-wrapper" *ngIf="selectedAmenities.length > 0">
+                        <div class="add-time-slot-wrapper p-20 d-flex justify-content-between align-items-center bg-white-50">
+                          <p class="font-14 font-bold text-black-200">
+                            Added Amenities
+                          </p>
+                        </div>
+                        <div class="p-20 flex-wrap" fxLayout="row" fxLayoutAlign="start start">
+                          <div class="aminities-box mr-15" *ngFor="let amenity of selectedAmenities" fxFlex="22">
+                            <div class="add-time-slot-wrapper p-10 d-flex justify-content-between align-items-center bg-white-50">
+                              {{ amenity.name }}
+
+                              <mat-icon (click)="remove(amenity)">close</mat-icon>
+                            </div>
+                            <div class="p-20">
+                              <mat-radio-group aria-label="Select an option" *ngFor="let item of amenitiesOption"
+                                (change)="getValue(item, amenity)">
+                                <mat-radio-button value="{{ item.value }}" [checked]="amenity.is_allowed === item.value">{{ item.viewValue
+                                  }}
+                                </mat-radio-button>
+                              </mat-radio-group>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="area-wrapper">
+                      <div class="form-filed mt-15" fxflex="48">
+                        <mat-checkbox class="example-margin" formControlName="is_banner" (change)="onSelect($event.checked, 'is_banner')">
+                          {{
+                          "eventAddEditPage.bannerImageConfirmationText"
+                          | translate
+                          }}
+                        </mat-checkbox>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="space-between top">
+                        <div>
+                          <div class="form-filed" fxflex="48">
+                            <mat-checkbox class="example-margin" formControlName="is_featured"
+                              (change)="onSelect($event.checked, 'is_featured')">
+                              {{
+                              "eventAddEditPage.featureImgConfirmationText"
+                              | translate
+                              }}
+                            </mat-checkbox>
+                          </div>
+                          <div class="featuredimage" *ngIf="eventForm.controls['is_featured'].value">
+                            <div class="imagePreview">
+                              <mat-label>
+                                <span class="font-medium text-black-200 font-14">
+                                  {{
+                                  "eventAddEditPage.featuredImage" | translate
+                                  }}</span>
+                              </mat-label>
+                            </div>
+                            <div class="form-filed upload-pic horizontal-banner">
+                              <mat-icon>image</mat-icon>
+                              <img *ngIf="featuredImage" [src]="featuredImage" class="preview-image" alt="preview-image" />
+                              <input type="file" (change)="onFileSelect($event, 3)" accept="{{ acceptFileType }}" />
+                              <p class="font-13 font-medium text-black-200">
+                                {{ "eventAddEditPage.upload" | translate }}
+                              </p>
+                            </div>
+                            <p class="small-font">
+                              {{ "eventAddEditPage.featureBanValidationHint" | translate }}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="button-wrapper align-items-center">
+                      <a mat-flat-button class="border-bottom-hover mr-20 common-button outline-button md-raised"
+                        [routerLink]="['/event/list']">
+                        {{ "eventAddEditPage.cancel" | translate }}
+                      </a>
+                      <button mat-flat-button type="submit" class="common-button next-button" [disabled]="eventForm.invalid">
+                        {{ "eventAddEditPage.next" | translate }}
+                      </button>
+                      <!-- [disabled]="eventForm.invalid" -->
+                    </div>
+                  </form>
+                </mat-tab>
+                <mat-tab [disabled]="!eventInfo" label="Event Availability">
+                  <h2>Event Availability</h2>
+                </mat-tab>
+                <mat-tab [disabled]="!eventInfo && !isTabEnable" label="More Details">
+                  <h2>More Details</h2>
+                </mat-tab>
+              </mat-tab-group>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <ng-container *ngIf="eventId">
   <app-breadcrumb pageURL="/event" [pageSubText]="'eventAddEditPage.editEventText' | translate" icon="supervisor_account" redirectionURL=''
     [pageText]="'eventListPage.pageText' | translate" addButtonText=""></app-breadcrumb>

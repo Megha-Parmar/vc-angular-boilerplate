@@ -73,7 +73,7 @@
               <mat-icon>{{'iconList.editIcon' | translate}}</mat-icon>
             </button>
             <button class="delete-button" mat-icon-button [disabled]="!row.status || row.is_published"
-              [ngClass]="{'disabled-btn':!row.status || row.is_published}">
+              [ngClass]="{'disabled-btn':!row.status || row.is_published}" (click)="onDeleteConfirmation(row.uuid, row.title)">
               <mat-icon>{{'iconList.deleteIcon' | translate}}</mat-icon>
             </button>
           </mat-cell>
