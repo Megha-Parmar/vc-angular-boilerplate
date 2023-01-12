@@ -8,6 +8,7 @@ import { ConfirmationComponent } from 'src/app/core/components/confirmation/conf
 import { Constants, MessageConstant, messageType } from 'src/app/core/constants/app.constants';
 import { ListingModel } from 'src/app/core/models/category.model';
 import { EventListModel, HomePageModel } from 'src/app/core/models/event.model';
+import { DateFormatService } from 'src/app/core/services/date-format.service';
 import { EventService } from 'src/app/core/services/event.service';
 import { GeoLocationService } from 'src/app/core/services/geo-location.service';
 import { PopupOpenService } from 'src/app/core/services/popup-open.service';
@@ -27,6 +28,7 @@ export class EventAddComponent implements OnInit, OnDestroy {
   verticalBannerImg!: string;
   featuredImage!: string;
   formattedaddress!: string;
+  formName: string = String('event_details');
   eventInfo!: EventListModel;
   homePageInfo!: HomePageModel;
   amenitiesList: ListingModel[] = [];
@@ -51,7 +53,9 @@ export class EventAddComponent implements OnInit, OnDestroy {
     private eventService: EventService,
     private geoLocationService: GeoLocationService,
     private toasterService: ToasterService,
-    private popupOpenService: PopupOpenService
+    private popupOpenService: PopupOpenService,
+    readonly dateService: DateFormatService,
+
   ) {
     if (this.activatedRoute.snapshot.paramMap.get('id')) {
       this.updateEventId = this.activatedRoute.snapshot.paramMap.get(
@@ -203,13 +207,10 @@ export class EventAddComponent implements OnInit, OnDestroy {
       cancelText: 'Cancel',
       type: 'inactivity'
     };
-    const dialogRef = this.popupOpenService.openPopup(ConfirmationComponent, commonData, '500px', true);
-    // const dialogRef = this.matDialog.open(HomepageConfirmationPopupComponent, {
-    //   data: {
-    //     title: 'eventAddEditPage.featureBannerTitle',
-    //     confirmationText: 'eventAddEditPage.isFeaturedBannerUpdateConfirmation',
-    //   },
-    // });
+    const dialogRef = this.popupOpenService.openPopup(ConfirmationComponent, commonData, '90%', true, {
+      panelClass: 'custom-modal',
+      maxWidth: '500px',
+    });
     dialogRef.afterClosed().subscribe((resp: boolean) => {
       if (resp) {
         this.eventForm.controls['is_featured'].setValue(true);
@@ -228,13 +229,10 @@ export class EventAddComponent implements OnInit, OnDestroy {
       cancelText: 'Cancel',
       type: 'inactivity'
     };
-    const dialogRef = this.popupOpenService.openPopup(ConfirmationComponent, commonData, '500px', true);
-    // const dialogRef = this.matDialog.open(HomepageConfirmationPopupComponent, {
-    //   data: {
-    //     title: 'eventAddEditPage.homePageBannerTitle',
-    //     confirmationText: 'eventAddEditPage.isBannerUpdateConfirmation',
-    //   },
-    // });
+    const dialogRef = this.popupOpenService.openPopup(ConfirmationComponent, commonData, '90%', true, {
+      panelClass: 'custom-modal',
+      maxWidth: '500px',
+    });
     dialogRef.afterClosed().subscribe((resp: boolean) => {
       if (resp) {
         this.eventForm.controls['is_banner'].setValue(true);
@@ -391,7 +389,78 @@ export class EventAddComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    console.log(this.eventForm.value)
+    if (this.eventForm.controls['is_featured'].value === true && !this.featuredImage) {
+      this.toasterService.displaySnackBar(MessageConstant.errorMessage.featureImageValidation, messageType.error);
+      return;
+    }
+    const startDate = this.dateService.getDateFormat(this.eventForm.controls['start_date'].value);
+    const endDate = this.dateService.getDateFormat(this.eventForm.controls['end_date'].value);
+    this.eventForm.controls['start_date'].setValue(startDate);
+    this.eventForm.controls['end_date'].setValue(endDate);
+    const venueType = this.eventForm.value.venueType === 'online' ? 1 : 0
+    this.eventForm.controls['venue_type'].setValue(venueType);
+    if (this.eventForm.value.venue_type === 1 && !this.eventForm.value.venue_url) {
+      this.toasterService.displaySnackBar(MessageConstant.errorMessage.venueUrlMissingValidation, messageType.error);
+      return;
+    }
+    if (this.eventForm.value.venue_type === 0 && !this.eventForm.value.venue) {
+      this.toasterService.displaySnackBar(MessageConstant.errorMessage.venueMissingValidation, messageType.error);
+      return;
+    }
+    if (this.eventForm.invalid) {
+      return;
+    }
+    this.submitForm();
+  }
+
+  submitForm(): void {
+    let param = {
+      event_details: this.eventForm.value,
+    };
+    if (!this.eventForm.controls['amenities']?.value) {
+      delete param.event_details.amenities;
+    }
+    if (!this.eventForm.controls['sub_venue']?.value) {
+      delete param.event_details.sub_venue;
+    }
+    if (this.eventForm?.controls['venue_type']?.value === 0) {
+      delete param.event_details.venue_url;
+    }
+    if (this.eventForm?.controls['venue_type']?.value === 1) {
+      delete param.event_details.sub_venue;
+      delete param.event_details.venue;
+    }
+    delete param.event_details.venueType;
+    if (this.updateEventId || this.editId) {
+      this.updateEvent(param);
+    } else {
+      this.addEvent(param);
+    }
+  }
+
+  addEvent(param: any): void {
+    this.eventService.addEventForm(this.formName, param).pipe(takeUntil(this.unSubscriber)).subscribe({
+      next: (resp) => {
+        if (resp) {
+          this.toasterService.displaySnackBar(MessageConstant.successMessage.eventSubmittedSuccessfully, messageType.success);
+          this.eventInfo = resp.data;
+          this.selected = 1;
+        }
+      },
+    });
+  }
+
+  updateEvent(param: any): void {
+    const id = this.updateEventId ? this.updateEventId : this.editId;
+    this.eventService.updateEvent(id, this.formName, param).subscribe({
+      next: (resp) => {
+        if (resp) {
+          this.toasterService.displaySnackBar(MessageConstant.successMessage.eventUpdatedSuccessfully, messageType.success);
+          this.eventInfo = resp.data;
+          this.selected = 1;
+        }
+      },
+    });
   }
 
   ngOnDestroy(): void {

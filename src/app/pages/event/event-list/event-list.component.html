@@ -50,7 +50,7 @@
             {{ "eventListPage.statusText" | translate }}
           </mat-header-cell>
           <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.statusText' | translate">
-            {{ row.is_published === true ? "Published" : "Draft" }}
+            {{ row.is_published === false ? "Draft" : row.status===true?"Published":"Expired"}}
           </mat-cell>
         </ng-container>
         <!-- end -->
