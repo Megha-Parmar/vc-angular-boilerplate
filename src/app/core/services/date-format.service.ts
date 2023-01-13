@@ -71,4 +71,10 @@ export class DateFormatService {
     return isSame;
   }
 
+
+  convertTimetoDate(date: string): Date {
+    const setTime = this.convertTimetoDateFormat(date);
+    return setTime;
+  }
+
 }

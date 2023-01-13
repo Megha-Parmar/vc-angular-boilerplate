@@ -78,7 +78,7 @@
 
     <div class="slot-wrapper p-20" fxLayout="row" fxLayoutAlign="space-between center"
       *ngIf="(eventSlot.length > 0 && eventType === 1) || isEventSlotDisable">
-      <div class="timeSlot" *ngFor="let slot of eventSlot; let i = index">
+      <div class="timeSlot" *ngFor="let slot of eventSlot; trackBy: trackByMethod ; let i = index">
         <div class="eventContent">
           <p>
             <span>{{'eventAddEditPage.eventType' | translate}}</span><br /><span class="uppercase">{{
@@ -162,11 +162,6 @@
           <input matInput type="number"
             placeholder="{{ 'eventAddEditPage.price' | translate }}{{ 'DISCOUNTS_MANAGEMENT.inRupees' | translate }}"
             formControlName="price" name="price" min="1" required />
-          <!-- <mat-select name="currency" formControlName="currency" class="currency-select">
-            <mat-option *ngFor="let option of currencyList" [value]="option.code">
-              {{ option.code }}
-            </mat-option>
-          </mat-select> -->
         </mat-form-field>
         <mat-form-field appearance="outline" fxFlex="32">
           <mat-label>{{ "eventAddEditPage.remark" | translate }}</mat-label>
@@ -175,7 +170,7 @@
       </div>
     </div>
     <div class="slot-wrapper d-flex justify-content-between p-20" *ngIf="eventPrice.length > 0">
-      <div class="timeSlot" *ngFor="let price of eventPrice; let i = index">
+      <div class="timeSlot" *ngFor="let price of eventPrice; let i = index; trackBy: trackByMethod">
         <div class="eventContent categoryName">
           <p><span>{{'eventAddEditPage.category_name' | translate}} </span><br />{{ price.category_name }}</p>
           <p><span>{{'eventAddEditPage.price' | translate}} </span><br /> ₹{{ price.price }}</p>
@@ -183,7 +178,7 @@
         </div>
         <div class="eventAction categoryName">
           <p>
-            <mat-icon (click)="deleteSlotPrice(price, 'price', i)">{{'iconList.cancelIcon' | translate}}</mat-icon>
+            <mat-icon (click)="deleteSlotPrice(price, 'price', i)">{{'iconList.closeIcon' | translate}}</mat-icon>
           </p>
           <p>
             <mat-icon (click)="editSlotPrice(price, i, 'price')">{{'iconList.editIcon' | translate}}</mat-icon>

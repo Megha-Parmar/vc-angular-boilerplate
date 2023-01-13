@@ -1,8 +1,8 @@
-<ng-container *ngIf="eventId">
+<ng-container *ngIf="updateEventId">
   <app-breadcrumb pageURL="/event" [pageSubText]="'eventAddEditPage.editEventText' | translate" icon="supervisor_account" redirectionURL=''
     [pageText]="'eventListPage.pageText' | translate" addButtonText=""></app-breadcrumb>
 </ng-container>
-<ng-container *ngIf="!eventId">
+<ng-container *ngIf="!updateEventId">
   <app-breadcrumb pageURL="/event" [pageSubText]="'eventAddEditPage.addEventText' | translate" [icon]="'iconList.eventIcon' | translate"
     redirectionURL='' [pageText]="'eventListPage.pageText' | translate" addButtonText=""></app-breadcrumb>
 </ng-container>
@@ -267,7 +267,7 @@
                         </p>
                         <mat-form-field class="example-chip-list">
                           <mat-chip-grid #chipList aria-label="Select Amenitites">
-                            <mat-chip-row *ngFor="let item of selectedAmenities" (removed)="remove(item)" [removable]="removable">
+                            <mat-chip-row *ngFor="let item of selectedAmenities; trackBy: trackByMethod" (removed)="remove(item)" [removable]="removable">
                               <span>{{ item.name }}</span>
                               <mat-icon matChipRemove>{{'iconList.cancelIcon' | translate}}</mat-icon>
                             </mat-chip-row>
@@ -275,7 +275,7 @@
                               [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
                           </mat-chip-grid>
                           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedItem($event)" autoActiveFirstOption>
-                            <mat-option *ngFor="let item of amenitiesList" [value]="item.uuid">
+                            <mat-option *ngFor="let item of amenitiesList; trackBy: trackByMethod " [value]="item.uuid">
                               <mat-checkbox color="primary" style="padding: 0 12px" [checked]="item.checked"></mat-checkbox>
                               {{ item.name }}
                             </mat-option>
@@ -293,7 +293,7 @@
                           </p>
                         </div>
                         <div class="p-20 flex-wrap" fxLayout="row" fxLayoutAlign="start start">
-                          <div class="aminities-box mr-15" *ngFor="let amenity of selectedAmenities" fxFlex="22">
+                          <div class="aminities-box mr-15" *ngFor="let amenity of selectedAmenities; trackBy: trackByMethod" fxFlex="22">
                             <div class="add-time-slot-wrapper p-10 d-flex justify-content-between align-items-center bg-white-50">
                               {{ amenity.name }}
                               <mat-icon (click)="remove(amenity)">{{'iconList.closeIcon' | translate}}</mat-icon>

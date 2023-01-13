@@ -376,6 +376,10 @@ export class EventAddComponent implements OnInit, OnDestroy {
     trigger.openPanel();
   }
 
+  trackByMethod(index: number, el: any): number {
+    return el.id || index;
+  }
+
   remove(item: any): void {
     const index = this.selectedAmenities.indexOf(item);
     if (index >= 0) {

@@ -181,6 +181,7 @@ export const locale = {
       isFeaturedBannerUpdateConfirmation: 'Are you sure you want make this image as a feature image!!!!',
       confirmationPopup: 'Do you want to  publish event now or wait add more information?',
       publishConfirmation: 'Do you really want to publish the event? Once published, it cannot be rolled back.',
+      validTimeSlotMessage:'Please enter valid time slot',
       note: 'Note:',
       tagsHint: 'Add tags for easy to define in category'
     },
