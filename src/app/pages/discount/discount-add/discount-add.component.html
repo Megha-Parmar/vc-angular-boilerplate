@@ -13,133 +13,133 @@
 
 
 
-<div class="form-wrapper">
-  <div class="my-proffile-form" fxFlex="100">
-    <div class="card">
-      <form [formGroup]="discountForm" novalidate fxFlex="100" autocomplete="off">
-        <div class="admin-form">
-          <div class="area-wrapper">
-            <p class="font-14 font-bold text-black-200 mb-20"> {{ "discountsAddEditViewPage.discountInfoText" | translate }} </p>
-            <div fxLayout="row" fxLayoutAlign="space-between start">
-              <div class="form-filed" fxFlex="48">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label> {{ "discountsAddEditViewPage.titleText" | translate }} </mat-label>
-                  <input matInput type="text" formControlName="title" placeholder="{{  'discountsAddEditViewPage.titleText' | translate }}"
-                    required />
-                </mat-form-field>
-              </div>
-              <div class="form-filed flex-wrap" fxFlex="48">
-                <div>
-                  <mat-form-field appearance="outline" class="w-100">
-                    <mat-label> {{ "discountsAddEditViewPage.startEndDateText" | translate }} *</mat-label>
-                    <mat-date-range-input [rangePicker]="picker" [min]="currentDate">
-                      <input matStartDate placeholder="Start date" formControlName="start_date" required (click)="picker.open()" />
-                      <input matEndDate placeholder="End date" formControlName="end_date" required (click)="picker.open()" />
-                    </mat-date-range-input>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker></mat-date-range-picker>
-                  </mat-form-field>
-                </div>
-                <mat-error class="font-12"
-                  *ngIf="getForm['start_date'].touched && (getForm['start_date'].errors || getForm['end_date'].errors)">
-                  {{ 'discountsAddEditViewPage.invalidDateRangeText' | translate }}
-                </mat-error>
-              </div>
-            </div>
-            <div class="form-filed ckeditor">
-              <mat-label class="small-font"> {{ "discountsAddEditViewPage.descriptionText" | translate }} *</mat-label>
-              <ckeditor name="description" formControlName="description" [config]="ckeConfig" required
-                [readOnly]="discountForm.controls['published'].value"></ckeditor>
-              <mat-error class="font-12"
-                *ngIf="getForm['description'].touched && getForm['description'].errors && getForm['description'].errors['required']">
-                {{ "discountsAddEditViewPage.descriptionText" | translate }}{{ "discountsAddEditViewPage.isRequiredText" | translate }}
-              </mat-error>
-            </div>
 
-          </div>
-
-          <div class="area-wrapper">
-            <div fxLayout="row" fxLayoutAlign="space-between start">
-              <div fxFlex="48">
-                <p class="font-14 font-bold text-black-200 mb-20"> {{ "discountsAddEditViewPage.discountOnText" | translate }} * </p>
-                <div class="form-filed">
-                  <mat-radio-group aria-label="Select an option" formControlName="discount_on" (change)="onSelect($event)">
-                    <mat-radio-button *ngFor="let item of discountOn" [value]="item.value">{{item.viewValue}}</mat-radio-button>
-                  </mat-radio-group>
-                </div>
-                <div class="form-filed" *ngIf="discountForm.value.discount_on===0">
-                  <mat-form-field appearance="outline" class="w-100" fxFlex="60">
-                    <mat-label>{{ 'discountsAddEditViewPage.minimumQuantityText' | translate }}</mat-label>
-                    <input matInput type="number" [min]="0" formControlName="min_quantity" />
-                  </mat-form-field>
-                </div>
-                <div class="form-filed" *ngIf="discountForm.value.discount_on===1 || discountForm.value.discount_on===0 ">
-                  <mat-form-field appearance="outline" fxFlex="60">
-                    <mat-label>
-                      {{ 'discountsAddEditViewPage.minimumAmountText' | translate }}
-                      {{ 'discountsAddEditViewPage.inRupeesText' | translate }}
-                    </mat-label>
-                    <input matInput type="number" [min]="0" formControlName="min_amount" placeholder="Minimum Amount(in ₹)" />
-                  </mat-form-field>
-                </div>
-              </div>
-              <div fxFlex="48">
-                <p class="font-14 font-bold text-black-200 mb-20">
-                  {{ 'discountsAddEditViewPage.discountTypeText' | translate }}*
-                </p>
-                <div class="form-filed">
-                  <mat-radio-group aria-label="Select an option" formControlName="discount_type" (change)="onChange($event)">
-                    <mat-radio-button *ngFor="let item of discountType" [value]="item.value">{{item.viewValue}}</mat-radio-button>
-                  </mat-radio-group>
-                </div>
-                <div class="form-filed">
-                  <mat-form-field appearance="outline" class="w-100" fxFlex="60"
-                    *ngIf="discountTypeBy === 'percentage' || discountTypeBy === 'flat'">
-                    <mat-label *ngIf="discountTypeBy === 'percentage'">
-                      {{ 'discountsAddEditViewPage.enterDiscountPercentageText' | translate }}(in %)
-                    </mat-label>
-                    <mat-label *ngIf="discountTypeBy === 'flat'">
-                      {{ 'discountsAddEditViewPage.enterDiscountAmountText' | translate }}
-                      {{ 'discountsAddEditViewPage.inRupeesText' | translate }}
-                    </mat-label>
-                    <input matInput type="number" formControlName="discount_value" [min]="1" />
-                  </mat-form-field>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="area-wrapper">
-            <p class="font-14 font-bold text-black-200 mb-20">
-              {{ 'discountsAddEditViewPage.discountDetailsText' | translate }}
-            </p>
-            <div class="form-filed">
+<div class="form-wrapper d-flex align-items-center position-relative">
+  <div class="card">
+    <form [formGroup]="discountForm" novalidate fxFlex="100" autocomplete="off">
+      <div class="admin-form">
+        <div class="area-wrapper">
+          <p class="font-14 font-bold text-black-200 mb-20"> {{ "discountsAddEditViewPage.discountInfoText" | translate }} </p>
+          <div fxLayout="row" fxLayoutAlign="space-between start">
+            <div class="form-filed" fxFlex="48">
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label> {{ 'discountsAddEditViewPage.remarksText' | translate }}</mat-label>
-                <textarea matInput type="text" formControlName="remarksText"
-                  placeholder="{{ 'discountsAddEditViewPage.remarksText' | translate }}" required></textarea>
+                <mat-label> {{ "discountsAddEditViewPage.titleText" | translate }} </mat-label>
+                <input matInput type="text" formControlName="title" placeholder="{{  'discountsAddEditViewPage.titleText' | translate }}"
+                  required />
               </mat-form-field>
             </div>
-            <div class="form-filed ckeditor">
-              <mat-label class="small-font mt-0">{{ 'discountsAddEditViewPage.termsConditionText' | translate }}*</mat-label>
-              <ckeditor name="t_and_c" formControlName="terms_and_conditions" [config]="ckeConfig"
-                [readOnly]="discountForm.controls['published'].value" required></ckeditor>
+            <div class="form-filed flex-wrap" fxFlex="48">
+              <div>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label> {{ "discountsAddEditViewPage.startEndDateText" | translate }} *</mat-label>
+                  <mat-date-range-input [rangePicker]="picker" [min]="currentDate">
+                    <input matStartDate placeholder="Start date" formControlName="start_date" required (click)="picker.open()" />
+                    <input matEndDate placeholder="End date" formControlName="end_date" required (click)="picker.open()" />
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+              </div>
               <mat-error class="font-12"
-                *ngIf="getForm['terms_and_conditions'].touched && getForm['terms_and_conditions'].errors && getForm['terms_and_conditions'].errors['required']">
-                {{ "discountsAddEditViewPage.termsConditionText" | translate }}{{ "discountsAddEditViewPage.isRequiredText" | translate }}
+                *ngIf="getForm['start_date'].touched && (getForm['start_date'].errors || getForm['end_date'].errors)">
+                {{ 'discountsAddEditViewPage.invalidDateRangeText' | translate }}
               </mat-error>
             </div>
           </div>
-          <div class="button-wrapper align-items-center">
-            <a mat-flat-button class="border-bottom-hover mr-20 common-button outline-button md-raised" [routerLink]="['/discount/list']">
-              {{ "discountsAddEditViewPage.cancelText" | translate }}
-            </a>
-            <button mat-flat-button type="submit" class="common-button outline-button" *ngIf="!discountForm.controls['published'].value"
-              (click)="onSubmit('draft')" [disabled]="discountForm.invalid">
-              {{ "discountsAddEditViewPage.draftText" | translate }}
-            </button>
+          <div class="form-filed ckeditor">
+            <mat-label class="small-font"> {{ "discountsAddEditViewPage.descriptionText" | translate }} *</mat-label>
+            <ckeditor name="description" formControlName="description" [config]="ckeConfig" required
+              [readOnly]="discountForm.controls['published'].value"></ckeditor>
+            <mat-error class="font-12"
+              *ngIf="getForm['description'].touched && getForm['description'].errors && getForm['description'].errors['required']">
+              {{ "discountsAddEditViewPage.descriptionText" | translate }}{{ "discountsAddEditViewPage.isRequiredText" | translate }}
+            </mat-error>
+          </div>
+
+        </div>
+
+        <div class="area-wrapper">
+          <div fxLayout="row" fxLayoutAlign="space-between start">
+            <div fxFlex="48">
+              <p class="font-14 font-bold text-black-200 mb-20"> {{ "discountsAddEditViewPage.discountOnText" | translate }} * </p>
+              <div class="form-filed">
+                <mat-radio-group aria-label="Select an option" formControlName="discount_on" (change)="onSelect($event)">
+                  <mat-radio-button *ngFor="let item of discountOn" [value]="item.value">{{item.viewValue}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div class="form-filed" *ngIf="discountForm.value.discount_on===0">
+                <mat-form-field appearance="outline" class="w-100" fxFlex="60">
+                  <mat-label>{{ 'discountsAddEditViewPage.minimumQuantityText' | translate }}</mat-label>
+                  <input matInput type="number" [min]="0" formControlName="min_quantity" />
+                </mat-form-field>
+              </div>
+              <div class="form-filed" *ngIf="discountForm.value.discount_on===1 || discountForm.value.discount_on===0 ">
+                <mat-form-field appearance="outline" fxFlex="60">
+                  <mat-label>
+                    {{ 'discountsAddEditViewPage.minimumAmountText' | translate }}
+                    {{ 'discountsAddEditViewPage.inRupeesText' | translate }}
+                  </mat-label>
+                  <input matInput type="number" [min]="0" formControlName="min_amount" placeholder="Minimum Amount(in ₹)" />
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxFlex="48">
+              <p class="font-14 font-bold text-black-200 mb-20">
+                {{ 'discountsAddEditViewPage.discountTypeText' | translate }}*
+              </p>
+              <div class="form-filed">
+                <mat-radio-group aria-label="Select an option" formControlName="discount_type" (change)="onChange($event)">
+                  <mat-radio-button *ngFor="let item of discountType" [value]="item.value">{{item.viewValue}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div class="form-filed">
+                <mat-form-field appearance="outline" class="w-100" fxFlex="60"
+                  *ngIf="discountTypeBy === 'percentage' || discountTypeBy === 'flat'">
+                  <mat-label *ngIf="discountTypeBy === 'percentage'">
+                    {{ 'discountsAddEditViewPage.enterDiscountPercentageText' | translate }}(in %)
+                  </mat-label>
+                  <mat-label *ngIf="discountTypeBy === 'flat'">
+                    {{ 'discountsAddEditViewPage.enterDiscountAmountText' | translate }}
+                    {{ 'discountsAddEditViewPage.inRupeesText' | translate }}
+                  </mat-label>
+                  <input matInput type="number" formControlName="discount_value" [min]="1" />
+                </mat-form-field>
+              </div>
+            </div>
           </div>
         </div>
-      </form>
-    </div>
+        <div class="area-wrapper">
+          <p class="font-14 font-bold text-black-200 mb-20">
+            {{ 'discountsAddEditViewPage.discountDetailsText' | translate }}
+          </p>
+          <div class="form-filed">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label> {{ 'discountsAddEditViewPage.remarksText' | translate }}</mat-label>
+              <textarea matInput type="text" formControlName="remarks"
+                placeholder="{{ 'discountsAddEditViewPage.remarksText' | translate }}" required></textarea>
+            </mat-form-field>
+          </div>
+          <div class="form-filed ckeditor">
+            <mat-label class="small-font mt-0">{{ 'discountsAddEditViewPage.termsConditionText' | translate }}*</mat-label>
+            <ckeditor name="t_and_c" formControlName="terms_and_conditions" [config]="ckeConfig"
+              [readOnly]="discountForm.controls['published'].value" required></ckeditor>
+            <mat-error class="font-12"
+              *ngIf="getForm['terms_and_conditions'].touched && getForm['terms_and_conditions'].errors && getForm['terms_and_conditions'].errors['required']">
+              {{ "discountsAddEditViewPage.termsConditionText" | translate }}{{ "discountsAddEditViewPage.isRequiredText" | translate
+              }}
+            </mat-error>
+          </div>
+        </div>
+        <div class="button-wrapper align-items-center">
+          <a mat-flat-button class="border-bottom-hover mr-20 common-button outline-button md-raised" [routerLink]="['/discount/list']">
+            {{ "discountsAddEditViewPage.cancelText" | translate }}
+          </a>
+          <button mat-flat-button type="submit" class="common-button outline-button" *ngIf="!discountForm.controls['published'].value"
+            (click)="onSubmit('draft')" [disabled]="discountForm.invalid">
+            {{ "discountsAddEditViewPage.draftText" | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
