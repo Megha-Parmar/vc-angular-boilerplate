@@ -367,7 +367,8 @@
                   [selectedIndex]="selected"></app-event-availability>
                 </mat-tab>
                 <mat-tab [disabled]="!eventInfo && !isTabEnable" label="More Details">
-                  <h2>More Details</h2>
+                  <app-extra-info *ngIf="eventInfo && selected === 2" [eventInfo]="eventInfo" [eventId]="updateEventId"
+                  [selectedIndex]="selected"></app-extra-info>
                 </mat-tab>
               </mat-tab-group>
             </div>

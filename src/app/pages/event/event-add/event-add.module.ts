@@ -17,10 +17,11 @@ import { BreadcrumbModule } from 'src/app/layouts/breadcrumb/breadcrumb.module';
 import { EventAddRoutingModule } from './event-add-routing.module';
 import { EventAddComponent } from './event-add.component';
 import { EventAvailabilityComponent } from './event-availability/event-availability.component';
+import { ExtraInfoComponent } from './extra-info/extra-info.component';
 
 
 @NgModule({
-  declarations: [EventAddComponent, EventAvailabilityComponent],
+  declarations: [EventAddComponent, EventAvailabilityComponent, ExtraInfoComponent],
   imports: [
     CommonModule,
     EventAddRoutingModule,

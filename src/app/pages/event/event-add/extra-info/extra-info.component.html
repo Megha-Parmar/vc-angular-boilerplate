@@ -1,0 +1,46 @@
+<div class="area-wrapper">
+  <div novalidate autocomplete="off">
+    <div>
+      <mat-label class="font-14 font-bold text-black-200 mb-20">{{ "eventAddEditPage.eventTags" | translate }}*</mat-label>
+      <div>
+        <mat-form-field class="example-chip-list" appearance="outline" fxFlex="100">
+          <mat-chip-grid #chipList aria-label="Event Tags">
+            <mat-chip-row *ngFor="let tag of event_tags" (removed)="remove(tag)">
+              {{ tag.name }}
+              <button matChipRemove color="accent">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            <input placeholder="Add event tags..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
+          </mat-chip-grid>
+        </mat-form-field>
+      </div>
+      <div>
+        <p class="small-font" fxFlex="100">
+          <strong>{{ "eventAddEditPage.note" | translate }} </strong> {{ "eventAddEditPage.tagsHint" | translate }}
+        </p>
+      </div>
+      <div class="ckeditor">
+        <mat-label class="font-14 font-bold text-black-200 mb-20">
+          {{ "eventAddEditPage.termsCondition" | translate }}*</mat-label>
+        <ckeditor name="t&c" #t_and_C="ngModel" [(ngModel)]="terms_and_conditions" [config]="ckeConfig" required></ckeditor>
+        <mat-error class="font-12" *ngIf="t_and_C.touched && t_and_C.errors && t_and_C.errors['required']">
+          {{ "eventAddEditPage.termsCondition" | translate
+          }}{{ "eventAddEditPage.isRequired" | translate }}
+        </mat-error>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="button-wrapper basic-info-btns">
+  <button mat-flat-button color="secondary" *ngIf="!eventInfo.is_published" type="button" class="mr-15 common-button outline-button"
+    (click)="onSubmit(false)" [disabled]="event_tags.length < 1 || !terms_and_conditions">
+    {{ "eventAddEditPage.draft" | translate }} </button>
+
+  <button mat-flat-button color="secondary" type="submit" class="common-button" [disabled]="event_tags.length < 1 || !terms_and_conditions"
+    (click)="onSubmit(true)">
+    {{ "eventAddEditPage.publish" | translate }}
+  </button>
+</div>

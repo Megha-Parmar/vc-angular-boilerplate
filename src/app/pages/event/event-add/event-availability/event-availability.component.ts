@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSelectChange } from '@angular/material/select';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
@@ -151,7 +152,7 @@ export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
     return el.id || index;
   }
 
-  onSelectionChange(event: any): void {
+  onSelectionChange(event: MatSelectChange ): void {
     if (event.source.value === true) {
       this.eventAvailabilityForm.controls['event_date'].setValue(null);
       this.eventAvailabilityForm.controls['event_date'].disable();
@@ -170,9 +171,9 @@ export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
     }
   }
 
-  selectEventType(event: any) {
+  selectEventType(event: MatSelectChange ) {
     this.eventType = event.value;
-    if (event === 0) {
+    if (event.value === 0) {
       this.isEventSlotDisable = false;
     }
     this.eventAvailabilityForm.controls['event_type'].setValue(event.value);
@@ -469,7 +470,7 @@ export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
             this.router.navigate(['/event/list']);
           }
         },
-        error: (error: any) => {
+        error: (error) => {
           this.toaster.displaySnackBar(MessageConstant.errorMessage.dateEventNotFound, messageType.error)
         },
       });

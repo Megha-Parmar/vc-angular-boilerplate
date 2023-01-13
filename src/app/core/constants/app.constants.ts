@@ -164,6 +164,7 @@ export class MessageConstant {
     passwordUpdatedSuccess: 'Your Password updated successfully.',
     eventSubmittedSuccessfully: 'Event submitted successfully',
     eventUpdatedSuccessfully: 'Event updated successfully',
+    eventsavedasDraftSuccessfully: 'Event saved as draft successfully',
     formSubmittedSuccessfully: 'Settings Updated Successfully!',
     mailSentSuccessfully: 'Password reset link sent to your E-mail address successfully.',
     profilePictureRemovedSuccessfully: 'Your profile picture removed successfully.',
