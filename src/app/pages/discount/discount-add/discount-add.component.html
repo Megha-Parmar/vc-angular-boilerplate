@@ -42,7 +42,7 @@
                 </div>
                 <mat-error class="font-12"
                   *ngIf="getForm['start_date'].touched && (getForm['start_date'].errors || getForm['end_date'].errors)">
-                  {{ 'discountsAddEditViewPage.invalidDateRange' | translate }}
+                  {{ 'discountsAddEditViewPage.invalidDateRangeText' | translate }}
                 </mat-error>
               </div>
             </div>
@@ -52,7 +52,7 @@
                 [readOnly]="discountForm.controls['published'].value"></ckeditor>
               <mat-error class="font-12"
                 *ngIf="getForm['description'].touched && getForm['description'].errors && getForm['description'].errors['required']">
-                {{ "discountsAddEditViewPage.descriptionText" | translate }}{{ "discountsAddEditViewPage.isRequired" | translate }}
+                {{ "discountsAddEditViewPage.descriptionText" | translate }}{{ "discountsAddEditViewPage.isRequiredText" | translate }}
               </mat-error>
             </div>
 

@@ -24,6 +24,7 @@ export class StaffAddComponent implements OnInit, OnDestroy {
   staffRoleList!: StaffRoleModel[];
   staffAddEditForm!: StaffModel;
   staffAddEditDetails!: StaffModel;
+  isActive: boolean = false;
 
   private unSubscriber: Subject<void> = new Subject<void>();
 
@@ -54,10 +55,13 @@ export class StaffAddComponent implements OnInit, OnDestroy {
     this._staffService.getStaffById(this.staffId).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (res: APIResponse<StaffModel>) => {
         if (res && res.data) {
+          if (res.data.is_active) {
+            this.isActive = res.data.is_active;
+          }
           this.staffAddEditDetails = {
             name: res.data?.name,
             email: res.data?.email,
-            role: res.data?.role_uuid || ''
+            role: res.data?.role_uuid || '',
           }
         }
       }
