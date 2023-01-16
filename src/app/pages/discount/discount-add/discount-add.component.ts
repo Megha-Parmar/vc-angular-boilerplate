@@ -16,18 +16,17 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
 
   discountId: string = '';
   discountTypeBy: string = '';
-  isViewPage: boolean = false;
+  selectable = true;
+  removable = true;
+  isViewPage = false;
 
   discountType = Constants.DiscountType;
   currencyList!: CurrencyModel[];
   discountForm!: FormGroup;
   discountOn = Constants.DiscountOn;
   currentDate: Date = new Date();
-  eventList: any[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  selectable = true;
-  removable = true;
-  selectedEvent: any[] = [];
+
   ckeConfig = Constants.CkEditorConfig
 
   private unSubscriber: Subject<void> = new Subject<void>();
