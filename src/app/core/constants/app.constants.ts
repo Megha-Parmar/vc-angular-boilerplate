@@ -36,6 +36,7 @@ export class Constants {
     getEventList: 'cap/event/list/map',
     getDiscountList: 'cap/discount/list',
     deleteDiscount: 'cap/discount/delete/',
+    getDiscountById: 'cap/discount/retrieve/',
     getStaffList: 'cap/staff/list',
     updateStaffStatus: 'cap/staff/status/update/',
     getRoleList: 'cap/role/list',

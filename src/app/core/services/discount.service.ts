@@ -19,4 +19,8 @@ export class DiscountService {
   deleteDiscount(id: string): Observable<any> {
     return this._httpClient.delete(Constants.APIRoutes.deleteDiscount + id + '?discount_uuid=' + id)
   }
+
+  getDiscountById(id: string): Observable<APIResponse<DiscountListModel[]>> {
+    return this._httpClient.get<APIResponse<DiscountListModel[]>>(Constants.APIRoutes.getDiscountById + id + '?discount_uuid=' + id);
+  }
 }
