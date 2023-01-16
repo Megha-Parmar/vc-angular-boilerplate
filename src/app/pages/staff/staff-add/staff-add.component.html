@@ -28,7 +28,7 @@
           <mat-form-field appearance="outline" class="form-input">
             <mat-label>{{ 'staffAddEditViewPage.emailText' | translate }}</mat-label>
             <input matInput type="email" class="form-control" name="email" [(ngModel)]="staffAddEditDetails.email" required email
-              #email="ngModel" [ngClass]="{ 'is-invalid': staffAddEditForm.submitted && email.errors }" />
+              #email="ngModel" [ngClass]="{ 'is-invalid': staffAddEditForm.submitted && email.errors }" [disabled]="staffId && isActive" />
             <div *ngIf="staffAddEditForm.submitted && email.errors" class="error-message">
               <div *ngIf="email.errors['required']">{{ 'staffAddEditViewPage.emailIsRequiredErrorText' | translate }}</div>
               <div *ngIf="email.errors['email']">{{ 'staffAddEditViewPage.invalidEmailErrorText' | translate }}</div>

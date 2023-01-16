@@ -1,5 +1,5 @@
-<app-breadcrumb pageURL="" pageSubText="" icon="supervisor_account" redirectionURL='/staff/add' [pageText]="'staffListPage.pageText' | translate"
-  [addButtonText]="'staffListPage.addText' | translate "></app-breadcrumb>
+<app-breadcrumb pageURL="" pageSubText="" icon="supervisor_account" redirectionURL='/staff/add'
+  [pageText]="'staffListPage.pageText' | translate" [addButtonText]="'staffListPage.addText' | translate "></app-breadcrumb>
 
 <div class="page-wrapper custom-scrollbar">
   <div class="custom-card event-list mt-4">
@@ -51,6 +51,16 @@
           <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.statusText' | translate">
             <mat-slide-toggle (toggleChange)="updateStaffStatus(row.uuid, row.status)" [checked]="row.status">
             </mat-slide-toggle>
+          </mat-cell>
+        </ng-container>
+        <!-- end -->
+        <!-- end -->
+        <ng-container matColumnDef="is_active">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "staffListPage.activationText" | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.activationText' | translate">
+            {{ row.is_active === false ? 'In-Activated' : 'Activated' }}
           </mat-cell>
         </ng-container>
         <!-- end -->

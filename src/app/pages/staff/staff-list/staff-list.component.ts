@@ -18,7 +18,7 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
   styleUrls: ['./staff-list.component.scss']
 })
 export class StaffListComponent implements OnInit, OnDestroy {
-  displayedColumns = ['name', 'email', 'role', 'status', 'action'];
+  displayedColumns = ['name', 'email', 'role', 'status', 'is_active', 'action'];
   dataSource: MatTableDataSource<StaffListModel>;
 
   pagination: number[] = Constants.paginationArray;
