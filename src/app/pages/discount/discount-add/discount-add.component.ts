@@ -125,7 +125,7 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  onChange(event: any): void {
+  onChange(): void {
     this.discountForm.controls['discount_value'].reset();
     if (this.discountForm.value.discount_type == 0) {
       this.discountTypeBy = 'percentage';
@@ -201,7 +201,7 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
 
   addDiscount(): void {
     this._discountService.addDiscount(this.discountForm.value).pipe(take(1)).subscribe({
-      next: (res) => {
+      next: () => {
         if (this.discountForm.value.published === true) {
           this._toasterService.displaySnackBar(MessageConstant.successMessage.discountPublishSuccessfully, messageType.success)
         }
@@ -210,7 +210,7 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
         }
         this._router.navigate(['/discount/list']);
       },
-      error: (error) => {
+      error: () => {
         this._toasterService.displaySnackBar(MessageConstant.errorMessage.discountCodeAlreadyExist, messageType.error)
       }
     })
@@ -218,7 +218,7 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
 
   updateDiscount(): void {
     this._discountService.updateDiscount(this.discountId, this.discountForm.value).pipe(take(1)).subscribe({
-      next: (res) => {
+      next: () => {
         if (this.discountForm.value.published === true) {
           this._toasterService.displaySnackBar(MessageConstant.successMessage.discountPublishSuccessfully, messageType.success)
         }
@@ -226,7 +226,7 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
           this._toasterService.displaySnackBar(MessageConstant.successMessage.discountDraftedSuccessfully, messageType.success)
         }
         this._router.navigate(['/discount/list']);
-      }, error: (error) => {
+      }, error: () => {
         this._toasterService.displaySnackBar(MessageConstant.errorMessage.discountCodeAlreadyExist, messageType.error)
       }
     })

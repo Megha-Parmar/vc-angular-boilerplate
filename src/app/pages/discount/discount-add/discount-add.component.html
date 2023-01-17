@@ -103,7 +103,7 @@
                           {{ 'discountsAddEditViewPage.discountTypeText' | translate }}*
                         </p>
                         <div class="form-filed">
-                          <mat-radio-group aria-label="Select an option" formControlName="discount_type" (change)="onChange($event)">
+                          <mat-radio-group aria-label="Select an option" formControlName="discount_type" (change)="onChange()">
                             <mat-radio-button *ngFor="let item of discountType" [value]="item.value">{{item.viewValue}}</mat-radio-button>
                           </mat-radio-group>
                         </div>
