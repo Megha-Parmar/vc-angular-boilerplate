@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
 import { CurrencyModel } from 'src/app/core/models/discount.model';
+import { DiscountService } from 'src/app/core/services/discount.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 
 @Component({
@@ -16,18 +17,17 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
 
   discountId: string = '';
   discountTypeBy: string = '';
-  isViewPage: boolean = false;
+  selectable = true;
+  removable = true;
+  isViewPage = false;
 
   discountType = Constants.DiscountType;
   currencyList!: CurrencyModel[];
   discountForm!: FormGroup;
   discountOn = Constants.DiscountOn;
   currentDate: Date = new Date();
-  eventList: any[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  selectable = true;
-  removable = true;
-  selectedEvent: any[] = [];
+
   ckeConfig = Constants.CkEditorConfig
 
   private unSubscriber: Subject<void> = new Subject<void>();
@@ -36,8 +36,8 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _toasterService: ToasterService,
+    private _discountService: DiscountService,
   ) {
-    console.log('_router', this._router.url)
     if (this._activatedRoute.snapshot.paramMap.get('id')) {
       this.discountId = this._activatedRoute.snapshot.paramMap.get('id') as string;
     }
@@ -46,8 +46,52 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
     }
     this.initializeForm();
     if (this.discountId) {
-      // this.getDiscountById();
+      this.getDiscountById();
     }
+  }
+
+  getDiscountById(): void {
+    this._discountService.getDiscountById(this.discountId).subscribe({
+      next: (res => {
+        console.log('this.discountId', this.discountId)
+        console.log('res', res)
+        this.setFormValue(res.data);
+      })
+    })
+  }
+
+  setFormValue(value: any): void {
+    this.discountForm.patchValue({
+      title: value.title,
+      description: value.description,
+      remarks: value.remarks,
+      terms_and_conditions: value.terms_and_conditions,
+      discount_type: value.discount_type === 'percentage' ? 0 : 1,
+      discount_value: value.discount_value,
+      max_value: value.max_value,
+      discount_code: value.discount_code,
+      discount_on: value.discount_on === 'quantity' ? 0 : 1,
+      max_avail_limit_per_user: value.max_avail_limit_per_user,
+      start_date: new Date(value.start_date),
+      end_date: new Date(value.end_date),
+      min_quantity: value.min_quantity,
+      min_amount: value.min_amount,
+      max_avail_limit_of_coupon_code: value.max_avail_limit_of_coupon_code,
+      published: value.is_published
+    })
+    this.discountTypeBy = value.discount_type;
+    // this.selectedEvent = value.events.filter((event: any) => event.deleted_at === null || event.deleted_at === undefined);
+    // this.eventList?.forEach(event => {
+    //   this.selectedEvent?.forEach(item => {
+    //     if (event.uuid === item.uuid) {
+    //       event.checked = true;
+    //     }
+    //   })
+    // })
+    if (value.is_published === true) {
+      this.discountForm.disable();
+    }
+    this.discountForm.markAllAsTouched();
   }
 
   initializeForm(): void {
