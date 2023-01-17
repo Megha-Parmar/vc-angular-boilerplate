@@ -50,6 +50,10 @@
           <input matTimepicker #startTime="matTimepicker" (timeChange)="onStartTime()" [strict]="false" id="timepicker-example" mode="12h"
             placeholder="Please select time..." formControlName="startTime" [maxDate]="maxTime" />
           <mat-icon matSuffix (click)="startTime.showDialog()">{{'iconList.clockIcon' | translate}}</mat-icon>
+          <mat-error class="font-12"
+            *ngIf="getForm['startTime'].touched && getForm['startTime'].errors && getForm['startTime'].errors['required']">
+            {{ "eventAddEditPage.startTime" | translate }} {{ "eventAddEditPage.isRequired" | translate }}
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="23">
@@ -57,12 +61,20 @@
           <input matTimepicker #endTime="matTimepicker" [strict]="false" id="timepicker-example" mode="12h"
             placeholder="Please select time..." formControlName="endTime" [minDate]="minTime" (timeChange)="onEndTime()" />
           <mat-icon matSuffix (click)="endTime.showDialog()">{{'iconList.clockIcon' | translate}}</mat-icon>
+          <mat-error class="font-12"
+            *ngIf="getForm['endTime'].touched && getForm['endTime'].errors && getForm['endTime'].errors['required']">
+            {{ "eventAddEditPage.endTime" | translate }} {{ "eventAddEditPage.isRequired" | translate }}
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="23">
           <mat-label>{{ "eventAddEditPage.capacity" | translate }}</mat-label>
           <input matInput type="number" placeholder="{{ 'eventAddEditPage.capacity' | translate }}" min="0" formControlName="capacity"
             name="capacity" />
+            <mat-error class="font-12"
+            *ngIf="getForm['capacity'].touched && getForm['capacity'].errors && getForm['capacity'].errors['required']">
+            {{ "eventAddEditPage.capacity" | translate }} {{ "eventAddEditPage.isRequired" | translate }}
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="mt-15" appearance="outline" fxFlex="23"
@@ -156,12 +168,20 @@
             }}</mat-label>
           <input matInput type="text" placeholder="{{ 'eventAddEditPage.category_name' | translate }}" formControlName="category_name"
             name="category_name" required />
+            <mat-error class="font-12"
+            *ngIf="getForm['category_name'].touched && getForm['category_name'].errors && getForm['category_name'].errors['required']">
+            {{ "eventAddEditPage.category_name" | translate }} {{ "eventAddEditPage.isRequired" | translate }}
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" fxFlex="32">
-          <mat-label>{{ "eventAddEditPage.price" | translate }}{{ 'DISCOUNTS_MANAGEMENT.inRupees' | translate }}</mat-label>
+          <mat-label>{{ "eventAddEditPage.price" | translate }} {{ 'discountsAddEditViewPage.inRupeesText' | translate }}</mat-label>
           <input matInput type="number"
-            placeholder="{{ 'eventAddEditPage.price' | translate }}{{ 'DISCOUNTS_MANAGEMENT.inRupees' | translate }}"
+            placeholder="{{ 'eventAddEditPage.price' | translate }} {{ 'discountsAddEditViewPage.inRupeesText' | translate }}"
             formControlName="price" name="price" min="1" required />
+            <mat-error class="font-12"
+            *ngIf="getForm['price'].touched && getForm['price'].errors && getForm['price'].errors['required']">
+            {{ "eventAddEditPage.price" | translate }} {{ "eventAddEditPage.isRequired" | translate }}
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" fxFlex="32">
           <mat-label>{{ "eventAddEditPage.remark" | translate }}</mat-label>
