@@ -91,8 +91,11 @@
                             <mat-label>{{
                               "eventAddEditPage.venue" | translate
                               }}</mat-label>
-                            <input matInput ngx-google-places-autocomplete formControlName="venue"
-                              (onAddressChange)="AddressChange($event)" />
+                            <!-- <input matInput ngx-google-places-autocomplete formControlName="venue"
+                              (onAddressChange)="AddressChange($event)" /> -->
+                              <input matInput formControlName="venue" type="text" placeholder="{{
+                                'EVENT_MANAGEMENT.venue' | translate
+                              }}" />
                           </mat-form-field>
                         </div>
                         <mat-error class="font-12"
@@ -108,6 +111,28 @@
                             "eventAddEditPage.enterVenueUrl" | translate
                             }}</mat-label>
                           <input matInput formControlName="venue_url" />
+                        </mat-form-field>
+                      </div>
+
+                      <div class="form-filed" fxFlex="49" *ngIf="
+                      eventForm.controls['venueType'].value === 'onsite'
+                    ">
+                        <mat-form-field appearance="outline">
+                          <mat-label>{{
+                            "EVENT_MANAGEMENT.city" | translate
+                            }}</mat-label>
+                          <input matInput formControlName="city" type="text" />
+                        </mat-form-field>
+                      </div>
+
+                      <div class="form-filed" fxFlex="49" *ngIf="
+                      eventForm.controls['venueType'].value === 'onsite'
+                    ">
+                        <mat-form-field appearance="outline">
+                          <mat-label>{{
+                            "EVENT_MANAGEMENT.state" | translate
+                            }}</mat-label>
+                          <input matInput formControlName="state" type="text" />
                         </mat-form-field>
                       </div>
 
