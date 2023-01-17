@@ -132,6 +132,10 @@ export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
     this.onEndTime();
   }
 
+  get getForm() {
+    return this.eventAvailabilityForm.controls;
+  }
+
   onCancel(): void {
     this.tab.selectedIndex = 0;
   }

@@ -91,7 +91,12 @@
                               {{ 'discountsAddEditViewPage.minimumAmountText' | translate }}
                               {{ 'discountsAddEditViewPage.inRupeesText' | translate }}
                             </mat-label>
-                            <input matInput type="number" [min]="0" formControlName="min_amount" placeholder="Minimum Amount(in ₹)" />
+                            <input matInput type="number" [min]="0" formControlName="min_amount"
+                              placeholder="{{ 'discountsAddEditViewPage.minimumAmountText' | translate }}{{ 'discountsAddEditViewPage.inRupeesText' | translate }}" />
+                            <mat-error class="font-12"
+                              *ngIf="getForm['min_amount'].touched && getForm['min_amount'].errors && getForm['min_amount'].errors['required']">
+                              {{ "discountsAddEditViewPage.minimumAmountText" | translate }} {{ "discountsAddEditViewPage.isRequiredText" | translate }}
+                            </mat-error>
                           </mat-form-field>
                         </div>
                       </div>
