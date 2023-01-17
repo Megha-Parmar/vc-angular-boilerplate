@@ -96,7 +96,10 @@ export class StaffListComponent implements OnInit, OnDestroy {
   updateStaffStatus(id: string, status: boolean): void {
     const staffStatus = status === true ? false : true;
     this._staffService.updateStaffStatus(id, staffStatus).pipe(takeUntil(this.unSubscriber)).subscribe({
-      next: (res) => {
+      next: () => {
+        // if (res && res.data && res.data.status === 200) {
+
+        // }
         this._toasterService.notifySnackbarMsg('staffListPage.staffStatusUpdateSuccessfully', 'success');
         this.getStaffList()
       }, error: () => { }
@@ -126,7 +129,7 @@ export class StaffListComponent implements OnInit, OnDestroy {
   deleteStaffRecord(id: string): void {
     this._staffService.deleteStaff(id).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (res) => {
-        if (res) {
+        if (res && res.data) {
           this._toasterService.notifySnackbarMsg('staffListPage.staffDeleteSuccessfully', 'success');
         }
         this.getStaffList()

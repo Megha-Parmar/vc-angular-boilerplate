@@ -16,7 +16,7 @@ import { StaffModel } from './../../../core/models/staff.model';
 })
 export class StaffAddComponent implements OnInit, OnDestroy {
 
-  staffId: string = '';
+  staffId!: string;
   selectedRole: string = '';
 
   submitted: boolean = false;
@@ -93,7 +93,6 @@ export class StaffAddComponent implements OnInit, OnDestroy {
       role: form.value?.role,
     };
 
-    console.log('params', params)
     this._staffService.createUpdateStaff(this.staffId, params).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (resp: any) => {
         if (resp && resp.data) {
