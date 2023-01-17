@@ -1,5 +1,6 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSelectChange } from '@angular/material/select';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
@@ -16,7 +17,7 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
   templateUrl: './event-availability.component.html',
   styleUrls: ['./event-availability.component.scss']
 })
-export class EventAvailabilityComponent implements OnInit, OnDestroy {
+export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
 
   eventAvailabilityForm!: FormGroup;
   eventTypeOption = Constants.EventTypeOption;
@@ -27,23 +28,20 @@ export class EventAvailabilityComponent implements OnInit, OnDestroy {
   isEventSlotDisable = false;
   eventType!: number;
   index!: number;
-
   minDate!: Date;
   maxDate!: Date;
   minTime: any;
   maxTime: any;
-
   eventSlot: EventSlot[] = [];
   eventPrice: EventPrice[] = [];
   deletedEventSlot: EventSlot[] = [];
   deletedEventPrice: EventPrice[] = [];
+  unSubscriber: Subject<void> = new Subject();
 
   @Input() selectedIndex!: number;
   @Input() editId!: string;
   @Input() eventInfo!: EventListModel;
   @Input() eventId!: string;
-
-  unSubscriber: Subject<void> = new Subject();
 
   constructor(
     readonly dateService: DateFormatService,
@@ -60,6 +58,11 @@ export class EventAvailabilityComponent implements OnInit, OnDestroy {
     if (this.eventId || this.editId) {
       this.setFormData();
     }
+  }
+
+  ngOnChanges(): void {
+    this.minDate = new Date(this.eventInfo.start_date.substring(0, 10));
+    this.maxDate = new Date(this.eventInfo.end_date.substring(0, 10));
   }
 
   intializeForm(): void {
@@ -86,13 +89,14 @@ export class EventAvailabilityComponent implements OnInit, OnDestroy {
       this.eventType = 0;
       this.eventAvailabilityForm.patchValue({
         event_type: 0,
-        startTime: this.convertTimetoDate(eventValue.start_time),
-        endTime: this.convertTimetoDate(eventValue.end_time as string),
+        startTime: this.dateService.convertTimetoDate(eventValue.start_time),
+        endTime: this.dateService.convertTimetoDate(eventValue.end_time as string),
         capacity: eventValue.capacity,
         event_date: null
       })
     } else {
-      // this.eventAvailabilityForm.controls['event_type'].setValue(1);
+      this.eventAvailabilityForm.controls['event_type'].setValue(1);
+      this.eventType = 1;
       this.isEventSlotDisable = true;
     }
     this.setFormValue()
@@ -144,7 +148,11 @@ export class EventAvailabilityComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSelectionChange(event: any): void {
+  trackByMethod(index: number, el: any): number {
+    return el.id || index;
+  }
+
+  onSelectionChange(event: MatSelectChange ): void {
     if (event.source.value === true) {
       this.eventAvailabilityForm.controls['event_date'].setValue(null);
       this.eventAvailabilityForm.controls['event_date'].disable();
@@ -163,11 +171,9 @@ export class EventAvailabilityComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectEventType(event: any) {
-    console.log(event);
-
+  selectEventType(event: MatSelectChange ) {
     this.eventType = event.value;
-    if (event === 0) {
+    if (event.value === 0) {
       this.isEventSlotDisable = false;
     }
     this.eventAvailabilityForm.controls['event_type'].setValue(event.value);
@@ -197,10 +203,10 @@ export class EventAvailabilityComponent implements OnInit, OnDestroy {
         slot.event_date ? this.dateService.getDateFormat(slot.event_date) : null
       );
       this.eventAvailabilityForm.controls['startTime'].setValue(
-        this.convertTimetoDate(slot.start_time)
+        this.dateService.convertTimetoDate(slot.start_time)
       );
       this.eventAvailabilityForm.controls['endTime'].setValue(
-        this.convertTimetoDate(slot.end_time)
+        this.dateService.convertTimetoDate(slot.end_time)
       );
       this.eventAvailabilityForm.controls['capacity'].setValue(slot.capacity);
       this.eventAvailabilityForm.controls['is_repeat'].setValue(slot.is_repeat);
@@ -212,11 +218,6 @@ export class EventAvailabilityComponent implements OnInit, OnDestroy {
       this.eventAvailabilityForm.controls['price'].setValue(slot.price);
       this.eventAvailabilityForm.controls['remark'].setValue(slot.remark);
     }
-  }
-
-  convertTimetoDate(date: string): Date {
-    const setTime = this.dateService.convertTimetoDateFormat(date);
-    return setTime;
   }
 
   addSlotPrice(type: string) {
@@ -232,7 +233,7 @@ export class EventAvailabilityComponent implements OnInit, OnDestroy {
       };
       const isValid = this.dateService.isDateTimeIsSame(obj.start_time, obj.end_time, obj.event_date, this.eventSlot);
       if (isValid) {
-        this.toaster.displaySnackBar("Please enter valid time slot", "error");
+        this.toaster.displaySnackBar('eventAddEditPage.validTimeSlotMessage', messageType.error);
         return
       }
       this.eventSlot.push(obj);
@@ -285,28 +286,22 @@ export class EventAvailabilityComponent implements OnInit, OnDestroy {
         const endTime = this.dateService.getTimeFormat(
           this.eventAvailabilityForm.value.endTime
         );
-        this.eventSlot[this.index].event_type =
-          this.eventAvailabilityForm.value.event_type;
+        this.eventSlot[this.index].event_type = this.eventAvailabilityForm.value.event_type;
         this.eventSlot[this.index].event_date =
           this.eventAvailabilityForm.value.event_date ? this.dateService.getDateFormat(this.eventAvailabilityForm.value.event_date) : null;
         this.eventSlot[this.index].start_time = startTime;
         this.eventSlot[this.index].end_time = endTime;
-        this.eventSlot[this.index].capacity =
-          this.eventAvailabilityForm.value.capacity;
-        this.eventSlot[this.index].is_repeat =
-          this.eventAvailabilityForm.value.is_repeat;
+        this.eventSlot[this.index].capacity = this.eventAvailabilityForm.value.capacity;
+        this.eventSlot[this.index].is_repeat = this.eventAvailabilityForm.value.is_repeat;
         this.resetEventSlot();
-        this.index;
+        // this.index;
         this.addButton = 'Add';
       } else {
-        this.eventPrice[this.index].category_name =
-          this.eventAvailabilityForm.get('category_name')?.value;
-        this.eventPrice[this.index].price =
-          this.eventAvailabilityForm.get('price')?.value;
-        this.eventPrice[this.index].remark =
-          this.eventAvailabilityForm.get('remark')?.value;
+        this.eventPrice[this.index].category_name = this.eventAvailabilityForm.get('category_name')?.value;
+        this.eventPrice[this.index].price = this.eventAvailabilityForm.get('price')?.value;
+        this.eventPrice[this.index].remark = this.eventAvailabilityForm.get('remark')?.value;
         this.resetEventPrice();
-        this.index;
+        // this.index;
         this.addEditEvent = 'Add';
       }
     }
@@ -395,38 +390,29 @@ export class EventAvailabilityComponent implements OnInit, OnDestroy {
         this.updateEvent(resp);
       }
     });
-
-    // const dialogRef = this.matDialog.open(ConfirmationPopupComponent, {
-    //   data: 'eventAddEditPage.confirmationPopup',
-    // });
-    // dialogRef.afterClosed().subscribe((resp: boolean) => {
-    //   this.updateEvent(resp);
-    // });
   }
 
   formValidation() {
     if (this.eventSlot.length > 0) {
-      this.eventAvailabilityForm.controls['event_type'].clearValidators();
-      this.eventAvailabilityForm.get('event_type')?.updateValueAndValidity();
-      this.eventAvailabilityForm.controls['startTime'].clearValidators();
-      this.eventAvailabilityForm.get('startTime')?.updateValueAndValidity();
-      this.eventAvailabilityForm.controls['endTime'].clearValidators();
-      this.eventAvailabilityForm.get('endTime')?.updateValueAndValidity();
-      this.eventAvailabilityForm.controls['capacity'].clearValidators();
-      this.eventAvailabilityForm.get('capacity')?.updateValueAndValidity();
+      this.clearUpdateValidations('event_type');
+      this.clearUpdateValidations('startTime');
+      this.clearUpdateValidations('endTime');
+      this.clearUpdateValidations('capacity');
     }
     if (this.eventPrice.length > 0) {
-      this.eventAvailabilityForm.controls['category_name'].clearValidators();
-      this.eventAvailabilityForm.get('category_name')?.updateValueAndValidity();
-      this.eventAvailabilityForm.controls['price'].clearValidators();
-      this.eventAvailabilityForm.get('price')?.updateValueAndValidity();
-      this.eventAvailabilityForm.controls['remark'].clearValidators();
-      this.eventAvailabilityForm.get('remark')?.updateValueAndValidity();
+      this.clearUpdateValidations('category_name');
+      this.clearUpdateValidations('price');
+      this.clearUpdateValidations('remark');
     }
     if (this.eventType === 1) {
       this.resetEventSlot();
     }
     this.resetEventPrice();
+  }
+
+  clearUpdateValidations(controlName: string):void {
+    this.eventAvailabilityForm.controls[controlName].clearValidators();
+    this.eventAvailabilityForm.get(controlName)?.updateValueAndValidity();
   }
 
   updateEvent(publishedValue: boolean): void {

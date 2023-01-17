@@ -23,4 +23,12 @@ export class DiscountService {
   getDiscountById(id: string): Observable<APIResponse<DiscountListModel[]>> {
     return this._httpClient.get<APIResponse<DiscountListModel[]>>(Constants.APIRoutes.getDiscountById + id + '?discount_uuid=' + id);
   }
+
+  addDiscount(param: any): Observable<any> {
+    return this._httpClient.post<any>(Constants.APIRoutes.createDiscountApi, param)
+  }
+
+  updateDiscount(id: string, param: any): Observable<any> {
+    return this._httpClient.put(Constants.APIRoutes.updateDiscountApi + id + '?discount_uuid=' + id, param)
+  }
 }

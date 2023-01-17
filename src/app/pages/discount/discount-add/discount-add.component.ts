@@ -2,9 +2,10 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { Constants } from 'src/app/core/constants/app.constants';
+import { Subject, take } from 'rxjs';
+import { Constants, MessageConstant, messageType } from 'src/app/core/constants/app.constants';
 import { CurrencyModel } from 'src/app/core/models/discount.model';
+import { DateFormatService } from 'src/app/core/services/date-format.service';
 import { DiscountService } from 'src/app/core/services/discount.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 
@@ -19,15 +20,13 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
   discountTypeBy: string = '';
   selectable = true;
   removable = true;
-  isViewPage = false;
-
-  discountType = Constants.DiscountType;
+  // isViewPage = false;
   currencyList!: CurrencyModel[];
   discountForm!: FormGroup;
-  discountOn = Constants.DiscountOn;
   currentDate: Date = new Date();
+  discountOn = Constants.DiscountOn;
+  discountType = Constants.DiscountType;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-
   ckeConfig = Constants.CkEditorConfig
 
   private unSubscriber: Subject<void> = new Subject<void>();
@@ -35,15 +34,16 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
+    private dateService: DateFormatService,
     private _toasterService: ToasterService,
     private _discountService: DiscountService,
   ) {
     if (this._activatedRoute.snapshot.paramMap.get('id')) {
       this.discountId = this._activatedRoute.snapshot.paramMap.get('id') as string;
     }
-    if (this._router.url.includes('view')) {
-      this.isViewPage = true;
-    }
+    // if (this._router.url.includes('view')) {
+    //   this.isViewPage = true;
+    // }
     this.initializeForm();
     if (this.discountId) {
       this.getDiscountById();
@@ -53,8 +53,6 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
   getDiscountById(): void {
     this._discountService.getDiscountById(this.discountId).subscribe({
       next: (res => {
-        console.log('this.discountId', this.discountId)
-        console.log('res', res)
         this.setFormValue(res.data);
       })
     })
@@ -111,7 +109,6 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
       min_quantity: new FormControl(),
       min_amount: new FormControl(null, [Validators.required]),
       max_avail_limit_of_coupon_code: new FormControl(null, [Validators.required]),
-      // events: new FormControl([], [Validators.required]),
       published: new FormControl(false)
     });
     if (this.discountId) {
@@ -149,7 +146,90 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(type: String): void {
+    console.log(type);
+    if (this.discountForm.invalid) {
+      return
+    }
+    if (type === 'publish') {
+      this.discountForm.controls['published'].setValue(true);
+    }
+    if ((this.discountForm.value.max_value === null || this.discountForm.value.max_value === 0) && this.discountForm.value.discount_type === 0) {
+      this._toasterService.displaySnackBar(MessageConstant.errorMessage.discountMaxPercentage, messageType.error);
+      return;
+    }
+    if (this.discountForm.value.discount_type == 0 && this.discountForm.value.discount_value > 100) {
+      this._toasterService.displaySnackBar(MessageConstant.errorMessage.discountPercentagecgreater, messageType.error);
+      return;
+    }
+    this.setBlankField();
+    this.setValidDate();
+    if (this.discountId) {
+      this.updateDiscount();
+    } else {
+      this.addDiscount();
+    }
+  }
 
+  setBlankField(): void {
+    if (this.discountForm.value.max_value === null) {
+      this.discountForm.controls['max_value'].setValue(0);
+    }
+    if (this.discountForm.value.min_quantity === null) {
+      this.discountForm.controls['min_quantity'].setValue(0);
+    }
+    if (this.discountForm.value.min_amount === null) {
+      this.discountForm.controls['min_amount'].setValue(0);
+    }
+    if (this.discountForm.value.max_avail_limit_per_user === null) {
+      this.discountForm.controls['max_avail_limit_per_user'].setValue(0);
+    }
+    if (this.discountForm.value.max_avail_limit_of_coupon_code === null) {
+      this.discountForm.controls['max_avail_limit_of_coupon_code'].setValue(0);
+    }
+  }
+
+  setValidDate(): void {
+    const startDate = this.dateService.getDateFormat(
+      this.discountForm.controls['start_date'].value
+    );
+    const endDate = this.dateService.getDateFormat(
+      this.discountForm.controls['end_date'].value
+    );
+    this.discountForm.controls['start_date'].setValue(startDate);
+    this.discountForm.controls['end_date'].setValue(endDate);
+  }
+
+  addDiscount(): void {
+    this._discountService.addDiscount(this.discountForm.value).pipe(take(1)).subscribe({
+      next: (res) => {
+        if (this.discountForm.value.published === true) {
+          this._toasterService.displaySnackBar(MessageConstant.successMessage.discountPublishSuccessfully, messageType.success)
+        }
+        else {
+          this._toasterService.displaySnackBar(MessageConstant.successMessage.discountDraftedSuccessfully, messageType.success)
+        }
+        this._router.navigate(['/discount/list']);
+      },
+      error: (error) => {
+        this._toasterService.displaySnackBar(MessageConstant.errorMessage.discountCodeAlreadyExist, messageType.error)
+      }
+    })
+  }
+
+  updateDiscount(): void {
+    this._discountService.updateDiscount(this.discountId, this.discountForm.value).pipe(take(1)).subscribe({
+      next: (res) => {
+        if (this.discountForm.value.published === true) {
+          this._toasterService.displaySnackBar(MessageConstant.successMessage.discountPublishSuccessfully, messageType.success)
+        }
+        else {
+          this._toasterService.displaySnackBar(MessageConstant.successMessage.discountDraftedSuccessfully, messageType.success)
+        }
+        this._router.navigate(['/discount/list']);
+      }, error: (error) => {
+        this._toasterService.displaySnackBar(MessageConstant.errorMessage.discountCodeAlreadyExist, messageType.error)
+      }
+    })
   }
 
   ngOnDestroy(): void {

@@ -47,7 +47,7 @@ export class EventService {
     );
   }
 
-  updateEvent(id: string, formName: string, param: any): Observable<any> {
-    return this._httpClient.put<any>(Constants.APIRoutes.updateEvent + id + '?event_uuid=' + id + '&form=' + formName, param);
+  updateEvent(id: string, formName: string, param: any): Observable<APIResponse<EventListModel>> {
+    return this._httpClient.put<APIResponse<EventListModel>>(Constants.APIRoutes.updateEvent + id + '?event_uuid=' + id + '&form=' + formName, param);
   }
 }
