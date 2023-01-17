@@ -1,13 +1,18 @@
-<ng-container *ngIf="discountId && isViewPage">
+<!-- <ng-container *ngIf="discountId && isViewPage">
   <app-breadcrumb pageURL="/discount" [pageSubText]="'discountsAddEditViewPage.viewDiscountText' | translate" icon="discount"
     redirectionURL='' [pageText]="'discountListPage.pageText' | translate" addButtonText=""></app-breadcrumb>
 </ng-container>
 <ng-container *ngIf="discountId && !isViewPage">
   <app-breadcrumb pageURL="/discount" [pageSubText]="'discountsAddEditViewPage.editDiscountText' | translate" icon="discount"
     redirectionURL='' [pageText]="'discountListPage.pageText' | translate" addButtonText=""></app-breadcrumb>
-</ng-container>
+</ng-container> -->
 <ng-container *ngIf="!discountId">
   <app-breadcrumb pageURL="/discount" [pageSubText]="'discountsAddEditViewPage.addDiscountText' | translate" icon="discount"
+    redirectionURL='' [pageText]="'discountListPage.pageText' | translate" [publishButtonText]="'eventAddEditPage.publish' | translate"
+    [formNameControl]="discountForm" (publishEvent)="onSubmit('publish')"></app-breadcrumb>
+</ng-container>
+<ng-container *ngIf="discountId">
+  <app-breadcrumb pageURL="/discount"[pageSubText]="'discountsAddEditViewPage.viewDiscountText' | translate"  icon="discount"
     redirectionURL='' [pageText]="'discountListPage.pageText' | translate" addButtonText=""></app-breadcrumb>
 </ng-container>
 
@@ -29,6 +34,11 @@
                           <mat-label> {{ "discountsAddEditViewPage.titleText" | translate }} </mat-label>
                           <input matInput type="text" formControlName="title"
                             placeholder="{{  'discountsAddEditViewPage.titleText' | translate }}" required />
+                          <mat-error class="font-12"
+                            *ngIf="getForm['title'].touched && getForm['title'].errors && getForm['title'].errors['required']">
+                            {{ "discountsAddEditViewPage.titleText" | translate }}{{ "discountsAddEditViewPage.isRequiredText" |
+                            translate }}
+                          </mat-error>
                         </mat-form-field>
                       </div>
                       <div class="form-filed flex-wrap" fxFlex="48">
@@ -41,12 +51,12 @@
                             </mat-date-range-input>
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-date-range-picker #picker></mat-date-range-picker>
+                            <mat-error class="font-12"
+                              *ngIf="getForm['start_date'].touched && (getForm['start_date'].errors || getForm['end_date'].errors)">
+                              {{ 'discountsAddEditViewPage.invalidDateRangeText' | translate }}
+                            </mat-error>
                           </mat-form-field>
                         </div>
-                        <mat-error class="font-12"
-                          *ngIf="getForm['start_date'].touched && (getForm['start_date'].errors || getForm['end_date'].errors)">
-                          {{ 'discountsAddEditViewPage.invalidDateRangeText' | translate }}
-                        </mat-error>
                       </div>
                     </div>
                     <div class="form-filed ckeditor">
@@ -118,10 +128,73 @@
                       {{ 'discountsAddEditViewPage.discountDetailsText' | translate }}
                     </p>
                     <div class="form-filed">
+                      <!-- Please add [fxFlex]="discountTypeBy === 'percentage' ? '48' : '32'" for flex layout design based on discount type percentage -->
+                      <div fxLayout="row" fxLayoutAlign="space-between start" class="flex-wrap">
+                        <div class="form-filed" *ngIf="discountTypeBy === 'percentage'">
+                          <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>{{ 'discountsAddEditViewPage.maximumDiscountAmountForPercentage' | translate }}{{
+                              'discountsAddEditViewPage.inRupeesText' |
+                              translate }}</mat-label>
+                            <input matInput type="number" formControlName="max_value" [min]="0"
+                              placeholder="{{  'discountsAddEditViewPage.enterMaxPercentage' | translate }}{{ 'discountsAddEditViewPage.inRupeesText' | translate }}" />
+                          </mat-form-field>
+                        </div>
+                        <div class="form-filed">
+                          <mat-form-field appearance="outline" class="w-100">
+                            <mat-label> {{ 'discountsAddEditViewPage.discountCode' | translate }}
+                            </mat-label>
+                            <input matInput #code type="text" formControlName="discount_code"
+                              placeholder="{{  'discountsAddEditViewPage.code' | translate }}" maxlength="15"
+                              (input)="code.value = code.value.toUpperCase()" />
+                            <mat-error class="font-12"
+                              *ngIf="getForm['discount_code'].touched && getForm['discount_code'].errors && getForm['discount_code'].errors['required']">
+                              {{ "discountsAddEditViewPage.code" | translate }}{{ "discountsAddEditViewPage.isRequiredText" |
+                              translate }}
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                        <div class="form-filed">
+                          <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>{{ 'discountsAddEditViewPage.maxAvailableLimitCoupon' | translate }}</mat-label>
+                            <input matInput type="number" formControlName="max_avail_limit_of_coupon_code" [min]="0"
+                              placeholder="{{ 'discountsAddEditViewPage.maxAvailableForCoupon' | translate }}" />
+                            <mat-error class="font-12" *ngIf="getForm['max_avail_limit_of_coupon_code'].touched && getForm['max_avail_limit_of_coupon_code'].errors &&
+                               getForm['max_avail_limit_of_coupon_code'].errors['required']">
+                              {{ 'discountsAddEditViewPage.maxAvailableForCoupon' | translate }} {{
+                              "discountsAddEditViewPage.isRequiredText" |
+                              translate }}
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                        <div class="form-filed">
+                          <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>{{ 'discountsAddEditViewPage.maxAvailableLimitUser' | translate }}</mat-label>
+                            <input matInput type="number" formControlName="max_avail_limit_per_user"
+                              placeholder="Maximum Limit Available Per User"
+                              [max]="discountForm.controls['max_avail_limit_of_coupon_code'].value" [min]="0" />
+                            <mat-error class="font-12"
+                              *ngIf="getForm['max_avail_limit_per_user'].touched && getForm['max_avail_limit_per_user'].errors">
+                              <mat-error class="font-12" *ngIf="getForm['max_avail_limit_per_user'].errors['required']">
+                                {{ 'discountsAddEditViewPage.maxAvailableForCoupon' | translate }} {{
+                                "discountsAddEditViewPage.isRequiredText" |
+                                translate }}
+                              </mat-error>
+                              <mat-error class="font-12" *ngIf="getForm['max_avail_limit_per_user'].errors['max']">
+                                {{ 'discountsAddEditViewPage.availableLimitValidation' | translate }}
+                              </mat-error>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
                       <mat-form-field appearance="outline" class="w-100">
                         <mat-label> {{ 'discountsAddEditViewPage.remarksText' | translate }}</mat-label>
                         <textarea matInput type="text" formControlName="remarks"
                           placeholder="{{ 'discountsAddEditViewPage.remarksText' | translate }}" required></textarea>
+                        <mat-error class="font-12" *ngIf="getForm['remarks'].touched && getForm['remarks'].errors &&
+                               getForm['remarks'].errors['required']">
+                          {{ 'discountsAddEditViewPage.remarksText' | translate }} {{ "discountsAddEditViewPage.isRequiredText" |
+                          translate }}
+                        </mat-error>
                       </mat-form-field>
                     </div>
                     <div class="form-filed ckeditor">
