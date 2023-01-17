@@ -1,19 +1,16 @@
-<!-- <ng-container *ngIf="discountId && isViewPage">
+<ng-container *ngIf="discountId && isViewPage">
   <app-breadcrumb pageURL="/discount" [pageSubText]="'discountsAddEditViewPage.viewDiscountText' | translate" icon="discount"
     redirectionURL='' [pageText]="'discountListPage.pageText' | translate" addButtonText=""></app-breadcrumb>
 </ng-container>
 <ng-container *ngIf="discountId && !isViewPage">
   <app-breadcrumb pageURL="/discount" [pageSubText]="'discountsAddEditViewPage.editDiscountText' | translate" icon="discount"
-    redirectionURL='' [pageText]="'discountListPage.pageText' | translate" addButtonText=""></app-breadcrumb>
-</ng-container> -->
+    redirectionURL='' [pageText]="'discountListPage.pageText' | translate" [publishButtonText]="'eventAddEditPage.publish' | translate"
+    [formNameControl]="discountForm" (publishEvent)="onSubmit('publish')"></app-breadcrumb>
+</ng-container>
 <ng-container *ngIf="!discountId">
   <app-breadcrumb pageURL="/discount" [pageSubText]="'discountsAddEditViewPage.addDiscountText' | translate" icon="discount"
     redirectionURL='' [pageText]="'discountListPage.pageText' | translate" [publishButtonText]="'eventAddEditPage.publish' | translate"
     [formNameControl]="discountForm" (publishEvent)="onSubmit('publish')"></app-breadcrumb>
-</ng-container>
-<ng-container *ngIf="discountId">
-  <app-breadcrumb pageURL="/discount"[pageSubText]="'discountsAddEditViewPage.viewDiscountText' | translate"  icon="discount"
-    redirectionURL='' [pageText]="'discountListPage.pageText' | translate" addButtonText=""></app-breadcrumb>
 </ng-container>
 
 <div class="page-wrapper custom-scrollbar">

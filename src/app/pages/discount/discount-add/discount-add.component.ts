@@ -20,7 +20,7 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
   discountTypeBy: string = '';
   selectable = true;
   removable = true;
-  // isViewPage = false;
+  isViewPage = false;
   currencyList!: CurrencyModel[];
   discountForm!: FormGroup;
   currentDate: Date = new Date();
@@ -41,9 +41,9 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
     if (this._activatedRoute.snapshot.paramMap.get('id')) {
       this.discountId = this._activatedRoute.snapshot.paramMap.get('id') as string;
     }
-    // if (this._router.url.includes('view')) {
-    //   this.isViewPage = true;
-    // }
+    if (this._router.url.includes('view')) {
+      this.isViewPage = true;
+    }
     this.initializeForm();
     if (this.discountId) {
       this.getDiscountById();
