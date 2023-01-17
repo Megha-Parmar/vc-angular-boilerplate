@@ -19,8 +19,6 @@ export class PopupOpenService {
       scrollStrategy: new NoopScrollStrategy(),
       ...extraParams
     });
-    dialogRef.afterClosed().subscribe((response) => {
-    });
     return dialogRef;
   }
 
