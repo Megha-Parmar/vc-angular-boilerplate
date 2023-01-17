@@ -32,6 +32,8 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "useUnknownInCatchVariables": true,
+    "allowUnreachableCode": true,
+    "allowUnusedLabels": false,
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
