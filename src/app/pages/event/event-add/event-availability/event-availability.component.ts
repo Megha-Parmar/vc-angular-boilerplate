@@ -452,7 +452,7 @@ export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
       .updateEvent(this.eventInfo.uuid, this.formName, param)
       .pipe(takeUntil(this.unSubscriber))
       .subscribe({
-        next: (res) => {
+        next: () => {
           if (publishedValue === false || (publishedValue === true && this.eventId)) {
             this.tab.selectedIndex = 2;
           } else {
@@ -470,7 +470,7 @@ export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
             this.router.navigate(['/event/list']);
           }
         },
-        error: (error) => {
+        error: () => {
           this.toaster.displaySnackBar(MessageConstant.errorMessage.dateEventNotFound, messageType.error)
         },
       });
