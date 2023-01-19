@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,7 +17,7 @@ import { StaffModel } from './../../../core/models/staff.model';
 @Component({
   selector: 'app-staff-add',
   standalone: true,
-  imports: [CommonModule, BreadcrumbComponent, MatIconModule, MatInputModule, MatSelectModule, FormsModule, TranslateModule],
+  imports: [CommonModule, BreadcrumbComponent, MatInputModule, MatSelectModule, FormsModule, TranslateModule],
   templateUrl: './staff-add.component.html',
   styleUrls: ['./staff-add.component.scss']
 })
