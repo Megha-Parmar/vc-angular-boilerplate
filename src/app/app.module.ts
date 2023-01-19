@@ -9,12 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { HttpTokenInterceptor } from './core/interceptor/http.token.interceptor';
-import { LoaderComponent } from './layouts/loader/loader.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoaderComponent,
+    // AppComponent,
+    // LoaderComponent,
   ],
   imports: [
     BrowserModule,

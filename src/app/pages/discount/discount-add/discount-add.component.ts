@@ -1,16 +1,32 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { CKEditorModule } from 'ckeditor4-angular';
 import { Subject, take } from 'rxjs';
 import { Constants, MessageConstant, messageType } from 'src/app/core/constants/app.constants';
 import { CurrencyModel } from 'src/app/core/models/discount.model';
 import { DateFormatService } from 'src/app/core/services/date-format.service';
 import { DiscountService } from 'src/app/core/services/discount.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
+import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-discount-add',
+  standalone: true,
+  imports: [CommonModule, BreadcrumbComponent, MatInputModule, MatSelectModule, MatRadioModule, MatIconModule, MatCheckboxModule,
+    MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatAutocompleteModule, CKEditorModule, ReactiveFormsModule, TranslateModule, RouterModule],
   templateUrl: './discount-add.component.html',
   styleUrls: ['./discount-add.component.scss']
 })

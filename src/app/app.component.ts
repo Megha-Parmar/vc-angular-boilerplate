@@ -1,11 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Constants } from './core/constants/app.constants';
 import { EncryptDecryptService } from './core/services/encrypt-decrypt.service';
 import { LanguageService } from './core/services/language.service';
 import { LoaderService } from './core/services/loader.service';
+import { LoaderComponent } from './layouts/loader/loader.component';
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports:[LoaderComponent,CommonModule, RouterModule ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

@@ -1,4 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { loginResponse } from 'src/app/core/models/user.model';
@@ -7,6 +10,8 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
+  imports:[CommonModule, MatMenuModule,MatIconModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })

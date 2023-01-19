@@ -1,8 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ConfirmationComponent } from 'src/app/core/components/confirmation/confirmation.component';
 import { Constants } from 'src/app/core/constants/app.constants';
@@ -11,9 +19,14 @@ import { StaffListModel } from 'src/app/core/models/staff.model';
 import { PopupOpenService } from 'src/app/core/services/popup-open.service';
 import { StaffService } from 'src/app/core/services/staff.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
+import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-staff-list',
+  standalone: true,
+  imports: [CommonModule, BreadcrumbComponent, ConfirmationComponent, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule,
+    MatIconModule, MatSlideToggleModule, MatFormFieldModule, MatInputModule, MatButtonModule, TranslateModule, FormsModule],
+  providers:[PopupOpenService],
   templateUrl: './staff-list.component.html',
   styleUrls: ['./staff-list.component.scss']
 })

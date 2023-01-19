@@ -1,8 +1,24 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/material/autocomplete';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { CKEditorModule } from 'ckeditor4-angular';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { Subject, takeUntil } from 'rxjs';
 import { ConfirmationComponent } from 'src/app/core/components/confirmation/confirmation.component';
 import { Constants, MessageConstant, messageType } from 'src/app/core/constants/app.constants';
@@ -13,9 +29,18 @@ import { EventService } from 'src/app/core/services/event.service';
 import { GeoLocationService } from 'src/app/core/services/geo-location.service';
 import { PopupOpenService } from 'src/app/core/services/popup-open.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
+import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.component';
+import { EventAvailabilityComponent } from './event-availability/event-availability.component';
+import { ExtraInfoComponent } from './extra-info/extra-info.component';
 
 @Component({
   selector: 'app-event-add',
+  standalone: true,
+  imports: [CommonModule, BreadcrumbComponent, ConfirmationComponent, EventAvailabilityComponent, ExtraInfoComponent, RouterModule, TranslateModule,
+    MatFormFieldModule, CKEditorModule, MatTabsModule, ReactiveFormsModule, GooglePlaceModule, MatAutocompleteModule, MatButtonToggleModule,
+    MatDatepickerModule, MatCheckboxModule, MatChipsModule, MatRadioModule, MatNativeDateModule, MatIconModule, MatInputModule,
+    MatButtonModule, MatSelectModule],
+  providers:[PopupOpenService],
   templateUrl: './event-add.component.html',
   styleUrls: ['./event-add.component.scss']
 })

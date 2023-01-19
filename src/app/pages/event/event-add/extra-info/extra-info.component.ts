@@ -1,7 +1,16 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { CKEditorModule } from 'ckeditor4-angular';
 import { Subject, takeUntil } from 'rxjs';
 import { ConfirmationComponent } from 'src/app/core/components/confirmation/confirmation.component';
 import { Constants, MessageConstant, messageType } from 'src/app/core/constants/app.constants';
@@ -13,6 +22,10 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
 
 @Component({
   selector: 'app-extra-info',
+  standalone: true,
+  imports: [CommonModule, MatFormFieldModule, ConfirmationComponent, CKEditorModule, MatTabsModule, FormsModule, MatAutocompleteModule,
+    MatChipsModule, MatIconModule, MatButtonModule, TranslateModule],
+  providers:[PopupOpenService],
   templateUrl: './extra-info.component.html',
   styleUrls: ['./extra-info.component.scss']
 })
