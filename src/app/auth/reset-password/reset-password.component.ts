@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule, MatIconModule, MatInputModule, RouterModule, MatFormFieldModule],
+  imports: [NgIf, NgClass, FormsModule, TranslateModule, MatIconModule, MatInputModule, RouterModule, MatFormFieldModule],
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss'],
 })

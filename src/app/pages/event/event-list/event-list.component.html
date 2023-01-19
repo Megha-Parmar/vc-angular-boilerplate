@@ -9,7 +9,7 @@
       </strong>
       <div class="form-field w-25">
         <mat-form-field appearance="outline">
-          <input matInput placeholder="Filter" [(ngModel)]="filterValue" (keyup)="applyFilter($event)"
+          <input matInput placeholder="Search" [(ngModel)]="filterValue" (keyup)="applyFilter($event)"
             (keydown)="$event.stopPropagation()" />
         </mat-form-field>
       </div>
@@ -59,7 +59,18 @@
             {{ "eventListPage.createdDateText" | translate }}
           </mat-header-cell>
           <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.createdDateText' | translate">
-            {{ row.created_at | date }}
+            {{ row.created_at | date:'dd MMM YYYY' }}
+          </mat-cell>
+        </ng-container>
+        <!-- end -->
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "eventListPage.active" | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.statusText' | translate">
+            <mat-slide-toggle (toggleChange)="updateStatus(row.uuid,row.is_paused)" [checked]="!row.is_paused"
+              [disabled]="row.status===false">
+            </mat-slide-toggle>
           </mat-cell>
         </ng-container>
         <!-- end -->
@@ -71,6 +82,10 @@
             <button class="edit-button" mat-icon-button (click)="editEvent(row.uuid)" [disabled]="!row.status"
               [ngClass]="{'disabled-btn': !row.status}">
               <mat-icon>{{'iconList.editIcon' | translate}}</mat-icon>
+            </button>
+            <button class="edit-button" mat-icon-button [disabled]="!row.status" [ngClass]="{'disabled-btn':!row.status}"
+              title="Preview Event" (click)="onPreview(row.uuid, row.title)">
+              <mat-icon>{{'iconList.viewIcon' | translate}}</mat-icon>
             </button>
             <button class="delete-button" mat-icon-button [disabled]="!row.status || row.is_published"
               [ngClass]="{'disabled-btn':!row.status || row.is_published}" (click)="deleteEvent(row.uuid, row.title)">

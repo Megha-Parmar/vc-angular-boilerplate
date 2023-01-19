@@ -7,7 +7,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTabsModule } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { CKEditorModule } from 'ckeditor4-angular';
@@ -23,7 +22,7 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
 @Component({
   selector: 'app-extra-info',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, ConfirmationComponent, CKEditorModule, MatTabsModule, FormsModule, MatAutocompleteModule,
+  imports: [CommonModule, MatFormFieldModule, ConfirmationComponent, CKEditorModule, FormsModule, MatAutocompleteModule,
     MatChipsModule, MatIconModule, MatButtonModule, TranslateModule],
   providers:[PopupOpenService],
   templateUrl: './extra-info.component.html',

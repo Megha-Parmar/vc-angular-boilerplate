@@ -1,4 +1,4 @@
-import { provideRouter, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { AuthGuardService } from '../guard/auth-guard.service';
 import { LoginGuardService } from '../guard/login-guard.service';
 
@@ -19,10 +19,3 @@ export const appRoutes: Routes = [
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
-
-
-provideRouter([{
-  path: 'auth',
-  loadChildren: () => import('./auth-routes').then((m) => m.authRoutes),
-  canMatch: [LoginGuardService]
-}])

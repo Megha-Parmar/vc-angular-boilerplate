@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment';
   selector: 'app-login',
   templateUrl: './login.component.html',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule, MatIconModule, MatInputModule, RouterModule, MatFormFieldModule],
+  imports: [NgIf,NgClass, FormsModule, TranslateModule, MatIconModule, MatInputModule, RouterModule, MatFormFieldModule],
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {

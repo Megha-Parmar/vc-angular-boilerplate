@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Constants } from './core/constants/app.constants';
 import { EncryptDecryptService } from './core/services/encrypt-decrypt.service';
@@ -10,11 +9,11 @@ import { LoaderComponent } from './layouts/loader/loader.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports:[LoaderComponent,CommonModule, RouterModule ],
+  imports:[LoaderComponent, RouterOutlet ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterContentInit, OnDestroy {
+export class AppComponent implements OnInit, AfterContentInit {
   isOpended = false;
   title = 'vc-angular-boilerplate';
   selectedLanguage = '';
@@ -49,7 +48,5 @@ export class AppComponent implements OnInit, AfterContentInit, OnDestroy {
     this.encryptDecryptService.setEncryptedLocalStorage(Constants.storageKeys.selectedLanguage, this.selectedLanguage);
     this.translateService.use(lang);
   }
-
-  ngOnDestroy() { }
 
 }
