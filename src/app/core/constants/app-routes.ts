@@ -15,16 +15,14 @@ export const appRoutes: Routes = [
   },
   {
     path: 'error',
-    loadChildren: () => import('../../error-routes/error-routes.module')
-      .then(m => m.ErrorRoutesModule),
-    //  component: Error403Component
+    loadChildren: () => import('./error-routes').then((m) => m.errorRoutes)
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 
 provideRouter([{
-  path:'auth',
-  loadChildren:()=> import('./auth-routes').then((m)=> m.authRoutes),
-  canMatch:[LoginGuardService]
+  path: 'auth',
+  loadChildren: () => import('./auth-routes').then((m) => m.authRoutes),
+  canMatch: [LoginGuardService]
 }])
