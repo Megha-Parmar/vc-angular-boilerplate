@@ -2,19 +2,14 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { Subject, take } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Constants, MessageConstant, messageType } from 'src/app/core/constants/app.constants';
 import { CurrencyModel } from 'src/app/core/models/discount.model';
 import { DateFormatService } from 'src/app/core/services/date-format.service';
@@ -25,8 +20,8 @@ import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.compo
 @Component({
   selector: 'app-discount-add',
   standalone: true,
-  imports: [CommonModule, BreadcrumbComponent, MatInputModule, MatSelectModule, MatRadioModule, MatIconModule, MatCheckboxModule,
-    MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatAutocompleteModule, CKEditorModule, ReactiveFormsModule, TranslateModule, RouterModule],
+  imports: [CommonModule, BreadcrumbComponent, MatInputModule, MatRadioModule,MatDatepickerModule, MatNativeDateModule,
+           CKEditorModule, ReactiveFormsModule, TranslateModule, RouterModule],
   templateUrl: './discount-add.component.html',
   styleUrls: ['./discount-add.component.scss']
 })
@@ -157,12 +152,13 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
     this.discountForm.controls['min_amount'].setValue(null);
     if (event.value === 0) {
       this.discountForm.controls['min_quantity'].setValidators([Validators.required]);
+    }else{
+      this.discountForm.controls['min_quantity'].clearValidators();
     }
     this.discountForm.controls['min_amount'].updateValueAndValidity();
   }
 
   onSubmit(type: String): void {
-    console.log(type);
     if (this.discountForm.invalid) {
       return
     }
@@ -216,7 +212,7 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
   }
 
   addDiscount(): void {
-    this._discountService.addDiscount(this.discountForm.value).pipe(take(1)).subscribe({
+    this._discountService.addDiscount(this.discountForm.value).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: () => {
         if (this.discountForm.value.published === true) {
           this._toasterService.displaySnackBar(MessageConstant.successMessage.discountPublishSuccessfully, messageType.success)
@@ -233,7 +229,7 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
   }
 
   updateDiscount(): void {
-    this._discountService.updateDiscount(this.discountId, this.discountForm.value).pipe(take(1)).subscribe({
+    this._discountService.updateDiscount(this.discountId, this.discountForm.value).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: () => {
         if (this.discountForm.value.published === true) {
           this._toasterService.displaySnackBar(MessageConstant.successMessage.discountPublishSuccessfully, messageType.success)

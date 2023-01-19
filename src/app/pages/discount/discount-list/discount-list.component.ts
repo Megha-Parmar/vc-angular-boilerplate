@@ -23,7 +23,7 @@ import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.compo
   selector: 'app-discount-list',
   standalone: true,
   imports: [CommonModule,BreadcrumbComponent,ConfirmationComponent, MatTableModule, MatPaginatorModule,FormsModule, MatInputModule,
-    MatIconModule, TranslateModule, MatFormFieldModule, MatSortModule, TranslateModule],
+    MatIconModule, TranslateModule, MatFormFieldModule, MatSortModule],
   providers:[PopupOpenService],
   templateUrl: './discount-list.component.html',
   styleUrls: ['./discount-list.component.scss']
@@ -65,8 +65,7 @@ export class DiscountListComponent implements OnInit, OnDestroy {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         }
-      },
-      error: () => { },
+      }
     });
   }
 
