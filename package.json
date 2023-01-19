@@ -23,7 +23,6 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "ckeditor4-angular": "^3.2.1",
-    "mat-timepicker": "^5.1.7",
     "ngx-google-places-autocomplete": "^2.0.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.4.1",
