@@ -5,11 +5,11 @@
   <div class="custom-card event-list mt-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
       <strong *ngIf="dataSource">
-        {{ "staffListPage.totalDiscountText" | translate }} : {{ dataSource!.filteredData!.length }}
+        {{ "staffListPage.manageStaffText" | translate }} : {{ dataSource!.filteredData!.length }}
       </strong>
       <div class="form-field w-25">
         <mat-form-field appearance="outline">
-          <input matInput placeholder="Filter" [(ngModel)]="filterValue" (keyup)="applyFilter($event)"
+          <input matInput placeholder="Search" [(ngModel)]="filterValue" (keyup)="applyFilter($event)"
             (keydown)="$event.stopPropagation()" />
         </mat-form-field>
       </div>
@@ -17,6 +17,14 @@
     <!-- end -->
     <div class="table-wrapper" *ngIf="dataSource">
       <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef>
+            {{ "staffListPage.idText" | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row;index as i" [attr.data-label]="'STAFF_MANAGEMENT.id' | translate">
+            {{ this.paginator.pageIndex == 0 ? i+1 : i+1+ this.paginator.pageIndex * this.paginator.pageSize}}
+          </mat-cell>
+        </ng-container>
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "staffListPage.nameText" | translate }}
@@ -28,9 +36,9 @@
         <!-- end -->
         <ng-container matColumnDef="email">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "staffListPage.emailText" | translate }}
+            {{ "staffListPage.loginIDText" | translate }}
           </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.emailText' | translate" title="{{ row.email }}">
+          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.loginIDText' | translate" title="{{ row.email }}">
             <span class="text-truncate">{{ row.email }}</span>
           </mat-cell>
         </ng-container>
@@ -70,10 +78,10 @@
           </mat-header-cell>
           <mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'staffListPage.actionText' | translate">
             <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid)">
-              <mat-icon>edit</mat-icon>
+              <mat-icon>{{ "iconList.editIcon" | translate }}</mat-icon>
             </button>
             <button class="delete-button" mat-icon-button (click)="deleteStaff(row.uuid , row.name)">
-              <mat-icon>delete</mat-icon>
+              <mat-icon>{{ "iconList.deleteIcon" | translate }}</mat-icon>
             </button>
           </mat-cell>
         </ng-container>

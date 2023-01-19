@@ -50,4 +50,8 @@ export class EventService {
   updateEvent(id: string, formName: string, param: any): Observable<APIResponse<EventListModel>> {
     return this._httpClient.put<APIResponse<EventListModel>>(Constants.APIRoutes.updateEvent + id + '?event_uuid=' + id + '&form=' + formName, param);
   }
+
+  updateEventStatus(id: string, param: { is_paused: boolean }): Observable<APIResponse<EventListModel>> {
+    return this._httpClient.post<APIResponse<EventListModel>>(Constants.APIRoutes.updateEventStatus + id, param);
+  }
 }

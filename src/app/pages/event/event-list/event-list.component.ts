@@ -1,25 +1,39 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ConfirmationComponent } from 'src/app/core/components/confirmation/confirmation.component';
-import { Constants } from 'src/app/core/constants/app.constants';
+import { Constants, MessageConstant, messageType } from 'src/app/core/constants/app.constants';
 import { APIResponse } from 'src/app/core/models/general.model';
 import { EventService } from 'src/app/core/services/event.service';
+import { WindowService } from 'src/app/core/services/native-window.service';
 import { PopupOpenService } from 'src/app/core/services/popup-open.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
+import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.component';
+import { environment } from 'src/environments/environment';
 import { EventListModel } from './../../../core/models/event.model';
 
 @Component({
   selector: 'app-event-list',
+  standalone: true,
+  imports: [CommonModule, BreadcrumbComponent, ConfirmationComponent, MatFormFieldModule, MatTableModule, MatPaginatorModule,
+            MatSortModule, MatInputModule, MatIconModule, TranslateModule, FormsModule, MatSlideToggleModule],
+  providers:[PopupOpenService],
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit, OnDestroy {
 
-  displayedColumns = ['title', 'vertical_banner_image', 'is_published', 'created_at', 'action'];
+  displayedColumns = ['title', 'vertical_banner_image','created_at','is_published', 'status','action'];
   dataSource: MatTableDataSource<EventListModel>;
 
   pagination: number[] = Constants.paginationArray;
@@ -33,7 +47,8 @@ export class EventListComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _eventService: EventService,
     private _toasterService: ToasterService,
-    private _popUpService: PopupOpenService
+    private _popUpService: PopupOpenService,
+    private window: WindowService
   ) {
     this.dataSource = new MatTableDataSource();
   }
@@ -75,7 +90,7 @@ export class EventListComponent implements OnInit, OnDestroy {
       cancelText: 'Cancel',
       type: 'inactivity'
     }
-    const dialogRef = this._popUpService.openPopup(ConfirmationComponent, commonData, '90%', true , {
+    const dialogRef = this._popUpService.openPopup(ConfirmationComponent, commonData, '90%', true, {
       panelClass: 'custom-modal',
       maxWidth: '500px',
     });
@@ -86,6 +101,22 @@ export class EventListComponent implements OnInit, OnDestroy {
     });
   }
 
+  onPreview(id: string, title: string): void {
+    const titleName: string = title.replace(/[^a-zA-Z ]/g, '');
+    const nameInRoute: String = titleName.toLowerCase().split(' ').join('-');
+    this.window.getWindow().open(environment.contentful.FRONTEND_URL + 'event/' + nameInRoute + '/' + id, '_blank');
+  }
+
+  updateStatus(id: string, status: boolean): void {
+    const eventStatus = status === true ? false : true;
+    this._eventService.updateEventStatus(id, { is_paused: eventStatus }).subscribe({
+      next: () => {
+        this._toasterService.displaySnackBar(MessageConstant.successMessage.eventStatusUpdateSuccess, messageType.success);
+        this.getEventList();
+      }
+    })
+  }
+
   deleteEventRecord(id: string): void {
     this._eventService.deleteEvent(id).pipe(takeUntil(this.unSubscriber)).subscribe({
       next: (res) => {
@@ -93,7 +124,7 @@ export class EventListComponent implements OnInit, OnDestroy {
           this._toasterService.notifySnackbarMsg('eventListPage.eventDeleteSuccessfully', 'success');
         }
         this.getEventList()
-      }, error: () => { }
+      }
     })
 
   }

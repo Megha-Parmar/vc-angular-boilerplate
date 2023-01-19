@@ -1,8 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSelectChange } from '@angular/material/select';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTimepickerModule } from 'mat-timepicker';
 import { Subject, takeUntil } from 'rxjs';
 import { ConfirmationComponent } from 'src/app/core/components/confirmation/confirmation.component';
 import { Constants, MessageConstant, messageType } from 'src/app/core/constants/app.constants';
@@ -14,10 +23,14 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
 
 @Component({
   selector: 'app-event-availability',
+  standalone: true,
+  imports: [CommonModule, MatFormFieldModule,ConfirmationComponent, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, MatInputModule,
+    MatButtonModule, MatSelectModule, MatTimepickerModule, TranslateModule ],
+  providers:[PopupOpenService],
   templateUrl: './event-availability.component.html',
   styleUrls: ['./event-availability.component.scss']
 })
-export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
+export class EventAvailabilityComponent implements OnInit, OnChanges, OnDestroy {
 
   eventAvailabilityForm!: FormGroup;
   eventTypeOption = Constants.EventTypeOption;
@@ -48,7 +61,7 @@ export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
     private toaster: ToasterService,
     private tab: MatTabGroup,
     private eventService: EventService,
-    private router:Router,
+    private router: Router,
     private popUpService: PopupOpenService
   ) { }
 
@@ -156,7 +169,7 @@ export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
     return el.id || index;
   }
 
-  onSelectionChange(event: MatSelectChange ): void {
+  onSelectionChange(event: MatSelectChange): void {
     if (event.source.value === true) {
       this.eventAvailabilityForm.controls['event_date'].setValue(null);
       this.eventAvailabilityForm.controls['event_date'].disable();
@@ -175,7 +188,7 @@ export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
     }
   }
 
-  selectEventType(event: MatSelectChange ) {
+  selectEventType(event: MatSelectChange) {
     this.eventType = event.value;
     if (event.value === 0) {
       this.isEventSlotDisable = false;
@@ -385,7 +398,7 @@ export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
       cancelText: 'Cancel',
       type: 'inactivity'
     }
-    const dialogRef = this.popUpService.openPopup(ConfirmationComponent, commonData, '90%', true , {
+    const dialogRef = this.popUpService.openPopup(ConfirmationComponent, commonData, '90%', true, {
       panelClass: 'custom-modal',
       maxWidth: '500px',
     });
@@ -414,7 +427,7 @@ export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
     this.resetEventPrice();
   }
 
-  clearUpdateValidations(controlName: string):void {
+  clearUpdateValidations(controlName: string): void {
     this.eventAvailabilityForm.controls[controlName].clearValidators();
     this.eventAvailabilityForm.get(controlName)?.updateValueAndValidity();
   }
@@ -460,12 +473,12 @@ export class EventAvailabilityComponent implements OnInit,OnChanges, OnDestroy {
           if (publishedValue === false || (publishedValue === true && this.eventId)) {
             this.tab.selectedIndex = 2;
           } else {
-            if(this.eventId){
+            if (this.eventId) {
               this.toaster.displaySnackBar(
                 MessageConstant.successMessage.eventUpdatedSuccessfully,
                 messageType.success
               );
-            }else{
+            } else {
               this.toaster.displaySnackBar(
                 MessageConstant.successMessage.eventCreatedSuccessfully,
                 messageType.success

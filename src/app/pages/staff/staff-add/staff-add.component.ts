@@ -1,16 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { APIResponse } from 'src/app/core/models/general.model';
 import { StaffRoleModel } from 'src/app/core/models/staff.model';
 import { StaffService } from 'src/app/core/services/staff.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
+import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.component';
 import { environment } from 'src/environments/environment';
 import { StaffModel } from './../../../core/models/staff.model';
 
 @Component({
   selector: 'app-staff-add',
+  standalone: true,
+  imports: [CommonModule, BreadcrumbComponent, MatInputModule, MatSelectModule, FormsModule, TranslateModule],
   templateUrl: './staff-add.component.html',
   styleUrls: ['./staff-add.component.scss']
 })

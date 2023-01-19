@@ -51,6 +51,7 @@ export class Constants {
     getAmenitiesList: 'cap/amenities',
     createEvent: 'cap/event/create',
     updateEvent: 'cap/event/update/',
+    updateEventStatus: 'cap/event/pause/update/',
 
     checkFeaturedImage: 'cap/event/section/check',
 
@@ -178,6 +179,7 @@ export class MessageConstant {
     profilePictureRemovedSuccessfully: 'Your profile picture removed successfully.',
     damConfigsChangedSuccessfully: 'Your DAM details are updated successfully. Now, you will be logged out',
     eventCreatedSuccessfully: 'Event created successfully',
+    eventStatusUpdateSuccess: 'Event status updated successfully',
   };
 
   public static PatternValidation = {

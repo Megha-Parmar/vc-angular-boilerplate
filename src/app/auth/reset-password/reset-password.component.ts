@@ -1,6 +1,11 @@
+import { NgClass, NgIf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { Router, RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
@@ -10,6 +15,8 @@ import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-reset-password',
+  standalone: true,
+  imports: [NgIf, NgClass, FormsModule, TranslateModule, MatIconModule, MatInputModule, RouterModule, MatFormFieldModule],
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss'],
 })

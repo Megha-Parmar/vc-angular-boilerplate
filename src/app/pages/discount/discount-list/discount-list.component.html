@@ -5,11 +5,11 @@
   <div class="custom-card event-list mt-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
       <strong *ngIf="dataSource">
-        {{ "discountListPage.totalDiscountText" | translate }} : {{ dataSource!.filteredData!.length }}
+        {{ "discountListPage.manageDiscountText" | translate }} : {{ dataSource!.filteredData!.length }}
       </strong>
       <div class="form-field w-25">
         <mat-form-field appearance="outline">
-          <input matInput placeholder="Filter" [(ngModel)]="filterValue" (keyup)="applyFilter($event)"
+          <input matInput placeholder="Search" [(ngModel)]="filterValue" (keyup)="applyFilter($event)"
             (keydown)="$event.stopPropagation()" />
         </mat-form-field>
       </div>
@@ -68,13 +68,13 @@
           </mat-header-cell>
           <mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'discountListPage.actionText' | translate">
             <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid , 'view')" *ngIf="row.is_published">
-              <mat-icon>visibility</mat-icon>
+              <mat-icon>{{ "iconList.viewIcon" | translate }}</mat-icon>
             </button>
             <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid, 'edit')" *ngIf="!row.is_published">
-              <mat-icon>edit</mat-icon>
+              <mat-icon>{{ "iconList.editIcon" | translate }}</mat-icon>
             </button>
             <button class="delete-button" mat-icon-button (click)="deleteDiscount(row.uuid , row.discount_code)">
-              <mat-icon>delete</mat-icon>
+              <mat-icon>{{ "iconList.deleteIcon" | translate }}</mat-icon>
             </button>
           </mat-cell>
         </ng-container>

@@ -1,6 +1,10 @@
+import { NgClass, NgIf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { Router, RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
@@ -8,6 +12,8 @@ import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-forgot-password',
+  standalone: true,
+  imports: [NgIf, NgClass, FormsModule, TranslateModule, MatInputModule, RouterModule, MatFormFieldModule],
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
 })

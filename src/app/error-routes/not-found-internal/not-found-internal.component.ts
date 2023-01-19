@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-not-found-internal',
+  standalone: true,
   templateUrl: './not-found-internal.component.html',
   styleUrls: ['./not-found-internal.component.scss']
 })
