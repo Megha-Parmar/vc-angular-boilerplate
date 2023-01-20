@@ -13,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ConfirmationComponent } from 'src/app/core/components/confirmation/confirmation.component';
 import { Constants, MessageConstant, messageType } from 'src/app/core/constants/app.constants';
+import { EventListModel } from 'src/app/core/models/event.model';
 import { APIResponse } from 'src/app/core/models/general.model';
 import { EventService } from 'src/app/core/services/event.service';
 import { WindowService } from 'src/app/core/services/native-window.service';
@@ -20,20 +21,19 @@ import { PopupOpenService } from 'src/app/core/services/popup-open.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.component';
 import { environment } from 'src/environments/environment';
-import { EventListModel } from './../../../core/models/event.model';
 
 @Component({
   selector: 'app-event-list',
   standalone: true,
   imports: [CommonModule, BreadcrumbComponent, ConfirmationComponent, MatFormFieldModule, MatTableModule, MatPaginatorModule,
-            MatSortModule, MatInputModule, MatIconModule, TranslateModule, FormsModule, MatSlideToggleModule],
-  providers:[PopupOpenService],
+    MatSortModule, MatInputModule, MatIconModule, TranslateModule, FormsModule, MatSlideToggleModule],
+  providers: [PopupOpenService],
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit, OnDestroy {
 
-  displayedColumns = ['title', 'vertical_banner_image','created_at','is_published', 'status','action'];
+  displayedColumns = ['title', 'vertical_banner_image', 'created_at', 'is_published', 'status', 'action'];
   dataSource: MatTableDataSource<EventListModel>;
 
   pagination: number[] = Constants.paginationArray;

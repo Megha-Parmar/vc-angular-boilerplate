@@ -9,7 +9,7 @@ import { LoaderComponent } from './layouts/loader/loader.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports:[LoaderComponent, RouterOutlet ],
+  imports: [LoaderComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
