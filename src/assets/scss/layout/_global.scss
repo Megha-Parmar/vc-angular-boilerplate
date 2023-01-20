@@ -1,165 +1,256 @@
 @import "../components/responsive";
+
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: var(--primary-font);
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0;
-    color: var(--primary);
-    @include bp(sm-max) {
-        font-size: 14px;
-    }
+  margin: 0;
+  padding: 0;
+  font-family: var(--primary-font);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--primary);
+
+  @include bp(sm-max) {
+    font-size: 14px;
+  }
 }
+
 * {
-    font-family: var(--primary-font);
-    letter-spacing: 0;
+  font-family: var(--primary-font);
+  letter-spacing: 0;
 }
+
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
+
 * {
-    -webkit-overflow-scrolling: touch;
-    &:focus {
-        outline: none;
-    }
+  -webkit-overflow-scrolling: touch;
+
+  &:focus {
+    outline: none;
+  }
 }
+
 @media (prefers-reduced-motion: no-preference) {
-    :root {
-        scroll-behavior: smooth;
-    }
+  :root {
+    scroll-behavior: smooth;
+  }
 }
+
 .trans {
-    -webkit-transition: all 400ms;
-    transition: all 400ms;
+  -webkit-transition: all 400ms;
+  transition: all 400ms;
 }
+
 a,
 button {
-    cursor: pointer;
-    @extend .trans;
+  cursor: pointer;
+  @extend .trans;
 }
+
 a {
-    color: var(--primary);
-    text-decoration: none;
+  color: var(--primary);
+  text-decoration: none;
 }
+
 p {
-    margin-top: 0;
-    margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
+
 ul,
 ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
     list-style: none;
-    padding: 0;
-    margin: 0;
-    li {
-        list-style: none;
-    }
+  }
 }
+
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
+
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
+
 .font-primary {
-    color: var(--primary);
+  color: var(--primary);
 }
+
 .font-secondary {
-    color: var(--secondary);
+  color: var(--secondary);
 }
+
 .big-title {
-    font-size: 28px;
-    line-height: 30px;
-    font-weight: 600;
-    color: var(--primary);
-    @include bp(sm-max) {
-        font-size: 20px;
-    }
+  font-size: 28px;
+  line-height: 30px;
+  font-weight: 600;
+  color: var(--primary);
+
+  @include bp(sm-max) {
+    font-size: 20px;
+  }
 }
+
 .sub-title {
-    font-size: 16px;
-    line-height: 20px;
+  font-size: 16px;
+  line-height: 20px;
 }
+
 .border-bottom-hover {
-    &::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        height: 1px;
-        max-width: 0;
-        background: var(--primary);
-        @extend .trans;
-    }
-    @include bp(lg-min) {
-        &:hover {
-            &::after {
-                max-width: 100%;
-            }
-        }
-    }
-}
-.error-message {
+  &::after {
+    content: "";
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 1;
-    padding: 3px 10px;
-    background: var(--danger);
-    color: var(--white);
-    font-size: 13px;
-    line-height: 16px;
-    &::before {
-        content: "";
-        position: absolute;
-        top: -1px;
-        left: 5px;
-        border-left: 7px solid var(--danger);
-        border-top: 7px solid transparent;
-        border-right: 7px solid transparent;
-        transform: rotate(135deg);
+    right: 0;
+    margin: 0 auto;
+    height: 1px;
+    max-width: 0;
+    background: var(--primary);
+    @extend .trans;
+  }
+
+  @include bp(lg-min) {
+    &:hover {
+      &::after {
+        max-width: 100%;
+      }
     }
+  }
 }
+
+.error-message {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  padding: 3px 10px;
+  background: var(--danger);
+  color: var(--white);
+  font-size: 13px;
+  line-height: 16px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 5px;
+    border-left: 7px solid var(--danger);
+    border-top: 7px solid transparent;
+    border-right: 7px solid transparent;
+    transform: rotate(135deg);
+  }
+}
+
 .table-wrapper {
-    .mat-mdc-table {
-        .mat-mdc-row {
-            @include bp(md-min) {
-                &:nth-child(even) {
-                    background: var(--white-100);
-                }
-                &:hover {
-                    &:nth-child(even) {
-                        background: var(--white-100);
-                    }
-                }
-            }
+  .mat-mdc-table {
+    .mat-mdc-row {
+      @include bp(md-min) {
+        &:nth-child(even) {
+          background: var(--white-100);
         }
+
+        &:hover {
+          &:nth-child(even) {
+            background: var(--white-100);
+          }
+        }
+      }
     }
-    .mat-mdc-header-row {
-        min-height: 46px;
-    }
-    .mat-sort-header-arrow {
-        position: absolute;
-        right: -15px;
-        color: var(--white);
-    }
-    .mat-mdc-paginator-container {
-        justify-content: space-between;
-    }
+  }
+
+  .mat-mdc-header-row {
+    min-height: 46px;
+  }
+
+  .mat-sort-header-arrow {
+    position: absolute;
+    right: -15px;
+    color: var(--white);
+  }
+
+  .mat-mdc-paginator-container {
+    justify-content: space-between;
+  }
 }
+
+.static-error {
+  .mat-mdc-form-field-subscript-wrapper {
+    &::before {
+      display: none;
+    }
+  }
+
+  .mat-mdc-form-field-error-wrapper {
+    position: static;
+  }
+}
+
+.upload-image {
+  .img-box {
+    border: dashed 2px #bebebe;
+    border-radius: 6px;
+    overflow: hidden;
+    height: 220px;
+    width: 180px;
+
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .upload-btn {
+    width: 120px;
+    margin-top: 12px;
+    position: relative;
+    overflow: hidden;
+
+    input {
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      z-index: 2;
+      top: 0;
+      opacity: 0;
+      height: 100%;
+    }
+
+    span {
+      cursor: pointer;
+      display: block;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+    }
+  }
+
+  .note {
+    color: #919aa3;
+    margin: 8px 0 0;
+    font-size: 14px;
+  }
+}
+
 body {
-    .mat-drawer-inner-container {
-        overflow: hidden;
-    }
-    .mat-drawer-content {
-        overflow: inherit;
-    }
+  .mat-drawer-inner-container {
+    overflow: hidden;
+  }
+
+  .mat-drawer-content {
+    overflow: inherit;
+  }
 }
