@@ -1,8 +1,8 @@
 <app-breadcrumb pageURL="" pageSubText="" [icon]="'iconList.eventIcon' | translate" redirectionURL='/event/add'
   [pageText]="'eventListPage.pageText' | translate" [addButtonText]="'eventListPage.addText' | translate "></app-breadcrumb>
 
-<div class="page-wrapper custom-scrollbar">
-  <div class="custom-card event-list mt-4">
+<div class="page-wrapper">
+  <div class="custom-card event-list">
     <div class="d-flex align-items-center justify-content-between mb-3">
       <strong *ngIf="dataSource">
         {{ "eventListPage.totalEventText" | translate }} : {{ dataSource!.filteredData!.length }}
