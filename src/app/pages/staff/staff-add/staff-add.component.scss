@@ -1,1 +1,16 @@
-@import "../../../../assets/scss/components/forms";
+@import "../../../../assets/scss/components/custom-scrollbar";
+@import "../../../../assets/scss/components/button";
+@import "../../../../assets/scss/components/custom-card";
+
+.page-wrapper {
+  padding: 24px;
+  @include bp(sm-max) {
+    padding: 16px;
+  }
+  .custom-card {
+    padding: 16px;
+    @include bp(sm-max) {
+      padding: 8px;
+    }
+  }
+}
