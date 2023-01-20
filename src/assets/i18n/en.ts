@@ -270,5 +270,8 @@ export const locale = {
     homePage: {
       notLoggedIn: 'We couldn\'t log you in.',
     },
+    profilePage: {
+      pageText: 'Profile',
+    },
   },
 };
