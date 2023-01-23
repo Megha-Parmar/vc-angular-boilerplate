@@ -15,13 +15,13 @@
     </div>
   </div>
   <ng-container *ngIf="addButtonText">
-    <button mat-button class="secondary-btn" [routerLink]="[redirectionURL]">
+    <button mat-button class="primary-btn" [routerLink]="[redirectionURL]">
       {{addButtonText}}
     </button>
   </ng-container>
   <ng-container *ngIf="publishButtonText">
-    <button mat-button class="secondary-btn" *ngIf="!formNameControl.controls['published'].value"
-    [disabled]="formNameControl.invalid" (click)="onPublishClick()">
+    <button mat-button class="primary-btn" *ngIf="!formNameControl.controls['published'].value" [disabled]="formNameControl.invalid"
+      (click)="onPublishClick()">
       {{publishButtonText}}
     </button>
   </ng-container>

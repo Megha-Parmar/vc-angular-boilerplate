@@ -3,11 +3,11 @@
 
 <div class="page-wrapper">
   <div class="custom-card event-list">
-    <div class="d-flex align-items-center justify-content-between mb-3">
-      <strong *ngIf="dataSource">
+    <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+      <strong class="mb-1" *ngIf="dataSource">
         {{ "eventListPage.totalEventText" | translate }} : {{ dataSource!.filteredData!.length }}
       </strong>
-      <div class="form-field w-25">
+      <div class="form-field w-100 sm-w-auto mb-1">
         <mat-form-field appearance="outline">
           <input matInput placeholder="Search" [(ngModel)]="filterValue" (keyup)="applyFilter($event)"
             (keydown)="$event.stopPropagation()" />

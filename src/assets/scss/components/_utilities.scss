@@ -491,6 +491,9 @@
   .sm-w-100 {
     width: 100%;
   }
+  .sm-w-auto {
+    width: auto;
+  }
 }
 @media (min-width: 768px) {
   .d-md-inline-block {
@@ -660,6 +663,9 @@
   }
   .md-w-100 {
     width: 100%;
+  }
+  .md-w-auto {
+    width: auto;
   }
 }
 @media (min-width: 992px) {
@@ -831,6 +837,9 @@
   .lg-w-100 {
     width: 100%;
   }
+  .lg-w-auto {
+    width: auto;
+  }
 }
 @media (min-width: 1200px) {
   .d-xl-inline-block {
@@ -1001,6 +1010,9 @@
   .xl-w-100 {
     width: 100%;
   }
+  .xl-w-auto {
+    width: auto;
+  }
 }
 @media (min-width: 1400px) {
   .d-xxl-inline-block {
@@ -1170,5 +1182,8 @@
   }
   .xxl-w-100 {
     width: 100%;
+  }
+  .sm-w-auto {
+    width: auto;
   }
 }
