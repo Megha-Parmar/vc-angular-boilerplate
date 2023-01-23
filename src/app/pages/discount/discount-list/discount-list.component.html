@@ -1,9 +1,10 @@
 <app-breadcrumb pageURL="" pageSubText="" icon="discount" redirectionURL='/discount/add'
   [pageText]="'discountListPage.pageText' | translate" [addButtonText]="'discountListPage.addText' | translate "></app-breadcrumb>
 
+
 <div class="page-wrapper">
   <div class="custom-card event-list">
-    <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+    <div class="d-flex flex-wrap align-items-center justify-content-between mb-2">
       <strong class="mb-1" *ngIf="dataSource">
         {{ "discountListPage.manageDiscountText" | translate }} : {{ dataSource!.filteredData!.length }}
       </strong>
@@ -16,76 +17,80 @@
     </div>
     <!-- end -->
     <div class="table-wrapper" *ngIf="dataSource">
-      <mat-table [dataSource]="dataSource" matSort>
-        <ng-container matColumnDef="title">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "discountListPage.discountText" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountText' | translate">
-            {{ row.title }}
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <ng-container matColumnDef="discount_code">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "discountListPage.discountCodeText" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountCodeText' | translate">
-            {{ row.discount_code }}
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <ng-container matColumnDef="discount_value">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "discountListPage.discountAmountText" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountAmountText' | translate">
-            {{ row.discount_type === 'flat' ? '₹' : '' }}{{ row.discount_value }}{{ row.discount_type === 'percentage' ? '%' : '' }}
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <ng-container matColumnDef="is_published">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "discountListPage.couponPerUserText" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.couponPerUserText' | translate">
-            {{ row.max_avail_limit_per_user }}
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <ng-container matColumnDef="max_avail_limit_per_user">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "discountListPage.statusText" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.statusText' | translate">
-            {{ row.is_published === true ? "Published" : "Draft" }}
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <ng-container matColumnDef="action">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "discountListPage.actionText" | translate }}
-          </mat-header-cell>
-          <mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'discountListPage.actionText' | translate">
-            <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid , 'view')" *ngIf="row.is_published">
-              <mat-icon>{{ "iconList.viewIcon" | translate }}</mat-icon>
-            </button>
-            <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid, 'edit')" *ngIf="!row.is_published">
-              <mat-icon>{{ "iconList.editIcon" | translate }}</mat-icon>
-            </button>
-            <button class="delete-button" mat-icon-button (click)="deleteDiscount(row.uuid , row.discount_code)">
-              <mat-icon>{{ "iconList.deleteIcon" | translate }}</mat-icon>
-            </button>
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+      <div class="table-scroll">
+        <table class="w-100" mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "discountListPage.discountText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row; index as i;" [attr.data-label]="'discountListPage.discountText' | translate">
+              {{ row.title }}
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="discount_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "discountListPage.discountCodeText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountCodeText' | translate">
+              {{ row.discount_code }}
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="discount_value">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "discountListPage.discountAmountText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.discountAmountText' | translate">
+              {{ row.discount_type === 'flat' ? '₹' : '' }}{{ row.discount_value }}{{ row.discount_type === 'percentage' ? '%' : '' }}
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="is_published">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "discountListPage.couponPerUserText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.couponPerUserText' | translate">
+              {{ row.max_avail_limit_per_user }}
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="max_avail_limit_per_user">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "discountListPage.statusText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row" [attr.data-label]="'discountListPage.statusText' | translate">
+              {{ row.is_published === true ? "Published" : "Draft" }}
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "discountListPage.actionText" | translate }}
+            </th>
+            <td mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'discountListPage.actionText' | translate">
+              <div class="d-flex">
+                <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid , 'view')" *ngIf="row.is_published">
+                  <mat-icon>{{ "iconList.editIcon" | translate }}</mat-icon>
+                </button>
+                <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid , 'edit')" *ngIf="!row.is_published">
+                  <mat-icon>{{ "iconList.editIcon" | translate }}</mat-icon>
+                </button>
+                <button class="delete-button" mat-icon-button (click)="deleteDiscount(row.uuid , row.discount_code)">
+                  <mat-icon>{{ "iconList.deleteIcon" | translate }}</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+          <!-- end -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"> </tr>
 
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell custom-empty-class" colspan="4">No Data to Display</td>
-        </tr>
-      </mat-table>
+          <tr class="mat-mdc-row" *matNoDataRow>
+            <td class="mat-mdc-cell text-center" colspan="6">No Data to Display</td>
+          </tr>
+        </table>
+      </div>
       <mat-paginator [pageSizeOptions]="pagination"></mat-paginator>
     </div>
   </div>
