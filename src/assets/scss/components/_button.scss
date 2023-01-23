@@ -1,58 +1,60 @@
 @import "responsive";
+
 .primary-btn {
   background: var(--secondary);
   color: var(--white);
   font-size: 16px;
   font-weight: 500;
-  line-height: 44px;
   letter-spacing: 1px;
-  border: 0;
+  border: solid 1px transparent;
   border-radius: 4px;
   height: 44px;
   padding: 0 20px;
   -webkit-transition: all 400ms;
   transition: all 400ms;
+
   @include bp(sm-max) {
     height: 40px;
     line-height: 40px;
   }
+
   @include bp(xxs-max) {
     padding: 0 15px;
   }
+
   &:disabled {
     background: var(--secondary);
     color: var(--white);
     opacity: 0.5;
     cursor: not-allowed;
+
     &:hover {
       background: var(--secondary);
     }
   }
-  @include bp(lg-min) {
-    &:hover {
-      background: var(--primary);
-    }
-  }
-  &:focus {
-    background: var(--secondary);
-    color: var(--white);
+
+  &:focus,
+  &:hover {
+    background: transparent;
+    border-color: var(--secondary);
+    color: var(--secondary);
   }
 }
+
 .secondary-btn {
   @extend .primary-btn;
   background: var(--primary);
   color: var(--white);
   display: block;
   text-align: center;
-  @include bp(lg-min) {
-    &:hover {
-      background: var(--secondary);
-    }
+
+  &:focus,
+  &:hover {
+    background: transparent;
+    border-color: var(--primary);
+    color: var(--primary);
   }
-  &:focus {
-    background: var(--primary);
-    color: var(--white);
-  }
+
   &:disabled {
     background: var(--primary);
   }

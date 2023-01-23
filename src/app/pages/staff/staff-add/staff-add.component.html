@@ -52,7 +52,7 @@
             </div>
           </mat-form-field>
         </div>
-        <div class="p-8 d-flex flex-wrap w-100">
+        <div class="p-8 p-t-25 d-flex flex-wrap w-100">
           <button class="primary-btn mr-3" [disabled]="submitted" [ngClass]="{ 'disabled': submitted }">{{ ( submitted ?
             'staffAddEditViewPage.submitText' : 'staffAddEditViewPage.submitText' ) | translate}}</button>
           <button type="button" class="secondary-btn" (click)="redirectToStaffList()">{{ "staffAddEditViewPage.cancelText" | translate

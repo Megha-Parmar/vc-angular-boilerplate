@@ -1,9 +1,8 @@
 <app-breadcrumb pageURL="" pageSubText="" icon="supervisor_account" redirectionURL='/staff/add'
   [pageText]="'staffListPage.pageText' | translate" [addButtonText]="'staffListPage.addText' | translate "></app-breadcrumb>
-
 <div class="page-wrapper">
   <div class="custom-card event-list">
-    <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+    <div class="d-flex flex-wrap align-items-center justify-content-between mb-2">
       <strong class="mb-1" *ngIf="dataSource">
         {{ "staffListPage.manageStaffText" | translate }} : {{ dataSource!.filteredData!.length }}
       </strong>
@@ -16,83 +15,87 @@
     </div>
     <!-- end -->
     <div class="table-wrapper" *ngIf="dataSource">
-      <mat-table [dataSource]="dataSource" matSort>
-        <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef>
-            {{ "staffListPage.idText" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row;index as i" [attr.data-label]="'STAFF_MANAGEMENT.id' | translate">
-            {{ this.paginator.pageIndex == 0 ? i+1 : i+1+ this.paginator.pageIndex * this.paginator.pageSize}}
-          </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "staffListPage.nameText" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.nameText' | translate">
-            {{ row.name }}
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <ng-container matColumnDef="email">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "staffListPage.loginIDText" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.loginIDText' | translate" title="{{ row.email }}">
-            <span class="text-truncate">{{ row.email }}</span>
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <ng-container matColumnDef="role">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "staffListPage.roleText" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.roleText' | translate">
-            {{ row.role }}
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <ng-container matColumnDef="status">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "staffListPage.statusText" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.statusText' | translate">
-            <mat-slide-toggle (toggleChange)="updateStaffStatus(row.uuid, row.status)" [checked]="row.status">
-            </mat-slide-toggle>
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <!-- end -->
-        <ng-container matColumnDef="is_active">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "staffListPage.activationText" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.activationText' | translate">
-            {{ row.is_active === false ? 'In-Activated' : 'Activated' }}
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <ng-container matColumnDef="action">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "staffListPage.actionText" | translate }}
-          </mat-header-cell>
-          <mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'staffListPage.actionText' | translate">
-            <button class="edit-button" mat-icon-button (click)="editDiscount(row.uuid)">
-              <mat-icon>{{ "iconList.editIcon" | translate }}</mat-icon>
-            </button>
-            <button class="delete-button" mat-icon-button (click)="deleteStaff(row.uuid , row.name)">
-              <mat-icon>{{ "iconList.deleteIcon" | translate }}</mat-icon>
-            </button>
-          </mat-cell>
-        </ng-container>
-        <!-- end -->
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+      <div class="table-scroll">
+        <table class="w-100" mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "staffListPage.idText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row; index as i;" [attr.data-label]="'staffListPage.idText' | translate">
+              {{ this.paginator.pageIndex == 0 ? i+1 : i+1+ this.paginator.pageIndex * this.paginator.pageSize}}
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "staffListPage.nameText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.nameText' | translate">
+              {{ row.name }}
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "staffListPage.loginIDText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.loginIDText' | translate">
+              {{ row.email }}
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "staffListPage.roleText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.roleText' | translate">
+              {{ row.role }}
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "staffListPage.statusText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.statusText' | translate">
+              <mat-slide-toggle (toggleChange)="updateStaffStatus(row.uuid, row.status)" [checked]="row.status">
+              </mat-slide-toggle>
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="is_active">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "staffListPage.activationText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row" [attr.data-label]="'staffListPage.activationText' | translate">
+              {{ row.is_active === false ? 'In-Activated' : 'Activated' }}
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "staffListPage.actionText" | translate }}
+            </th>
+            <td mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'staffListPage.actionText' | translate">
+              <div class="d-flex">
+                <button class="edit-button" mat-icon-button (click)="editSatff(row.uuid)">
+                  <mat-icon>{{ "iconList.editIcon" | translate }}</mat-icon>
+                </button>
+                <button class="delete-button" mat-icon-button (click)="deleteStaff(row.uuid , row.name)">
+                  <mat-icon>{{ "iconList.deleteIcon" | translate }}</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+          <!-- end -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"> </tr>
 
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell custom-empty-class" colspan="4">No Data to Display</td>
-        </tr>
-      </mat-table>
+          <tr class="mat-mdc-row" *matNoDataRow>
+            <td class="mat-mdc-cell text-center" colspan="6">No Data to Display</td>
+          </tr>
+        </table>
+      </div>
       <mat-paginator [pageSizeOptions]="pagination"></mat-paginator>
     </div>
   </div>
