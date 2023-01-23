@@ -2,6 +2,12 @@
 @import "../../../../assets/scss/components/custom-card";
 @import "../../../../assets/scss/components/custom-scrollbar";
 
+.filter-box {
+  padding: 16px;
+  @include bp(sm-max) {
+    padding: 8px;
+  }
+}
 .event-list {
   padding: 24px;
   @include bp(sm-max) {
@@ -13,17 +19,5 @@
   padding: 24px;
   @include bp(sm-max) {
     padding: 16px;
-  }
-}
-
-.disabled-btn {
-  color: #1010104d !important;
-  cursor: no-drop;
-}
-
-.mat-row {
-  .mat-cell {
-    padding: 8px 8px 8px 8px;
-    font-weight: 500;
   }
 }
