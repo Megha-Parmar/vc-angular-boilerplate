@@ -31,9 +31,9 @@
           <!-- end -->
           <ng-container matColumnDef="vertical_banner_image">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              {{ "eventListPage.bannerText" | translate }}
+              {{ "eventListPage.photoText" | translate }}
             </th>
-            <td mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.bannerText' | translate">
+            <td mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.photoText' | translate">
               <ng-container *ngIf="row.vertical_banner_image">
                 <div class="table-img-wrapper d-flex">
                   <img height="50" width="100" alt="event-img" class="" [src]="row.vertical_banner_image" />
@@ -47,12 +47,48 @@
             </td>
           </ng-container>
           <!-- end -->
+          <ng-container matColumnDef="start_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "eventListPage.eventDateText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.eventDateText' | translate">
+              <p>{{ row.start_date | date: dateFormat }}
+                <span *ngIf="row.end_date!==row.start_date"><br> - <br>
+                  {{ row.end_date | date: dateFormat }}
+                </span>
+              </p>
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="event_type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "eventListPage.eventTypeText" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row; index as i;" [attr.data-label]="'eventListPage.eventTypeText' | translate">
+              {{ row.event_type === 'slotwise' ? ('eventListPage.slotsText' | translate) : row.event_type === 'fulltime' ?
+              ('eventListPage.fullDayText' | translate) : '-' }}
+            </td>
+          </ng-container>
+          <!-- end -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "eventListPage.bookingStatusText" | translate }}
+            </th>
+            <td class="center" mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.bookingStatusText' | translate">
+              <mat-slide-toggle (toggleChange)="updateStatus(row.uuid,row.is_paused)" [checked]="!row.is_paused"
+                [disabled]="!row.status && row.is_published"
+                [matTooltip]="row.is_paused ? ('eventListPage.pauseText' | translate) : 'eventListPage.allowText' | translate">
+              </mat-slide-toggle>
+            </td>
+          </ng-container>
+          <!-- end -->
           <ng-container matColumnDef="is_published">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               {{ "eventListPage.statusText" | translate }}
             </th>
             <td mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.statusText' | translate">
-              {{ row.is_published === false ? "Draft" : row.status===true?"Published":"Expired"}}
+              {{ row.is_published === false ? ('eventListPage.draftText' | translate) : row.status === true ? ('eventListPage.publishedText'
+              | translate) : ('eventListPage.expiredText' | translate) }}
             </td>
           </ng-container>
           <!-- end -->
@@ -65,14 +101,12 @@
             </td>
           </ng-container>
           <!-- end -->
-          <ng-container matColumnDef="status">
+          <ng-container matColumnDef="updated_at">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              {{ "eventListPage.active" | translate }}
+              {{ "eventListPage.modifiedDateText" | translate }}
             </th>
-            <td mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.active' | translate">
-              <mat-slide-toggle (toggleChange)="updateStatus(row.uuid,row.is_paused)" [checked]="!row.is_paused"
-                [disabled]="row.status===false">
-              </mat-slide-toggle>
+            <td mat-cell *matCellDef="let row" [attr.data-label]="'eventListPage.modifiedDateText' | translate">
+              {{ row.updated_at | date:'dd MMM YYYY' }}
             </td>
           </ng-container>
           <!-- end -->
