@@ -116,15 +116,16 @@
             </th>
             <td mat-cell class="action-button" *matCellDef="let row" [attr.data-label]="'eventListPage.actionText' | translate">
               <div class="d-flex">
-                <button class="edit-button" mat-icon-button (click)="editEvent(row.uuid )" [disabled]="!row.status"
-                  [ngClass]="{'disabled-btn': !row.status}">
+                <button class="secondary-text" mat-icon-button (click)="editEvent(row.uuid )" [disabled]="!row.status && row.is_published"
+                  [ngClass]="{'disable-btn':!row.status && row.is_published}">
                   <mat-icon>{{ "iconList.editIcon" | translate }}</mat-icon>
                 </button>
-                <button class="edit-button" mat-icon-button [disabled]="!row.status" [ngClass]="{'disabled-btn':!row.status}"
-                  title="Preview Event" (click)="onPreview(row.uuid, row.title)">
+                <button class="secondary-text" mat-icon-button [disabled]="!row.status && row.is_published"
+                  [ngClass]="{'disable-btn':!row.status && row.is_published}" [title]="'eventListPage.previewEventText' | translate"
+                  (click)="onPreview(row.uuid, row.title)">
                   <mat-icon>{{ "iconList.viewIcon" | translate }}</mat-icon>
                 </button>
-                <button class="delete-button" mat-icon-button [disabled]="!row.status || row.is_published"
+                <button class="secondary-text" mat-icon-button [disabled]="!row.status || row.is_published"
                   [ngClass]="{'disabled-btn':!row.status || row.is_published}" (click)="deleteEvent(row.uuid, row.title)">
                   <mat-icon>{{ "iconList.deleteIcon" | translate }}</mat-icon>
                 </button>

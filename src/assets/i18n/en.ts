@@ -104,6 +104,7 @@ export const locale = {
       createdDateText: 'Created On',
       modifiedDateText: 'Modified On	',
       actionText: 'Action',
+      previewEventText: 'Preview Event',
       totalEventText: 'Manage Events',
       addText: 'Add New',
       noDataDisplay: 'No Data to Display',
