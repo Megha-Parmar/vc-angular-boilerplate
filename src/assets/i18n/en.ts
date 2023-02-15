@@ -14,7 +14,8 @@ export const locale = {
       cancelIcon: 'cancel',
       viewIcon:'remove_red_eye',
       expandMoreIcon: 'expand_more',
-      clockIcon: 'access_time'
+      clockIcon: 'access_time',
+      visibilityIcon: 'visibility'
     },
     headerPage: {
       quoteRequestLoginRequired: 'You need to login for a quote request.',
@@ -191,10 +192,12 @@ export const locale = {
     },
     discountListPage: {
       pageText: 'Discounts',
-      discountText: 'Discounts',
-      discountCodeText: 'Discount Code',
-      discountAmountText: 'Amount',
-      couponPerUserText: 'Coupon Per User',
+      summaryText: 'Summary',
+      discountCodeText: 'Code',
+      discountTypeText: 'Type',
+      discountValueText: 'Discount Value',
+      redeemLimitText: 'Redeem Limit',
+      validPerUserText: 'Valid Per User',
       statusText: 'Status',
       actionText: 'Action',
       manageDiscountText: 'Manage Discounts',
