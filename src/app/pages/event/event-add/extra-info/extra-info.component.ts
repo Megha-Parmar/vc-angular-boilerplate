@@ -96,7 +96,7 @@ export class ExtraInfoComponent implements OnInit, OnDestroy {
         cancelText: 'Cancel',
         type: 'inactivity'
       }
-      const dialogRef = this.popupService.openPopup(ConfirmationComponent, commonData, '90%', true, {
+      const dialogRef = this.popupService.openPopup(commonData, '90%', true, {
         panelClass: 'custom-modal',
         maxWidth: '500px',
       });

@@ -1,20 +1,26 @@
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { CommonDialogboxComponent } from './../components/common-dialogbox/common-dialogbox.component';
+import { ImportDynamicComponentService } from './import-dynamic-component.service';
 
 @Injectable()
 export class PopupOpenService {
 
   constructor(
     private matDialog: MatDialog,
+    private importDynamicComponentService: ImportDynamicComponentService
   ) { }
 
-  openPopup(componentName: any, data: object = {}, width: string = '', closeOnNavigation = false, extraParams?: MatDialogConfig<any>) {
-    const dialogRef = this.matDialog.open(componentName, {
+  openPopup(data: object = {}, width: string = '', closeOnNavigation = false, extraParams?: MatDialogConfig<any>) {
+    const dialogRef: MatDialogRef<CommonDialogboxComponent, any> = this.matDialog.open(CommonDialogboxComponent, {
+      data: {
+        loadComponent: this.importDynamicComponentService.importDeleteStaffComp(),
+        compData: data ? data : '',
+      },
       autoFocus: false,
       disableClose: true,
       width: width ? width : '500px',
-      data: data ? data : '',
       closeOnNavigation: closeOnNavigation,
       scrollStrategy: new NoopScrollStrategy(),
       ...extraParams

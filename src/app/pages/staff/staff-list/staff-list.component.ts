@@ -26,12 +26,12 @@ import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.compo
   standalone: true,
   imports: [CommonModule, BreadcrumbComponent, ConfirmationComponent, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule,
     MatIconModule, MatSlideToggleModule, MatFormFieldModule, MatButtonModule, TranslateModule, FormsModule],
-  providers:[PopupOpenService],
+  providers: [PopupOpenService],
   templateUrl: './staff-list.component.html',
   styleUrls: ['./staff-list.component.scss']
 })
 export class StaffListComponent implements OnInit, OnDestroy {
-  displayedColumns = ['id','name', 'email', 'role', 'status', 'is_active', 'action'];
+  displayedColumns = ['id', 'name', 'email', 'role', 'status', 'is_active', 'action'];
   dataSource: MatTableDataSource<StaffListModel>;
 
   pagination: number[] = Constants.paginationArray;
@@ -128,11 +128,14 @@ export class StaffListComponent implements OnInit, OnDestroy {
       cancelText: 'Cancel',
       type: 'inactivity'
     };
-    const dialogRef = this._popupOpenService.openPopup(ConfirmationComponent, commonData, '90%', true, {
+    const dialogRef = this._popupOpenService.openPopup(commonData, '90%', true, {
       panelClass: 'custom-modal',
       maxWidth: '500px',
     });
     dialogRef.afterClosed().subscribe((isDeleted: boolean) => {
+      console.log(isDeleted);
+      console.log(id);
+
       if (isDeleted) {
         this.deleteStaffRecord(id);
       }
@@ -140,14 +143,15 @@ export class StaffListComponent implements OnInit, OnDestroy {
   }
 
   deleteStaffRecord(id: string): void {
-    this._staffService.deleteStaff(id).pipe(takeUntil(this.unSubscriber)).subscribe({
-      next: (res) => {
-        if (res && res.data) {
-          this._toasterService.notifySnackbarMsg('staffListPage.staffDeleteSuccessfully', 'success');
-        }
-        this.getStaffList()
-      }, error: () => { }
-    })
+    console.log(id);
+    // this._staffService.deleteStaff(id).pipe(takeUntil(this.unSubscriber)).subscribe({
+    //   next: (res) => {
+    //     if (res && res.data) {
+    //       this._toasterService.notifySnackbarMsg('staffListPage.staffDeleteSuccessfully', 'success');
+    //     }
+    //     this.getStaffList()
+    //   }, error: () => { }
+    // })
   }
 
   ngOnDestroy(): void {

@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
+import { CommonDialogboxService } from '../../services/common-dialogbox.service';
 
 export interface DialogData {
   title?: string;
@@ -16,20 +17,25 @@ export interface DialogData {
 @Component({
   selector: 'app-confirmation',
   standalone: true,
-  imports:[CommonModule, TranslateModule,MatDialogModule,MatIconModule],
+  imports: [CommonModule, TranslateModule, MatDialogModule, MatIconModule],
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.scss'],
 })
+
 export class ConfirmationComponent implements OnInit {
   notes = '';
+
+  @Input() compData: any;
+
   constructor(
-    private dailogRef: MatDialogRef<ConfirmationComponent>,
-    @Inject(MAT_DIALOG_DATA) public dailogData: DialogData
+    private commonDialogboxService: CommonDialogboxService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log(this.compData);
+  }
 
   onConfirmation(): void {
-    this.dailogRef.close(true);
+    this.commonDialogboxService.closeCommonDialogboxEvent.emit(true);
   }
 }

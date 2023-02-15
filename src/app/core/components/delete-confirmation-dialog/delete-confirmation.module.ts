@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { CommonMaterialModule } from 'src/app/core/common-material.module';
+// import { CommonMaterialModule } from 'src/app/core/common-material.module';
 
 import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog.component';
 
@@ -13,7 +13,7 @@ import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog.
     CommonModule,
     MatDialogModule,
     TranslateModule,
-    CommonMaterialModule
+    // CommonMaterialModule
   ],
   exports: [DeleteConfirmationDialogComponent]
 })

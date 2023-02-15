@@ -24,9 +24,9 @@ import { ToasterService } from 'src/app/core/services/toaster.service';
 @Component({
   selector: 'app-event-availability',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule,ConfirmationComponent, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, MatInputModule,
-    MatButtonModule, MatSelectModule, MatTimepickerModule, TranslateModule ],
-  providers:[PopupOpenService],
+  imports: [CommonModule, MatFormFieldModule, ConfirmationComponent, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, MatInputModule,
+    MatButtonModule, MatSelectModule, MatTimepickerModule, TranslateModule],
+  providers: [PopupOpenService],
   templateUrl: './event-availability.component.html',
   styleUrls: ['./event-availability.component.scss']
 })
@@ -398,7 +398,7 @@ export class EventAvailabilityComponent implements OnInit, OnChanges, OnDestroy 
       cancelText: 'Cancel',
       type: 'inactivity'
     }
-    const dialogRef = this.popUpService.openPopup(ConfirmationComponent, commonData, '90%', true, {
+    const dialogRef = this.popUpService.openPopup(commonData, '90%', true, {
       panelClass: 'custom-modal',
       maxWidth: '500px',
     });

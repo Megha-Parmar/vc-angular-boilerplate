@@ -98,7 +98,7 @@ export class DiscountListComponent implements OnInit, OnDestroy {
       cancelText: 'Cancel',
       type: 'inactivity'
     };
-    const dialogRef = this._popupOpenService.openPopup(ConfirmationComponent, commonData, '90%', true, {
+    const dialogRef = this._popupOpenService.openPopup(commonData, '90%', true, {
       panelClass: 'custom-modal',
       maxWidth: '500px',
     });

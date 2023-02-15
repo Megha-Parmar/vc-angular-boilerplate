@@ -232,7 +232,7 @@ export class EventAddComponent implements OnInit, OnDestroy {
       cancelText: 'Cancel',
       type: 'inactivity'
     };
-    const dialogRef = this.popupOpenService.openPopup(ConfirmationComponent, commonData, '90%', true, {
+    const dialogRef = this.popupOpenService.openPopup(commonData, '90%', true, {
       panelClass: 'custom-modal',
       maxWidth: '500px',
     });
@@ -254,7 +254,7 @@ export class EventAddComponent implements OnInit, OnDestroy {
       cancelText: 'Cancel',
       type: 'inactivity'
     };
-    const dialogRef = this.popupOpenService.openPopup(ConfirmationComponent, commonData, '90%', true, {
+    const dialogRef = this.popupOpenService.openPopup(commonData, '90%', true, {
       panelClass: 'custom-modal',
       maxWidth: '500px',
     });
