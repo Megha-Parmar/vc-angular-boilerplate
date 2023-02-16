@@ -12,7 +12,7 @@ export const locale = {
       closeIcon: 'close',
       imageIcon: 'image',
       cancelIcon: 'cancel',
-      viewIcon:'remove_red_eye',
+      viewIcon: 'remove_red_eye',
       expandMoreIcon: 'expand_more',
       clockIcon: 'access_time'
     },
@@ -83,7 +83,7 @@ export const locale = {
       mailSentText: 'Email sent to your registered email address, please check it and proceed for forgot password.',
     },
     dashboardPage: {
-      pageText: 'Welcome to dashboard !!!',
+      pageText: 'Dashboard',
     },
     eventListPage: {
       pageText: 'Events',
@@ -235,7 +235,7 @@ export const locale = {
       draftText: "Draft",
     },
     staffListPage: {
-      idText:'ID',
+      idText: 'ID',
       pageText: 'Staff',
       nameText: 'Name',
       loginIDText: 'Login ID',
@@ -273,5 +273,55 @@ export const locale = {
     profilePage: {
       pageText: 'Profile',
     },
+    APP_CONFIG: {
+      dashboard: "Dashboard",
+    },
+    DASHBOARD: {
+      totalMember: "Customers",
+      totalRevenue: "Revenue",
+      totalEvents: "Events",
+      totalBooking: "Bookings",
+      totalStaff: "Staffs",
+      activePOSMobile: "Admission Staffs",
+      activeAdmissionDevice: "POS  Staffs",
+      totalEarning: "Total Earnings",
+      visitorGraph: "Visitor Graph",
+      recentOrders: "Recent Orders",
+      revenuefromWeb: "Revenue from Web",
+      revenuefromPOS: "Revenue from POS",
+      noData: "No data"
+    },
+    ORDER_REPORT: {
+      orderId: "Order ID",
+      transactionId: "Transaction ID",
+      name: "Name",
+      email: "Email",
+      phoneNumber: "Phone Number",
+      amountPaid: "Amount Paid",
+      discountAmount: "Discount Amount",
+      paymentMethod: "Payment Method",
+      orderFrom: "Order From",
+      totalTickets: "Total Tickets",
+      orders: "Orders",
+      action: "Actions",
+      customer: "Customers"
+    },
+    EVENT_LIST: {
+      eventName: "Event Name",
+      eventType: "Event Type",
+      eventLocation: "Event Location",
+      date: "Event Date",
+      ticketSold: "Tickets Sold",
+      ticketEarnings: "Ticket Earnings",
+      onGoingEventList: 'Event List(On-Going)'
+    },
+    EVENT_DETAILS: {
+      todaysBooking: "Today\'s booking",
+      bokingId: "Booking Id",
+      customerName: "Customer Name",
+      email: "Email",
+      mobileNumber: "Mobile Number",
+      time_slot: " Time/Slot"
+    }
   },
 };

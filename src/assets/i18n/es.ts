@@ -6,9 +6,9 @@ export const locale = {
     },
     iconList: {
       eventIcon: 'event',
-      editIcon:'edit',
-      deleteIcon:'delete',
-      closeIcon:'close'
+      editIcon: 'edit',
+      deleteIcon: 'delete',
+      closeIcon: 'close'
     },
     headerPage: {
       quoteRequestLoginRequired: 'You need to login for a quote request.',
@@ -84,7 +84,7 @@ export const locale = {
       actionText: 'Action',
       totalEventText: 'Total Events',
       addText: 'Add New',
-      noDataDisplay:'No Data to Display',
+      noDataDisplay: 'No Data to Display',
       deleteConformationText: 'Do you really want to delete event'
     },
     eventAddEditPage: {
@@ -110,5 +110,52 @@ export const locale = {
     homePage: {
       notLoggedIn: 'We couldn\'t log you in.',
     },
+    DASHBOARD: {
+      totalMember: "Customers",
+      totalRevenue: "Revenue",
+      totalEvents: "Events",
+      totalBooking: "Bookings",
+      totalStaff: "Staffs",
+      activePOSMobile: "Admission Staffs",
+      activeAdmissionDevice: "POS  Staffs",
+      totalEarning: "Total Earnings",
+      visitorGraph: "Visitor Graph",
+      recentOrders: "Recent Orders",
+      revenuefromWeb: "Revenue from Web",
+      revenuefromPOS: "Revenue from POS",
+      noData: "No data"
+    },
+    ORDER_REPORT: {
+      orderId: "Order ID",
+      transactionId: "Transaction ID",
+      name: "Name",
+      email: "Email",
+      phoneNumber: "Phone Number",
+      amountPaid: "Amount Paid",
+      discountAmount: "Discount Amount",
+      paymentMethod: "Payment Method",
+      orderFrom: "Order From",
+      totalTickets: "Total Tickets",
+      orders: "Orders",
+      action: "Actions",
+      customer: "Customers"
+    },
+    EVENT_LIST: {
+      eventName: "Event Name",
+      eventType: "Event Type",
+      eventLocation: "Event Location",
+      date: "Event Date",
+      ticketSold: "Tickets Sold",
+      ticketEarnings: "Ticket Earnings",
+      onGoingEventList: 'Event List(On-Going)'
+    },
+    EVENT_DETAILS: {
+      todaysBooking: "Today\'s booking",
+      bokingId: "Booking Id",
+      customerName: "Customer Name",
+      email: "Email",
+      mobileNumber: "Mobile Number",
+      time_slot: " Time/Slot"
+    }
   },
 };

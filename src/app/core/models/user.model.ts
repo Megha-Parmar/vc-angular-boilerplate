@@ -10,7 +10,6 @@ export interface User {
   email: string;
 }
 
-
 export interface loginResponse {
   activation_code: string;
   client_uuid: string;

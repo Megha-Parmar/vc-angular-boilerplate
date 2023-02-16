@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
+import { Constants } from '../constants/app.constants';
 
 @Injectable({
   providedIn: 'root',
@@ -75,6 +77,13 @@ export class DateFormatService {
   convertTimetoDate(date: string): Date {
     const setTime = this.convertTimetoDateFormat(date);
     return setTime;
+  }
+
+  getTimeSlot(selectedDate: string | Date, timeSlot: string): any {
+    const date = moment(selectedDate).format(Constants.generalConstant.dateFormat);
+    const newDate = moment(`${date} ${timeSlot}`);
+    const time = moment(newDate).format('h:mm a')
+    return time;
   }
 
 }
