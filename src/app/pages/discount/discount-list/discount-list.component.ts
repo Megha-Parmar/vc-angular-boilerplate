@@ -29,7 +29,7 @@ import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.compo
   styleUrls: ['./discount-list.component.scss']
 })
 export class DiscountListComponent implements OnInit, OnDestroy {
-  displayedColumns = ['title', 'discount_code', 'discount_value', 'is_published', 'max_avail_limit_per_user', 'action'];
+  displayedColumns = ['title', 'discount_code', 'discount_type', 'discount_value', 'max_avail_limit_of_coupon_code', 'max_avail_limit_per_user', 'status', 'action'];
   dataSource: MatTableDataSource<DiscountListModel>;
 
   pagination: number[] = Constants.paginationArray;

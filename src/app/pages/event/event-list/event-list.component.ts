@@ -8,6 +8,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
@@ -26,17 +27,18 @@ import { environment } from 'src/environments/environment';
   selector: 'app-event-list',
   standalone: true,
   imports: [CommonModule, BreadcrumbComponent, ConfirmationComponent, MatFormFieldModule, MatTableModule, MatPaginatorModule,
-    MatSortModule, MatInputModule, MatIconModule, TranslateModule, FormsModule, MatSlideToggleModule],
+    MatSortModule, MatInputModule, MatIconModule, TranslateModule, FormsModule, MatSlideToggleModule, MatTooltipModule],
   providers: [PopupOpenService],
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit, OnDestroy {
 
-  displayedColumns = ['title', 'vertical_banner_image', 'created_at', 'is_published', 'status', 'action'];
+  displayedColumns = ['title', 'vertical_banner_image', 'start_date', 'event_type', 'is_published', 'status', 'created_at', 'updated_at', 'action'];
   dataSource: MatTableDataSource<EventListModel>;
 
   pagination: number[] = Constants.paginationArray;
+  dateFormat = Constants.generalConstant.dateFormat;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   filterValue: string = '';

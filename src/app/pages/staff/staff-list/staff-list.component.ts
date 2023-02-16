@@ -26,12 +26,12 @@ import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.compo
   standalone: true,
   imports: [CommonModule, BreadcrumbComponent, ConfirmationComponent, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule,
     MatIconModule, MatSlideToggleModule, MatFormFieldModule, MatButtonModule, TranslateModule, FormsModule],
-  providers:[PopupOpenService],
+  providers: [PopupOpenService],
   templateUrl: './staff-list.component.html',
   styleUrls: ['./staff-list.component.scss']
 })
 export class StaffListComponent implements OnInit, OnDestroy {
-  displayedColumns = ['id','name', 'email', 'role', 'status', 'is_active', 'action'];
+  displayedColumns = ['name', 'email', 'role', 'is_active', 'status', 'action'];
   dataSource: MatTableDataSource<StaffListModel>;
 
   pagination: number[] = Constants.paginationArray;

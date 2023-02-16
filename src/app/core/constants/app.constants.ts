@@ -102,6 +102,7 @@ export class Constants {
     maxLengthIPTCNumberPattern: 3,
     urlPattern: /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/,
     dateFormat: 'dd MMM YYYY',
+    timeFormat: 'hh:mm a'
   };
 
   public static EditorToolbarConfig = [
