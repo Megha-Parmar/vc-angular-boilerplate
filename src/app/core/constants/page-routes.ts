@@ -12,6 +12,11 @@ export const pageRoutes: Routes = [
         loadComponent: () => import('../../pages/dashboard/dashboard.component').then((m) => m.DashboardComponent)
       },
       {
+        path: 'sales-report',
+        title: 'Sales Report',
+        loadComponent: () => import('../../pages/reports/sales-report/sales-report.component').then((m) => m.SalesReportComponent)
+      },
+      {
         path: 'profile',
         title: 'Profile',
         loadComponent: () => import('../../pages/profile/profile.component').then((m) => m.ProfileComponent)

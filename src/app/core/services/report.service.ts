@@ -14,4 +14,8 @@ export class ReportService {
   getOrderList(page: number, pageSize: number): Observable<APIResponse<any>> {
     return this.http.get<APIResponse<any>>(Constants.APIRoutes.getOrder + 'list' + '?page=' + page + '&size=' + pageSize);
   }
+
+  getSalesTiles(): Observable<any> {
+    return this.http.get<any>(Constants.APIRoutes.getSalesTiles + '?q=last_90_days');
+  }
 }

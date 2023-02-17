@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonEventService } from 'src/app/core/services/common-event.service';
 import { environment } from 'src/environments/environment';
+import { navigation } from './sidebar.static';
 
 @Component({
   selector: 'app-sidebar',
@@ -20,6 +21,7 @@ import { environment } from 'src/environments/environment';
 export class SidebarComponent{
   readonly CDN_URL = environment.contentful.CDN_URL;
   @Input() isOpended = true;
+  sidenavData = navigation;
 
   constructor(
     private CommonEventService: CommonEventService

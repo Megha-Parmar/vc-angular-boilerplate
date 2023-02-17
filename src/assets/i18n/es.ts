@@ -6,6 +6,7 @@ export const locale = {
     },
     iconList: {
       eventIcon: 'event',
+      insertDriveFileIcon: 'insert_drive_file',
       editIcon: 'edit',
       deleteIcon: 'delete',
       closeIcon: 'close'
@@ -18,6 +19,8 @@ export const locale = {
       dashboardText: 'Dashboard',
       eventstext: 'Manage Events',
       discountstext: 'Manage Discounts',
+      stafftext: 'Manage Staff',
+      salesReportText: 'Sales Report',
     },
     generalError: {
       UnhandledException: 'Unhandled Exception',

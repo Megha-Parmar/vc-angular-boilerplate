@@ -1,4 +1,4 @@
-import { DatePipe, DecimalPipe, NgClass, NgIf } from '@angular/common';
+import { DatePipe, DecimalPipe, NgIf } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,14 +10,15 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import { take } from 'rxjs/operators';
 import { Constants } from 'src/app/core/constants/app.constants';
 import { ChartOptions } from 'src/app/core/models/chart.model';
-import { DashboardTilesModel, EventDetailsModel } from 'src/app/core/models/dashboard.model';
+import { DashboardTilesModel } from 'src/app/core/models/dashboard.model';
+import { EventDetailsModel } from 'src/app/core/models/event.model';
 import { BookingModel } from 'src/app/core/models/reports.model';
 import { DashboardService } from 'src/app/core/services/dashboard.service';
 import { DateFormatService } from 'src/app/core/services/date-format.service';
 import { ReportService } from 'src/app/core/services/report.service';
 import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.component';
 
-export const importsArray = [NgClass, NgIf, DecimalPipe, DatePipe, BreadcrumbComponent, TranslateModule, MatCardModule, MatIconModule, NgApexchartsModule, MatPaginatorModule, MatSortModule, MatTableModule]
+export const importsArray = [NgIf, DecimalPipe, DatePipe, BreadcrumbComponent, TranslateModule, MatCardModule, MatIconModule, NgApexchartsModule, MatPaginatorModule, MatSortModule, MatTableModule];
 
 @Component({
   selector: 'app-dashboard',
@@ -169,13 +170,12 @@ export class DashboardComponent implements OnInit {
   }
 
   getVisitorGraph(): void {
-    this.dashboardService.getVisitorGraph().subscribe({
-      next: (res) => {
+    this.dashboardService.getVisitorGraph()
+      .subscribe((res) => {
         const key = Object.keys(res.data);
         const obj = Object.values(res.data);
         this.setGraph(key, obj)
-      }
-    })
+      });
   }
 
   setGraph(key: any, obj: any): void {

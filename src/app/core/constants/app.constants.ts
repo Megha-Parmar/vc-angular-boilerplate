@@ -75,12 +75,13 @@ export class Constants {
     getArchivesList: 'archives/allArchives/',
     getCategoriesList: 'category/allCategories/',
 
-    // change the below apis for dashboard page
     getOrder: 'cap/report/order/',
     getDashboardTiles: 'cap/dashboard/tiles',
     dashboardTodaysBooking: 'cap/dashboard/today/bookings',
     eventOnGoingList: 'cap/dashboard/ongoing/events',
     visitorGraph: 'cap/dashboard/visitor/graph',
+
+    getSalesTiles: 'cap/sales/tiles',
   };
 
   public static generalSettingRoutes = {

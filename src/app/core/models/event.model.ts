@@ -35,6 +35,35 @@ export interface WorkTimeModel {
   workingTime: string;
 }
 
+export interface EventDetailsModel {
+  access_ticket_count: number;
+  amenitites: ListingModel[];
+  categories: ListingModel[];
+  business_hours: WorkTimeModel[];
+  city: string;
+  client_uuid: string;
+  description: string;
+  end_date: string;
+  event_price: EventPrice[];
+  event_tags: EventTagsModel[];
+  event_timeslots: EventSlot[];
+  featured_image: string;
+  horizontal_banner_image: string;
+  is_banner: boolean;
+  is_featured: boolean;
+  pincode: string;
+  start_date: string;
+  state: string;
+  status: any;
+  tagline: string;
+  terms_and_conditions: string;
+  title: string;
+  uuid: string;
+  venue: string;
+  vertical_banner_image: string;
+  is_published: boolean;
+}
+
 
 export class EventPrice {
   category_name: string | undefined;
