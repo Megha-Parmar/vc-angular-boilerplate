@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Constants } from '../constants/app.constants';
-import { APIResponse } from '../models/general.model';
-import { StaffListModel, StaffModel, StaffRoleModel } from '../models/staff.model';
+import { Constants } from 'src/app/core/constants/app.constants';
+import { APIResponse } from 'src/app/core/models/general.model';
+import { StaffListModel, StaffModel, StaffRoleModel } from 'src/app/core/models/staff.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class StaffService {
   }
 
   getRoleList(): Observable<APIResponse<StaffRoleModel[]>> {
-    return this._httpClient.get<APIResponse<StaffRoleModel[]>>(Constants.APIRoutes.getRoleList)
+    return this._httpClient.get<APIResponse<StaffRoleModel[]>>(Constants.APIRoutes.getRoleList);
   }
 
   getStaffById(id: string): Observable<APIResponse<StaffModel>> {

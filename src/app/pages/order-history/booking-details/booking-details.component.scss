@@ -1,0 +1,166 @@
+@import "../../../../assets/scss/components/responsive";
+@import "../../../../assets/scss/components/custom-table";
+@import "../../../../assets/scss/components/button";
+
+.table-wrapper {
+  &.mdc-card {
+    flex-direction: column;
+  }
+  .mat-row:nth-child(4n + 3) {
+    background: var(--white);
+  }
+}
+
+.collapse-row {
+  display: none;
+}
+
+app-user-list {
+  width: 90%;
+  margin-left: auto;
+}
+
+.card-wrapper {
+  margin: 30px;
+  .mat-card:not([class*="mat-elevation-z"]) {
+    margin: 0 13px 24px 0;
+    box-shadow: 0px 0px 11px #00000021;
+    min-width: 200px;
+    overflow: hidden;
+    text-align: center;
+    .card-count {
+      font-size: 35px;
+      line-height: 80px;
+    }
+    .card-title {
+      color: black !important;
+    }
+    // .icon-box {
+    //   width: 60px;
+    //   height: 60px;
+    //   position: absolute;
+    //   bottom: -10px;
+    //   right: -10px;
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   border-radius: 50%;
+    // }
+    &:first-child p {
+      color: #22c55e;
+    }
+    &:nth-child(4n) p {
+      color: #22c55e;
+    }
+    &:nth-child(4n + 1) p {
+      color: #3b82f6;
+    }
+    &:nth-child(4n + 2) p {
+      color: #ef4444;
+    }
+    &:nth-child(4n + 3) p {
+      color: #f59e0b;
+    }
+  }
+}
+
+.page-contain {
+  padding: 16px;
+  @include bp(md-max) {
+    padding: 8px;
+  }
+}
+
+.mdc-card {
+  flex-direction: row;
+}
+
+.font-14 {
+  letter-spacing: 0px;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+}
+
+.page-wrapper {
+  padding: 0 24px 30px;
+  height: 100%;
+  margin: 5px 0;
+}
+
+.page-contain {
+  padding: 16px;
+  @include bp(md-max) {
+    padding: 8px;
+  }
+}
+
+.page-title {
+  background: var(--primary-100);
+  padding: 8px 24px;
+  min-height: 55px;
+  @include bp(md-max) {
+    padding: 8px 16px;
+  }
+}
+
+.add-pointer {
+  cursor: pointer;
+}
+
+.font-16 {
+  letter-spacing: 0px;
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 500;
+}
+
+.font-14 {
+  letter-spacing: 0px;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+}
+
+.font-13 {
+  letter-spacing: 0px;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.font-12 {
+  letter-spacing: 0px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.custom-card-board {
+  padding: 16px;
+  box-shadow: 0px 0px 10px #dbdbdb;
+}
+
+button.mat-mdc-icon-button:hover mat-icon {
+  color: var(--secondary);
+}
+
+.custom-date-input {
+  flex: 1 1 25%;
+  box-sizing: border-box;
+  max-width: 25%;
+  height: 70px;
+}
+
+.date-submit-btn {
+  flex: 0 1 auto;
+  box-sizing: border-box;
+}

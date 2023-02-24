@@ -8,12 +8,11 @@
       </a>
     </div>
     <!-- end -->
-    <!-- <div class="custom-scrollbar bg-primary-100">
+    <div class="custom-scrollbar bg-primary-100">
       <ul class="sidebar-main-navigation-menu sidebar-menu" *ngFor="let item of sidenavData">
         <li class="menu-list">
           <p>{{item.title}}</p>
           <ul>
-            -- <mat-icon>{{item.icon}}</mat-icon> --
             <li *ngFor="let child of item.children">
               <a fxLayout="row" class="menu-item d-flex flex-row align-items-center" (click)="closeSidebar(drawer)" [routerLink]="child.url"
                 routerLinkActive="active" title="{{child.title}}">
@@ -24,8 +23,8 @@
           </ul>
         </li>
       </ul>
-    </div> -->
-    <div class="custom-scrollbar">
+    </div>
+    <!-- <div class="custom-scrollbar">
       <ul class="sidebar-menu">
         <li class="menu-list">
           <a class="menu-item d-flex align-items-center" (click)="closeSidebar(drawer)" [routerLink]="'/dashboard'"
@@ -63,7 +62,7 @@
           </a>
         </li>
       </ul>
-    </div>
+    </div> -->
   </mat-drawer>
 
   <div class="sidenav-button d-flex align-items-center justify-content-center position-absolute" (click)="drawer.toggle(); addLayout()">

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { Constants } from '../constants/app.constants';
-import { LoginModel, loginResponse } from '../models/user.model';
-import { EncryptDecryptService } from './encrypt-decrypt.service';
+import { Constants } from 'src/app/core/constants/app.constants';
+import { LoginModel, loginResponse } from 'src/app/core/models/user.model';
+import { EncryptDecryptService } from 'src/app/core/services/encrypt-decrypt.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {

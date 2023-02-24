@@ -74,7 +74,7 @@
     *ngIf="dashboardDetails && (dashboardDetails.total_offline_bookings || dashboardDetails.total_online_bookings)">
     <div class="w-33 p-8">
       <mat-card class="custom-card-board h-100 justify-content-around">
-        <p class="font-14 font-bold text-gray-200 m-b-12">
+        <p class="font-14 font-bold text-gray-200 mb-2">
           {{ "DASHBOARD.totalBooking" | translate }}
         </p>
         <!-- <p class="font-10 font-bold text-black-100 mb-20">Last 3 month update</p> -->
@@ -87,7 +87,7 @@
     </div>
     <div class="w-33 p-8">
       <mat-card class="custom-card-board h-100 justify-content-around">
-        <p class="font-14 font-bold text-gray-200 m-b-12">
+        <p class="font-14 font-bold text-gray-200 mb-2">
           {{ "DASHBOARD.totalEarning" | translate }}
         </p>
         <!-- <p class="font-12 font-bold text-black-100 mb-20">Last 3 month update</p> -->
@@ -100,7 +100,7 @@
     </div>
     <div class="w-33 p-8">
       <mat-card class="custom-card-board h-100 justify-content-around">
-        <p class="font-14 font-bold text-gray-200 m-b-12">
+        <p class="font-14 font-bold text-gray-200 mb-2">
           {{ "DASHBOARD.visitorGraph" | translate }}
         </p>
         <div id="chart" *ngIf="visitorChart">

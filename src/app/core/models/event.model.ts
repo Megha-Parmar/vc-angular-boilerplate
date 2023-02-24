@@ -26,7 +26,7 @@ export interface EventListModel {
   uuid: string;
   venue: string;
   vertical_banner_image: string;
-  is_published: boolean
+  is_published: boolean;
 }
 
 export interface WorkTimeModel {
@@ -64,7 +64,6 @@ export interface EventDetailsModel {
   is_published: boolean;
 }
 
-
 export class EventPrice {
   category_name: string | undefined;
   price: string | undefined;
@@ -74,11 +73,10 @@ export class EventPrice {
   currency: string | undefined;
 }
 
-
 export class EventSlot {
   event_type: number | string | undefined;
   start_time: any;
-  end_time: string | undefined;
+  end_time: any;
   capacity: number | undefined;
   timezone?: string;
   uuid?: string;
@@ -87,7 +85,6 @@ export class EventSlot {
   is_repeat?: boolean;
 }
 
-
 export interface EventTagsModel {
   name: string;
   is_deleted?: boolean;
@@ -95,7 +92,7 @@ export interface EventTagsModel {
 }
 
 export interface HomePageModel {
-  banner_event_exist: boolean
-  featured_event_exist: boolean
+  banner_event_exist: boolean;
+  featured_event_exist: boolean;
 }
 

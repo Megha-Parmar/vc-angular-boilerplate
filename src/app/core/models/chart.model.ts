@@ -5,7 +5,7 @@ import {
 
 export interface ChartOptions {
   series: ApexAxisChartSeries | ApexNonAxisChartSeries;
-  chart: ApexChart
+  chart: ApexChart;
   responsive: ApexResponsive[];
   labels: any;
 };
@@ -13,7 +13,7 @@ export interface ChartOptions {
 export interface GraphModel {
   graph_data: {
     string: number;
-  }
+  };
   total_bookings: number;
   total_revenue: number;
   total_tickets: number;

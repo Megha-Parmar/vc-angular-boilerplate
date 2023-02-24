@@ -1,6 +1,9 @@
 @import "responsive";
 
 .primary-btn {
+  &.mat-mdc-button:not(:disabled) {
+    color: var(--white);
+  }
   background: var(--secondary);
   color: var(--white);
   font-size: 16px;

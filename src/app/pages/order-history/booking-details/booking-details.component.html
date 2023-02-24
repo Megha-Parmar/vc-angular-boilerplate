@@ -1,0 +1,219 @@
+<ng-container *ngIf="eventDetails?.title">
+    <app-breadcrumb pageURL="/booking" [pageSubText]="'Event - ' + eventDetails.title + ' / Reports'" icon="manage_history"
+        redirectionURL='' [pageText]="'BOOKING_HISTORY.bookingHistory' | translate" addButtonText=""></app-breadcrumb>
+</ng-container>
+
+<div class="page-contain">
+    <div class="p-8">
+        <mat-card class="custom-card-board d-flex flex-row flex-wrap justify-content-center p-8">
+            <div class="p-8 custom-date-input">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>{{ "EVENT_REPORT.dateRange" | translate }}</mat-label>
+                    <mat-date-range-input required [rangePicker]="picker" [min]="eventDetails && eventDetails.start_date"
+                        [max]="eventDetails && eventDetails.end_date">
+                        <input matStartDate placeholder="{{ 'EVENT_REPORT.startDateText' | translate }}" [(ngModel)]="start_date" />
+                        <input matEndDate placeholder="{{ 'EVENT_REPORT.endDateText' | translate }}" [(ngModel)]="end_date" />
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                    <!-- <input matInput [matDatepicker]="picker" [min]="eventDetails && eventDetails.start_date"
+                        [max]="eventDetails && eventDetails.end_date" [(ngModel)]="selectedDate" (dateChange)="getUserDetails()" />
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker> -->
+                </mat-form-field>
+            </div>
+            <div class="p-8 custom-date-input">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>{{ "EVENT_REPORT.selectSlot" | translate }}</mat-label>
+                    <mat-select [(ngModel)]="selectedSlot" (selectionChange)="onChange($event)">
+                        <mat-option *ngFor="let slot of eventTimeSlots" value="{{slot.uuid}}">
+                            <span class="capitalize">{{ slot.event_type }}</span>
+                            <span>({{ slot.start_time }}-{{ slot.end_time }})</span>
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="p-8 date-submit-btn">
+                <button type="click" class="primary-btn next-button" (click)="getUserDetails()">
+                    {{ "EVENT_REPORT.searchText" | translate }}
+                </button>
+                <button type="click" class="primary-btn next-button ml-2" (click)="getEventTypeDetails()">
+                    {{ "EVENT_REPORT.resetText" | translate }}
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="d-flex flex-wrap" *ngIf="bookingReport !== 0 || revenueReport !== 0">
+        <div class="p-8 w-50">
+            <mat-card class="custom-card-board h-100 justify-content-around">
+                <p class="font-14 font-bold text-gray-200 mb-2" *ngIf="bookingReport !== 0">
+                    {{ "EVENT_REPORT.bookings" | translate }}
+                </p>
+                <div id="chart" *ngIf="bookingReport!==0">
+                    <apx-chart [series]="bookingChart.series" [chart]="bookingChart.chart" [labels]="bookingChart.labels"
+                        [responsive]="bookingChart.responsive"></apx-chart>
+                </div>
+            </mat-card>
+        </div>
+        <div class="p-8 w-50">
+            <mat-card class="custom-card-board h-100 justify-content-around">
+                <p class="font-14 font-bold text-gray-200 mb-2" *ngIf="revenueReport !== 0">
+                    {{ "EVENT_REPORT.revenue" | translate }}
+                </p>
+                <div id="chart" *ngIf="revenueReport!==0">
+                    <apx-chart [series]="revenueChart.series" [chart]="revenueChart.chart" [labels]="revenueChart.labels"
+                        [responsive]="revenueChart.responsive"></apx-chart>
+                </div>
+            </mat-card>
+        </div>
+        <!-- <div class="p-8" fxLayout="row wrap" fxFlex.lt-sm="100" fxFlex="50">
+            <mat-card class="custom-card-board h-100 justify-content-around">
+                <p class="font-14 font-bold text-gray-200 mb-2">
+                    {{ "EVENT_REPORT.system" | translate }}
+                </p>
+                <div id="chart">
+                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+                        [responsive]="chartOptions.responsive"></apx-chart>
+                </div>
+            </mat-card>
+        </div> -->
+    </div>
+    <div class="p-8">
+        <mat-card class="d-flex flex-column custom-card-board table-wrapper">
+            <div class="mb-2 d-flex flex-row justify-content-between align-items-center">
+                <p class="font-bold text-black-200 font-14 m-b-4 p-r-16">
+                    {{ 'EVENT_REPORT.bookingListText' | translate }}
+                </p>
+                <button class="d-flex align-items-center primary-btn border-radius-6 trans ml-15" (click)="downloadCsv()">
+                    {{ 'EVENT_REPORT.exportCSVText' | translate }} <mat-icon class="export-csv-icon">save_alt</mat-icon>
+                </button>
+            </div>
+            <div class="table-scroll">
+                <table mat-table [dataSource]="dataSource" class="w-100" multiTemplateDataRows matSort>
+                    <ng-container matColumnDef="booking_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ "EVENT_REPORT.bookingID" | translate }}
+                        </th>
+                        <td mat-cell *matCellDef="let row" [attr.data-label]="'BOOKING_HISTORY.userName' | translate">
+                            {{row.booking_id}}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ "BOOKING_HISTORY.userName" | translate }}
+                        </th>
+                        <td mat-cell *matCellDef="let row" [attr.data-label]="'BOOKING_HISTORY.userName' | translate">
+                            {{ row.name}}
+                            <br *ngIf="row.email">
+                            {{ row.email}}
+                            <br *ngIf="row.phone_number">
+                            {{ row.phone_number? '+'+ row.phone_number:''}}
+                        </td>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ "BOOKING_HISTORY.email" | translate }}
+                        </th>
+                        <td mat-cell *matCellDef="let row" [attr.data-label]="'BOOKING_HISTORY.userName' | translate">
+                            {{ row.email? row.email:'-'}}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="phone_number">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ "BOOKING_HISTORY.phoneNumber" | translate }}
+                        </th>
+                        <td mat-cell *matCellDef="let row" [attr.data-label]="'BOOKING_HISTORY.phoneNumber' | translate">
+                            {{ row.phone_number? '+'+ row.phone_number:'-'}}
+                        </td>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="total_ticket">
+                        <th class="center" mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <!-- {{ "BOOKING_HISTORY.amountPaid" | translate }} -->
+                            {{ "EVENT_REPORT.totalTicket" | translate }}
+                        </th>
+                        <td class="center" mat-cell *matCellDef="let row" [attr.data-label]="'DISCOUNTS_MANAGEMENT.amountPaid' | translate">
+                            {{row.total_ticket}}
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="total_checking">
+                        <th class="center" mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <!-- {{ "BOOKING_HISTORY.amountPaid" | translate }} -->
+                            {{ "EVENT_REPORT.totalChecking" | translate }}
+                        </th>
+                        <td class="center" mat-cell *matCellDef="let row" [attr.data-label]="'DISCOUNTS_MANAGEMENT.amountPaid' | translate">
+                            {{row.total_checkin}}
+                        </td>
+                    </ng-container>
+
+
+                    <!-- Status Column -->
+                    <ng-container matColumnDef="paid_amount">
+                        <th class="right-align" mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <!-- {{ "BOOKING_HISTORY.amountPaid" | translate }} -->
+                            {{ "EVENT_REPORT.paidAmount" | translate }}
+                        </th>
+                        <td class="right-align" mat-cell *matCellDef="let row"
+                            [attr.data-label]="'DISCOUNTS_MANAGEMENT.amountPaid' | translate">
+                            <font class="r-icon">₹</font>{{row.total_amount}}
+                        </td>
+                    </ng-container>
+
+                    <!-- Role Column -->
+                    <ng-container matColumnDef="purchased_on">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ "BOOKING_HISTORY.purchasedDate" | translate }}
+                        </th>
+                        <td mat-cell *matCellDef="let row" [attr.data-label]="'BOOKING_HISTORY.purchasedDate' | translate">
+                            {{ row.purchased_on | date:dateFormat }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="booking_date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ "BOOKING_HISTORY.bookingDate" | translate }}
+                        </th>
+                        <td mat-cell *matCellDef="let row" [attr.data-label]="'BOOKING_HISTORY.bookingDate' | translate">
+                            <span class="capitalize">{{ row.booking_date | date:dateFormat }}</span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="expand">
+                        <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button aria-label="expand row"
+                                (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+                                <mat-icon *ngIf="expandedElement !== element">add_circle_outline</mat-icon>
+                                <mat-icon *ngIf="expandedElement === element">remove_circle_outline</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="expandedDetail">
+                        <td class="p-0 p-y-8" mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length"
+                            [@detailExpand]="element == expandedElement ?  'expanded':'collapsed'">
+                            <!-- <app-user-list [data]="element?.ticket_data"></app-user-list> -->
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let element; columns: displayedColumns"
+                        (click)="expandedElement = expandedElement === element ? null : element">
+                    </tr>
+                    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']"
+                        [ngClass]="expandedElement !== row ? 'collapse-row' : 'expand-row' "></tr>
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell no-data" colspan="9">{{ "DASHBOARD.noData" | translate }}</td>
+                    </tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="pagination" [length]="totalSize" [pageIndex]="page-1"
+                    (page)="onPaginateChange($event)"></mat-paginator>
+            </div>
+        </mat-card>
+    </div>
+</div>

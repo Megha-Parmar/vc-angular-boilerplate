@@ -34,3 +34,17 @@ export interface CurrentUser {
   userName: string;
   email: string;
 }
+
+export interface UserListModel {
+  email: string;
+  name: string;
+  phone_number: string;
+  total_ticket: number;
+}
+
+export interface BookingUserModel {
+  items: UserListModel[];
+  page: number;
+  size: number;
+  total: number;
+}

@@ -1,4 +1,3 @@
-
 export interface ListingModel {
   checked: boolean;
   icon: string;
@@ -6,5 +5,5 @@ export interface ListingModel {
   name: string;
   status: boolean;
   uuid: string;
-  is_allowed?: boolean
+  is_allowed?: boolean;
 }

@@ -4,16 +4,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { CommonEventService } from '../core/services/common-event.service';
-import { WindowService } from '../core/services/native-window.service';
-import { FooterComponent } from '../layouts/footer/footer.component';
-import { HeaderComponent } from '../layouts/header/header.component';
-import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
+import { CommonEventService } from 'src/app/core/services/common-event.service';
+import { WindowService } from 'src/app/core/services/native-window.service';
+import { FooterComponent } from 'src/app/layouts/footer/footer.component';
+import { HeaderComponent } from 'src/app/layouts/header/header.component';
+import { SidebarComponent } from 'src/app/layouts/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-pages',
   standalone: true,
-  imports: [CommonModule,SidebarComponent, HeaderComponent,FooterComponent, RouterModule, MatDialogModule],
+  imports: [CommonModule, SidebarComponent, HeaderComponent, FooterComponent, RouterModule, MatDialogModule],
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.scss']
 })

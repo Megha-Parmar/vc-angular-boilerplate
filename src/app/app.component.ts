@@ -1,11 +1,12 @@
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Constants } from './core/constants/app.constants';
-import { EncryptDecryptService } from './core/services/encrypt-decrypt.service';
-import { LanguageService } from './core/services/language.service';
-import { LoaderService } from './core/services/loader.service';
-import { LoaderComponent } from './layouts/loader/loader.component';
+import { Constants } from 'src/app/core/constants/app.constants';
+import { EncryptDecryptService } from 'src/app/core/services/encrypt-decrypt.service';
+import { LanguageService } from 'src/app/core/services/language.service';
+import { LoaderService } from 'src/app/core/services/loader.service';
+import { LoaderComponent } from 'src/app/layouts/loader/loader.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -38,8 +39,6 @@ export class AppComponent implements OnInit, AfterContentInit {
   }
 
   /**
-   *
-   *
    * @param {string} lang
    * @memberof AppComponent
    */
