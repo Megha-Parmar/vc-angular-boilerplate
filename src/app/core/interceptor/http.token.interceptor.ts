@@ -1,12 +1,10 @@
-import {
-  HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
-} from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { finalize, Observable } from 'rxjs';
 import { Constants } from 'src/app/core/constants/app.constants';
 import { EncryptDecryptService } from 'src/app/core/services/encrypt-decrypt.service';
+import { LoaderService } from 'src/app/core/services/loader.service';
 import { environment } from 'src/environments/environment';
-import { LoaderService } from '../services/loader.service';
 
 @Injectable()
 export class HttpTokenInterceptor implements HttpInterceptor {
@@ -31,9 +29,9 @@ export class HttpTokenInterceptor implements HttpInterceptor {
     });
     this.loaderService.showHideLoader(true);
     return next.handle(req).pipe(
-      finalize(()=>{
+      finalize(() => {
         this.loaderService.showHideLoader(false);
       })
-    )
+    );
   }
 }

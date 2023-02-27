@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Constants } from 'src/app/core/constants/app.constants';
+import { EncryptDecryptService } from 'src/app/core/services/encrypt-decrypt.service';
+import { TranslateLoaderService } from 'src/app/core/services/translate-loader.service';
+import { locale as englishLocale } from 'src/assets/i18n/en';
+import { locale as spanishLocale } from 'src/assets/i18n/es';
 import { environment } from 'src/environments/environment';
-import { locale as englishLocale } from '../../../assets/i18n/en';
-import { locale as spanishLocale } from '../../../assets/i18n/es';
-import { Constants } from '../constants/app.constants';
-import { EncryptDecryptService } from './encrypt-decrypt.service';
-import { TranslateLoaderService } from './translate-loader.service';
 
 @Injectable({
   providedIn: 'root',

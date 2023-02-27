@@ -2,83 +2,93 @@
 @import "responsive";
 
 .sidebar-wrapper {
-    overflow: visible;
-    z-index: 99;
-    @include bp(sm-max) {
-        position: absolute;
+  overflow: visible;
+  z-index: 99;
+  @include bp(sm-max) {
+    position: absolute;
+  }
+  .sidebar-nav {
+    width: 250px;
+    height: 100vh;
+    border-right: 0;
+    background: var(--primary);
+    .mat-drawer-inner-container {
+      overflow: hidden;
     }
-    .sidebar-nav {
-        width: 250px;
-        height: 100vh;
-        border-right: 0;
-        background: var(--primary);
-        .mat-drawer-inner-container {
-            overflow: hidden;
+    .sidebar-top {
+      padding: 16px;
+      .mobile-close {
+        display: none;
+        @include bp(sm-max) {
+          display: flex;
+          color: var(--white);
+          top: 0;
+          left: auto;
+          right: 0;
+          width: 36px;
+          height: 36px;
+          background: var(--secondary);
         }
-        .sidebar-top {
-            padding: 16px;
-            .mobile-close {
-                display: none;
-                @include bp(sm-max) {
-                    display: flex;
-                    color: var(--white);
-                    top: 0;
-                    left: auto;
-                    right: 0;
-                    width: 36px;
-                    height: 36px;
-                    background: var(--secondary);
-                }
-            }
-            .logo {
-                width: auto;
-                height: auto;
-                max-width: 90px;
-            }
-        }
-        .custom-scrollbar {
-            padding-bottom: 15px;
-            height: calc(100% - 115px);
-            margin-right: 1px;
-        }
-        .sidebar-menu {
-            .menu-list {
-                position: relative;
-                .menu-item {
-                    font-size: 16px;
-                    color: var(--white);
-                    padding: 15px 20px;
-                    span {
-                        margin-left: 5px;
-                    }
-                    &:hover,
-                    &.active {
-                        background: var(--secondary);
-                    }
-                }
-                & > ul {
-                    background: var(--primary-100);
-                    .menu-list {
-                        .menu-item {
-                            padding-left: 50px;
-                            font-size: 14px;
-                        }
-                    }
-                }
-            }
-        }
+      }
+      .logo {
+        width: auto;
+        height: auto;
+        max-width: 90px;
+      }
     }
+    .custom-scrollbar {
+      padding-bottom: 15px;
+      height: calc(100% - 115px);
+      margin-right: 1px;
+    }
+    .sidebar-main-navigation-menu li {
+      p {
+        font-size: 16px;
+        line-height: 25px;
+        padding: 15px 20px;
+        color: rgba($color: #fff, $alpha: 1) !important;
+      }
+    }
+    .sidebar-menu {
+      .menu-list {
+        position: relative;
+        .menu-item {
+          font-size: 14px;
+          color: rgba($color: #fff, $alpha: 0.8) !important;
+          padding: 15px 20px;
+
+          span {
+            margin-left: 15px;
+          }
+
+          &:hover,
+          &.active {
+            background: var(--secondary);
+          }
+        }
+        & > ul {
+          background: var(--primary-100);
+          .menu-list {
+            .menu-item {
+              padding-left: 50px;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 .sidenav-button {
-    top: 15px;
-    left: 20px;
-    background: var(--secondary);
-    color: var(--white);
-    width: 40px;
-    height: 40px;
-    border-radius: 4px;
-    cursor: pointer;
-    @include bp(sm-max) {
-        position: fixed;
-    }
+  top: 15px;
+  left: 20px;
+  background: var(--secondary);
+  color: var(--white);
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  @include bp(sm-max) {
+    position: fixed;
+  }
 }

@@ -1,7 +1,97 @@
 @import "../../../assets/scss/components/custom-card";
+@import "../../../assets/scss/components/custom-table";
 
 .page-wrapper {
   padding: 0 24px 30px;
   height: 100%;
   margin: 5px 0;
+}
+
+.page-contain {
+  padding: 16px;
+  @include bp(md-max) {
+    padding: 8px;
+  }
+}
+
+.page-title {
+  background: var(--primary-100);
+  padding: 8px 24px;
+  min-height: 55px;
+  @include bp(md-max) {
+    padding: 8px 16px;
+  }
+}
+
+.add-pointer {
+  cursor: pointer;
+}
+
+.font-16 {
+  letter-spacing: 0px;
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 500;
+}
+
+.font-14 {
+  letter-spacing: 0px;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+}
+
+.font-13 {
+  letter-spacing: 0px;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.font-12 {
+  letter-spacing: 0px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.statistics {
+  > div {
+    width: 20%;
+    .count {
+      font-size: 35px;
+      line-height: 38px;
+    }
+    .title-txt {
+      color: #000000;
+    }
+    &:first-child .count {
+      color: #22c55e;
+    }
+    &:nth-child(4n) .count {
+      color: #22c55e;
+    }
+    &:nth-child(4n + 1) .count {
+      color: #3b82f6;
+    }
+    &:nth-child(4n + 2) .count {
+      color: #ef4444;
+    }
+    &:nth-child(4n + 3) .count {
+      color: #f59e0b;
+    }
+  }
+}
+
+.custom-card-board {
+  padding: 16px;
+  box-shadow: 0px 0px 10px #dbdbdb;
 }

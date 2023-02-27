@@ -12,6 +12,11 @@ export const pageRoutes: Routes = [
         loadComponent: () => import('../../pages/dashboard/dashboard.component').then((m) => m.DashboardComponent)
       },
       {
+        path: 'sales-report',
+        title: 'Sales Report',
+        loadComponent: () => import('../../pages/reports/sales-report/sales-report.component').then((m) => m.SalesReportComponent)
+      },
+      {
         path: 'profile',
         title: 'Profile',
         loadComponent: () => import('../../pages/profile/profile.component').then((m) => m.ProfileComponent)
@@ -52,6 +57,17 @@ export const pageRoutes: Routes = [
         path: 'discount/:id/view',
         title: 'View Discount',
         loadComponent: () => import('../../pages/discount/discount-add/discount-add.component').then((m) => m.DiscountAddComponent)
+      },
+      { path: 'booking', redirectTo: '/booking/list', pathMatch: 'full', },
+      {
+        path: 'booking/list',
+        title: 'View Booking list',
+        loadComponent: () => import('../../pages/order-history/booking-history/booking-history.component').then((m) => m.BookingHistoryComponent)
+      },
+      {
+        path: 'booking/detail/:id',
+        title: 'View Discount',
+        loadComponent: () => import('../../pages/order-history/booking-details/booking-details.component').then((m) => m.BookingDetailsComponent)
       },
       { path: 'staff', redirectTo: '/staff/list', pathMatch: 'full', },
       {

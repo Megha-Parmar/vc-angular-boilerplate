@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthenticationService } from '../services/authentication.service';
-import { LoaderService } from '../services/loader.service';
-import { ToasterService } from '../services/toaster.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { LoaderService } from 'src/app/core/services/loader.service';
+import { ToasterService } from 'src/app/core/services/toaster.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -62,7 +62,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       console.log(errorMsg);
       throw new Error(errorMsg);
     })
-    )
+    );
   }
 
   userNotFound(msg: string) {

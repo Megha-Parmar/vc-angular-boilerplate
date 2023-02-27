@@ -74,6 +74,20 @@ export class Constants {
     getSingleArchives: 'archives/getSingleArchives/',
     getArchivesList: 'archives/allArchives/',
     getCategoriesList: 'category/allCategories/',
+
+    getOrder: 'cap/report/order/',
+    getDashboardTiles: 'cap/dashboard/tiles',
+    dashboardTodaysBooking: 'cap/dashboard/today/bookings',
+    eventOnGoingList: 'cap/dashboard/ongoing/events',
+    visitorGraph: 'cap/dashboard/visitor/graph',
+
+    getSalesTiles: 'cap/sales/tiles',
+
+    getBookingHistory: 'cap/report/event/booking/list',
+    getUserHistory: 'cap/report/user/booking/list/',
+    userBookingReport: 'cap/report/user/booking/graph/',
+    eventReportTiles: 'cap/report/user/booking/tiles/',
+    userRevenueReport: 'cap/report/user/revenue/graph/',
   };
 
   public static generalSettingRoutes = {
@@ -124,6 +138,116 @@ export class Constants {
   ];
 
   public static paginationArray = [10, 25, 50, 100];
+
+  public static BookingChartConfig = {
+    series: [44, 23],
+    chart: {
+      width: 350,
+      type: "pie"
+    },
+    labels: ["POS", "WEB"],
+    colors: ['#3E85F4', '#32A953'],
+    dataLabels: {
+      enabled: true
+    },
+    legend: {
+      formatter: function (val: string, opts: { w: { globals: { series: { [x: string]: string; }; }; }; seriesIndex: string | number; }) {
+        return val + " - " + opts.w.globals.series[opts.seriesIndex];
+      },
+      colors: ['#3E85F4', '#32A953', '#A8E2CB', '#E0985A', '#2D95F0']
+    },
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: "bottom"
+          }
+        }
+      }
+    ]
+  }
+
+  public static EarningChartConfig = {
+    series: [44, 23],
+    chart: {
+      width: 350,
+      type: "pie"
+    },
+    labels: ["POS", "WEB"],
+    colors: ['#3E85F4', '#32A953'],
+    dataLabels: {
+      enabled: true
+    },
+    legend: {
+      formatter: function (val: string, opts: { w: { globals: { series: { [x: string]: string; }; }; }; seriesIndex: string | number; }) {
+        return val + " - " + opts.w.globals.series[opts.seriesIndex];
+      },
+      colors: ['#3E85F4', '#32A953', '#A8E2CB', '#E0985A', '#2D95F0']
+    },
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: "bottom"
+          }
+        }
+      }
+    ]
+  }
+
+  public static UserBookingChartConfig = {
+    series: [84],
+    chart: {
+      width: 400,
+      type: "pie"
+    },
+    labels: ["Others"],
+    colors: ['#3E85F4', '#32A953', '#A8E2CB', '#E0985A', '#2D95F0'],
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: "bottom"
+          }
+        }
+      }
+    ]
+  }
+
+  public static UserRevenueChartConfig = {
+    series: [84],
+    chart: {
+      width: 400,
+      type: "pie"
+    },
+    labels: ["Others"],
+    colors: ['#3E85F4', '#32A953', '#A8E2CB', '#E0985A', '#2D95F0'],
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: "bottom"
+          }
+        }
+      }
+    ]
+  }
 }
 
 export enum ErrorCode {

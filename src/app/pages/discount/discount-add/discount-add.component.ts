@@ -20,13 +20,11 @@ import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.compo
 @Component({
   selector: 'app-discount-add',
   standalone: true,
-  imports: [CommonModule, BreadcrumbComponent, MatInputModule, MatRadioModule,MatDatepickerModule, MatNativeDateModule,
-           CKEditorModule, ReactiveFormsModule, TranslateModule, RouterModule],
+  imports: [CommonModule, BreadcrumbComponent, MatInputModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, CKEditorModule, ReactiveFormsModule, TranslateModule, RouterModule],
   templateUrl: './discount-add.component.html',
   styleUrls: ['./discount-add.component.scss']
 })
 export class DiscountAddComponent implements OnInit, OnDestroy {
-
   discountId: string = '';
   discountTypeBy: string = '';
   selectable = true;
@@ -152,7 +150,7 @@ export class DiscountAddComponent implements OnInit, OnDestroy {
     this.discountForm.controls['min_amount'].setValue(null);
     if (event.value === 0) {
       this.discountForm.controls['min_quantity'].setValidators([Validators.required]);
-    }else{
+    } else {
       this.discountForm.controls['min_quantity'].clearValidators();
     }
     this.discountForm.controls['min_amount'].updateValueAndValidity();

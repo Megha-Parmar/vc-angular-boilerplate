@@ -7,12 +7,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 import { APIResponse } from 'src/app/core/models/general.model';
-import { StaffRoleModel } from 'src/app/core/models/staff.model';
+import { StaffModel, StaffRoleModel } from 'src/app/core/models/staff.model';
 import { StaffService } from 'src/app/core/services/staff.service';
 import { ToasterService } from 'src/app/core/services/toaster.service';
 import { BreadcrumbComponent } from 'src/app/layouts/breadcrumb/breadcrumb.component';
 import { environment } from 'src/environments/environment';
-import { StaffModel } from './../../../core/models/staff.model';
 
 @Component({
   selector: 'app-staff-add',
@@ -69,10 +68,10 @@ export class StaffAddComponent implements OnInit, OnDestroy {
             name: res.data?.name,
             email: res.data?.email,
             role: res.data?.role_uuid || '',
-          }
+          };
         }
       }
-    })
+    });
   }
 
   getRoleList(): void {

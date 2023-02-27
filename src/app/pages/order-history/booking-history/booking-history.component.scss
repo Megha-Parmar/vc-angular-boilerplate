@@ -1,0 +1,34 @@
+@import "../../../../assets/scss/components/responsive";
+@import "../../../../assets/scss/components/custom-table";
+@import "../../../../assets/scss/components/button";
+@import "../../../../assets/scss/components/custom-card";
+@import "../../../../assets/scss/components/custom-scrollbar";
+
+.table-wrapper {
+  td,
+  th {
+    &:first-child {
+      min-width: 200px;
+    }
+  }
+}
+
+.filter-box {
+  padding: 16px;
+  @include bp(sm-max) {
+    padding: 8px;
+  }
+}
+.event-list {
+  padding: 24px;
+  @include bp(sm-max) {
+    padding: 16px;
+  }
+}
+
+.page-wrapper {
+  padding: 24px;
+  @include bp(sm-max) {
+    padding: 16px;
+  }
+}

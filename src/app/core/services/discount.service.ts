@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Constants } from 'src/app/core/constants/app.constants';
+import { DiscountListModel } from 'src/app/core/models/discount.model';
 import { APIResponse } from 'src/app/core/models/general.model';
-import { Constants } from '../constants/app.constants';
-import { DiscountListModel } from '../models/discount.model';
 
 @Injectable({
   providedIn: 'root'

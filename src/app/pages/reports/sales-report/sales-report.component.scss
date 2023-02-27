@@ -1,0 +1,40 @@
+// @import "../../../../assets/scss/components/custom-card";
+@import "../../../../assets/scss/components/responsive";
+@import "../../../../assets/scss/components/custom-table";
+
+.statistics {
+  > div {
+    width: 20%;
+    .count {
+      font-size: 35px;
+      line-height: 38px;
+    }
+    .title-txt {
+      color: #000000;
+    }
+    &:first-child .count {
+      color: #22c55e;
+    }
+    &:nth-child(4n) .count {
+      color: #22c55e;
+    }
+    &:nth-child(4n + 1) .count {
+      color: #3b82f6;
+    }
+    &:nth-child(4n + 2) .count {
+      color: #ef4444;
+    }
+    &:nth-child(4n + 3) .count {
+      color: #f59e0b;
+    }
+  }
+}
+
+.custom-card-board {
+  padding: 16px;
+  box-shadow: 0px 0px 10px #dbdbdb;
+}
+
+.font-bold {
+  font-weight: bold;
+}

@@ -1,0 +1,103 @@
+<app-breadcrumb pageURL="" pageSubText="" [icon]="'iconList.manageHistoryIcon' | translate" redirectionURL=""
+    [pageText]="'BOOKING_HISTORY.bookingHistory' | translate" addButtonText=""></app-breadcrumb>
+
+<div class="page-wrapper">
+    <div class="custom-card event-list">
+        <div class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+            <strong class="mb-1" *ngIf="dataSource">
+                {{ "BOOKING_HISTORY.addedBooking" | translate }}: {{ totalSize }}
+            </strong>
+            <div class="d-flex flex-row align-items-center w-35 form-field mb-1">
+                <mat-form-field appearance="outline" class="w-100">
+                    <input matInput placeholder="Search" (keyup)="applyFilter($event)" (keydown)="$event.stopPropagation()" />
+                </mat-form-field>
+                <button mat-button class="primary-btn border-radius-6 w-35 trans ml-2" (click)="downloadCsv()">
+                    {{ "BOOKING_HISTORY.exportCSVText" | translate }} <mat-icon class="export-csv-icon">save_alt</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <div class="table-scroll">
+                <table class="w-100" mat-table [dataSource]="dataSource" matSort>
+                    <ng-container matColumnDef="event_name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ "BOOKING_HISTORY.eventName" | translate }}
+                        </th>
+                        <td mat-cell *matCellDef="let row" [attr.data-label]="'BOOKING_HISTORY.eventName' | translate">
+                            {{ row.event_name }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="sold_tickets">
+                        <th class="center" mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ "BOOKING_HISTORY.ticketSold" | translate }}
+                        </th>
+                        <td class="center" mat-cell *matCellDef="let row" [attr.data-label]="'BOOKING_HISTORY.ticketSold' | translate">
+                            {{ row.sold_tickets }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ticket_from_web">
+                        <th class="center" mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ "BOOKING_HISTORY.totalPurchaseFromWeb" | translate }}
+                        </th>
+                        <td class="center" mat-cell *matCellDef="let row"
+                            [attr.data-label]="'DISCOUNTS_MANAGEMENT.bookedOnline' | translate">
+                            {{ row.ticket_from_web }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ticket_from_pos">
+                        <th class="center" mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ "BOOKING_HISTORY.totalPurchaseFromPOS" | translate }}
+                        </th>
+                        <td class="center" mat-cell *matCellDef="let row" [attr.data-label]="'BOOKING_HISTORY.todaysBooking' | translate">
+                            {{ row.ticket_from_pos }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="total_amount">
+                        <th class="right-align" mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ "BOOKING_HISTORY.totalPayment" | translate }}
+                        </th>
+                        <td class="right-align" mat-cell *matCellDef="let row"
+                            [attr.data-label]="'BOOKING_HISTORY.totalPayment' | translate">
+                            <font class="r-icon">₹</font>{{ row.total_amount | number:'1.2-2' }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="availability">
+                        <th class="center" mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ "BOOKING_HISTORY.availability" | translate }}
+                        </th>
+                        <td class="center" mat-cell *matCellDef="let row" [attr.data-label]="'BOOKING_HISTORY.availability' | translate">
+                            {{ row.availability }}
+                        </td>
+                    </ng-container>
+
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="action">
+                        <th class="center" mat-header-cell *matHeaderCellDef>
+                            {{ "BOOKING_HISTORY.action" | translate }}
+                        </th>
+                        <td mat-cell class="center" *matCellDef="let row" [attr.data-label]="'BOOKING_HISTORY.action' | translate">
+                            <button class="secondary-text" mat-icon-button [routerLink]="['/booking/detail/'+row.event_uuid]"
+                                matTooltip="View">
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell no-data" colspan="7">{{ "DASHBOARD.noData" | translate }}</td>
+                    </tr>
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="pagination" [length]="totalSize" [pageIndex]="page-1"
+                (page)="onPaginateChange($event)"></mat-paginator>
+        </div>
+    </div>
+</div>
