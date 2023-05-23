@@ -30,7 +30,14 @@ export const HttpTokenInterceptor: HttpInterceptorFn = (request, next) => {
     });
   }
 
-  return next(request);
+  return next(request).pipe(map((event: HttpEvent<any>) => {
+    if (event instanceof HttpResponse) {
+      return event.clone({
+        body: event.body.data
+      });
+    }
+    return event;
+  }));;
 }
 
 export const HttpErrorInterceptor: HttpInterceptorFn = (request: HttpRequest<any>, next) => {
