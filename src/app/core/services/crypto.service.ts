@@ -9,8 +9,6 @@ const ENCRYPT_SECRET_KEY = environment.encryptedKey;
 })
 export class CryptoService {
 
-  constructor() {}
-
   encryptValue(value: string): string {
     const ciphertext: any = CryptoJS.AES.encrypt(value, ENCRYPT_SECRET_KEY);
     return ciphertext.toString();

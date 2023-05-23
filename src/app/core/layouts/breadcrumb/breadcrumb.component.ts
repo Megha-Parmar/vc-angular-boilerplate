@@ -12,10 +12,8 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent {
+
   @Input() breadcrumbs: BreadCrumb[];
   @Input() showLastItemCustomLabel = false;
   @Input() lastItemCustomLabel?: string;
-
-  constructor() {}
-
 }
