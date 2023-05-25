@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   translatedChartLabels: string[];
   dateFilter = new FormControl('lastSixDays');
 
-  readonly AccountingStatus = AccountingStatus;
+  readonly accountingStatus = AccountingStatus;
   private destroyRef = inject(DestroyRef);
 
   constructor(
