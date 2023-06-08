@@ -47,15 +47,6 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (request: HttpRequest<any
   return next(request).pipe(catchError((error: HttpErrorResponse) => {
     let errorToastInInterceptor = true;
     if (
-      ['POST', 'PATCH'].includes(request.method) &&
-      request.body?.error_toast_in_interceptor != null &&
-      !request.body?.error_toast_in_interceptor
-    ) {
-      errorToastInInterceptor = false;
-      delete request.body.error_toast_in_interceptor
-    }
-
-    if (
       request.method === HttpMethod.get &&
       request.headers?.get('X-CP-BIT') != null &&
       request.headers?.get('X-CP-BIT') === 'false'
