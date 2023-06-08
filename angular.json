@@ -47,7 +47,9 @@
                 "inject": true
               }
             ],
-            "allowedCommonJsDependencies": ["crypto-js"]
+            "allowedCommonJsDependencies": [
+              "crypto-js"
+            ]
           },
           "configurations": {
             "production": {
@@ -113,11 +115,23 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "b70ce00b-5854-4687-8721-af040a16a34a"
+    "analytics": "b70ce00b-5854-4687-8721-af040a16a34a",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
