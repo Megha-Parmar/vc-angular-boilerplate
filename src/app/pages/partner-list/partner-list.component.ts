@@ -34,7 +34,6 @@ export class PartnerListComponent{
   breadcrumbs: BreadCrumb[] = [];
   partnerList = new MatTableDataSource<PartnerDetail>();
   columnLabel = ['partnerId', 'companyName', 'street', 'zip', 'city', 'country', 'email', 'phoneNo', 'isActive', 'action'];
-  selection = new SelectionModel<PartnerDetail>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   pageSizeOptions = PAGE_SIZE;
   searchControl = new FormControl('');
@@ -71,6 +70,10 @@ export class PartnerListComponent{
     this.getPartnerList();
   }
 
+  /**
+   * This function retrieves a list of partners with specified parameters and updates the UI
+   * accordingly.
+   */
   getPartnerList(): void {
     const params = {
       sort: this.sortValue.value,
@@ -122,14 +125,29 @@ export class PartnerListComponent{
     this.partnerList.paginator = this.paginator;
   }
   
+  /**
+   * The function navigates to a specific partner detail page using the partner's UUID.
+   * @param {PartnerDetail} row - PartnerDetail object that contains details of a partner, such as
+   * their UUID, name, and other relevant information.
+   */
   editPartner(row: PartnerDetail): void {
     this.router.navigate([`../${row.uuid}`], { relativeTo: this.route });
   }
 
+  /**
+   * This function navigates to the company details page for a specific partner.
+   * @param {PartnerDetail} row - PartnerDetail object that contains details of a company partner.
+   */
   viewCompanyDetail(row: PartnerDetail): void {
     this.router.navigate([`../${row.uuid}/company-details`], { relativeTo: this.route });
   }
 
+  /* `updateStatus` is a function that updates the status of a partner (whether it is active or
+  inactive) by calling the `updatePartnerDetail` function from the `PartnerService`. It takes in a
+  `PartnerDetail` object as a parameter, toggles the `isActive` property of the object, and then
+  calls the `updatePartnerDetail` function with the updated object and the UUID of the partner. If
+  the update is successful, it displays a success message using the `toasterService` and calls the
+  `getPartnerList` function to update the UI with the new partner list. */
   updateStatus(row: PartnerDetail): void {
     this.partnerService.updatePartnerDetail({ isActive: !row.isActive }, row.uuid)
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -141,6 +159,14 @@ export class PartnerListComponent{
       })
   }
 
+  /**
+   * The function resets the paginator, sets a search value if it meets certain criteria, and retrieves
+   * a list of partners.
+   * @param {string} searchValue - a string value that represents the search query entered by the user.
+   * It is used to filter the list of partners based on certain criteria. If the searchValue is empty
+   * or less than 4 characters, the list will not be filtered. The function also resets the paginator
+   * to the first page and calls the
+   */
   onSearch(searchValue: string): void {
     this.paginator.firstPage();
     if (
@@ -155,21 +181,10 @@ export class PartnerListComponent{
     this.getPartnerList();
   }
 
+  /**
+   * This function navigates to the "add" route relative to the current route using the Angular router.
+   */
   navigateToAddPartner(): void {
     this.router.navigate(['../add'], { relativeTo: this.route });
-  }
-
-  isAllSelected(): boolean {
-    const selectedRecord = this.selection.selected.length;
-    const totalRecord = this.partnerList.data.length;
-    return selectedRecord === totalRecord;
-  }
-
-  toggleAllRows(): void {
-    if (this.isAllSelected()) {
-      this.selection.clear();
-      return;
-    }
-    this.selection.select(...this.partnerList.data);
   }
 }

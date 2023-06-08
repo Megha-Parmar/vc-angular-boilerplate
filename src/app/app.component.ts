@@ -16,7 +16,10 @@ export class AppComponent implements OnInit {
     private utilityService: UtilityService
   ) {}
 
-  ngOnInit() {
+  /**
+   * The ngOnInit function sets the language using the utility service.
+   */
+  ngOnInit(): void {
     this.utilityService.setLanguage();
   }
 
