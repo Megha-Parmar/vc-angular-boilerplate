@@ -98,10 +98,6 @@ export class PartnerListComponent{
               })
               el.partnerAction = [
                 {
-                  label: 'partner.view',
-                  callback: this.viewCompanyDetail.bind(this)
-                },
-                {
                   label: 'partner.edit',
                   callback: this.editPartner.bind(this)
                 },
@@ -132,14 +128,6 @@ export class PartnerListComponent{
    */
   editPartner(row: PartnerDetail): void {
     this.router.navigate([`../${row.uuid}`], { relativeTo: this.route });
-  }
-
-  /**
-   * This function navigates to the company details page for a specific partner.
-   * @param {PartnerDetail} row - PartnerDetail object that contains details of a company partner.
-   */
-  viewCompanyDetail(row: PartnerDetail): void {
-    this.router.navigate([`../${row.uuid}/company-details`], { relativeTo: this.route });
   }
 
   /* `updateStatus` is a function that updates the status of a partner (whether it is active or
