@@ -1,0 +1,814 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>vc-angular-boilerplate documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">vc-angular-boilerplate documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  SidebarComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/core/layouts/sidebar/sidebar.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-sidebar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>MatIconModule</code>
+                            <code>NgSelectModule</code>
+                            <code>TranslateModule</code>
+                            <code>RouterModule</code>
+                            <code>FormsModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./sidebar.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./sidebar.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentLanguage" >currentLanguage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#destroyRef" >destroyRef</a>
+                            </li>
+                            <li>
+                                <a href="#menuOpen" >menuOpen</a>
+                            </li>
+                            <li>
+                                <a href="#userData" >userData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#changeLanguage" >changeLanguage</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#toggleMenu" >toggleMenu</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer, localStorageService: <a href="../injectables/LocalStorageService.html" target="_self">LocalStorageService</a>, utilityService: <a href="../injectables/UtilityService.html" target="_self">UtilityService</a>, cpEventsService: <a href="../injectables/CpEventsService.html" target="_self">CpEventsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/core/layouts/sidebar/sidebar.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>matIconRegistry</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatIconRegistry</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>domSanitizer</td>
+                                                  
+                                                        <td>
+                                                                    <code>DomSanitizer</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>localStorageService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LocalStorageService.html" target="_self" >LocalStorageService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>utilityService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UtilityService.html" target="_self" >UtilityService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cpEventsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CpEventsService.html" target="_self" >CpEventsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeLanguage"></a>
+                    <span class="name">
+                        <span ><b>changeLanguage</b></span>
+                        <a href="#changeLanguage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeLanguage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/core/layouts/sidebar/sidebar.component.ts:60</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/app/core/layouts/sidebar/sidebar.component.ts:52</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleMenu"></a>
+                    <span class="name">
+                        <span ><b>toggleMenu</b></span>
+                        <a href="#toggleMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleMenu()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/app/core/layouts/sidebar/sidebar.component.ts:64</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentLanguage"></a>
+                    <span class="name">
+                        <span ><b>currentLanguage</b></span>
+                        <a href="#currentLanguage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/core/layouts/sidebar/sidebar.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroyRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>destroyRef</b></span>
+                        <a href="#destroyRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(DestroyRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/core/layouts/sidebar/sidebar.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="menuOpen"></a>
+                    <span class="name">
+                        <span ><b>menuOpen</b></span>
+                        <a href="#menuOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/core/layouts/sidebar/sidebar.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userData"></a>
+                    <span class="name">
+                        <span ><b>userData</b></span>
+                        <a href="#userData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/LoginResponse.html" target="_self" >LoginResponse</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/core/layouts/sidebar/sidebar.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, DestroyRef, OnInit, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatIconRegistry } from &#x27;@angular/material/icon&#x27;;
+import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
+import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+import { LoginResponse } from &#x27;@models/auth.model&#x27;;
+import { LocalStorageService } from &#x27;@services/local-storage.service&#x27;;
+import { LOCAL_STORAGE_CONSTANT } from &#x27;@constants/localstorage.constant&#x27;;
+import { RouterModule } from &#x27;@angular/router&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { UtilityService } from &#x27;@services/utility.service&#x27;;
+import { CpEventsService } from &#x27;@services/cp-events.service&#x27;;
+import { NgSelectModule } from &#x27;@ng-select/ng-select&#x27;;
+import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
+
+@Component({
+  selector: &#x27;app-sidebar&#x27;,
+  standalone: true,
+  imports: [CommonModule, MatIconModule, NgSelectModule, TranslateModule, RouterModule, FormsModule],
+  templateUrl: &#x27;./sidebar.component.html&#x27;,
+  styleUrls: [&#x27;./sidebar.component.scss&#x27;]
+})
+export class SidebarComponent implements OnInit {
+
+  userData: LoginResponse;
+  currentLanguage: string;
+  menuOpen &#x3D; false;
+  
+  private destroyRef &#x3D; inject(DestroyRef);
+
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer,
+    private localStorageService: LocalStorageService,
+    private utilityService: UtilityService,
+    private cpEventsService: CpEventsService
+  ) {
+    this.matIconRegistry.addSvgIconLiteral(
+      &#x27;list&#x27;,
+      this.domSanitizer.bypassSecurityTrustHtml(&#x27;&lt;svg width&#x3D;&quot;21&quot; height&#x3D;&quot;21&quot; viewBox&#x3D;&quot;0 0 21 21&quot; fill&#x3D;&quot;none&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path d&#x3D;&quot;M20.0133 5.27142C20.0133 5.27142 19.3619 2.16321 16.5483 1.07142C15.2251 0.567754 12.81 0.315082 10.4368 0.294586C8.04325 0.315094 5.62825 0.566935 4.30504 1.07142C1.49146 2.16325 0.840037 5.27142 0.840037 5.27142C0.420037 7.03508 0.293701 8.82 0.293701 10.395C0.293701 11.9913 0.420029 13.7764 0.840037 15.54C0.840037 15.54 1.49137 18.6482 4.30504 19.74C5.62821 20.2437 8.04325 20.4963 10.4165 20.5168C12.7897 20.4955 15.2047 20.265 16.5279 19.74C19.3415 18.6482 19.9929 15.54 19.9929 15.54C20.4129 13.7763 20.5597 11.9914 20.5392 10.4164C20.5589 8.82008 20.4332 7.035 20.0133 5.27142ZM5.88004 6.53142H7.60187V7.89642H5.88004V6.53142ZM7.60187 14.28H5.88004V12.915H7.60187V14.28ZM7.60187 11.025H5.88004V9.66H7.60187V11.025ZM15.3719 14.28H9.05129V12.915H15.3727L15.3719 14.28ZM15.3719 11.025H9.05129V9.66H15.3727L15.3719 11.025ZM15.3719 7.89642H9.05129V6.53142H15.3727L15.3719 7.89642Z&quot; fill&#x3D;&quot;#A0A0A0&quot;/&gt;&lt;/svg&gt;&#x27;)
+    );
+    this.matIconRegistry.addSvgIconLiteral(
+      &#x27;logout&#x27;,
+      this.domSanitizer.bypassSecurityTrustHtml(&#x27;&lt;svg width&#x3D;&quot;27&quot; height&#x3D;&quot;27&quot; viewBox&#x3D;&quot;0 0 27 27&quot; fill&#x3D;&quot;none&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path fill-rule&#x3D;&quot;evenodd&quot; clip-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M13.4999 0.61084C10.0811 0.61084 6.80268 1.96908 4.3864 4.38664C1.96898 6.80292 0.610596 10.0814 0.610596 13.5002C0.610596 16.919 1.96884 20.1974 4.3864 22.6137C6.80268 25.0311 10.0811 26.3895 13.4999 26.3895C16.9187 26.3895 20.1972 25.0313 22.6135 22.6137C25.0309 20.1974 26.3893 16.919 26.3893 13.5002C26.3893 10.0814 25.031 6.80292 22.6135 4.38664C20.1972 1.96923 16.9187 0.61084 13.4999 0.61084ZM10.1728 16.1905C9.82726 16.3287 9.4319 16.2494 9.16568 15.9889L7.32146 14.1446C7.147 13.9725 7.04958 13.7368 7.04958 13.4921C7.04958 13.2474 7.147 13.0118 7.32146 12.8396L9.16568 10.9954V10.9943C9.42283 10.6975 9.84083 10.5978 10.2045 10.7451C10.5692 10.8923 10.7992 11.2548 10.7765 11.6468V12.5655H14.4581V14.4097L10.7368 14.4109V15.3296V15.3285C10.7425 15.7046 10.5194 16.0455 10.1728 16.1905ZM19.9443 16.263C19.9421 17.4819 19.4572 18.651 18.5951 19.513C17.7319 20.3751 16.564 20.8611 15.344 20.8633H11.6554V19.0259H15.337H15.3359C16.0688 19.0259 16.7723 18.7348 17.29 18.2171C17.8077 17.6982 18.0988 16.9959 18.0988 16.263V10.737C18.0988 9.21114 16.8618 7.97411 15.3359 7.97411H11.6555V6.1367H15.3371H15.3359C16.5571 6.1367 17.7273 6.62155 18.5918 7.48361C19.4561 8.34682 19.9421 9.51587 19.9443 10.7371L19.9443 16.263Z&quot; fill&#x3D;&quot;#A0A0A0&quot;/&gt;&lt;/svg&gt;&#x27;)
+    );
+
+    this.userData &#x3D; this.localStorageService.get(LOCAL_STORAGE_CONSTANT.USER_DATA);
+    this.currentLanguage &#x3D; this.localStorageService.get(LOCAL_STORAGE_CONSTANT.CURRENT_LANGUAGE_STATE_KEY);
+  }
+
+  ngOnInit(): void {
+    this.cpEventsService.toggleSidebar
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((res: boolean) &#x3D;&gt; {
+        this.menuOpen &#x3D; res;
+    })
+  }
+
+  changeLanguage(): void {
+    this.utilityService.changeLanguage(this.currentLanguage, this.userData?.uuid);
+  }
+
+  toggleMenu(): void {
+    this.menuOpen &#x3D; !this.menuOpen;  
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;sidebar flex flex-col bg-white fixed w-[240px] 2xl:w-[280px] p-6 xl:p-8 2xl:px-12 2xl:py-10 top-0 bottom-0 overflow-y-auto&quot;
+	[class.open]&#x3D;&quot;menuOpen&quot;&gt;
+	&lt;mat-icon class&#x3D;&quot;close-btn&quot; (click)&#x3D;&quot;toggleMenu()&quot;&gt;close&lt;/mat-icon&gt;
+	&lt;div class&#x3D;&quot;mb-auto&quot;&gt;
+		&lt;div class&#x3D;&quot;logo&quot;&gt;
+			&lt;img src&#x3D;&quot;../../../assets/images/map-logo.svg&quot; alt&#x3D;&quot;calopad&quot;&gt;
+		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;mt-6 2md:mt-10&quot;&gt;
+			&lt;ul (click)&#x3D;&quot;toggleMenu()&quot;&gt;
+				&lt;li class&#x3D;&quot;py-4 2md:py-5&quot;&gt;
+					&lt;a class&#x3D;&quot;menu-item&quot;
+						[routerLink]&#x3D;&quot;[&#x27;/admin/dashboard&#x27;]&quot;
+						routerLinkActive&#x3D;&quot;active&quot;&gt;
+						&lt;mat-icon&gt;dashboard&lt;/mat-icon&gt;
+						&lt;span class&#x3D;&quot;ml-6&quot;&gt; {{ &#x27;common.dashboard&#x27; | translate }} &lt;/span&gt;
+					&lt;/a&gt;
+				&lt;/li&gt;
+					&lt;li class&#x3D;&quot;py-4 2md:py-5&quot;&gt;
+						&lt;a class&#x3D;&quot;menu-item&quot; [routerLink]&#x3D;&quot;[&#x27;/admin/partner&#x27;]&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;
+							&lt;mat-icon svgIcon&#x3D;&quot;list&quot;&gt;&lt;/mat-icon&gt;
+							&lt;span class&#x3D;&quot;ml-6&quot;&gt; {{ &#x27;common.partner&#x27; | translate }} &lt;/span&gt;
+						&lt;/a&gt;
+					&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class&#x3D;&quot;mt-5&quot;&gt;
+		&lt;ng-select class&#x3D;&quot;w-full font-semibold text-secondary custom-select rounded&quot; [searchable]&#x3D;&quot;false&quot;
+			[clearable]&#x3D;&quot;false&quot; [(ngModel)]&#x3D;&quot;currentLanguage&quot; (change)&#x3D;&quot;changeLanguage()&quot;&gt;
+			&lt;ng-option value&#x3D;&quot;en_US&quot;&gt;
+				&lt;span class&#x3D;&quot;flex&quot;&gt;
+					&lt;img src&#x3D;&quot;../../../assets/images/flags/en.svg&quot; height&#x3D;&quot;25&quot; width&#x3D;&quot;30&quot; /&gt;
+					&lt;span class&#x3D;&quot;ml-2&quot;&gt;EN&lt;/span&gt;
+				&lt;/span&gt;
+			&lt;/ng-option&gt;
+			&lt;ng-option value&#x3D;&quot;de_CH&quot;&gt;
+				&lt;span class&#x3D;&quot;flex&quot;&gt;
+					&lt;img src&#x3D;&quot;../../../assets/images/flags/de.svg&quot; height&#x3D;&quot;25&quot; width&#x3D;&quot;30&quot; /&gt;
+					&lt;span class&#x3D;&quot;ml-2&quot;&gt;DE&lt;/span&gt;
+				&lt;/span&gt;
+			&lt;/ng-option&gt;
+		&lt;/ng-select&gt;
+		&lt;p class&#x3D;&quot;text-[15px] lg:text-[16px] xl:text-[18px] text-secondary font-semibold mt-4&quot;&gt;{{ userData?.name }}&lt;/p&gt;
+		&lt;div class&#x3D;&quot;mt-6&quot;&gt;
+			&lt;a class&#x3D;&quot;flex menu-item&quot; [routerLink]&#x3D;&quot;[&#x27;/auth/logout&#x27;]&quot;&gt;
+				&lt;mat-icon svgIcon&#x3D;&quot;logout&quot;&gt;&lt;/mat-icon&gt;
+				&lt;span class&#x3D;&quot;ml-3&quot;&gt; {{ &#x27;common.logout&#x27; | translate }} &lt;/span&gt;
+			&lt;/a&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;div (click)&#x3D;&quot;toggleMenu()&quot; class&#x3D;&quot;menu-overlay&quot;&gt;&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./sidebar.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.sidebar {
+    @apply z-10;
+    transition: 250ms;
+    li {
+        @apply border-b-[1px] border-grey-50;
+        &amp;:last-child {
+            @apply border-b-0;
+        }
+    }
+    .menu-item {
+        @apply flex items-center font-semibold text-grey-light;
+        &amp;.active,
+        &amp;:hover {
+            @apply text-primary;
+        }
+    }
+    .close-btn {
+        @apply absolute top-2 right-2 2md:hidden cursor-pointer;
+    }
+}
+.menu-overlay {
+    transition: 250ms;
+    @apply fixed bg-black left-0 right-0 top-0 bottom-0 opacity-0 pointer-events-none z-10;
+}
+
+@media (max-width: 959px) {
+    .sidebar {
+        @apply fixed -left-60 pt-12;
+        &amp;.open {
+            @apply -left-0;
+        }
+    }
+    .open {
+        ~ {
+            .menu-overlay {
+                @apply left-60 opacity-40 pointer-events-auto;
+            }
+        }
+    }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="sidebar flex flex-col bg-white fixed w-[240px] 2xl:w-[280px] p-6 xl:p-8 2xl:px-12 2xl:py-10 top-0 bottom-0 overflow-y-auto"	[class.open]="menuOpen">	<mat-icon class="close-btn" (click)="toggleMenu()">close</mat-icon>	<div class="mb-auto">		<div class="logo">			<img src="../../../assets/images/map-logo.svg" alt="calopad">		</div>		<div class="mt-6 2md:mt-10">			<ul (click)="toggleMenu()">				<li class="py-4 2md:py-5">					<a class="menu-item"						[routerLink]="[\'/admin/dashboard\']"						routerLinkActive="active">						<mat-icon>dashboard</mat-icon>						<span class="ml-6"> {{ \'common.dashboard\' | translate }} </span>					</a>				</li>					<li class="py-4 2md:py-5">						<a class="menu-item" [routerLink]="[\'/admin/partner\']" routerLinkActive="active">							<mat-icon svgIcon="list"></mat-icon>							<span class="ml-6"> {{ \'common.partner\' | translate }} </span>						</a>					</li>			</ul>		</div>	</div>	<div class="mt-5">		<ng-select class="w-full font-semibold text-secondary custom-select rounded" [searchable]="false"			[clearable]="false" [(ngModel)]="currentLanguage" (change)="changeLanguage()">			<ng-option value="en_US">				<span class="flex">					<img src="../../../assets/images/flags/en.svg" height="25" width="30" />					<span class="ml-2">EN</span>				</span>			</ng-option>			<ng-option value="de_CH">				<span class="flex">					<img src="../../../assets/images/flags/de.svg" height="25" width="30" />					<span class="ml-2">DE</span>				</span>			</ng-option>		</ng-select>		<p class="text-[15px] lg:text-[16px] xl:text-[18px] text-secondary font-semibold mt-4">{{ userData?.name }}</p>		<div class="mt-6">			<a class="flex menu-item" [routerLink]="[\'/auth/logout\']">				<mat-icon svgIcon="logout"></mat-icon>				<span class="ml-3"> {{ \'common.logout\' | translate }} </span>			</a>		</div>	</div></div><div (click)="toggleMenu()" class="menu-overlay"></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BreadcrumbComponent', 'selector': 'app-breadcrumb'},{'name': 'CpActionToolbarComponent', 'selector': 'app-cp-action-toolbar'},{'name': 'CpButtonComponent', 'selector': 'app-cp-button'},{'name': 'CpLoaderComponent', 'selector': 'app-cp-loader'},{'name': 'CpTelInputComponent', 'selector': 'app-cp-tel-input'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PartnerAddComponent', 'selector': 'app-partner-add'},{'name': 'PartnerListComponent', 'selector': 'app-partner-list'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'}];
+    var DIRECTIVES = [{'name': 'AllowNumberOnlyDirective', 'selector': '[appAllowNumberOnly]'},{'name': 'DynamicDirective', 'selector': '[appDynamicDirective]'}];
+    var ACTUAL_COMPONENT = {'name': 'SidebarComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SidebarComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
