@@ -28,6 +28,10 @@ export class PagesComponent {
     private cpEventsService: CpEventsService
   ) { }
 
+  /**
+   * The ngOnInit function subscribes to a service and updates the breadcrumbs and custom label
+   * properties based on the result.
+   */
   ngOnInit(): void {
     this.cpEventsService.cpHeaderDataChanged
       .pipe(takeUntilDestroyed(this.destroyRef))
