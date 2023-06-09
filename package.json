@@ -9,7 +9,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "prepare": "husky install",
-    "sonar": "sonar-scanner"
+    "sonar": "sonar-scanner",
+    "compodoc:build": "compodoc -p tsconfig.json",
+    "compodoc:build-and-serve": "compodoc -p tsconfig.json -s",
+    "compodoc:serve": "compodoc -s"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +26,8 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
-    "@ng-select/ng-select": "^10.0.4",
+    "@compodoc/compodoc": "^1.1.21",
+    "@ng-select/ng-select": "^11.0.0",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "chart.js": "^4.3.0",
