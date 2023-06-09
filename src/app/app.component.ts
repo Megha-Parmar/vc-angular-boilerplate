@@ -9,7 +9,6 @@ import { UtilityService } from '@services/utility.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  title = 'vc angular boilerplate';
 
   constructor(
     private utilityService: UtilityService
