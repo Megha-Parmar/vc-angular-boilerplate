@@ -67,7 +67,7 @@
   },
   "husky": {
     "hook": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "ng lint --staged"
     }
   },
   "lint-staged": {
