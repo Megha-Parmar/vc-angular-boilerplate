@@ -11,7 +11,8 @@
     "prepare": "husky install",
     "compodoc:build": "compodoc -p tsconfig.json",
     "compodoc:build-and-serve": "compodoc -p tsconfig.json -s",
-    "compodoc:serve": "compodoc -s"
+    "compodoc:serve": "compodoc -s",
+    "sonar": "sonar-scanner"
   },
   "private": true,
   "dependencies": {
@@ -60,8 +61,14 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "lint-staged": "^13.2.2",
     "postcss": "^8.4.23",
+    "sonar-scanner": "^3.1.0",
     "tailwindcss": "^3.3.2",
     "typescript": "~5.0.2"
+  },
+  "husky": {
+    "hook": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "src/**/*.{js,ts,html}": [
