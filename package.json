@@ -12,8 +12,7 @@
     "compodoc:build": "compodoc -p tsconfig.json",
     "compodoc:build-and-serve": "compodoc -p tsconfig.json -s",
     "compodoc:serve": "compodoc -s",
-    "sonar": "sonar-scanner",
-    "lint-staged": "npm run lint-staged"
+    "sonar": "sonar-scanner"
   },
   "private": true,
   "dependencies": {
@@ -73,7 +72,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,ts,html}": [
-      "eslint --fix"
+      "npm run eslint --fix"
     ]
   }
 }
