@@ -86,12 +86,11 @@ export class PartnerListComponent {
         next: (res: PartnerList) => {
           if (res) {
             this.isLoading = false;
-            res.records.map((el: PartnerDetail) => {
+            res.records.forEach((el: PartnerDetail) => {
               COUNTRY_LIST.forEach((country) => {
                 if (el.country === country.value) {
-                  el.country = country.label.charAt(0).toUpperCase() + country.label.slice(1);
+                  el.country = `${country.label.charAt(0).toUpperCase()}${country.label.slice(1)}`;
                 }
-                return;
               })
               el.partnerAction = [
                 {

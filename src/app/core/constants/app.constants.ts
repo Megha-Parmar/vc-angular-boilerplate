@@ -5,10 +5,10 @@ export const APP_CONSTANTS = {
 
 export const REGEX_CONSTANTS = {
   EMAIL_REGEX: /^[\p{L}0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[\p{L}0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[_\p{L}0-9][-_\p{L}0-9]*\.)*(?:[\p{L}0-9][-\p{L}0-9]{0,62})\.(?:(?:[a-z]{2}\.)?[a-z]{2,})$/iu,
-  PASSWORD_REGEX: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+  PASSWORD_REGEX: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d)(?=.*?[#?!@$%^&*-]).{8,}$/,
   WEB_URL_REGEX: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/,
-  INTEGER_REGEX: /^[0-9]*$/,
-  DECIMAL_REGEX: /^[0-9]*\.?[0-9]*$/
+  INTEGER_REGEX: /^\d*$/,
+  DECIMAL_REGEX: /^\d*\.?\d*$/
 }
 
 export const API_ROUTES = {

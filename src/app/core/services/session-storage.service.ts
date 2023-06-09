@@ -1,13 +1,10 @@
-import {Injectable} from '@angular/core';
-import {environment} from '@environment/environment';
+import { Injectable } from '@angular/core';
+import { environment } from '@environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionStorageService {
-
-  constructor() {
-  }
 
   get(key: string) {
     return window.sessionStorage.getItem(key + '_' + environment.version);

@@ -1,16 +1,15 @@
-import { Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, AbstractControl, ValidationErrors, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild } from '@angular/core';
+import { AbstractControl, FormControl, FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { environment } from '@environment/environment';
 
-declare var intlTelInput: any;
+declare const intlTelInput: any;
 
 @Component({
   selector: 'app-cp-tel-input',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './cp-tel-input.component.html',
-  styleUrls: ['./cp-tel-input.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -118,7 +117,6 @@ export class CpTelInputComponent {
         this._intlTelInput.setNumber(value);
       }
       this.i18nPhoneNumber();
-    } else {
     }
   }
 

@@ -23,7 +23,7 @@
   </div>
   <div class="flex flex-col">
     <div class="overflow-x-auto">
-      <table class="custom-table" mat-table [dataSource]="partnerList">
+      <table class="custom-table" mat-table [dataSource]="partnerList" aria-describedby="Partner List">
 
         <ng-container matColumnDef="partnerId">
           <th mat-header-cell *matHeaderCellDef> {{ 'common.id' | translate }} </th>

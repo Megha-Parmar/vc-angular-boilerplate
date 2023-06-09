@@ -34,7 +34,7 @@
     "editor.suggest.snippetsPreventQuickSuggestions": true,
     "vsicons.dontShowNewVersionMessage": true,
     "[scss]": {
-        "editor.defaultFormatter": "vscode.css-language-features"
+        "editor.defaultFormatter": "vscode.css-language-features",
     },
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true,
@@ -47,5 +47,8 @@
         "Toastr"
     ],
     "editor.formatOnSave": true,
-    "docwriter.style": "Auto-detect"
+    "docwriter.style": "Auto-detect",
+    "css.format.spaceAroundSelectorSeparator": true,
+    "scss.format.spaceAroundSelectorSeparator": true,
+    "scss.lint.important": "warning",
 }

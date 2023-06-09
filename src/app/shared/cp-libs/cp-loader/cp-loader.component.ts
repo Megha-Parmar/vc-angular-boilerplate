@@ -1,12 +1,11 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cp-loader',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './cp-loader.component.html',
-  styleUrls: ['./cp-loader.component.scss']
+  templateUrl: './cp-loader.component.html'
 })
 export class CpLoaderComponent {
 

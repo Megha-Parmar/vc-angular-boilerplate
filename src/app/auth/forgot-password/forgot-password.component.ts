@@ -1,25 +1,24 @@
-import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
-import { CpButtonComponent } from '@app/shared/cp-libs/cp-button/cp-button.component';
-import { Router } from '@angular/router';
-import { FormsModule, NgForm } from '@angular/forms';
-import { AuthenticationService } from '@services/authentication.service';
-import { MessageType, REGEX_CONSTANTS } from '@constants/app.constants';
-import { AlertToastrService } from '@services/alert-toastr.service';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CpButtonComponent } from '@app/shared/cp-libs/cp-button/cp-button.component';
+import { MessageType, REGEX_CONSTANTS } from '@constants/app.constants';
+import { TranslateModule } from '@ngx-translate/core';
+import { AlertToastrService } from '@services/alert-toastr.service';
+import { AuthenticationService } from '@services/authentication.service';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
   imports: [CommonModule, TranslateModule, CpButtonComponent, FormsModule],
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss']
+  templateUrl: './forgot-password.component.html'
 })
 export class ForgotPasswordComponent {
 
   isSubmitted = false;
-  
+
   readonly emailRegex = REGEX_CONSTANTS.EMAIL_REGEX;
   readonly passwordRegex = REGEX_CONSTANTS.PASSWORD_REGEX;
   private destroyRef = inject(DestroyRef);
@@ -28,7 +27,7 @@ export class ForgotPasswordComponent {
     private authenticationService: AuthenticationService,
     private router: Router,
     private toasterService: AlertToastrService
-  ) {}
+  ) { }
 
   click(form: NgForm): boolean | void {
     if (form.invalid) {
