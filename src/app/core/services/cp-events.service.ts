@@ -6,8 +6,6 @@ import { BreadcrumbEventModel } from '@models/breadcrumb.model';
 })
 export class CpEventsService {
 
-  constructor() { }
-
   public cpHeaderDataChanged = new EventEmitter<BreadcrumbEventModel>();
   public toggleSidebar = new EventEmitter<boolean>();
 }

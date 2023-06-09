@@ -34,7 +34,7 @@
     "editor.suggest.snippetsPreventQuickSuggestions": true,
     "vsicons.dontShowNewVersionMessage": true,
     "[scss]": {
-        "editor.defaultFormatter": "vscode.css-language-features"
+        "editor.defaultFormatter": "bradlc.vscode-tailwindcss"
     },
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true,
@@ -47,5 +47,10 @@
         "Toastr"
     ],
     "editor.formatOnSave": true,
-    "docwriter.style": "Auto-detect"
+    "docwriter.style": "Auto-detect",
+    "css.format.spaceAroundSelectorSeparator": true,
+    "scss.format.spaceAroundSelectorSeparator": true,
+    "scss.validate": false,
+    "tailwindCSS.validate": true,
+    "files.trimTrailingWhitespace": true,
 }

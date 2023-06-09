@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
+import { API_ROUTES } from '@constants/app.constants';
+import {
+  DashboardAccountingStats,
+  InvoiceList,
+  PerformanceOverview,
+  PerformanceStatsParams,
+  RedemptionList,
+  TopPartners
+} from '@models/admin.model';
 import { PartnerListQueryParams } from '@models/partner.model';
 import { HttpClientService } from '@services/http-client.service';
 import { Observable } from 'rxjs';
-import { API_ROUTES } from '@constants/app.constants';
-import { DashboardAccountingStats, InvoiceList, PerformanceOverview, PerformanceStatsParams, RedemptionList, TopPartners } from '@models/admin.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +32,9 @@ export class AdminService {
   getTopPartners(): Observable<TopPartners[]> {
     return this.httpClientService.get(API_ROUTES.dashboardTopPartnersApi);
   }
-  
+
   getLatestRedemptionList(params: Partial<PartnerListQueryParams>): Observable<RedemptionList> {
-    return this.httpClientService.get(API_ROUTES.redemptionListApi, { params })
+    return this.httpClientService.get(API_ROUTES.redemptionListApi, { params });
   }
 
   getExchangeRate(): Observable<number> {

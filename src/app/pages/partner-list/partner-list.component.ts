@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, OnInit, ViewChild, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,7 +12,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CpActionToolbarComponent } from '@app/shared/cp-libs/cp-action-toolbar/cp-action-toolbar.component';
 import { CpButtonComponent } from '@app/shared/cp-libs/cp-button/cp-button.component';
 import { CpLoaderComponent } from '@app/shared/cp-libs/cp-loader/cp-loader.component';
-import { COUNTRY_LIST, MessageType, PAGE_SIZE, SORT_OPTIONS } from '@constants/app.constants';
+import {
+  COUNTRY_LIST,
+  DEBOUNCE_TIME,
+  DEFAULT_PAGE_SIZE,
+  MessageType,
+  PAGE_SIZE,
+  SORT_OPTIONS
+} from '@constants/app.constants';
 import { BreadCrumb } from '@models/breadcrumb.model';
 import { PartnerDetail, PartnerList } from '@models/partner.model';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -25,15 +32,19 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 @Component({
   selector: 'app-partner-list',
   standalone: true,
-  imports: [CommonModule, MatTableModule, TranslateModule, MatPaginatorModule, MatCheckboxModule, CpButtonComponent, MatIconModule, MatButtonModule, FormsModule, ReactiveFormsModule, NgSelectModule, CpLoaderComponent, CpActionToolbarComponent],
+  imports: [CommonModule, MatTableModule, TranslateModule, MatPaginatorModule, MatCheckboxModule,
+    CpButtonComponent, MatIconModule, MatButtonModule, FormsModule, ReactiveFormsModule,
+    NgSelectModule, CpLoaderComponent, CpActionToolbarComponent],
   templateUrl: './partner-list.component.html',
   styleUrls: ['./partner-list.component.scss']
 })
-export class PartnerListComponent {
+export class PartnerListComponent implements OnInit, AfterViewInit {
 
   breadcrumbs: BreadCrumb[] = [];
   partnerList = new MatTableDataSource<PartnerDetail>();
-  columnLabel = ['partnerId', 'companyName', 'street', 'zip', 'city', 'country', 'email', 'phoneNo', 'isActive', 'action'];
+  columnLabel = [
+    'partnerId', 'companyName', 'street', 'zip', 'city', 'country', 'email', 'phoneNo', 'isActive', 'action'
+  ];
   selection = new SelectionModel<PartnerDetail>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   pageSizeOptions = PAGE_SIZE;
@@ -60,7 +71,7 @@ export class PartnerListComponent {
     this.cpEventsService.cpHeaderDataChanged.emit({ breadcrumbs: this.breadcrumbs });
     this.searchControl.valueChanges
       .pipe(
-        debounceTime(500),
+        debounceTime(DEBOUNCE_TIME),
         distinctUntilChanged(),
         takeUntilDestroyed(this.destroyRef)
       ).subscribe({
@@ -74,10 +85,10 @@ export class PartnerListComponent {
   getPartnerList(): void {
     const params = {
       sort: this.sortValue.value,
-      pageSize: this.paginator?.pageSize || 10,
+      pageSize: this.paginator?.pageSize || DEFAULT_PAGE_SIZE,
       page: (this.paginator?.pageIndex + 1) || 1,
       ...this.searchValue && { search: this.searchValue }
-    }
+    };
     this.isLoading = true;
     this.partnerList = new MatTableDataSource([]);
     this.partnerService.getPartnerList(params)
@@ -86,13 +97,12 @@ export class PartnerListComponent {
         next: (res: PartnerList) => {
           if (res) {
             this.isLoading = false;
-            res.records.map((el: PartnerDetail) => {
+            res.records.forEach((el: PartnerDetail) => {
               COUNTRY_LIST.forEach((country) => {
                 if (el.country === country.value) {
-                  el.country = country.label.charAt(0).toUpperCase() + country.label.slice(1);
+                  el.country = `${country.label.charAt(0).toUpperCase()}${country.label.slice(1)}`;
                 }
-                return;
-              })
+              });
               el.partnerAction = [
                 {
                   label: 'partner.edit',
@@ -102,7 +112,7 @@ export class PartnerListComponent {
                   label: el.isActive ? 'partner.markAsInactive' : 'partner.markAsActive',
                   callback: this.updateStatus.bind(this)
                 }
-              ]
+              ];
             });
             this.partnerList = new MatTableDataSource(res.records);
             this.paginator.length = res.totalCount;
@@ -111,7 +121,7 @@ export class PartnerListComponent {
         error: () => {
           this.isLoading = false;
         }
-      })
+      });
   }
 
   ngAfterViewInit(): void {
@@ -127,10 +137,12 @@ export class PartnerListComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
-          this.toasterService.displaySnackBarWithTranslation('toasterMessage.updateStatusSuccessful', MessageType.success);
+          this.toasterService.displaySnackBarWithTranslation(
+            'toasterMessage.updateStatusSuccessful', MessageType.success
+          );
           this.getPartnerList();
         },
-      })
+      });
   }
 
   onSearch(searchValue: string): void {

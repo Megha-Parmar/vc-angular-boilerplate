@@ -20,4 +20,4 @@ export const authRoutes: Routes = [
     loadComponent: () => import('@auth/logout/logout.component')
       .then((m) => m.LogoutComponent)
   }
-]
+];

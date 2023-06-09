@@ -1,12 +1,12 @@
-import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { SidebarComponent } from '@layouts/sidebar/sidebar.component';
-import { BreadcrumbComponent } from '@layouts/breadcrumb/breadcrumb.component';
-import { CpEventsService } from '@services/cp-events.service';
-import { BreadCrumb, BreadcrumbEventModel } from '@models/breadcrumb.model';
-import { HeaderComponent } from '@layouts/header/header.component';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterOutlet } from '@angular/router';
+import { BreadcrumbComponent } from '@layouts/breadcrumb/breadcrumb.component';
+import { HeaderComponent } from '@layouts/header/header.component';
+import { SidebarComponent } from '@layouts/sidebar/sidebar.component';
+import { BreadCrumb, BreadcrumbEventModel } from '@models/breadcrumb.model';
+import { CpEventsService } from '@services/cp-events.service';
 
 @Component({
   selector: 'app-pages',
@@ -15,7 +15,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.scss']
 })
-export class PagesComponent {
+export class PagesComponent implements OnInit {
 
   breadcrumbs!: BreadCrumb[];
   showLastItemCustomLabel!: boolean;
@@ -34,10 +34,10 @@ export class PagesComponent {
       .subscribe((result: BreadcrumbEventModel) => {
         setTimeout(() => {
           this.breadcrumbs = result.breadcrumbs;
-          this.showLastItemCustomLabel = result.showLastItemCustomLabel as boolean;
-          this.lastItemCustomLabel = result.lastItemCustomLabel as string;
+          this.showLastItemCustomLabel = result.showLastItemCustomLabel;
+          this.lastItemCustomLabel = result.lastItemCustomLabel;
         }, 100);
-      })
+      });
   }
 
   toggleMenu(): void {

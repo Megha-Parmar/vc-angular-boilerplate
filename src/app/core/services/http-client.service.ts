@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpClientService {
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   get(path: string, options = {}): Observable<any> {
     return this.httpClient.get(path, options);
@@ -24,7 +24,7 @@ export class HttpClientService {
   patch(path: string, body, options = {}): Observable<any> {
     return this.httpClient.patch(path, body, options);
   }
-  
+
   delete(path: string, options = {}): Observable<any> {
     return this.httpClient.delete(path, options);
   }

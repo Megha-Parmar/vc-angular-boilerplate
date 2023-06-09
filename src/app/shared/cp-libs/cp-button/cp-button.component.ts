@@ -1,13 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CpLoaderComponent } from '@shared/cp-libs/cp-loader/cp-loader.component';
 
 @Component({
   selector: 'app-cp-button',
   standalone: true,
   imports: [CommonModule, CpLoaderComponent],
-  templateUrl: './cp-button.component.html',
-  styleUrls: ['./cp-button.component.scss']
+  templateUrl: './cp-button.component.html'
 })
 export class CpButtonComponent {
 
@@ -17,9 +16,9 @@ export class CpButtonComponent {
   @Input() isDisabled = false;
   @Input() tooltip?: string;
   @Input() spin = false;
-  @Output() onTap = new EventEmitter<any>();
+  @Output() buttonTap = new EventEmitter<any>();
 
   click() {
-    this.onTap.emit();
+    this.buttonTap.emit();
   }
 }

@@ -3,7 +3,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "~@ng-select/ng-select/themes/default.theme.css";
-@import "~@ng-select/ng-select/themes/default.theme.css";
 
 html,
 body {
@@ -244,7 +243,7 @@ input:-webkit-autofill:active {
         @apply hidden;
       }
 
-      .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background {
+      .mdc-checkbox__native-control:enabled:indeterminate ~ .mdc-checkbox__background {
         background-color: #ff6b00 !important;
         border-color: #ff6b00 !important;
       }
@@ -317,6 +316,8 @@ input:-webkit-autofill:active {
 
 .mat-mdc-select-panel {
   .mat-mdc-option {
+    @apply text-[14px] xl:text-[15px] 2xl:text-[16px] min-h-[40px];
+
     .mdc-list-item__primary-text {
       @apply font-base font-semibold text-grey-500;
     }
@@ -331,12 +332,6 @@ input:-webkit-autofill:active {
 
 .mat-ripple {
   @apply hidden;
-}
-
-.mat-mdc-select-panel {
-  .mat-mdc-option {
-    @apply text-[14px] xl:text-[15px] 2xl:text-[16px] min-h-[40px];
-  }
 }
 
 .mat-mdc-dialog-container {
@@ -463,5 +458,3 @@ input:-webkit-autofill:active {
     }
   }
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

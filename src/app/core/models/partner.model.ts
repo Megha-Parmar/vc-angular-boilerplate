@@ -22,22 +22,22 @@ export interface Address {
 }
 
 export interface AddPartnerForm {
-  isActive: FormControl<boolean>,
-  email: FormControl<string>,
-  address: FormGroup<PartnerAddress>,
-  companyName: FormControl<string>,
-  name: FormControl<string>,
-  phoneNo: FormControl<string>,
-  webAddress: FormControl<string>,
-  currency: FormControl<string>,
-  locale: FormControl<string>,
+  isActive: FormControl<boolean>;
+  email: FormControl<string>;
+  address: FormGroup<PartnerAddress>;
+  companyName: FormControl<string>;
+  name: FormControl<string>;
+  phoneNo: FormControl<string>;
+  webAddress: FormControl<string>;
+  currency: FormControl<string>;
+  locale: FormControl<string>;
 }
 
 export interface PartnerAddress {
-  street: FormControl<string>,
-  zip: FormControl<string>,
-  city: FormControl<string>,
-  country: FormControl<string>,
+  street: FormControl<string>;
+  zip: FormControl<string>;
+  city: FormControl<string>;
+  country: FormControl<string>;
 }
 
 export interface PartnerListQueryParams {

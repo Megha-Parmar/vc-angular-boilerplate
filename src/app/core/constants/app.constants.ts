@@ -1,15 +1,16 @@
 export const APP_CONSTANTS = {
   REDIRECT_URL: 'redirect_url',
   SUPPORT_EMAIL: 'info@calopad.com'
-}
+};
 
 export const REGEX_CONSTANTS = {
-  EMAIL_REGEX: /^[\p{L}0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[\p{L}0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[_\p{L}0-9][-_\p{L}0-9]*\.)*(?:[\p{L}0-9][-\p{L}0-9]{0,62})\.(?:(?:[a-z]{2}\.)?[a-z]{2,})$/iu,
-  PASSWORD_REGEX: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+  EMAIL_REGEX:
+    /^[\p{L}0-9!#$%&'*+=?^_`{|}~-]+(?:\.[\p{L}0-9!#$%&'*+=?^_`{|}~-]+)*@(?:[_\p{L}0-9][-_\p{L}0-9]*\.)*(?:[\p{L}0-9][-\p{L}0-9]{0,62})\.(?:(?:[a-z]{2}\.)?[a-z]{2,})$/iu,
+  PASSWORD_REGEX: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d)(?=.*?[#?!@$%^&*-]).{8,}$/,
   WEB_URL_REGEX: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/,
-  INTEGER_REGEX: /^[0-9]*$/,
-  DECIMAL_REGEX: /^[0-9]*\.?[0-9]*$/
-}
+  INTEGER_REGEX: /^\d*$/,
+  DECIMAL_REGEX: /^\d*\.?\d*$/
+};
 
 export const API_ROUTES = {
   loginApi: 'auth/login',
@@ -29,7 +30,7 @@ export const API_ROUTES = {
   dashboardTopPartnersApi: 'dashboard/topPartners',
   exchangeRateApi: 'exchangerates',
   openInvoiceListApi: 'dashboard/openBillList'
-}
+};
 
 export enum MessageType {
   info = 'info',
@@ -41,34 +42,27 @@ export enum MessageType {
 export const LANGUAGE_CONSTANTS = {
   en: 'en_US',
   de: 'de_CH',
-}
+};
 
 export const DEFAULT_LANGUAGE = LANGUAGE_CONSTANTS.en;
 
 export const PAGE_SIZE = [10, 25, 50, 100];
 
-export enum ErrorCode {
-  badRequest = 400,
-  unauthorized = 401,
-  notFound = 404,
-  internalServer = 500,
-}
-
 export const COUNTRY_LIST = [
   { value: '63f3818f7ad52cc9f404f645', label: 'switzerland' },
   { value: '63f3818f7ad52cc9f404f5a7', label: 'austria' },
   { value: '63f3818f7ad52cc9f404f5de', label: 'germany' }
-]
+];
 
 export const CURRENCY_LIST = [
   { value: 'CHF', label: 'CHF' },
   { value: 'EUR', label: 'EUR' }
-]
+];
 
 export const LANGUAGE_LIST = [
   { value: 'en_US', label: 'English' },
   { value: 'de_CH', label: 'German' }
-]
+];
 
 export enum HttpMethod {
   post = 'POST',
@@ -78,7 +72,7 @@ export enum HttpMethod {
 export const SORT_OPTIONS = [
   { value: 'oldest', label: 'oldestEntries' },
   { value: 'newest', label: 'latestEntries' }
-]
+];
 
 export enum RegexType {
   decimal = 'decimal',
@@ -92,3 +86,10 @@ export enum AccountingStatus {
   buy = 'buy',
   open = 'open'
 }
+
+export enum Months {
+  January, February, March, April, May, June, July, August, September, October, November, December
+}
+
+export const DEFAULT_PAGE_SIZE = 10;
+export const DEBOUNCE_TIME = 500;

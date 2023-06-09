@@ -1,24 +1,23 @@
-import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LocalStorageService } from '@services/local-storage.service';
-import { AuthenticationService } from '@services/authentication.service';
+import { StorageService } from '@app/core/services/storage.service';
 import { CpButtonComponent } from '@app/shared/cp-libs/cp-button/cp-button.component';
-import { LOCAL_STORAGE_CONSTANT } from '@constants/localstorage.constant';
 import { APP_CONSTANTS, MessageType } from '@constants/app.constants';
+import { STORAGE } from '@constants/localstorage.constant';
 import { LoginResponse } from '@models/auth.model';
-import { AlertToastrService } from '@services/alert-toastr.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { AlertToastrService } from '@services/alert-toastr.service';
+import { AuthenticationService } from '@services/authentication.service';
 import { UtilityService } from '@services/utility.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, FormsModule, CpButtonComponent, TranslateModule],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
 
@@ -27,7 +26,7 @@ export class LoginComponent {
   private destroyRef = inject(DestroyRef);
 
   constructor(
-    private localStorageService: LocalStorageService,
+    private storageService: StorageService,
     private router: Router,
     private authenticationService: AuthenticationService,
     private toasterService: AlertToastrService,
@@ -40,18 +39,20 @@ export class LoginComponent {
     }
     this.isSubmitted = true;
     this.authenticationService.login(loginForm.value)
-    .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe({
-      next: (res: LoginResponse) => {
-        if (res) {
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (res: LoginResponse) => {
+          if (res) {
             this.isSubmitted = false;
-            this.localStorageService.set(LOCAL_STORAGE_CONSTANT.LOGIN_TOKEN, res.token);
-            this.localStorageService.set(LOCAL_STORAGE_CONSTANT.USER_ROLE, res.role);
-            this.localStorageService.set(LOCAL_STORAGE_CONSTANT.USER_DATA, res);
+            this.storageService.set(STORAGE.LOGIN_TOKEN, res.token);
+            this.storageService.set(STORAGE.USER_ROLE, res.role);
+            this.storageService.set(STORAGE.USER_DATA, res);
             this.utilityService.changeLanguage(res.locale);
-            
+
             this.router.navigate(['/admin']).then(() => {
-              this.toasterService.displaySnackBarWithTranslation('toasterMessage.loggedInSuccessfully', MessageType.success);
+              this.toasterService.displaySnackBarWithTranslation(
+                'toasterMessage.loggedInSuccessfully', MessageType.success
+              );
             });
           }
         },

@@ -1,9 +1,6 @@
-import {environment} from '@environment/environment';
+import { environment } from '@environment/environment';
 
 export class LoggerService {
-
-  constructor() {
-  }
 
   static log(value: any, ...rest: any[]) {
     if (!environment.production) {
