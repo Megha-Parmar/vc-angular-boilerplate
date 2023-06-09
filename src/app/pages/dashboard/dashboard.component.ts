@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { AfterViewInit, Component, DestroyRef, OnInit, ViewChild, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +12,6 @@ import { CpLoaderComponent } from '@app/shared/cp-libs/cp-loader/cp-loader.compo
 import {
   AccountingStatus,
   DEFAULT_PAGE_SIZE,
-  ErrorCode,
   MessageType,
   PAGE_SIZE,
   SORT_OPTIONS
@@ -218,7 +217,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           );
         },
         error: (error: HttpErrorResponse) => {
-          if (error.error.status === ErrorCode.badRequest && error.error.error === AccountingStatus.billed) {
+          if (error.error.status === HttpStatusCode.BadRequest && error.error.error === AccountingStatus.billed) {
             this.toasterService.displaySnackBarWithTranslation('toasterMessage.billStatusChanged', MessageType.error);
           }
           this.getOpenInvoicesList();

@@ -48,13 +48,6 @@ export const DEFAULT_LANGUAGE = LANGUAGE_CONSTANTS.en;
 
 export const PAGE_SIZE = [10, 25, 50, 100];
 
-export enum ErrorCode {
-  badRequest = 400,
-  unauthorized = 401,
-  notFound = 404,
-  internalServer = 500,
-}
-
 export const COUNTRY_LIST = [
   { value: '63f3818f7ad52cc9f404f645', label: 'switzerland' },
   { value: '63f3818f7ad52cc9f404f5a7', label: 'austria' },

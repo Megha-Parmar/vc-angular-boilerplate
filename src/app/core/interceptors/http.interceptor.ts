@@ -1,11 +1,12 @@
 import {
   HttpErrorResponse,
   HttpEvent, HttpInterceptorFn,
-  HttpResponse
+  HttpResponse,
+  HttpStatusCode
 } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ErrorCode, HttpMethod, MessageType } from '@constants/app.constants';
+import { HttpMethod, MessageType } from '@constants/app.constants';
 import { STORAGE } from '@constants/localstorage.constant';
 import { environment } from '@environment/environment';
 import { AlertToastrService } from '@services/alert-toastr.service';
@@ -58,17 +59,17 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (request, next) => {
 
     if (request.url.includes('/auth/login')) {
       switch (error.error.status) {
-        case ErrorCode.unauthorized:
+        case HttpStatusCode.Unauthorized:
           toasterService.displaySnackBarWithTranslation('toasterMessage.loginUnsuccessful', MessageType.error);
           break;
-        case ErrorCode.notFound:
+        case HttpStatusCode.NotFound:
           toasterService.displaySnackBarWithTranslation('toasterMessage.userNotFound', MessageType.error);
           break;
-        case ErrorCode.internalServer:
+        case HttpStatusCode.InternalServerError:
           toasterService.displaySnackBarWithTranslation('toasterMessage.internalServerError', MessageType.error);
           break;
       }
-    } else if (error.error.status === ErrorCode.unauthorized) {
+    } else if (error.error.status === HttpStatusCode.Unauthorized) {
       toasterService.displaySnackBarWithTranslation('toasterMessage.tokenExpired', MessageType.error);
       router.navigate(['/auth/logout']);
     } else if (request.url.includes('forgotPassword')) {

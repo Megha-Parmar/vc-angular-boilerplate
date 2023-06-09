@@ -1,7 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn, Router } from '@angular/router';
-import { ErrorCode, MessageType } from '@constants/app.constants';
+import { MessageType } from '@constants/app.constants';
 import { CreatePartner } from '@models/partner.model';
 import { PartnerService } from '@services/partner.service';
 import { Observable, catchError } from 'rxjs';
@@ -15,7 +15,7 @@ export const PartnerDetailService: ResolveFn<Observable<CreatePartner | unknown>
 
     return partnerService.getPartnerDetail(route.params.uuid)
       .pipe(catchError((error: HttpErrorResponse) => {
-        if (error.status === ErrorCode.badRequest) {
+        if (error.status === HttpStatusCode.BadRequest) {
           toasterService.displaySnackBarWithTranslation('toasterMessage.invalidPartner', MessageType.error);
         }
         router.navigate(['/admin/partner']);
