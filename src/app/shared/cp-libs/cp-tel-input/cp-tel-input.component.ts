@@ -113,7 +113,7 @@ export class CpTelInputComponent {
 
   setPhoneNumber(value: string): void {
     if (this._intlTelInput) {
-      if (!!value) {
+      if (value) {
         this._intlTelInput.setNumber(value);
       }
       this.i18nPhoneNumber();

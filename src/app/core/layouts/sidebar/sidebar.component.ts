@@ -53,7 +53,7 @@ export class SidebarComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((res: boolean) => {
         this.menuOpen = res;
-      })
+      });
   }
 
   changeLanguage(): void {

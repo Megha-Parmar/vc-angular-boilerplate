@@ -27,7 +27,7 @@ export class AdminService {
   }
   
   getLatestRedemptionList(params: Partial<PartnerListQueryParams>): Observable<RedemptionList> {
-    return this.httpClientService.get(API_ROUTES.redemptionListApi, { params })
+    return this.httpClientService.get(API_ROUTES.redemptionListApi, { params });
   }
 
   getExchangeRate(): Observable<number> {

@@ -97,7 +97,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getLatestRedemptionList();
     this.translateService.onLangChange.subscribe(() => {
       this.translateChartLabels();
-    })
+    });
   }
 
   getAccountingStats(): void {
@@ -112,13 +112,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         error: () => {
           this.accountingStatsLoading = false;
         }
-      })
+      });
   }
 
   getPerformanceOverview(): void {
     const params = {
       dateFilter: this.dateFilter.value,
-    }
+    };
     this.performanceOverviewLoading = true;
     this.adminService.getDashboardPerformanceStats(params)
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -135,12 +135,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
               pointBackgroundColor: '#ff6b00',
               tension: 0.5
             }
-          ]
+          ];
         },
         error: () => {
           this.performanceOverviewLoading = false;
         }
-      })
+      });
   }
 
   getTopPartners(): void {
@@ -155,7 +155,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         error: () => {
           this.topPartnersDetailLoading = false;
         }
-      })
+      });
   }
 
   translateChartLabels(): void {
@@ -169,7 +169,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       sort: this.invoiceSortValue.value,
       pageSize: this.invoicePaginator?.pageSize || 10,
       page: (this.invoicePaginator?.pageIndex + 1) || 1,
-    }
+    };
     this.invoiceListLoading = true;
     this.openInvoiceList = new MatTableDataSource([]);
     this.adminService.getOpenInvoiceList(params)
@@ -183,7 +183,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         error: () => {
           this.invoiceListLoading = false;
         }
-      })
+      });
   }
 
   updateStatus(status: string, uuid: string): void {
@@ -202,7 +202,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           }
           this.getOpenInvoicesList();
         }
-      })
+      });
   }
 
   getLatestRedemptionList(): void {
@@ -210,7 +210,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       sort: this.redemptionSortValue.value,
       pageSize: this.redemptionPaginator?.pageSize || 10,
       page: (this.redemptionPaginator?.pageIndex + 1) || 1,
-    }
+    };
     this.redemptionListLoading = true;
     this.latestRedemptionList = new MatTableDataSource([]);
     this.adminService.getLatestRedemptionList(params)
@@ -224,7 +224,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 label: 'dashboard.trackOrder',
                 callback: this.trackOrder.bind(this)
               },
-            ]
+            ];
           });
           this.latestRedemptionList = new MatTableDataSource(res?.records);
           this.redemptionPaginator.length = res?.totalCount;
@@ -232,7 +232,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         error: () => {
           this.redemptionListLoading = false;
         }
-      })
+      });
   }
 
   trackOrder(trackingUrl: string): void {

@@ -37,7 +37,7 @@ export class PagesComponent {
           this.showLastItemCustomLabel = result.showLastItemCustomLabel;
           this.lastItemCustomLabel = result.lastItemCustomLabel;
         }, 100);
-      })
+      });
   }
 
   toggleMenu(): void {

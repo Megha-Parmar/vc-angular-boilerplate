@@ -6,4 +6,4 @@ export const environment = {
   hostName: 'https://card-api.calopad.com',
   restAPI: '/api/',
   preferredCountries: ['ch', 'de', 'fr', 'gb', 'it', 'nl', 'fi'],
-}
+};

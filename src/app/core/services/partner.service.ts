@@ -45,7 +45,7 @@ export class PartnerService {
     return this.httpClientService.post(API_ROUTES.cardListApi, params);
   }
 
-  updateCardStatus(uuid: string, params: { status: string, error_toast_in_interceptor: boolean }): Observable<[] | null> {
+  updateCardStatus(uuid: string, params: { status: string; error_toast_in_interceptor: boolean }): Observable<[] | null> {
     return this.httpClientService.patch(`${API_ROUTES.cardListApi}/${uuid}`, params);
   }
 

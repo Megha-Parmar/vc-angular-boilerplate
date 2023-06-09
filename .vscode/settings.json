@@ -51,4 +51,5 @@
     "css.format.spaceAroundSelectorSeparator": true,
     "scss.format.spaceAroundSelectorSeparator": true,
     "scss.lint.important": "warning",
+    "files.trimTrailingWhitespace": true
 }

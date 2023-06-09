@@ -37,8 +37,8 @@ export const HttpTokenInterceptor: HttpInterceptorFn = (request, next) => {
       });
     }
     return event;
-  }));;
-}
+  }));
+};
 
 export const HttpErrorInterceptor: HttpInterceptorFn = (request: HttpRequest<any>, next) => {
   const toasterService = inject(AlertToastrService);
@@ -52,7 +52,7 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (request: HttpRequest<any
       !request.body?.error_toast_in_interceptor
     ) {
       errorToastInInterceptor = false;
-      delete request.body.error_toast_in_interceptor
+      delete request.body.error_toast_in_interceptor;
     }
 
     if (
@@ -88,9 +88,9 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (request: HttpRequest<any
       error: error.error,
       statusText: error.message,
       status: error.status
-    })
+    });
     LoggerService.error(err);
     throw err;
   })
-  )
-}
+  );
+};

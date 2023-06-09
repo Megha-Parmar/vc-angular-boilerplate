@@ -77,7 +77,7 @@ export class PartnerListComponent {
       pageSize: this.paginator?.pageSize || 10,
       page: (this.paginator?.pageIndex + 1) || 1,
       ...this.searchValue && { search: this.searchValue }
-    }
+    };
     this.isLoading = true;
     this.partnerList = new MatTableDataSource([]);
     this.partnerService.getPartnerList(params)
@@ -91,7 +91,7 @@ export class PartnerListComponent {
                 if (el.country === country.value) {
                   el.country = `${country.label.charAt(0).toUpperCase()}${country.label.slice(1)}`;
                 }
-              })
+              });
               el.partnerAction = [
                 {
                   label: 'partner.edit',
@@ -101,7 +101,7 @@ export class PartnerListComponent {
                   label: el.isActive ? 'partner.markAsInactive' : 'partner.markAsActive',
                   callback: this.updateStatus.bind(this)
                 }
-              ]
+              ];
             });
             this.partnerList = new MatTableDataSource(res.records);
             this.paginator.length = res.totalCount;
@@ -110,7 +110,7 @@ export class PartnerListComponent {
         error: () => {
           this.isLoading = false;
         }
-      })
+      });
   }
 
   ngAfterViewInit(): void {
@@ -129,7 +129,7 @@ export class PartnerListComponent {
           this.toasterService.displaySnackBarWithTranslation('toasterMessage.updateStatusSuccessful', MessageType.success);
           this.getPartnerList();
         },
-      })
+      });
   }
 
   onSearch(searchValue: string): void {

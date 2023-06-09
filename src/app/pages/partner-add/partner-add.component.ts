@@ -116,7 +116,7 @@ export class PartnerAddComponent implements OnInit {
         error: () => {
           this.isSubmitted = false;
         }
-      })
+      });
   }
 
   updatePartner(): void {
@@ -131,7 +131,7 @@ export class PartnerAddComponent implements OnInit {
         error: () => {
           this.isSubmitted = false;
         }
-      })
+      });
   }
 
   navigateToList() {

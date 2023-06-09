@@ -20,7 +20,7 @@ export class AllowNumberOnlyDirective {
         this.regex = REGEX_CONSTANTS.DECIMAL_REGEX;
         break;
     }
-  };
+  }
   constructor(
     private el: ElementRef
   ) { }

@@ -45,7 +45,7 @@ export class ForgotPasswordComponent {
         error: () => {
           this.isSubmitted = false;
         }
-      })
+      });
   }
 
   backToLogin(): void {
