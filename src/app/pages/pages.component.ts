@@ -33,6 +33,7 @@ export class PagesComponent {
    * properties based on the result.
    */
   ngOnInit(): void {
+    console.log("testing pre commit hook");
     this.cpEventsService.cpHeaderDataChanged
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result: BreadcrumbEventModel) => {

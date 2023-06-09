@@ -12,7 +12,8 @@
     "compodoc:build": "compodoc -p tsconfig.json",
     "compodoc:build-and-serve": "compodoc -p tsconfig.json -s",
     "compodoc:serve": "compodoc -s",
-    "sonar": "sonar-scanner"
+    "sonar": "sonar-scanner",
+    "lint-staged": "npm run lint-staged"
   },
   "private": true,
   "dependencies": {
