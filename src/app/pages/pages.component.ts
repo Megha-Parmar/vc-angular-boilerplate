@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterOutlet } from '@angular/router';
 import { BreadcrumbComponent } from '@layouts/breadcrumb/breadcrumb.component';
@@ -15,7 +15,7 @@ import { CpEventsService } from '@services/cp-events.service';
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.scss']
 })
-export class PagesComponent {
+export class PagesComponent implements OnInit {
 
   breadcrumbs!: BreadCrumb[];
   showLastItemCustomLabel!: boolean;

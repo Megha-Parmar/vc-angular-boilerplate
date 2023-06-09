@@ -3,14 +3,14 @@ import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StorageService } from '@app/core/services/storage.service';
 import { CpButtonComponent } from '@app/shared/cp-libs/cp-button/cp-button.component';
 import { APP_CONSTANTS, MessageType } from '@constants/app.constants';
-import { LOCAL_STORAGE_CONSTANT } from '@constants/localstorage.constant';
+import { STORAGE } from '@constants/localstorage.constant';
 import { LoginResponse } from '@models/auth.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { AlertToastrService } from '@services/alert-toastr.service';
 import { AuthenticationService } from '@services/authentication.service';
-import { LocalStorageService } from '@services/local-storage.service';
 import { UtilityService } from '@services/utility.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class LoginComponent {
   private destroyRef = inject(DestroyRef);
 
   constructor(
-    private localStorageService: LocalStorageService,
+    private storageService: StorageService,
     private router: Router,
     private authenticationService: AuthenticationService,
     private toasterService: AlertToastrService,
@@ -44,13 +44,15 @@ export class LoginComponent {
         next: (res: LoginResponse) => {
           if (res) {
             this.isSubmitted = false;
-            this.localStorageService.set(LOCAL_STORAGE_CONSTANT.LOGIN_TOKEN, res.token);
-            this.localStorageService.set(LOCAL_STORAGE_CONSTANT.USER_ROLE, res.role);
-            this.localStorageService.set(LOCAL_STORAGE_CONSTANT.USER_DATA, res);
+            this.storageService.set(STORAGE.LOGIN_TOKEN, res.token);
+            this.storageService.set(STORAGE.USER_ROLE, res.role);
+            this.storageService.set(STORAGE.USER_DATA, res);
             this.utilityService.changeLanguage(res.locale);
 
             this.router.navigate(['/admin']).then(() => {
-              this.toasterService.displaySnackBarWithTranslation('toasterMessage.loggedInSuccessfully', MessageType.success);
+              this.toasterService.displaySnackBarWithTranslation(
+                'toasterMessage.loggedInSuccessfully', MessageType.success
+              );
             });
           }
         },

@@ -1,25 +1,33 @@
-import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BreadCrumb } from '@models/breadcrumb.model';
-import { CpEventsService } from '@services/cp-events.service';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { NgSelectModule } from '@ng-select/ng-select';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AddPartnerForm, PartnerAddress } from '@models/partner.model';
-import { COUNTRY_LIST, CURRENCY_LIST, LANGUAGE_LIST, MessageType, RegexType, REGEX_CONSTANTS } from '@constants/app.constants';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CpButtonComponent } from '@app/shared/cp-libs/cp-button/cp-button.component';
-import { PartnerService } from '@services/partner.service';
+import { CpTelInputComponent } from '@app/shared/cp-libs/cp-tel-input/cp-tel-input.component';
+import {
+  COUNTRY_LIST,
+  CURRENCY_LIST,
+  LANGUAGE_LIST,
+  MessageType,
+  REGEX_CONSTANTS,
+  RegexType
+} from '@constants/app.constants';
+import { AllowNumberOnlyDirective } from '@directives/allow-number-only.directive';
+import { BreadCrumb } from '@models/breadcrumb.model';
+import { AddPartnerForm, PartnerAddress } from '@models/partner.model';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule } from '@ngx-translate/core';
 import { AlertToastrService } from '@services/alert-toastr.service';
-import { AllowNumberOnlyDirective } from '@directives/allow-number-only.directive';
-import { CpTelInputComponent } from '@app/shared/cp-libs/cp-tel-input/cp-tel-input.component';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CpEventsService } from '@services/cp-events.service';
+import { PartnerService } from '@services/partner.service';
 
 @Component({
   selector: 'app-partner-add',
   standalone: true,
-  imports: [CommonModule, MatSlideToggleModule, NgSelectModule, FormsModule, CpButtonComponent, ReactiveFormsModule, TranslateModule, AllowNumberOnlyDirective, CpTelInputComponent],
+  imports: [CommonModule, MatSlideToggleModule, NgSelectModule, FormsModule, CpButtonComponent, ReactiveFormsModule,
+    TranslateModule, AllowNumberOnlyDirective, CpTelInputComponent],
   templateUrl: './partner-add.component.html',
   styleUrls: ['./partner-add.component.scss']
 })
@@ -30,7 +38,7 @@ export class PartnerAddComponent implements OnInit {
   uuid: string;
   isSubmitted = false;
   isReadOnly = false;
-  
+
   readonly countryList = COUNTRY_LIST;
   readonly currencyList = CURRENCY_LIST;
   readonly languageList = LANGUAGE_LIST;
@@ -109,8 +117,10 @@ export class PartnerAddComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
-          this.isSubmitted =false;
-          this.toasterService.displaySnackBarWithTranslation('toasterMessage.addPartnerSuccessful', MessageType.success);
+          this.isSubmitted = false;
+          this.toasterService.displaySnackBarWithTranslation(
+            'toasterMessage.addPartnerSuccessful', MessageType.success
+          );
           this.navigateToList();
         },
         error: () => {
@@ -125,7 +135,9 @@ export class PartnerAddComponent implements OnInit {
       .subscribe({
         next: () => {
           this.isSubmitted = false;
-          this.toasterService.displaySnackBarWithTranslation('toasterMessage.updatePartnerSuccessful', MessageType.success);
+          this.toasterService.displaySnackBarWithTranslation(
+            'toasterMessage.updatePartnerSuccessful', MessageType.success
+          );
           this.navigateToList();
         },
         error: () => {

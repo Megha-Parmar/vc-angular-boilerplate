@@ -38,7 +38,9 @@ export class ForgotPasswordComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
-          this.toasterService.displaySnackBarWithTranslation('toasterMessage.forgotPasswordSuccessful', MessageType.success);
+          this.toasterService.displaySnackBarWithTranslation(
+            'toasterMessage.forgotPasswordSuccessful', MessageType.success
+          );
           this.router.navigate(['/auth/login']);
           this.isSubmitted = false;
         },

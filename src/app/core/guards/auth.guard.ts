@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
 import { CanMatchFn, Router } from '@angular/router';
-import { LOCAL_STORAGE_CONSTANT } from '@constants/localstorage.constant';
-import { LocalStorageService } from '@services/local-storage.service';
+import { STORAGE } from '@constants/localstorage.constant';
+import { StorageService } from '@services/storage.service';
 
 export const AuthGuard: CanMatchFn = () => {
-  const localStorageService = inject(LocalStorageService);
+  const storageService = inject(StorageService);
   const router = inject(Router);
-  const token = localStorageService.get(LOCAL_STORAGE_CONSTANT.LOGIN_TOKEN);
+  const token = storageService.get(STORAGE.LOGIN_TOKEN);
   if (token) {
     return true;
   }

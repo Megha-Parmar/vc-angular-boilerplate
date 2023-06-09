@@ -1,34 +1,50 @@
-import { AfterViewInit, Component, DestroyRef, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { BreadCrumb } from '@models/breadcrumb.model';
-import { CpEventsService } from '@services/cp-events.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { MatIconModule } from '@angular/material/icon';
-import { NgSelectModule } from '@ng-select/ng-select';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AfterViewInit, Component, DestroyRef, OnInit, ViewChild, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { AccountingStatus, ErrorCode, MessageType, PAGE_SIZE, SORT_OPTIONS } from '@constants/app.constants';
-import { AdminService } from '@services/admin.service';
+import { ActivatedRoute } from '@angular/router';
+import { CpActionToolbarComponent } from '@app/shared/cp-libs/cp-action-toolbar/cp-action-toolbar.component';
 import { CpLoaderComponent } from '@app/shared/cp-libs/cp-loader/cp-loader.component';
+import {
+  AccountingStatus,
+  DEFAULT_PAGE_SIZE,
+  ErrorCode,
+  MessageType,
+  PAGE_SIZE,
+  SORT_OPTIONS
+} from '@constants/app.constants';
+import { STORAGE } from '@constants/localstorage.constant';
+import {
+  DashboardAccountingStats,
+  InvoiceDetail,
+  InvoiceList,
+  PerformanceOverview,
+  RedemptionDetail,
+  RedemptionList,
+  TopPartners
+} from '@models/admin.model';
+import { LoginResponse } from '@models/auth.model';
+import { BreadCrumb } from '@models/breadcrumb.model';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AdminService } from '@services/admin.service';
+import { AlertToastrService } from '@services/alert-toastr.service';
+import { CpEventsService } from '@services/cp-events.service';
+import { PartnerService } from '@services/partner.service';
+import { StorageService } from '@services/storage.service';
+import { UtilityService } from '@services/utility.service';
 import { ChartOptions } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
-import { DashboardAccountingStats, InvoiceDetail, InvoiceList, PerformanceOverview, RedemptionDetail, RedemptionList, TopPartners } from '@models/admin.model';
-import { LocalStorageService } from '@services/local-storage.service';
-import { LoginResponse } from '@models/auth.model';
-import { LOCAL_STORAGE_CONSTANT } from '@constants/localstorage.constant';
-import { CpActionToolbarComponent } from '@app/shared/cp-libs/cp-action-toolbar/cp-action-toolbar.component';
-import { UtilityService } from '@services/utility.service';
-import { PartnerService } from '@services/partner.service';
-import { AlertToastrService } from '@services/alert-toastr.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, TranslateModule, MatIconModule, NgSelectModule, FormsModule, ReactiveFormsModule, MatTableModule, MatPaginatorModule, CpLoaderComponent, NgChartsModule, CpActionToolbarComponent],
+  imports: [CommonModule, TranslateModule, MatIconModule, NgSelectModule, FormsModule, ReactiveFormsModule,
+    MatTableModule, MatPaginatorModule, CpLoaderComponent, NgChartsModule, CpActionToolbarComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
@@ -37,7 +53,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   breadcrumbs: BreadCrumb[] = [];
   latestRedemptionList = new MatTableDataSource<RedemptionDetail>();
   openInvoiceList = new MatTableDataSource<InvoiceDetail>();
-  columnLabel = ['affiliatePartner', 'cardType', 'cardCode', 'date', 'shopOrderNumber', 'shopStatus', 'billingPositions', 'action'];
+  columnLabel = [
+    'affiliatePartner', 'cardType', 'cardCode', 'date', 'shopOrderNumber', 'shopStatus', 'billingPositions', 'action'
+  ];
   invoiceColumnLabel = ['affiliatePartner', 'accountingDate', 'billable', 'status'];
   @ViewChild('redemptionPaginator') redemptionPaginator: MatPaginator;
   @ViewChild('invoicePaginator') invoicePaginator: MatPaginator;
@@ -78,13 +96,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private cpEventsService: CpEventsService,
     private adminService: AdminService,
-    private localStorageService: LocalStorageService,
+    private storageService: StorageService,
     private utilityService: UtilityService,
     private translateService: TranslateService,
     private partnerService: PartnerService,
     private toasterService: AlertToastrService
   ) {
-    this.userData = this.localStorageService.get(LOCAL_STORAGE_CONSTANT.USER_DATA);
+    this.userData = this.storageService.get(STORAGE.USER_DATA);
     this.breadcrumbs = this.route.snapshot.data.breadcrumbs;
   }
 
@@ -126,7 +144,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         next: (res: PerformanceOverview[]) => {
           this.performanceOverviewLoading = false;
           const performanceOverview = res;
-          this.chartLabels = performanceOverview?.map((el: PerformanceOverview) => this.utilityService.numberToDayConverter(el.day));
+          this.chartLabels =
+            performanceOverview?.map((el: PerformanceOverview) => this.utilityService.numberToDayConverter(el.day));
           this.translateChartLabels();
           this.dayWiseData = [
             {
@@ -167,7 +186,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getOpenInvoicesList(): void {
     const params = {
       sort: this.invoiceSortValue.value,
-      pageSize: this.invoicePaginator?.pageSize || 10,
+      pageSize: this.invoicePaginator?.pageSize || DEFAULT_PAGE_SIZE,
       page: (this.invoicePaginator?.pageIndex + 1) || 1,
     };
     this.invoiceListLoading = true;
@@ -194,7 +213,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           if (status === AccountingStatus.billed) {
             this.getOpenInvoicesList();
           }
-          this.toasterService.displaySnackBarWithTranslation('toasterMessage.billStatusUpdateSuccessful', MessageType.success);
+          this.toasterService.displaySnackBarWithTranslation(
+            'toasterMessage.billStatusUpdateSuccessful', MessageType.success
+          );
         },
         error: (error: HttpErrorResponse) => {
           if (error.error.status === ErrorCode.badRequest && error.error.error === AccountingStatus.billed) {
@@ -208,7 +229,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getLatestRedemptionList(): void {
     const params = {
       sort: this.redemptionSortValue.value,
-      pageSize: this.redemptionPaginator?.pageSize || 10,
+      pageSize: this.redemptionPaginator?.pageSize || DEFAULT_PAGE_SIZE,
       page: (this.redemptionPaginator?.pageIndex + 1) || 1,
     };
     this.redemptionListLoading = true;

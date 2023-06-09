@@ -1,4 +1,4 @@
-export const LOCAL_STORAGE_CONSTANT = {
+export const STORAGE = {
   LANGUAGE_KEY: 'lk',
   REDIRECT_TO: 'cd_rdto',
   CURRENT_LANGUAGE_STATE_KEY: 'clsk',

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { LOCAL_STORAGE_CONSTANT } from '@constants/localstorage.constant';
-import { LocalStorageService } from '@services/local-storage.service';
-import { DEFAULT_LANGUAGE } from '@constants/app.constants';
+import { DEFAULT_LANGUAGE, Months } from '@constants/app.constants';
+import { STORAGE } from '@constants/localstorage.constant';
 import { LoginResponse } from '@models/auth.model';
+import { TranslateService } from '@ngx-translate/core';
 import { PartnerService } from '@services/partner.service';
+import { StorageService } from '@services/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,37 +15,38 @@ export class UtilityService {
 
   constructor(
     private translateService: TranslateService,
-    private localStorageService: LocalStorageService,
+    private storageService: StorageService,
     private partnerService: PartnerService
   ) { }
 
   setLanguage(): void {
-    const localStorageLanguage = this.localStorageService.get(LOCAL_STORAGE_CONSTANT.CURRENT_LANGUAGE_STATE_KEY) as string;
+    const localStorageLanguage =
+      this.storageService.get(STORAGE.CURRENT_LANGUAGE_STATE_KEY) as string;
     const language = localStorageLanguage || DEFAULT_LANGUAGE;
     this.translateService.setDefaultLang(language);
-    this.localStorageService.set(LOCAL_STORAGE_CONSTANT.CURRENT_LANGUAGE_STATE_KEY, language);
+    this.storageService.set(STORAGE.CURRENT_LANGUAGE_STATE_KEY, language);
   }
 
   getUserFromLocalStorage(): LoginResponse {
-    return this.localStorageService.get(LOCAL_STORAGE_CONSTANT.USER_DATA);
+    return this.storageService.get(STORAGE.USER_DATA);
   }
 
   changeLanguage(locale: string, uuid?: string): void {
     uuid && this.partnerService.updatePartnerDetail({ locale }, uuid).subscribe();
-    this.localStorageService.set(LOCAL_STORAGE_CONSTANT.CURRENT_LANGUAGE_STATE_KEY, locale);
+    this.storageService.set(STORAGE.CURRENT_LANGUAGE_STATE_KEY, locale);
     this.translateService.use(locale);
   }
 
   getPreviousMonthNameFromDate(dateISO: string): string {
     const date = new Date(dateISO);
-    const previousMonth = date.getMonth() === 0 ? 11 : date.getMonth() - 1;
-    const year = previousMonth === 11 ? date.getFullYear() - 1 : date.getFullYear();
+    const previousMonth = date.getMonth() === 0 ? Months.December : date.getMonth() - 1;
+    const year = previousMonth === Months.December ? date.getFullYear() - 1 : date.getFullYear();
     const previousMonthName = new Date(year, previousMonth, 1);
     return `${previousMonthName.toLocaleString('default', { month: 'short' })} ${year}`;
   }
 
   numberToDayConverter(index: number): string {
-    return `days.${this.days[index-1]}`;
+    return `days.${this.days[index - 1]}`;
   }
 
 }

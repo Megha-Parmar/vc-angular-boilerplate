@@ -34,7 +34,7 @@
     "editor.suggest.snippetsPreventQuickSuggestions": true,
     "vsicons.dontShowNewVersionMessage": true,
     "[scss]": {
-        "editor.defaultFormatter": "vscode.css-language-features",
+        "editor.defaultFormatter": "bradlc.vscode-tailwindcss"
     },
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true,
@@ -50,6 +50,7 @@
     "docwriter.style": "Auto-detect",
     "css.format.spaceAroundSelectorSeparator": true,
     "scss.format.spaceAroundSelectorSeparator": true,
-    "scss.lint.important": "warning",
-    "files.trimTrailingWhitespace": true
+    "scss.validate": false,
+    "tailwindCSS.validate": true,
+    "files.trimTrailingWhitespace": true,
 }

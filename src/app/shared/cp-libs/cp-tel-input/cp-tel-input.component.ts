@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild } from '@angular/core';
-import { AbstractControl, FormControl, FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  AbstractControl,
+  FormControl,
+  FormsModule,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+  ValidationErrors
+} from '@angular/forms';
 import { environment } from '@environment/environment';
 
 declare const intlTelInput: any;
@@ -23,7 +31,7 @@ declare const intlTelInput: any;
     }
   ]
 })
-export class CpTelInputComponent {
+export class CpTelInputComponent implements OnInit, AfterViewInit {
 
   @Input() defaultCountry: string;
   @Input() public cssClass: {};

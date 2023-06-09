@@ -16,9 +16,9 @@ export class CpButtonComponent {
   @Input() isDisabled = false;
   @Input() tooltip?: string;
   @Input() spin = false;
-  @Output() onTap = new EventEmitter<any>();
+  @Output() buttonTap = new EventEmitter<any>();
 
   click() {
-    this.onTap.emit();
+    this.buttonTap.emit();
   }
 }

@@ -33,9 +33,10 @@ export const adminRoutes: Routes = [
             redirectTo: 'list',
             pathMatch: 'full'
           },
-          { 
+          {
             path: 'list',
-            loadComponent: () => import('@pages/partner-list/partner-list.component').then((m) => m.PartnerListComponent),
+            loadComponent: () =>
+              import('@pages/partner-list/partner-list.component').then((m) => m.PartnerListComponent),
             resolve: {
               breadcrumbs: BreadcrumbResolverFn,
             }
