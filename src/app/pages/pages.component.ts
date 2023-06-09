@@ -33,7 +33,6 @@ export class PagesComponent {
    * properties based on the result.
    */
   ngOnInit(): void {
-    console.log("testing pre commit hook");
     this.cpEventsService.cpHeaderDataChanged
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result: BreadcrumbEventModel) => {
@@ -42,7 +41,7 @@ export class PagesComponent {
           this.showLastItemCustomLabel = result.showLastItemCustomLabel as boolean;
           this.lastItemCustomLabel = result.lastItemCustomLabel as string;
         }, 100);
-      })
+      });
   }
 
   toggleMenu(): void {
