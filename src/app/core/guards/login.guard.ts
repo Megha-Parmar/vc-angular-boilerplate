@@ -17,5 +17,5 @@ export const LoginGuard: CanMatchFn = (_, segments: UrlSegment[]) => {
 };
 
 const checkRoute = (segments: UrlSegment[], route: string) => {
-  return segments?.some((segment) => segment.path.includes(route));
+  return segments.some((segment) => segment.path.includes(route));
 };
