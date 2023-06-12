@@ -1,22 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
-import { AfterViewInit, Component, DestroyRef, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, ViewChild, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { CpActionToolbarComponent } from '@app/shared/cp-libs/cp-action-toolbar/cp-action-toolbar.component';
-import { CpLoaderComponent } from '@app/shared/cp-libs/cp-loader/cp-loader.component';
 import {
   AccountingStatus,
+  DEFAULT_PAGE_INDEX,
   DEFAULT_PAGE_SIZE,
   MessageType,
   PAGE_SIZE,
   SORT_OPTIONS
 } from '@constants/app.constants';
-import { STORAGE } from '@constants/localstorage.constant';
+import { STORAGE } from '@constants/storage.constant';
+import { CpActionToolbarComponent } from '@cp-libs/cp-action-toolbar/cp-action-toolbar.component';
+import { CpLoaderComponent } from '@cp-libs/cp-loader/cp-loader.component';
 import {
   DashboardAccountingStats,
   InvoiceDetail,
@@ -47,7 +48,7 @@ import { NgChartsModule } from 'ng2-charts';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
+export class DashboardComponent implements OnInit {
 
   breadcrumbs: BreadCrumb[] = [];
   latestRedemptionList = new MatTableDataSource<RedemptionDetail>();
@@ -106,7 +107,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.cpEventsService.cpHeaderDataChanged.emit({ breadcrumbs: this.breadcrumbs });
+    this.cpEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
     this.getAccountingStats();
     this.getPerformanceOverview();
     this.getTopPartners();
@@ -186,7 +187,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     const params = {
       sort: this.invoiceSortValue.value,
       pageSize: this.invoicePaginator?.pageSize || DEFAULT_PAGE_SIZE,
-      page: (this.invoicePaginator?.pageIndex + 1) || 1,
+      page: (this.invoicePaginator?.pageIndex + 1) || DEFAULT_PAGE_INDEX,
     };
     this.invoiceListLoading = true;
     this.openInvoiceList = new MatTableDataSource([]);
@@ -229,7 +230,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     const params = {
       sort: this.redemptionSortValue.value,
       pageSize: this.redemptionPaginator?.pageSize || DEFAULT_PAGE_SIZE,
-      page: (this.redemptionPaginator?.pageIndex + 1) || 1,
+      page: (this.redemptionPaginator?.pageIndex + 1) || DEFAULT_PAGE_INDEX,
     };
     this.redemptionListLoading = true;
     this.latestRedemptionList = new MatTableDataSource([]);
@@ -257,11 +258,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   trackOrder(trackingUrl: string): void {
     window.open(trackingUrl);
-  }
-
-  ngAfterViewInit(): void {
-    this.latestRedemptionList.paginator = this.redemptionPaginator;
-    this.openInvoiceList.paginator = this.invoicePaginator;
   }
 
 }

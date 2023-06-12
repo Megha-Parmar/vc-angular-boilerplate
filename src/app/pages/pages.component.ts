@@ -29,6 +29,10 @@ export class PagesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.setBreadcrumbs();
+  }
+
+  setBreadcrumbs(): void {
     this.cpEventsService.cpHeaderDataChanged
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result: BreadcrumbEventModel) => {

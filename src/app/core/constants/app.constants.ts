@@ -8,7 +8,8 @@ export const REGEX_CONSTANTS = {
   PASSWORD_REGEX: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d)(?=.*?[#?!@$%^&*-]).{8,}$/,
   WEB_URL_REGEX: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/,
   INTEGER_REGEX: /^\d*$/,
-  DECIMAL_REGEX: /^\d*\.?\d*$/
+  DECIMAL_REGEX: /^\d*\.?\d*$/,
+  ZIP_REGEX: /^[0-9]{4,6}$/
 };
 
 export const API_ROUTES = {
@@ -91,5 +92,6 @@ export enum Months {
 }
 
 export const DEFAULT_PAGE_SIZE = 10;
+export const DEFAULT_PAGE_INDEX = 1;
 export const DEBOUNCE_TIME = 500;
 export const LOGOUT = 'logout';

@@ -23,7 +23,7 @@
             class="text-[30px] xl:text-[34px] 2xl:text-[40px] leading-[34px] xl:leading-[38px] 2xl:leading-[44px] font-medium text-secondary mt-3">
             <span class="text-[20px] xl:text-[22px] 2xl:text-[25px] leading-[24px] 2xl:leading-[28px]">{{
               userData?.currency }}</span>
-            {{ accountingStats?.revenueInitialCost | number: '1.2-2' || 0 }}
+            {{ (accountingStats?.revenueInitialCost || 0) | number: '1.2-2' }}
           </p>
         </ng-container>
         <ng-container *ngTemplateOutlet="accountingStatsLoader"></ng-container>
@@ -38,7 +38,7 @@
             class="text-[30px] xl:text-[34px] 2xl:text-[40px] leading-[34px] xl:leading-[38px] 2xl:leading-[44px] font-medium text-secondary mt-3">
             <span class="text-[20px] xl:text-[22px] 2xl:text-[25px] leading-[24px] 2xl:leading-[28px]">{{
               userData?.currency }}</span>
-            {{ accountingStats?.revenueActivations | number: '1.2-2' || 0 }}
+            {{ (accountingStats?.revenueActivations || 0) | number: '1.2-2' }}
           </p>
         </ng-container>
         <ng-container *ngTemplateOutlet="accountingStatsLoader"></ng-container>
@@ -51,7 +51,7 @@
         <ng-container *ngIf="!accountingStatsLoading">
           <p
             class="text-[30px] xl:text-[34px] 2xl:text-[40px] leading-[34px] xl:leading-[38px] 2xl:leading-[44px] font-medium text-secondary mt-3">
-            {{ accountingStats?.billingPositions | number: '1.2-2' || 0 }}
+            {{ (accountingStats?.billingPositions || 0) | number: '1.2-2' }}
           </p>
         </ng-container>
         <ng-container *ngTemplateOutlet="accountingStatsLoader"></ng-container>
@@ -102,7 +102,7 @@
                     class="text-[30px] xl:text-[32px] 2xl:text-[36px] leading-[34px] xl:leading-[36px] 2xl:leading-[40px] mb-3 text-center font-medium text-secondary">
                     <span class="text-[20px] xl:text-[22px] 2xl:text-[25px] leading-[24px] 2xl:leading-[28px]">{{
                       userData?.currency }}</span>
-                    {{ partnerDetail.totalRevenue | number: '1.2-2' || 0 }}
+                    {{ (partnerDetail.totalRevenue || 0) | number: '1.2-2' }}
                   </p>
                   <p class="font-bold text-center mt-auto">{{ partnerDetail.companyName || '-' }}</p>
                 </div>

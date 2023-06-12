@@ -4,8 +4,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CpButtonComponent } from '@app/shared/cp-libs/cp-button/cp-button.component';
-import { CpTelInputComponent } from '@app/shared/cp-libs/cp-tel-input/cp-tel-input.component';
 import {
   COUNTRY_LIST,
   CURRENCY_LIST,
@@ -14,6 +12,8 @@ import {
   REGEX_CONSTANTS,
   RegexType
 } from '@constants/app.constants';
+import { CpButtonComponent } from '@cp-libs/cp-button/cp-button.component';
+import { CpTelInputComponent } from '@cp-libs/cp-tel-input/cp-tel-input.component';
 import { AllowNumberOnlyDirective } from '@directives/allow-number-only.directive';
 import { BreadCrumb } from '@models/breadcrumb.model';
 import { AddPartnerForm, PartnerAddress } from '@models/partner.model';
@@ -37,7 +37,6 @@ export class PartnerAddComponent implements OnInit {
   addPartnerForm: FormGroup<AddPartnerForm>;
   uuid: string;
   isSubmitted = false;
-  isReadOnly = false;
 
   readonly countryList = COUNTRY_LIST;
   readonly currencyList = CURRENCY_LIST;
@@ -57,18 +56,14 @@ export class PartnerAddComponent implements OnInit {
   ) {
     this.breadcrumbs = this.route.snapshot.data.breadcrumbs;
     this.uuid = this.route.snapshot.paramMap.get('uuid');
-    if (this.router.url.includes('company-details')) {
-      this.isReadOnly = true;
-    }
   }
 
   ngOnInit(): void {
-    !this.isReadOnly && this.cpEventsService.cpHeaderDataChanged.emit({ breadcrumbs: this.breadcrumbs });
+    this.cpEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
     this.initializeForm();
-    if (this.uuid || this.isReadOnly) {
+    if (this.uuid) {
       const partnerDetail = this.route.snapshot.data.partnerDetail || this.partnerService.partnerDetail;
       this.addPartnerForm.patchValue(partnerDetail);
-      this.isReadOnly && this.addPartnerForm.disable();
     }
   }
 
@@ -78,7 +73,7 @@ export class PartnerAddComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       address: new FormGroup<PartnerAddress>({
         street: new FormControl('', Validators.required),
-        zip: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{4,6}$')]),
+        zip: new FormControl('', [Validators.required, Validators.pattern(REGEX_CONSTANTS.ZIP_REGEX)]),
         city: new FormControl('', Validators.required),
         country: new FormControl('', Validators.required),
       }),
@@ -146,7 +141,7 @@ export class PartnerAddComponent implements OnInit {
       });
   }
 
-  navigateToList() {
+  navigateToList(): void {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 

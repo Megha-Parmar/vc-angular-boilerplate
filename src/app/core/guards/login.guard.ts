@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanMatchFn, Router, UrlSegment } from '@angular/router';
 import { LOGOUT } from '@constants/app.constants';
-import { STORAGE } from '@constants/localstorage.constant';
+import { STORAGE } from '@constants/storage.constant';
 import { StorageService } from '@services/storage.service';
 
 export const LoginGuard: CanMatchFn = (_, segments: UrlSegment[]) => {

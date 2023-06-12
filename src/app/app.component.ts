@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     private utilityService: UtilityService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.utilityService.setLanguage();
   }
 
