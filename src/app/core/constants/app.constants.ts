@@ -4,8 +4,7 @@ export const APP_CONSTANTS = {
 };
 
 export const REGEX_CONSTANTS = {
-  EMAIL_REGEX:
-    /^[\p{L}0-9!#$%&'*+=?^_`{|}~-]+(?:\.[\p{L}0-9!#$%&'*+=?^_`{|}~-]+)*@(?:[_\p{L}0-9][-_\p{L}0-9]*\.)*(?:[\p{L}0-9][-\p{L}0-9]{0,62})\.(?:(?:[a-z]{2}\.)?[a-z]{2,})$/iu,
+  EMAIL_REGEX: /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/,
   PASSWORD_REGEX: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d)(?=.*?[#?!@$%^&*-]).{8,}$/,
   WEB_URL_REGEX: /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/,
   INTEGER_REGEX: /^\d*$/,

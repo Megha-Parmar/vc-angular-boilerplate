@@ -7,7 +7,7 @@
 			<img src="/assets/images/map-logo.svg" alt="calopad">
 		</div>
 		<div class="mt-6 2md:mt-10">
-			<ul (click)="toggleMenu()">
+			<ul (click)="toggleMenu()" (keypress)="toggleMenu()" role="none">
 				<li class="py-4 2md:py-5">
 					<a class="menu-item" [routerLink]="['/admin/dashboard']" routerLinkActive="active">
 						<mat-icon>dashboard</mat-icon>
@@ -48,4 +48,4 @@
 		</div>
 	</div>
 </div>
-<div (click)="toggleMenu()" class="menu-overlay"></div>
+<div (click)="toggleMenu()" (keypress)="toggleMenu()" role="none" class="menu-overlay"></div>
