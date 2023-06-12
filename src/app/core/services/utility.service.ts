@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DEFAULT_LANGUAGE, Months } from '@constants/app.constants';
-import { STORAGE } from '@constants/localstorage.constant';
+import { STORAGE } from '@constants/storage.constant';
 import { LoginResponse } from '@models/auth.model';
 import { TranslateService } from '@ngx-translate/core';
 import { PartnerService } from '@services/partner.service';

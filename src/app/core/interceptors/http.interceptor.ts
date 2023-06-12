@@ -7,7 +7,7 @@ import {
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpMethod, MessageType } from '@constants/app.constants';
-import { STORAGE } from '@constants/localstorage.constant';
+import { STORAGE } from '@constants/storage.constant';
 import { environment } from '@environment/environment';
 import { AlertToastrService } from '@services/alert-toastr.service';
 import { LoggerService } from '@services/logger.service';

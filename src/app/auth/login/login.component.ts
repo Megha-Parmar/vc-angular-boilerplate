@@ -3,14 +3,14 @@ import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { StorageService } from '@app/core/services/storage.service';
-import { CpButtonComponent } from '@app/shared/cp-libs/cp-button/cp-button.component';
 import { APP_CONSTANTS, MessageType } from '@constants/app.constants';
-import { STORAGE } from '@constants/localstorage.constant';
+import { STORAGE } from '@constants/storage.constant';
+import { CpButtonComponent } from '@cp-libs/cp-button/cp-button.component';
 import { LoginResponse } from '@models/auth.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { AlertToastrService } from '@services/alert-toastr.service';
 import { AuthenticationService } from '@services/authentication.service';
+import { StorageService } from '@services/storage.service';
 import { UtilityService } from '@services/utility.service';
 
 @Component({

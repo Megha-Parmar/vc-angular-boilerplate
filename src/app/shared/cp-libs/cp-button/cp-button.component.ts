@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CpLoaderComponent } from '@shared/cp-libs/cp-loader/cp-loader.component';
+import { CpLoaderComponent } from '@cp-libs/cp-loader/cp-loader.component';
 
 @Component({
   selector: 'app-cp-button',

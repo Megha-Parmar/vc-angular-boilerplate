@@ -33,9 +33,7 @@
         <ng-container matColumnDef="companyName">
           <th mat-header-cell *matHeaderCellDef> {{ 'partner.companyName' | translate }} </th>
           <td mat-cell *matCellDef="let element">
-            <a class="cursor-pointer text-primary">
-              {{ element.companyName }}
-            </a>
+            {{ element.companyName }}
           </td>
         </ng-container>
 

@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanMatchFn, Router } from '@angular/router';
-import { STORAGE } from '@constants/localstorage.constant';
+import { STORAGE } from '@constants/storage.constant';
 import { StorageService } from '@services/storage.service';
 
 export const AuthGuard: CanMatchFn = () => {

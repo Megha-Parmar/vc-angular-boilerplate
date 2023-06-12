@@ -19,18 +19,42 @@
     ],
     "noUnusedLocals": false,
     "paths": {
-      "@app/*": ["app/*"],
-      "@auth/*": ["app/auth/*"],
-      "@pages/*": ["app/pages/*"],
-      "@environment/*": ["environments/*"],
-      "@shared/*": ["app/shared/*"],
-      "@interceptors/*": ["app/core/interceptors/*"],
-      "@constants/*": ["app/core/constants/*"],
-      "@directives/*": ["app/core/directives/*"],
-      "@guards/*": ["app/core/guards/*"],
-      "@models/*": ["app/core/models/*"],
-      "@services/*": ["app/core/services/*"],
-      "@layouts/*": ["app/core/layouts/*"],
+      "@app/*": [
+        "app/*"
+      ],
+      "@auth/*": [
+        "app/auth/*"
+      ],
+      "@pages/*": [
+        "app/pages/*"
+      ],
+      "@environment/*": [
+        "environments/*"
+      ],
+      "@cp-libs/*": [
+        "app/shared/cp-libs/*"
+      ],
+      "@interceptors/*": [
+        "app/core/interceptors/*"
+      ],
+      "@constants/*": [
+        "app/core/constants/*"
+      ],
+      "@directives/*": [
+        "app/core/directives/*"
+      ],
+      "@guards/*": [
+        "app/core/guards/*"
+      ],
+      "@models/*": [
+        "app/core/models/*"
+      ],
+      "@services/*": [
+        "app/core/services/*"
+      ],
+      "@layouts/*": [
+        "app/core/layouts/*"
+      ],
     },
   },
   "angularCompilerOptions": {

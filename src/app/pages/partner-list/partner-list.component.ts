@@ -1,6 +1,5 @@
-import { SelectionModel } from '@angular/cdk/collections';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, DestroyRef, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, ViewChild, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,17 +8,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CpActionToolbarComponent } from '@app/shared/cp-libs/cp-action-toolbar/cp-action-toolbar.component';
-import { CpButtonComponent } from '@app/shared/cp-libs/cp-button/cp-button.component';
-import { CpLoaderComponent } from '@app/shared/cp-libs/cp-loader/cp-loader.component';
 import {
   COUNTRY_LIST,
   DEBOUNCE_TIME,
+  DEFAULT_PAGE_INDEX,
   DEFAULT_PAGE_SIZE,
   MessageType,
   PAGE_SIZE,
   SORT_OPTIONS
 } from '@constants/app.constants';
+import { CpActionToolbarComponent } from '@cp-libs/cp-action-toolbar/cp-action-toolbar.component';
+import { CpButtonComponent } from '@cp-libs/cp-button/cp-button.component';
+import { CpLoaderComponent } from '@cp-libs/cp-loader/cp-loader.component';
 import { BreadCrumb } from '@models/breadcrumb.model';
 import { PartnerDetail, PartnerList } from '@models/partner.model';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -38,22 +38,21 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
   templateUrl: './partner-list.component.html',
   styleUrls: ['./partner-list.component.scss']
 })
-export class PartnerListComponent implements OnInit, AfterViewInit {
+export class PartnerListComponent implements OnInit {
 
   breadcrumbs: BreadCrumb[] = [];
   partnerList = new MatTableDataSource<PartnerDetail>();
   columnLabel = [
     'partnerId', 'companyName', 'street', 'zip', 'city', 'country', 'email', 'phoneNo', 'isActive', 'action'
   ];
-  selection = new SelectionModel<PartnerDetail>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  pageSizeOptions = PAGE_SIZE;
   searchControl = new FormControl('');
   sortValue = new FormControl('newest');
-  sortOptions = SORT_OPTIONS;
   searchValue: string;
   isLoading = false;
 
+  readonly pageSizeOptions = PAGE_SIZE;
+  readonly sortOptions = SORT_OPTIONS;
   private destroyRef = inject(DestroyRef);
 
   constructor(
@@ -68,7 +67,12 @@ export class PartnerListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.cpEventsService.cpHeaderDataChanged.emit({ breadcrumbs: this.breadcrumbs });
+    this.cpEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
+    this.searchData();
+    this.getPartnerList();
+  }
+
+  searchData(): void {
     this.searchControl.valueChanges
       .pipe(
         debounceTime(DEBOUNCE_TIME),
@@ -79,14 +83,13 @@ export class PartnerListComponent implements OnInit, AfterViewInit {
           this.onSearch(value);
         }
       });
-    this.getPartnerList();
   }
 
   getPartnerList(): void {
     const params = {
       sort: this.sortValue.value,
       pageSize: this.paginator?.pageSize || DEFAULT_PAGE_SIZE,
-      page: (this.paginator?.pageIndex + 1) || 1,
+      page: (this.paginator?.pageIndex + 1) || DEFAULT_PAGE_INDEX,
       ...this.searchValue && { search: this.searchValue }
     };
     this.isLoading = true;
@@ -122,10 +125,6 @@ export class PartnerListComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
         }
       });
-  }
-
-  ngAfterViewInit(): void {
-    this.partnerList.paginator = this.paginator;
   }
 
   editPartner(row: PartnerDetail): void {
