@@ -1,4 +1,4 @@
 export interface ActionToolbar {
   label: string;
-  callback: () => void;
+  callback: (rowReference: any) => void;
 }
