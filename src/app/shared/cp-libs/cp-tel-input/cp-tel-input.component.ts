@@ -1,5 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -34,7 +44,7 @@ declare const intlTelInput: any;
 export class CpTelInputComponent implements OnInit, AfterViewInit {
 
   @Input() defaultCountry: string;
-  @Input() public cssClass: {};
+  @Input() public cssClass: { [key: string]: boolean };
   @Input() public E164PhoneNumber: string;
   @Input() public label: string;
   @Input() public labelCssClass: string;
@@ -49,9 +59,9 @@ export class CpTelInputComponent implements OnInit, AfterViewInit {
   @ViewChild('intlTelInput') private _inputElement: ElementRef;
 
   private _intlTelInput: any;
-  private onTouch: Function;
-  private onModelChange: Function;
-  private onValidatorChange: Function;
+  private onTouch: () => object;
+  private onModelChange: (value: string) => object;
+  private onValidatorChange: () => object;
   public preferredCountries: string[] = environment.preferredCountries;
 
   telInputControl: FormControl = new FormControl();

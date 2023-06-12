@@ -39,7 +39,6 @@ export class StorageService {
     if (isPlatformBrowser(this.platformId)) {
       const currentLang: string = this.get(STORAGE.CURRENT_LANGUAGE_STATE_KEY);
       this.localStorage.clear();
-      window.sessionStorage.clear();
       if (currentLang) {
         this.set(STORAGE.CURRENT_LANGUAGE_STATE_KEY, currentLang);
       }
