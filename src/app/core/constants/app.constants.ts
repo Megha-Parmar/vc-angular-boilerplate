@@ -92,3 +92,4 @@ export enum Months {
 
 export const DEFAULT_PAGE_SIZE = 10;
 export const DEBOUNCE_TIME = 500;
+export const LOGOUT = 'logout';
