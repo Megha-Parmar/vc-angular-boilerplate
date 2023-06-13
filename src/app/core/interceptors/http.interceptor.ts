@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpMethod, MessageType } from '@constants/app.constants';
+import { MessageType } from '@constants/app.constants';
 import { STORAGE } from '@constants/storage.constant';
 import { environment } from '@environment/environment';
 import { AlertToastrService } from '@services/alert-toastr.service';
@@ -47,16 +47,6 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (request, next) => {
   const router = inject(Router);
 
   return next(request).pipe(catchError((error: HttpErrorResponse) => {
-    let errorToastInInterceptor = true;
-
-    if (
-      request.method === HttpMethod.get &&
-      request.headers?.get('X-CP-BIT') != null &&
-      request.headers?.get('X-CP-BIT') === 'false'
-    ) {
-      errorToastInInterceptor = false;
-    }
-
     if (request.url.includes('/auth/login')) {
       switch (error.error.status) {
         case HttpStatusCode.Unauthorized:
@@ -75,9 +65,8 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (request, next) => {
     } else if (request.url.includes('forgotPassword')) {
       toasterService.displaySnackBarWithTranslation('toasterMessage.forgotPasswordSuccessful', MessageType.success);
       router.navigate(['/auth/login']);
-    } else if (errorToastInInterceptor) {
-      toasterService.displaySnackBarWithoutTranslation(error.error.message, MessageType.error);
     }
+    toasterService.displaySnackBarWithoutTranslation(error.error.message, MessageType.error);
     const err = new HttpErrorResponse({
       error: error.error,
       statusText: error.message,

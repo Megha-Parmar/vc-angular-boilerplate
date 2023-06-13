@@ -62,7 +62,7 @@ export class PartnerAddComponent implements OnInit {
     this.cpEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
     this.initializeForm();
     if (this.uuid) {
-      const partnerDetail = this.route.snapshot.data.partnerDetail || this.partnerService.partnerDetail;
+      const partnerDetail = this.route.snapshot.data.partnerDetail.data;
       this.addPartnerForm.patchValue(partnerDetail);
     }
   }

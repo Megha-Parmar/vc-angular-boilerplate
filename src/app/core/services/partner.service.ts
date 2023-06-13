@@ -1,5 +1,8 @@
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_ROUTES } from '@constants/app.constants';
+import { STORAGE } from '@constants/storage.constant';
+import { environment } from '@environment/environment';
 import { BreadCrumb } from '@models/breadcrumb.model';
 import {
   CardCodeList,
@@ -9,6 +12,7 @@ import {
   PartnerListQueryParams
 } from '@models/partner.model';
 import { HttpClientService } from '@services/http-client.service';
+import { StorageService } from '@services/storage.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,11 +20,16 @@ import { Observable } from 'rxjs';
 })
 export class PartnerService {
 
-  partnerDetail: CreatePartner;
   breadcrumbs: BreadCrumb[];
+  httpWithoutInterceptor: HttpClient;
+
   constructor(
-    private httpClientService: HttpClientService
-  ) { }
+    private httpClientService: HttpClientService,
+    private httpBackend: HttpBackend,
+    private storageService: StorageService
+  ) {
+    this.httpWithoutInterceptor = new HttpClient(this.httpBackend);
+  }
 
   getPartnerList(params: Partial<PartnerListQueryParams>): Observable<PartnerList> {
     return this.httpClientService.get(API_ROUTES.partnerListApi, { params });
@@ -31,11 +40,13 @@ export class PartnerService {
   }
 
   getPartnerDetail(uuid: string): Observable<CreatePartner> {
-    return this.httpClientService.get(`${API_ROUTES.addPartnerApi}/${uuid}`, {
+    const token = this.storageService.get(STORAGE.LOGIN_TOKEN);
+    const requestUrl = `${environment.hostName}${environment.restAPI}${API_ROUTES.addPartnerApi}/${uuid}`;
+    return this.httpWithoutInterceptor.get(requestUrl, {
       headers: {
-        'X-CP-BIT': 'false'
+        Authorization: token,
       }
-    });
+    }) as Observable<CreatePartner>;
   }
 
   updatePartnerDetail(params: Partial<CreatePartner>, uuid: string): Observable<[] | null> {
