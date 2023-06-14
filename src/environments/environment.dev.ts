@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  encryptedKey: 'eyJ0eXiOiJDb3QiLCJhbGciOiJIUzI1NiJ9eyJ',
+  encryptedKey: process.env.ENCRYPTED_KEY,
   version: '1.1.1',
   baseUrl: 'https://cards.calopad.com',
   hostName: 'https://card-api-dev.calopad.com',

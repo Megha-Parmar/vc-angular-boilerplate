@@ -3,7 +3,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [
+      "nodenpm install @angular-builders/custom-webpack -D"
+    ]
   },
   "files": [
     "src/main.ts"
