@@ -12,6 +12,7 @@ import { AlertToastrService } from '@services/alert-toastr.service';
 import { AuthenticationService } from '@services/authentication.service';
 import { StorageService } from '@services/storage.service';
 import { UtilityService } from '@services/utility.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -39,25 +40,19 @@ export class LoginComponent {
     }
     this.isSubmitted = true;
     this.authenticationService.login(loginForm.value)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (res: LoginResponse) => {
-          if (res) {
-            this.isSubmitted = false;
-            this.storageService.set(STORAGE.LOGIN_TOKEN, res.token);
-            this.storageService.set(STORAGE.USER_ROLE, res.role);
-            this.storageService.set(STORAGE.USER_DATA, res);
-            this.utilityService.changeLanguage(res.locale);
+      .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.isSubmitted = false))
+      .subscribe((res: LoginResponse) => {
+        if (res) {
+          this.storageService.set(STORAGE.LOGIN_TOKEN, res.token);
+          this.storageService.set(STORAGE.USER_ROLE, res.role);
+          this.storageService.set(STORAGE.USER_DATA, res);
+          this.utilityService.changeLanguage(res.locale);
 
-            this.router.navigate(['/admin']).then(() => {
-              this.toasterService.displaySnackBarWithTranslation(
-                'toasterMessage.loggedInSuccessfully', MessageType.success
-              );
-            });
-          }
-        },
-        error: () => {
-          this.isSubmitted = false;
+          this.router.navigate(['/admin']).then(() => {
+            this.toasterService.displaySnackBarWithTranslation(
+              'toasterMessage.loggedInSuccessfully', MessageType.success
+            );
+          });
         }
       });
   }

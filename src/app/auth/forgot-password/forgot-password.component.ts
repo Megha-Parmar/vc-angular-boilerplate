@@ -8,6 +8,7 @@ import { CpButtonComponent } from '@cp-libs/cp-button/cp-button.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AlertToastrService } from '@services/alert-toastr.service';
 import { AuthenticationService } from '@services/authentication.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-forgot-password',
@@ -35,22 +36,16 @@ export class ForgotPasswordComponent {
     }
     this.isSubmitted = true;
     this.authenticationService.forgotPassword(form.value)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: () => {
-          this.toasterService.displaySnackBarWithTranslation(
-            'toasterMessage.forgotPasswordSuccessful', MessageType.success
-          );
-          this.router.navigate(['/auth/login']);
-          this.isSubmitted = false;
-        },
-        error: () => {
-          this.isSubmitted = false;
-        }
+      .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.isSubmitted = false))
+      .subscribe(() => {
+        this.toasterService.displaySnackBarWithTranslation(
+          'toasterMessage.forgotPasswordSuccessful', MessageType.success
+        );
+        this.router.navigate(['/auth/login']);
       });
   }
 
   backToLogin(): void {
-    !this.isSubmitted && this.router.navigate(['/auth/login']);
+    this.router.navigate(['/auth/login']);
   }
 }

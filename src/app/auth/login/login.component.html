@@ -30,9 +30,9 @@
           [isDisabled]="isSubmitted" [spin]="isSubmitted" (buttonTap)="onSubmit(loginForm)"></app-cp-button>
       </div>
       <div class="mt-2 md:mt-3 text-right">
-        <button class="cursor-pointer text-[13px]" (click)="navigateToForgotPassword()">{{ 'login.forgotPassword' |
-          translate
-          }}</button>
+        <button class="cursor-pointer text-[13px]" (click)="navigateToForgotPassword()" [disabled]="isSubmitted">
+          {{ 'login.forgotPassword' | translate }}
+        </button>
       </div>
     </form>
   </div>
