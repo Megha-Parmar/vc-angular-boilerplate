@@ -39,6 +39,7 @@ import { StorageService } from '@services/storage.service';
 import { UtilityService } from '@services/utility.service';
 import { ChartOptions } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -121,15 +122,9 @@ export class DashboardComponent implements OnInit {
   getAccountingStats(): void {
     this.accountingStatsLoading = true;
     this.adminService.getDashboardAccountingStats()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (res: DashboardAccountingStats) => {
-          this.accountingStatsLoading = false;
-          this.accountingStats = res;
-        },
-        error: () => {
-          this.accountingStatsLoading = false;
-        }
+      .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.accountingStatsLoading = false))
+      .subscribe((res: DashboardAccountingStats) => {
+        this.accountingStats = res;
       });
   }
 
@@ -139,41 +134,30 @@ export class DashboardComponent implements OnInit {
     };
     this.performanceOverviewLoading = true;
     this.adminService.getDashboardPerformanceStats(params)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (res: PerformanceOverview[]) => {
-          this.performanceOverviewLoading = false;
-          const performanceOverview = res;
-          this.chartLabels =
-            performanceOverview?.map((el: PerformanceOverview) => this.utilityService.numberToDayConverter(el.day));
-          this.translateChartLabels();
-          this.dayWiseData = [
-            {
-              data: performanceOverview?.map((el: PerformanceOverview) => el.count),
-              borderColor: '#ff6b00',
-              pointBackgroundColor: '#ff6b00',
-              tension: 0.5
-            }
-          ];
-        },
-        error: () => {
-          this.performanceOverviewLoading = false;
-        }
+      .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.performanceOverviewLoading = false))
+      .subscribe((res: PerformanceOverview[]) => {
+        const performanceOverview = res;
+        this.chartLabels =
+          performanceOverview?.map((el: PerformanceOverview) => this.utilityService.numberToDayConverter(el.day));
+        this.translateChartLabels();
+        this.dayWiseData = [
+          {
+            data: performanceOverview?.map((el: PerformanceOverview) => el.count),
+            borderColor: '#ff6b00',
+            pointBackgroundColor: '#ff6b00',
+            tension: 0.5
+          }
+        ];
       });
   }
 
   getTopPartners(): void {
     this.topPartnersDetailLoading = true;
     this.adminService.getTopPartners()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (res: TopPartners[]) => {
-          this.topPartnersDetailLoading = false;
-          this.topPartnerDetail = res;
-        },
-        error: () => {
-          this.topPartnersDetailLoading = false;
-        }
+      .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.topPartnersDetailLoading = false))
+      .subscribe((res: TopPartners[]) => {
+        this.topPartnersDetailLoading = false;
+        this.topPartnerDetail = res;
       });
   }
 
@@ -192,16 +176,11 @@ export class DashboardComponent implements OnInit {
     this.invoiceListLoading = true;
     this.openInvoiceList = new MatTableDataSource([]);
     this.adminService.getOpenInvoiceList(params)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (res: InvoiceList) => {
-          this.invoiceListLoading = false;
-          this.openInvoiceList = new MatTableDataSource(res?.records);
-          this.invoicePaginator.length = res?.totalCount;
-        },
-        error: () => {
-          this.invoiceListLoading = false;
-        }
+      .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.invoiceListLoading = false))
+      .subscribe((res: InvoiceList) => {
+        this.invoiceListLoading = false;
+        this.openInvoiceList = new MatTableDataSource(res?.records);
+        this.invoicePaginator.length = res?.totalCount;
       });
   }
 
@@ -235,24 +214,18 @@ export class DashboardComponent implements OnInit {
     this.redemptionListLoading = true;
     this.latestRedemptionList = new MatTableDataSource([]);
     this.adminService.getLatestRedemptionList(params)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (res: RedemptionList) => {
-          this.redemptionListLoading = false;
-          res?.records?.map((el: RedemptionDetail) => {
-            el.action = [
-              {
-                label: 'dashboard.trackOrder',
-                callback: this.trackOrder.bind(this)
-              },
-            ];
-          });
-          this.latestRedemptionList = new MatTableDataSource(res?.records);
-          this.redemptionPaginator.length = res?.totalCount;
-        },
-        error: () => {
-          this.redemptionListLoading = false;
-        }
+      .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.redemptionListLoading = false))
+      .subscribe((res: RedemptionList) => {
+        res?.records?.map((el: RedemptionDetail) => {
+          el.action = [
+            {
+              label: 'dashboard.trackOrder',
+              callback: this.trackOrder.bind(this)
+            },
+          ];
+        });
+        this.latestRedemptionList = new MatTableDataSource(res?.records);
+        this.redemptionPaginator.length = res?.totalCount;
       });
   }
 

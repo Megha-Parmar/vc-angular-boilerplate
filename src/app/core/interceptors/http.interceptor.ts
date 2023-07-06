@@ -47,26 +47,12 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (request, next) => {
   const router = inject(Router);
 
   return next(request).pipe(catchError((error: HttpErrorResponse) => {
-    if (request.url.includes('/auth/login')) {
-      switch (error.error.status) {
-        case HttpStatusCode.Unauthorized:
-          toasterService.displaySnackBarWithTranslation('toasterMessage.loginUnsuccessful', MessageType.error);
-          break;
-        case HttpStatusCode.NotFound:
-          toasterService.displaySnackBarWithTranslation('toasterMessage.userNotFound', MessageType.error);
-          break;
-        case HttpStatusCode.InternalServerError:
-          toasterService.displaySnackBarWithTranslation('toasterMessage.internalServerError', MessageType.error);
-          break;
-      }
-    } else if (error.error.status === HttpStatusCode.Unauthorized) {
-      toasterService.displaySnackBarWithTranslation('toasterMessage.tokenExpired', MessageType.error);
+    if (error.status === HttpStatusCode.Unauthorized) {
       router.navigate(['/auth/logout']);
-    } else if (request.url.includes('forgotPassword')) {
-      toasterService.displaySnackBarWithTranslation('toasterMessage.forgotPasswordSuccessful', MessageType.success);
-      router.navigate(['/auth/login']);
     }
-    toasterService.displaySnackBarWithoutTranslation(error.error.message, MessageType.error);
+    if (error.error?.message) {
+      toasterService.displaySnackBarWithoutTranslation(error.error.message, MessageType.error);
+    }
     const err = new HttpErrorResponse({
       error: error.error,
       statusText: error.message,

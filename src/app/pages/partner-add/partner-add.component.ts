@@ -22,6 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AlertToastrService } from '@services/alert-toastr.service';
 import { CpEventsService } from '@services/cp-events.service';
 import { PartnerService } from '@services/partner.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-partner-add',
@@ -58,6 +59,14 @@ export class PartnerAddComponent implements OnInit {
     this.uuid = this.route.snapshot.paramMap.get('uuid');
   }
 
+  get formControls(): AddPartnerForm {
+    return this.addPartnerForm.controls;
+  }
+
+  get addressControls(): PartnerAddress {
+    return this.addPartnerForm.controls.address.controls;
+  }
+
   ngOnInit(): void {
     this.cpEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
     this.initializeForm();
@@ -86,14 +95,6 @@ export class PartnerAddComponent implements OnInit {
     });
   }
 
-  get formControls(): AddPartnerForm {
-    return this.addPartnerForm.controls;
-  }
-
-  get addressControls(): PartnerAddress {
-    return this.addPartnerForm.controls.address.controls;
-  }
-
   onSubmit(): boolean | void {
     this.addPartnerForm.markAllAsTouched();
     if (this.addPartnerForm.invalid) {
@@ -109,35 +110,23 @@ export class PartnerAddComponent implements OnInit {
 
   addPartner(): void {
     this.partnerService.addPartner(this.addPartnerForm.value)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: () => {
-          this.isSubmitted = false;
-          this.toasterService.displaySnackBarWithTranslation(
-            'toasterMessage.addPartnerSuccessful', MessageType.success
-          );
-          this.navigateToList();
-        },
-        error: () => {
-          this.isSubmitted = false;
-        }
+      .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.isSubmitted = false))
+      .subscribe(() => {
+        this.toasterService.displaySnackBarWithTranslation(
+          'toasterMessage.addPartnerSuccessful', MessageType.success
+        );
+        this.navigateToList();
       });
   }
 
   updatePartner(): void {
     this.partnerService.updatePartnerDetail(this.addPartnerForm.value, this.uuid)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: () => {
-          this.isSubmitted = false;
-          this.toasterService.displaySnackBarWithTranslation(
-            'toasterMessage.updatePartnerSuccessful', MessageType.success
-          );
-          this.navigateToList();
-        },
-        error: () => {
-          this.isSubmitted = false;
-        }
+      .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.isSubmitted = false))
+      .subscribe(() => {
+        this.toasterService.displaySnackBarWithTranslation(
+          'toasterMessage.updatePartnerSuccessful', MessageType.success
+        );
+        this.navigateToList();
       });
   }
 

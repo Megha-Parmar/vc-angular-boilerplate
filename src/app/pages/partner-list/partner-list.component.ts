@@ -27,7 +27,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AlertToastrService } from '@services/alert-toastr.service';
 import { CpEventsService } from '@services/cp-events.service';
 import { PartnerService } from '@services/partner.service';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-partner-list',
@@ -95,34 +95,28 @@ export class PartnerListComponent implements OnInit {
     this.isLoading = true;
     this.partnerList = new MatTableDataSource([]);
     this.partnerService.getPartnerList(params)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (res: PartnerList) => {
-          if (res) {
-            this.isLoading = false;
-            res.records.forEach((el: PartnerDetail) => {
-              COUNTRY_LIST.forEach((country) => {
-                if (el.country === country.value) {
-                  el.country = `${country.label.charAt(0).toUpperCase()}${country.label.slice(1)}`;
-                }
-              });
-              el.partnerAction = [
-                {
-                  label: 'partner.edit',
-                  callback: this.editPartner.bind(this)
-                },
-                {
-                  label: el.isActive ? 'partner.markAsInactive' : 'partner.markAsActive',
-                  callback: this.updateStatus.bind(this)
-                }
-              ];
+      .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.isLoading = false))
+      .subscribe((res: PartnerList) => {
+        if (res) {
+          res.records.forEach((el: PartnerDetail) => {
+            COUNTRY_LIST.forEach((country) => {
+              if (el.country === country.value) {
+                el.country = `${country.label.charAt(0).toUpperCase()}${country.label.slice(1)}`;
+              }
             });
-            this.partnerList = new MatTableDataSource(res.records);
-            this.paginator.length = res.totalCount;
-          }
-        },
-        error: () => {
-          this.isLoading = false;
+            el.partnerAction = [
+              {
+                label: 'partner.edit',
+                callback: this.editPartner.bind(this)
+              },
+              {
+                label: el.isActive ? 'partner.markAsInactive' : 'partner.markAsActive',
+                callback: this.updateStatus.bind(this)
+              }
+            ];
+          });
+          this.partnerList = new MatTableDataSource(res.records);
+          this.paginator.length = res.totalCount;
         }
       });
   }
@@ -134,13 +128,11 @@ export class PartnerListComponent implements OnInit {
   updateStatus(row: PartnerDetail): void {
     this.partnerService.updatePartnerDetail({ isActive: !row.isActive }, row.uuid)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: () => {
-          this.toasterService.displaySnackBarWithTranslation(
-            'toasterMessage.updateStatusSuccessful', MessageType.success
-          );
-          this.getPartnerList();
-        },
+      .subscribe(() => {
+        this.toasterService.displaySnackBarWithTranslation(
+          'toasterMessage.updateStatusSuccessful', MessageType.success
+        );
+        this.getPartnerList();
       });
   }
 
