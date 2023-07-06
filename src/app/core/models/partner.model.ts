@@ -45,6 +45,7 @@ export interface PartnerListQueryParams {
   page: number;
   pageSize: number;
   search: string;
+  userId: string;
 }
 
 export interface PartnerList {
@@ -63,6 +64,7 @@ export interface PartnerDetail {
   country: string;
   phoneNo: string;
   partnerAction: ActionToolbar[];
+  _id: string;
 }
 
 export interface CardCodeList {

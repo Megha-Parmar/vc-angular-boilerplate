@@ -15,7 +15,7 @@ export const REGEX_CONSTANTS = {
 export const API_ROUTES = {
   loginApi: 'auth/login',
   forgotPasswordApi: 'auth/forgotPassword',
-  setPasswordApi: 'auth/setPassword',
+  setPasswordApi: 'auth/resetPassword',
   partnerListApi: 'partner',
   addPartnerApi: 'partner',
   cardListApi: 'cards',
@@ -46,7 +46,9 @@ export const LANGUAGE_CONSTANTS = {
 
 export const DEFAULT_LANGUAGE = LANGUAGE_CONSTANTS.en;
 
-export const PAGE_SIZE = [10, 25, 50, 100];
+export const PAGE_SIZE = [
+  10, 25, 50, 100
+];
 
 export const COUNTRY_LIST = [
   { value: '63f3818f7ad52cc9f404f645', label: 'switzerland' },

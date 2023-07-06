@@ -16,6 +16,11 @@ export const authRoutes: Routes = [
       .then((m) => m.ForgotPasswordComponent)
   },
   {
+    path: 'reset-password',
+    loadComponent: () => import('@auth/reset-password/reset-password.component')
+      .then((m) => m.ResetPasswordComponent)
+  },
+  {
     path: 'logout',
     loadComponent: () => import('@auth/logout/logout.component')
       .then((m) => m.LogoutComponent)

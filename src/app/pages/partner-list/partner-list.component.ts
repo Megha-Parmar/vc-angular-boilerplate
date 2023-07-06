@@ -98,10 +98,13 @@ export class PartnerListComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.isLoading = false))
       .subscribe((res: PartnerList) => {
         if (res) {
-          res.records.forEach((el: PartnerDetail) => {
+          res.records.forEach((el: PartnerDetail | any) => {
             COUNTRY_LIST.forEach((country) => {
-              if (el.country === country.value) {
-                el.country = `${country.label.charAt(0).toUpperCase()}${country.label.slice(1)}`;
+              // if (el.country === country.value) {
+              //   el.country = `${country.label.charAt(0).toUpperCase()}${country.label.slice(1)}`;
+              // } else
+              if (el.address.country === country.value) {
+                el.address.country = `${country.label.charAt(0).toUpperCase()}${country.label.slice(1)}`;
               }
             });
             el.partnerAction = [
@@ -122,11 +125,11 @@ export class PartnerListComponent implements OnInit {
   }
 
   editPartner(row: PartnerDetail): void {
-    this.router.navigate([`../${row.uuid}`], { relativeTo: this.route });
+    this.router.navigate([`../${row._id}`], { relativeTo: this.route });
   }
 
   updateStatus(row: PartnerDetail): void {
-    this.partnerService.updatePartnerDetail({ isActive: !row.isActive }, row.uuid)
+    this.partnerService.updatePartnerDetail({ isActive: !row.isActive }, row._id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.toasterService.displaySnackBarWithTranslation(

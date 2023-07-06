@@ -29,14 +29,19 @@ export class PartnerService {
     private storageService: StorageService
   ) {
     this.httpWithoutInterceptor = new HttpClient(this.httpBackend);
+    // this.userData = this.storageService.get(STORAGE.USER_DATA);
   }
 
   getPartnerList(params: Partial<PartnerListQueryParams>): Observable<PartnerList> {
+    params = { ...params, userId: this.storageService.get(STORAGE.USER_DATA)._id };
     return this.httpClientService.get(API_ROUTES.partnerListApi, { params });
+    //    return this.httpClientService.get(API_ROUTES.partnerListApi, { ...params, userId: this.userData._id });
+
   }
 
   addPartner(params: Partial<CreatePartner>): Observable<[] | null> {
-    return this.httpClientService.post(API_ROUTES.addPartnerApi, params);
+    return this.httpClientService.post(API_ROUTES.addPartnerApi,
+      { ...params, userId: this.storageService.get(STORAGE.USER_DATA)._id });
   }
 
   getPartnerDetail(uuid: string): Observable<CreatePartner> {
@@ -44,13 +49,14 @@ export class PartnerService {
     const requestUrl = `${environment.hostName}${environment.restAPI}${API_ROUTES.addPartnerApi}/${uuid}`;
     return this.httpWithoutInterceptor.get(requestUrl, {
       headers: {
-        Authorization: token,
+        Authorization: 'Bearer ' + token,
       }
     }) as Observable<CreatePartner>;
   }
 
   updatePartnerDetail(params: Partial<CreatePartner>, uuid: string): Observable<[] | null> {
-    return this.httpClientService.patch(`${API_ROUTES.addPartnerApi}/${uuid}`, params);
+    return this.httpClientService.patch(`${API_ROUTES.addPartnerApi}/${uuid}`,
+      { ...params, userId: this.storageService.get(STORAGE.USER_DATA)._id });
   }
 
   getCardCodeList(uuid: string, params: Partial<PartnerListQueryParams>): Observable<CardCodeList> {
