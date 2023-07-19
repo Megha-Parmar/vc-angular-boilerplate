@@ -58,6 +58,6 @@ export class LoginComponent {
   }
 
   navigateToForgotPassword() {
-    !this.isSubmitted && this.router.navigate(['/auth/forgot-password']);
+    this.router.navigate(['/auth/forgot-password']);
   }
 }
