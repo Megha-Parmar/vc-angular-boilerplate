@@ -141,5 +141,14 @@
     "thu": "Thu",
     "fri": "Fri",
     "sat": "Sat"
+  },
+  "pageTitle": {
+    "login": "Login",
+    "forgotPassword": "Forgot Password",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "partnerList": "Partner List",
+    "addPartner": "Add Partner",
+    "editPartner": "Edit Partner"
   }
 }
