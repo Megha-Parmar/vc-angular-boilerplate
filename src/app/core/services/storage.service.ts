@@ -17,8 +17,12 @@ export class StorageService {
 
   get(key: string) {
     if (isPlatformBrowser(this.platformId)) {
-      const encryptedValue = this.localStorage.getItem(key);
-      return encryptedValue && JSON.parse(this.cryptoService.decryptValue(encryptedValue));
+      try {
+        const encryptedValue = this.localStorage.getItem(key);
+        return encryptedValue && JSON.parse(this.cryptoService.decryptValue(encryptedValue));
+      } catch {
+        return null;
+      }
     }
   }
 

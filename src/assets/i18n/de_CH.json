@@ -140,5 +140,14 @@
     "thu": "Thu",
     "fri": "Fr",
     "sat": "Sat"
+  },
+  "pageTitle": {
+    "login": "Anmeldung",
+    "forgotPassword": "Passwort vergessen",
+    "logout": "Ausloggen",
+    "dashboard": "Armaturenbrett",
+    "partnerList": "Partnerliste",
+    "addPartner": "Partner hinzufügen",
+    "editPartner": "Partner bearbeiten"
   }
 }

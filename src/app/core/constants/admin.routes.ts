@@ -13,6 +13,7 @@ export const adminRoutes: Routes = [
       },
       {
         path: 'dashboard',
+        title: 'pageTitle.dashboard',
         loadComponent: () => import('@pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
         data: {
           role: 'admin',
@@ -35,6 +36,7 @@ export const adminRoutes: Routes = [
           },
           {
             path: 'list',
+            title: 'pageTitle.partnerList',
             loadComponent: () =>
               import('@pages/partner-list/partner-list.component').then((m) => m.PartnerListComponent),
             resolve: {
@@ -43,6 +45,7 @@ export const adminRoutes: Routes = [
           },
           {
             path: 'add',
+            title: 'pageTitle.addPartner',
             loadComponent: () => import('@pages/partner-add/partner-add.component').then((m) => m.PartnerAddComponent),
             data: {
               breadcrumb: 'add'
@@ -53,6 +56,7 @@ export const adminRoutes: Routes = [
           },
           {
             path: ':uuid',
+            title: 'pageTitle.editPartner',
             loadComponent: () => import('@pages/partner-add/partner-add.component').then((m) => m.PartnerAddComponent),
             data: {
               breadcrumb: 'edit'
