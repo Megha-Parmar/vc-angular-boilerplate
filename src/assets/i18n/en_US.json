@@ -78,6 +78,13 @@
     "addPartner": "Add Partner",
     "searchPartner": "Search partner",
     "edit": "Edit",
+    "delete": "Delete",
+    "confirmDialog": {
+      "Title": "Delete Partner",
+      "deleteButton": "Ok",
+      "description": "Do you really want to delete this partner?",
+      "deleteSuccessful": "Partner deleted successfully"
+    },
     "markAsActive": "Mark as Active",
     "markAsInactive": "Mark as Inactive",
     "view": "View",
