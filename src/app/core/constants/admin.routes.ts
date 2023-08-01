@@ -44,6 +44,12 @@ export const adminRoutes: Routes = [
             }
           },
           {
+            path: 'open-dialog',
+            title: 'dialog',
+            loadComponent: () =>
+              import('@cp-libs/generate-code/generate-code.component').then((m) => m.GenerateCodeComponent),
+          },
+          {
             path: 'add',
             title: 'pageTitle.addPartner',
             loadComponent: () => import('@pages/partner-add/partner-add.component').then((m) => m.PartnerAddComponent),

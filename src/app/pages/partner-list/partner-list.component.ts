@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogService } from '@app/core/services/dialog.service';
 import {
   COUNTRY_LIST,
   DEBOUNCE_TIME,
@@ -61,10 +62,12 @@ export class PartnerListComponent implements OnInit {
     private partnerService: PartnerService,
     private router: Router,
     private toasterService: AlertToastrService,
-    public translateService: TranslateService
+    public translateService: TranslateService,
+    private dialogService: DialogService
   ) {
     this.breadcrumbs = this.route.snapshot.data.breadcrumbs;
   }
+
 
   ngOnInit(): void {
     this.cpEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
@@ -110,6 +113,10 @@ export class PartnerListComponent implements OnInit {
                 callback: this.editPartner.bind(this)
               },
               {
+                label: 'partner.delete',
+                callback: this.deletePartner.bind(this)
+              },
+              {
                 label: el.isActive ? 'partner.markAsInactive' : 'partner.markAsActive',
                 callback: this.updateStatus.bind(this)
               }
@@ -123,6 +130,17 @@ export class PartnerListComponent implements OnInit {
 
   editPartner(row: PartnerDetail): void {
     this.router.navigate([`../${row.uuid}`], { relativeTo: this.route });
+  }
+
+  deletePartner(row: PartnerDetail): void {
+    this.dialogService.openGenerateCodeDialog(row).afterClosed().subscribe((res: any) => {
+      if (res) {
+        console.log("result", res);
+      }
+    });
+  }
+  navigateToDeletePartner(): void {
+    this.router.navigate(['../open-dialog'], { relativeTo: this.route });
   }
 
   updateStatus(row: PartnerDetail): void {

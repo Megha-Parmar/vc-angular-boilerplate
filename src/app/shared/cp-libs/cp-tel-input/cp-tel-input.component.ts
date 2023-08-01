@@ -151,7 +151,8 @@ export class CpTelInputComponent implements OnInit, AfterViewInit {
         if (this.telInputControl.value && this.telInputControl.value[0] === '+') {
           this.E164PhoneNumber = this._intlTelInput.selectedDialCode.innerText + this._intlTelInput.telInput.value;
         } else {
-          this.E164PhoneNumber = this._intlTelInput.selectedDialCode.innerText + (this.telInputControl.value ? this.telInputControl.value : '');
+          this.E164PhoneNumber = this._intlTelInput.selectedDialCode.innerText +
+            (this.telInputControl.value ? this.telInputControl.value : '');
         }
         this.onModelChange(this.E164PhoneNumber);
       }
