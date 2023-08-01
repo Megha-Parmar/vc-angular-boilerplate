@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class ImportDynamicComponentService {
 
-  public importGenerateCodeComponent(): () => Promise<any> {
+  public importGenerateCodeComponent(): () => Promise<unknown> {
     return () => import('@cp-libs/generate-code/generate-code.component').then((m) => m.GenerateCodeComponent);
   }
 

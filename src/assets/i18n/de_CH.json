@@ -39,6 +39,7 @@
     "internalServerError": "Etwas ist schief gelaufen, bitte versuchen Sie es erneuts",
     "addPartnerSuccessful": "Partner wurde erfolgreich hinzugefügt",
     "updatePartnerSuccessful": "Die Partnerdaten wurden erfolgreich aktualisiert",
+    "deleteSuccessful": "Partner erfolgreich gelöscht",
     "invalidPartner": "Der Partner konnte nicht gefunden werden",
     "updateStatusSuccessful": "Der Partnerstatus wurde erfolgreich aktualisiert",
     "cardStatusUpdateSuccessful": "Der Kartenstatus wurde erfolgreich aktualisiert",
@@ -81,8 +82,7 @@
     "confirmDialog": {
       "Title": "Partner löschen",
       "deleteButton": "OK",
-      "description": "Möchten Sie diesen Partner wirklich löschen?",
-      "deleteSuccessful": "Partner erfolgreich gelöscht"
+      "description": "Möchten Sie diesen Partner wirklich löschen?"
     },
     "markAsActive": "Als Aktiv markieren",
     "markAsInactive": "Als Inaktiv markieren",
@@ -155,6 +155,7 @@
     "dashboard": "Armaturenbrett",
     "partnerList": "Partnerliste",
     "addPartner": "Partner hinzufügen",
-    "editPartner": "Partner bearbeiten"
+    "editPartner": "Partner bearbeiten",
+    "dialog": "dialog"
   }
 }
