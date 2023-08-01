@@ -1,23 +1,24 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { CpDialogComponent } from '@app/shared/cp-libs/cp-dialog/cp-dialog.component';
-import { PartnerDetail } from '../models/partner.model';
+import { CpDialogComponent } from '@cp-libs/cp-dialog/cp-dialog.component';
+import { PartnerDetail } from '@models/partner.model';
 import { ImportDynamicComponentService } from './import-dynamic-component.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DialogService {
 
-  public closeDialogEvent: EventEmitter<boolean> = new EventEmitter();
+  closeDialogEvent = new EventEmitter<boolean>();
 
   constructor(
     private matDialog: MatDialog,
     private importDynamicComponentService: ImportDynamicComponentService,
   ) { }
 
-  openGenerateCodeDialog(data?: PartnerDetail): MatDialogRef<CpDialogComponent, boolean> {
-    const dialogRef: MatDialogRef<CpDialogComponent, boolean> = this.matDialog.open(CpDialogComponent, {
+  openGenerateCodeDialog(data?: PartnerDetail): MatDialogRef<CpDialogComponent, any> {
+    const dialogRef: MatDialogRef<CpDialogComponent, any> = this.matDialog.open(CpDialogComponent, {
       data: {
         loadComponent: this.importDynamicComponentService.importGenerateCodeComponent(),
         data,

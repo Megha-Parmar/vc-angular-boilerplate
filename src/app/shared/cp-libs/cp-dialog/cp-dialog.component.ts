@@ -23,7 +23,7 @@ export class CpDialogComponent implements OnInit {
   @ViewChild(DynamicDirective, { static: true })
   dynamicDirective: DynamicDirective;
 
-  loadComponent: () => Promise<any>;
+  loadComponent: () => Promise<unknown>;
   compData: any;
 
   private destroyRef = inject(DestroyRef);
@@ -34,7 +34,7 @@ export class CpDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<CpDialogComponent>,
     private dynamicComponentLoaderService: DynamicComponentLoaderService,
     @Inject(MAT_DIALOG_DATA) public data: {
-      loadComponent: () => Promise<any>;
+      loadComponent: () => Promise<unknown>;
       data: any;
       dialogTitle: string;
       showHeader: boolean;

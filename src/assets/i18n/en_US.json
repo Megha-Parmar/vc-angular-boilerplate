@@ -40,6 +40,7 @@
     "internalServerError": "Something went wrong, Please try again",
     "addPartnerSuccessful": "Partner has been added successfully",
     "updatePartnerSuccessful": "Partner details has been updated successfully",
+    "deleteSuccessful": "Partner deleted successfully",
     "invalidPartner": "The partner could not be found",
     "updateStatusSuccessful": "Partner status has been updated successfully",
     "cardStatusUpdateSuccessful": "Card status has been updated successfully",
@@ -82,8 +83,7 @@
     "confirmDialog": {
       "Title": "Delete Partner",
       "deleteButton": "Ok",
-      "description": "Do you really want to delete this partner?",
-      "deleteSuccessful": "Partner deleted successfully"
+      "description": "Do you really want to delete this partner?"
     },
     "markAsActive": "Mark as Active",
     "markAsInactive": "Mark as Inactive",
@@ -156,6 +156,7 @@
     "dashboard": "Dashboard",
     "partnerList": "Partner List",
     "addPartner": "Add Partner",
-    "editPartner": "Edit Partner"
+    "editPartner": "Edit Partner",
+    "dialog": "Dialog"
   }
 }

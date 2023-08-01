@@ -25,7 +25,13 @@ export const HttpTokenInterceptor: HttpInterceptorFn = (request, next) => {
     });
   }
 
-  if (!request.url.includes('i18n')) {
+  if (request.url.includes('images')) {
+    const requestUrl = `${environment.baseUrl}${request.url}`;
+    request = request.clone({
+      url: requestUrl,
+    });
+  }
+  else if (!request.url.includes('i18n')) {
     const requestUrl = `${environment.hostName}${environment.restAPI}${request.url}`;
     request = request.clone({
       url: requestUrl,

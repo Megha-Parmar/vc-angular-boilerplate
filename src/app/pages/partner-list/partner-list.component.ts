@@ -133,12 +133,13 @@ export class PartnerListComponent implements OnInit {
   }
 
   deletePartner(row: PartnerDetail): void {
-    this.dialogService.openGenerateCodeDialog(row).afterClosed().subscribe((res: any) => {
-      if (res) {
-        console.log("result", res);
-      }
+    this.dialogService.openGenerateCodeDialog(row).afterClosed().subscribe((res) => {
+      this.toasterService.displaySnackBarWithTranslation(
+        'toasterMessage.updateStatusSuccessful', MessageType.success
+      );
     });
   }
+
   navigateToDeletePartner(): void {
     this.router.navigate(['../open-dialog'], { relativeTo: this.route });
   }
