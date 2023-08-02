@@ -39,7 +39,7 @@
     "internalServerError": "Etwas ist schief gelaufen, bitte versuchen Sie es erneuts",
     "addPartnerSuccessful": "Partner wurde erfolgreich hinzugefügt",
     "updatePartnerSuccessful": "Die Partnerdaten wurden erfolgreich aktualisiert",
-    "deleteSuccessful": "Partner erfolgreich gelöscht",
+    "deletePartnerSuccessful": "Partner erfolgreich gelöscht",
     "invalidPartner": "Der Partner konnte nicht gefunden werden",
     "updateStatusSuccessful": "Der Partnerstatus wurde erfolgreich aktualisiert",
     "cardStatusUpdateSuccessful": "Der Kartenstatus wurde erfolgreich aktualisiert",

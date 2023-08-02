@@ -40,7 +40,7 @@
     "internalServerError": "Something went wrong, Please try again",
     "addPartnerSuccessful": "Partner has been added successfully",
     "updatePartnerSuccessful": "Partner details has been updated successfully",
-    "deleteSuccessful": "Partner deleted successfully",
+    "deletePartnerSuccessful": "Partner deleted successfully",
     "invalidPartner": "The partner could not be found",
     "updateStatusSuccessful": "Partner status has been updated successfully",
     "cardStatusUpdateSuccessful": "Card status has been updated successfully",

@@ -11,7 +11,7 @@ export interface ComponentLoader {
 })
 export class DynamicComponentLoaderService {
 
-  public loadComponentDynamically(
+  loadComponentDynamically(
     vcr: ViewContainerRef,
     loadChildren: () => Promise<any>,
   ): Observable<ComponentRef<any>> {

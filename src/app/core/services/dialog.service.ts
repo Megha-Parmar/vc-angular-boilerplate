@@ -2,7 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CpDialogComponent } from '@cp-libs/cp-dialog/cp-dialog.component';
 import { PartnerDetail } from '@models/partner.model';
-import { ImportDynamicComponentService } from './import-dynamic-component.service';
+import { ImportDynamicComponentService } from '@services/import-dynamic-component.service';
 
 
 @Injectable({
@@ -10,7 +10,7 @@ import { ImportDynamicComponentService } from './import-dynamic-component.servic
 })
 export class DialogService {
 
-  closeDialogEvent = new EventEmitter<boolean>();
+  private _closeDialogEvent = new EventEmitter<boolean>();
 
   constructor(
     private matDialog: MatDialog,
@@ -31,5 +31,15 @@ export class DialogService {
       disableClose: true,
     });
     return dialogRef;
+  }
+
+  // Public method to subscribe to the private event emitter
+  public subscribeToEvent(callback: (data: boolean) => void): void {
+    this._closeDialogEvent.subscribe(callback);
+  }
+
+  // Public method to emit events from the service
+  public emitEvent(data: boolean): void {
+    this._closeDialogEvent.emit(data);
   }
 }

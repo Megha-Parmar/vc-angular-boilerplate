@@ -7,10 +7,10 @@
 
   <div class="flex justify-end p-2 mt-2">
     <app-cp-button [class]="{ 'common-btn secondary-btn font-base font-semibold rounded-[5px] mr-4': true }"
-      [label]="( 'partner.add.cancel' | translate )" (buttonTap)="closeDialog(false)"></app-cp-button>
+      [label]="( 'partner.add.cancel' | translate )" (buttonTap)="closeDialog(false)" />
     <app-cp-button [label]="'partner.confirmDialog.deleteButton' | translate"
       [class]="{'common-btn primary-btn font-base font-semibold rounded-[5px] h-[40px] w-[100px]': true}"
-      (buttonTap)="tapOkButton()" [isDisabled]="isSubmitted" [spin]="isSubmitted"></app-cp-button>
+      (buttonTap)="tapOkButton()" [isDisabled]="isSubmitted" [spin]="isSubmitted" />
   </div>
 
 </div>
