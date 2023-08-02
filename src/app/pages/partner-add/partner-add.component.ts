@@ -124,7 +124,7 @@ export class PartnerAddComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.isSubmitted = false))
       .subscribe(() => {
         this.toasterService.displaySnackBarWithTranslation(
-          'toasterMessage.updatePartnerSuccessful', MessageType.success
+          'toasterMessage.deletePartnerSuccessful', MessageType.success
         );
         this.navigateToList();
       });

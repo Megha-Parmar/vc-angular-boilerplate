@@ -68,7 +68,6 @@ export class PartnerListComponent implements OnInit {
     this.breadcrumbs = this.route.snapshot.data.breadcrumbs;
   }
 
-
   ngOnInit(): void {
     this.cpEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
     this.searchData();

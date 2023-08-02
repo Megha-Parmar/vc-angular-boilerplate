@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { RegexType } from '@app/core/constants/app.constants';
 import { AllowNumberOnlyDirective } from '@app/core/directives/allow-number-only.directive';
+import { PartnerDetail } from '@app/core/models/partner.model';
 import { DialogService } from '@app/core/services/dialog.service';
+import { CpButtonComponent } from '@cp-libs/cp-button/cp-button.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { CpButtonComponent } from '../cp-button/cp-button.component';
 
 
 @Component({
@@ -20,20 +20,18 @@ import { CpButtonComponent } from '../cp-button/cp-button.component';
 })
 export class GenerateCodeComponent {
 
-  readonly regexType = RegexType;
   isSubmitted = false;
-  @Input() data;
+  @Input() data: PartnerDetail;
 
   constructor(
     private dialogService: DialogService
   ) { }
 
   closeDialog(value: boolean): void {
-    this.dialogService.closeDialogEvent.emit(value);
+    this.dialogService.emitEvent(value);
   }
 
   tapOkButton(): void {
     this.closeDialog(true);
   }
-
 }

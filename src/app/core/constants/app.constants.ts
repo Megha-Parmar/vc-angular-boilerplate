@@ -87,6 +87,15 @@ export enum AccountingStatus {
   open = 'open'
 }
 
+export const SVG_ICON_LIST = [{
+  name: 'list',
+  path: 'assets/images/list.svg'
+},
+{
+  name: 'logout',
+  path: 'assets/images/logout.svg'
+}];
+
 export enum Months {
   January, February, March, April, May, June, July, August, September, October, November, December
 }
