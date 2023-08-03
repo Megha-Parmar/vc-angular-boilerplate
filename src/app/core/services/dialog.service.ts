@@ -33,13 +33,13 @@ export class DialogService {
     return dialogRef;
   }
 
-  // Public method to subscribe to the private event emitter
-  public subscribeToEvent(callback: (data: boolean) => void): void {
+  // Method to subscribe to the private event emitter
+  subscribeToEvent(callback: (data: boolean) => void): void {
     this._closeDialogEvent.subscribe(callback);
   }
 
-  // Public method to emit events from the service
-  public emitEvent(data: boolean): void {
+  // Method to emit events from the service
+  emitEvent(data: boolean): void {
     this._closeDialogEvent.emit(data);
   }
 }

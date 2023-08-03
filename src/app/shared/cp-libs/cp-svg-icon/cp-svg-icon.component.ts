@@ -12,13 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class CpSvgIconComponent {
   @HostBinding('style.-webkit-mask-image')
-
   svgName: string;
-
-  @Input() title: string;
-  // public set title(title: string) {
-  //   this.title = title;
-  // }
 
   @Input()
   public set svgImageData(data: any) {
@@ -30,7 +24,4 @@ export class CpSvgIconComponent {
   }
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) { }
-
-
-
 }

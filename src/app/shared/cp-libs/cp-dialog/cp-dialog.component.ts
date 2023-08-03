@@ -42,16 +42,9 @@ export class CpDialogComponent implements OnInit {
     },
   ) {
 
-    // this.dialogService.closeDialogEvent.subscribe((data) => {
-    //   // Handle the emitted event here
-    //   this.dialogRef.close(data);
-
-    // });
-
     this.dialogService.subscribeToEvent((data) => {
       // Handle the emitted event here
       this.dialogRef.close(data);
-
     });
     this.title = data.dialogTitle;
     this.customHeaderClass = data.customHeaderClass;
