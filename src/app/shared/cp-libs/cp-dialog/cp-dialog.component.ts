@@ -19,13 +19,11 @@ export class CpDialogComponent implements OnInit {
 
   title: string;
   customHeaderClass: string;
-
-  @ViewChild(DynamicDirective, { static: true })
-  dynamicDirective: DynamicDirective;
-
   loadComponent: () => Promise<unknown>;
   compData: any;
 
+  @ViewChild(DynamicDirective, { static: true })
+  private dynamicDirective: DynamicDirective;
   private destroyRef = inject(DestroyRef);
 
   constructor(
@@ -39,9 +37,7 @@ export class CpDialogComponent implements OnInit {
       dialogTitle: string;
       showHeader: boolean;
       customHeaderClass: string;
-    },
-  ) {
-
+    }) {
     this.dialogService.subscribeToEvent((data) => {
       // Handle the emitted event here
       this.dialogRef.close(data);
@@ -54,18 +50,15 @@ export class CpDialogComponent implements OnInit {
 
   ngOnInit(): void {
     const viewContainerRef = this.dynamicDirective.viewContainerRef;
-    this.dynamicComponentLoaderService.loadComponentDynamically(
-      viewContainerRef,
-      this.loadComponent
-    ).pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (result: ComponentRef<any>) => {
-          result.instance.compData = this.compData;
-        }
+    this.dynamicComponentLoaderService
+      .loadComponentDynamically(viewContainerRef, this.loadComponent)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result: ComponentRef<any>) => {
+        result.instance.compData = this.compData;
       });
   }
 
-  close() {
+  close(): void {
     this.dialogRef.close(false);
   }
 }
