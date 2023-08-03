@@ -9,7 +9,7 @@ import { appRoutes } from '@constants/app.routes';
 import { HttpErrorInterceptor, HttpTokenInterceptor } from '@interceptors/http.interceptor';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { CustomPageTitleStrategy } from './core/services/custom-page-title-strategy.service';
+import { CustomPageTitleStrategy } from '@services/custom-page-title-strategy.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -136,9 +136,16 @@ export class PartnerListComponent implements OnInit {
 
   deletePartner(row: PartnerDetail): void {
     this.dialogService.openGenerateCodeDialog(row).afterClosed().subscribe((res) => {
-      this.toasterService.displaySnackBarWithTranslation(
-        'toasterMessage.updateStatusSuccessful', MessageType.success
-      );
+      if (res) {
+        this.partnerService.deletePartnerDetail(row._id)
+          .pipe(takeUntilDestroyed(this.destroyRef))
+          .subscribe(() => {
+            this.toasterService.displaySnackBarWithTranslation(
+              'toasterMessage.updateStatusSuccessful', MessageType.success
+            );
+            this.getPartnerList();
+          });
+      }
     });
   }
 

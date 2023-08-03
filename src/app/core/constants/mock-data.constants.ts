@@ -11,8 +11,6 @@ export const MockAccountingStats = {
   "error": []
 };
 
-
-
 export const MockPerformanceOverview = {
   "message": "Success",
   "status": 200,
@@ -49,7 +47,6 @@ export const MockPerformanceOverview = {
   "error": []
 };
 
-
 export const MockTopPartnerDetail = {
   "message": "Success",
   "status": 200,
@@ -65,7 +62,6 @@ export const MockTopPartnerDetail = {
   ],
   "error": []
 };
-
 
 export const MockRedemptionList = {
   "message": "Success",
@@ -113,7 +109,6 @@ export const MockRedemptionList = {
   },
   "error": []
 };
-
 
 export const MockOpenInvoiceList = {
   "message": "Success",

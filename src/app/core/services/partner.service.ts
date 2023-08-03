@@ -35,8 +35,6 @@ export class PartnerService {
   getPartnerList(params: Partial<PartnerListQueryParams>): Observable<PartnerList> {
     params = { ...params, userId: this.storageService.get(STORAGE.USER_DATA)._id };
     return this.httpClientService.get(API_ROUTES.partnerListApi, { params });
-    //    return this.httpClientService.get(API_ROUTES.partnerListApi, { ...params, userId: this.userData._id });
-
   }
 
   addPartner(params: Partial<CreatePartner>): Observable<[] | null> {
@@ -55,8 +53,12 @@ export class PartnerService {
   }
 
   updatePartnerDetail(params: Partial<CreatePartner>, uuid: string): Observable<[] | null> {
-    return this.httpClientService.patch(`${API_ROUTES.addPartnerApi}/${uuid}`,
+    return this.httpClientService.put(`${API_ROUTES.addPartnerApi}/${uuid}`,
       { ...params, userId: this.storageService.get(STORAGE.USER_DATA)._id });
+  }
+
+  deletePartnerDetail(uuid: string): Observable<[] | null> {
+    return this.httpClientService.delete(`${API_ROUTES.addPartnerApi}/${uuid}`);
   }
 
   getCardCodeList(uuid: string, params: Partial<PartnerListQueryParams>): Observable<CardCodeList> {
@@ -68,7 +70,7 @@ export class PartnerService {
   }
 
   updateAccountStatus(uuid: string, params: { status: string }): Observable<[] | null> {
-    return this.httpClientService.patch(`${API_ROUTES.accountStatusChangeApi}/${uuid}`, params);
+    return this.httpClientService.put(`${API_ROUTES.accountStatusChangeApi}/${uuid}`, params);
   }
 
 }

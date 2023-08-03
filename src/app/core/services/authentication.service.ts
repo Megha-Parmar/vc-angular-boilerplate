@@ -22,6 +22,6 @@ export class AuthenticationService {
   }
 
   setPassword(params: Partial<LoginParams>): Observable<[] | null> {
-    return this.httpClientService.patch(API_ROUTES.setPasswordApi, params);
+    return this.httpClientService.put(API_ROUTES.setPasswordApi, params);
   }
 }

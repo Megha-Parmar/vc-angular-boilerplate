@@ -9,7 +9,6 @@ import { AuthenticationService } from '@app/core/services/authentication.service
 import { CpButtonComponent } from '@app/shared/cp-libs/cp-button/cp-button.component';
 import { TranslateModule } from '@ngx-translate/core';
 
-
 @Component({
   selector: 'app-reset-password',
   standalone: true,
@@ -19,7 +18,6 @@ import { TranslateModule } from '@ngx-translate/core';
 export class ResetPasswordComponent {
 
   isSubmitted = false;
-
   readonly passwordRegex = REGEX_CONSTANTS.PASSWORD_REGEX;
   private destroyRef = inject(DestroyRef);
 
@@ -36,14 +34,6 @@ export class ResetPasswordComponent {
       return true;
     }
     this.isSubmitted = true;
-
-    // let id;
-    // this.route.queryParams.subscribe(params => {
-    //   id = params['id']
-
-
-    // });
-
     const payload = {
       id: this.token.replace(/ /g, '+'), // It' replace '+' to '' sign in url
       password: form.value.password
