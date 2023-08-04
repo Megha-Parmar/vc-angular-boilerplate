@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { CpDialogComponent } from './cp-dialog.component';
+import { VcDialogComponent } from './vc-dialog.component';
 
-describe('CpDialogComponent', () => {
-  let component: CpDialogComponent;
-  let fixture: ComponentFixture<CpDialogComponent>;
+describe('VcDialogComponent', () => {
+  let component: VcDialogComponent;
+  let fixture: ComponentFixture<VcDialogComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CpDialogComponent ]
+      declarations: [VcDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CpDialogComponent);
+    fixture = TestBed.createComponent(VcDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

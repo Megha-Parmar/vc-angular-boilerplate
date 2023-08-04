@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CpLoaderComponent } from '@cp-libs/cp-loader/cp-loader.component';
+import { VcLoaderComponent } from '@vc-libs/vc-loader/vc-loader.component';
 
 @Component({
-  selector: 'app-cp-button',
+  selector: 'app-vc-button',
   standalone: true,
-  imports: [CommonModule, CpLoaderComponent],
-  templateUrl: './cp-button.component.html'
+  imports: [CommonModule, VcLoaderComponent],
+  templateUrl: './vc-button.component.html'
 })
-export class CpButtonComponent {
+export class VcButtonComponent {
 
   @Input() label: string;
   @Input() type = 'button';

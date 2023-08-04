@@ -108,9 +108,9 @@
           <label class="field-lbl" for="phoneNo"
             [ngClass]="{ 'field-error': formControls.phoneNo.touched && formControls.phoneNo.invalid }">{{
             'partner.add.phone' | translate }}</label>
-          <app-cp-tel-input class="w-full flex" id="phoneNo"
+          <app-vc-tel-input class="w-full flex" id="phoneNo"
             [cssClass]="{ 'form-field': true, 'field-error': formControls.phoneNo.touched && formControls.phoneNo.invalid }"
-            formControlName="phoneNo"></app-cp-tel-input>
+            formControlName="phoneNo"></app-vc-tel-input>
         </div>
         <ng-container *ngTemplateOutlet="requiredError; context: { control: formControls.phoneNo }"></ng-container>
         <ng-container
@@ -148,12 +148,12 @@
       </div>
     </div>
     <div class="flex justify-end mt-6 2xl:mt-8">
-      <app-cp-button [class]="{ 'common-btn secondary-btn font-semibold rounded-[5px] min-w-[100px] mr-4': true }"
-        [label]="( 'partner.add.cancel' | translate )" (buttonTap)="navigateToList()"></app-cp-button>
+      <app-vc-button [class]="{ 'common-btn secondary-btn font-semibold rounded-[5px] min-w-[100px] mr-4': true }"
+        [label]="( 'partner.add.cancel' | translate )" (buttonTap)="navigateToList()"></app-vc-button>
 
-      <app-cp-button [class]="{ 'common-btn primary-btn font-semibold rounded-[5px] min-w-[100px]': true }"
+      <app-vc-button [class]="{ 'common-btn primary-btn font-semibold rounded-[5px] min-w-[100px]': true }"
         [label]="uuid ? ( 'partner.add.update' | translate ) : ( 'partner.add.add' | translate )"
-        (buttonTap)="onSubmit()" [isDisabled]="isSubmitted" [spin]="isSubmitted"></app-cp-button>
+        (buttonTap)="onSubmit()" [isDisabled]="isSubmitted" [spin]="isSubmitted"></app-vc-button>
 
     </div>
   </form>

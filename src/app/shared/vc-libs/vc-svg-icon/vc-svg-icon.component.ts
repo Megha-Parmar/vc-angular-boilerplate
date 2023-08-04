@@ -5,13 +5,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { SvgIcon } from '@models/common.model';
 
 @Component({
-  selector: 'app-cp-svg-icon',
+  selector: 'app-vc-svg-icon',
   standalone: true,
   imports: [CommonModule, MatIconModule],
-  templateUrl: './cp-svg-icon.component.html',
-  styleUrls: ['./cp-svg-icon.component.scss']
+  templateUrl: './vc-svg-icon.component.html',
+  styleUrls: ['./vc-svg-icon.component.scss']
 })
-export class CpSvgIconComponent {
+export class VcSvgIconComponent {
   @HostBinding('style.-webkit-mask-image')
   svgName: string;
 

@@ -7,13 +7,13 @@ import { ActionToolbar } from '@models/common.model';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-cp-action-toolbar',
+  selector: 'app-vc-action-toolbar',
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatIconModule, MatMenuModule, TranslateModule],
-  templateUrl: './cp-action-toolbar.component.html',
-  styleUrls: ['./cp-action-toolbar.component.scss']
+  templateUrl: './vc-action-toolbar.component.html',
+  styleUrls: ['./vc-action-toolbar.component.scss']
 })
-export class CpActionToolbarComponent {
+export class VcActionToolbarComponent {
 
   @Input() actionData: ActionToolbar[];
   @Input() rowReference: any;

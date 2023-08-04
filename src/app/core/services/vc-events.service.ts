@@ -4,15 +4,15 @@ import { BreadCrumb, BreadcrumbEventModel } from '@models/breadcrumb.model';
 @Injectable({
   providedIn: 'root'
 })
-export class CpEventsService {
+export class VcEventsService {
 
-  public cpHeaderDataChanged = new EventEmitter<BreadcrumbEventModel>();
+  public vcHeaderDataChanged = new EventEmitter<BreadcrumbEventModel>();
   public toggleSidebar = new EventEmitter<boolean>();
 
   emitBreadcrumbsDetail(
     breadcrumbs: BreadCrumb[], showLastItemCustomLabel = false, lastItemCustomLabel?: string
   ): void {
-    this.cpHeaderDataChanged.emit({
+    this.vcHeaderDataChanged.emit({
       breadcrumbs,
       ...showLastItemCustomLabel && { showLastItemCustomLabel },
       ...lastItemCustomLabel && { lastItemCustomLabel }

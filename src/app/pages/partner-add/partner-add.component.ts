@@ -12,23 +12,23 @@ import {
   REGEX_CONSTANTS,
   RegexType
 } from '@constants/app.constants';
-import { CpButtonComponent } from '@cp-libs/cp-button/cp-button.component';
-import { CpTelInputComponent } from '@cp-libs/cp-tel-input/cp-tel-input.component';
 import { AllowNumberOnlyDirective } from '@directives/allow-number-only.directive';
 import { BreadCrumb } from '@models/breadcrumb.model';
 import { AddPartnerForm, PartnerAddress } from '@models/partner.model';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule } from '@ngx-translate/core';
 import { AlertToastrService } from '@services/alert-toastr.service';
-import { CpEventsService } from '@services/cp-events.service';
 import { PartnerService } from '@services/partner.service';
+import { VcEventsService } from '@services/vc-events.service';
+import { VcButtonComponent } from '@vc-libs/vc-button/vc-button.component';
+import { VcTelInputComponent } from '@vc-libs/vc-tel-input/vc-tel-input.component';
 import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-partner-add',
   standalone: true,
-  imports: [CommonModule, MatSlideToggleModule, NgSelectModule, FormsModule, CpButtonComponent, ReactiveFormsModule,
-    TranslateModule, AllowNumberOnlyDirective, CpTelInputComponent],
+  imports: [CommonModule, MatSlideToggleModule, NgSelectModule, FormsModule, VcButtonComponent, ReactiveFormsModule,
+    TranslateModule, AllowNumberOnlyDirective, VcTelInputComponent],
   templateUrl: './partner-add.component.html',
   styleUrls: ['./partner-add.component.scss']
 })
@@ -50,7 +50,7 @@ export class PartnerAddComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private cpEventsService: CpEventsService,
+    private vcEventsService: VcEventsService,
     private partnerService: PartnerService,
     private toasterService: AlertToastrService,
     private router: Router
@@ -68,7 +68,7 @@ export class PartnerAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cpEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
+    this.vcEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
     this.initializeForm();
     if (this.uuid) {
       const partnerDetail = this.route.snapshot.data.partnerDetail.data;

@@ -15,7 +15,7 @@
 				</li>
 				<li class="py-4 2md:py-5">
 					<a class="menu-item" [routerLink]="['/admin/partner']" routerLinkActive="active">
-						<app-cp-svg-icon [svgImageData]="listSvg" />
+						<app-vc-svg-icon [svgImageData]="listSvg" />
 						<span class="ml-6"> {{ 'common.partner' | translate }} </span>
 					</a>
 				</li>
@@ -41,7 +41,7 @@
 		<p class="text-[15px] lg:text-[16px] xl:text-[18px] text-secondary font-semibold mt-4">{{ userData?.name }}</p>
 		<div class="mt-6">
 			<a class="flex menu-item" [routerLink]="['/auth/logout']">
-				<app-cp-svg-icon [svgImageData]="logoutSvg" />
+				<app-vc-svg-icon [svgImageData]="logoutSvg" />
 				<span class="ml-3"> {{ 'common.logout' | translate }} </span>
 			</a>
 		</div>
