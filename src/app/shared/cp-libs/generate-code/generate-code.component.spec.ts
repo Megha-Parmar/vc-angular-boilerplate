@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DynamicDialogComponent } from './dynamic-dialog.component';
+import { GenerateCodeComponent } from './generate-code.component';
 
-describe('DynamicDialogComponent', () => {
-  let component: DynamicDialogComponent;
-  let fixture: ComponentFixture<DynamicDialogComponent>;
+describe('GenerateCodeComponent', () => {
+  let component: GenerateCodeComponent;
+  let fixture: ComponentFixture<GenerateCodeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ DynamicDialogComponent ]
+      imports: [ GenerateCodeComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DynamicDialogComponent);
+    fixture = TestBed.createComponent(GenerateCodeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
