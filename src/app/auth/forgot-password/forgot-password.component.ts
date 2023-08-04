@@ -4,17 +4,18 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageType, REGEX_CONSTANTS } from '@constants/app.constants';
-import { CpButtonComponent } from '@cp-libs/cp-button/cp-button.component';
-import { VcInputComponent } from '@cp-libs/vc-input/vc-input.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AlertToastrService } from '@services/alert-toastr.service';
 import { AuthenticationService } from '@services/authentication.service';
+import { VcButtonComponent } from '@vc-libs/vc-button/vc-button.component';
+import { VcInputComponent } from '@vc-libs/vc-input/vc-input.component';
+
 import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [CommonModule, TranslateModule, CpButtonComponent, FormsModule, VcInputComponent, ReactiveFormsModule],
+  imports: [CommonModule, TranslateModule, VcButtonComponent, FormsModule, VcInputComponent, ReactiveFormsModule],
   templateUrl: './forgot-password.component.html'
 })
 export class ForgotPasswordComponent {

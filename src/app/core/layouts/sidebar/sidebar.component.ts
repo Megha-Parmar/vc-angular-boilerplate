@@ -7,19 +7,19 @@ import { RouterModule } from '@angular/router';
 import { SvgIcon } from '@app/core/models/common.model';
 import { SVG_ICON_LIST } from '@constants/app.constants';
 import { STORAGE } from '@constants/storage.constant';
-import { CpSvgIconComponent } from '@cp-libs/cp-svg-icon/cp-svg-icon.component';
 import { LoginResponse } from '@models/auth.model';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule } from '@ngx-translate/core';
-import { CpEventsService } from '@services/cp-events.service';
 import { StorageService } from '@services/storage.service';
 import { UtilityService } from '@services/utility.service';
+import { VcEventsService } from '@services/vc-events.service';
+import { VcSvgIconComponent } from '@vc-libs/vc-svg-icon/vc-svg-icon.component';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
   imports: [CommonModule, MatIconModule, NgSelectModule, TranslateModule,
-    RouterModule, FormsModule, CpSvgIconComponent],
+    RouterModule, FormsModule, VcSvgIconComponent],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     private storageService: StorageService,
     private utilityService: UtilityService,
-    private cpEventsService: CpEventsService
+    private vcEventsService: VcEventsService
   ) {
     this.listSvg = this.assetSvgIcon.find((x) => x.name === 'list');
     this.logoutSvg = this.assetSvgIcon.find((x) => x.name === 'logout');
@@ -45,7 +45,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cpEventsService.toggleSidebar
+    this.vcEventsService.toggleSidebar
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((res: boolean) => {
         this.menuOpen = res;

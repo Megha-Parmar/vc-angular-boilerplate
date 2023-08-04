@@ -18,24 +18,24 @@ import {
   PAGE_SIZE,
   SORT_OPTIONS
 } from '@constants/app.constants';
-import { CpActionToolbarComponent } from '@cp-libs/cp-action-toolbar/cp-action-toolbar.component';
-import { CpButtonComponent } from '@cp-libs/cp-button/cp-button.component';
-import { CpLoaderComponent } from '@cp-libs/cp-loader/cp-loader.component';
 import { BreadCrumb } from '@models/breadcrumb.model';
 import { PartnerDetail, PartnerList } from '@models/partner.model';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AlertToastrService } from '@services/alert-toastr.service';
-import { CpEventsService } from '@services/cp-events.service';
 import { PartnerService } from '@services/partner.service';
+import { VcEventsService } from '@services/vc-events.service';
+import { VcActionToolbarComponent } from '@vc-libs/vc-action-toolbar/vc-action-toolbar.component';
+import { VcButtonComponent } from '@vc-libs/vc-button/vc-button.component';
+import { VcLoaderComponent } from '@vc-libs/vc-loader/vc-loader.component';
 import { debounceTime, distinctUntilChanged, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-partner-list',
   standalone: true,
   imports: [CommonModule, MatTableModule, TranslateModule, MatPaginatorModule, MatCheckboxModule,
-    CpButtonComponent, MatIconModule, MatButtonModule, FormsModule, ReactiveFormsModule,
-    NgSelectModule, CpLoaderComponent, CpActionToolbarComponent],
+    VcButtonComponent, MatIconModule, MatButtonModule, FormsModule, ReactiveFormsModule,
+    NgSelectModule, VcLoaderComponent, VcActionToolbarComponent],
   templateUrl: './partner-list.component.html',
   styleUrls: ['./partner-list.component.scss']
 })
@@ -58,7 +58,7 @@ export class PartnerListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private cpEventsService: CpEventsService,
+    private vcEventsService: VcEventsService,
     private partnerService: PartnerService,
     private router: Router,
     private toasterService: AlertToastrService,
@@ -69,7 +69,7 @@ export class PartnerListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cpEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
+    this.vcEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
     this.searchData();
     this.getPartnerList();
   }

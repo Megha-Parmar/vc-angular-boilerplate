@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CpSvgIconComponent } from './cp-svg-icon.component';
+import { VcSvgIconComponent } from './vc-svg-icon.component';
 
-describe('CpSvgIconComponent', () => {
-  let component: CpSvgIconComponent;
-  let fixture: ComponentFixture<CpSvgIconComponent>;
+describe('VcSvgIconComponent', () => {
+  let component: VcSvgIconComponent;
+  let fixture: ComponentFixture<VcSvgIconComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CpSvgIconComponent]
+      imports: [VcSvgIconComponent]
     });
-    fixture = TestBed.createComponent(CpSvgIconComponent);
+    fixture = TestBed.createComponent(VcSvgIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

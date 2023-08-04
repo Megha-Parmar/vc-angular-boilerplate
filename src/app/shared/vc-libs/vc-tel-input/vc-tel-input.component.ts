@@ -24,24 +24,24 @@ import { environment } from '@environment/environment';
 declare const intlTelInput: any;
 
 @Component({
-  selector: 'app-cp-tel-input',
+  selector: 'app-vc-tel-input',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './cp-tel-input.component.html',
+  templateUrl: './vc-tel-input.component.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CpTelInputComponent),
+      useExisting: forwardRef(() => VcTelInputComponent),
       multi: true
     },
     {
       provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => CpTelInputComponent),
+      useExisting: forwardRef(() => VcTelInputComponent),
       multi: true
     }
   ]
 })
-export class CpTelInputComponent implements OnInit, AfterViewInit {
+export class VcTelInputComponent implements OnInit, AfterViewInit {
 
   @Input() defaultCountry: string;
   @Input() public cssClass: { [key: string]: boolean };
@@ -112,7 +112,7 @@ export class CpTelInputComponent implements OnInit, AfterViewInit {
 
   public ngAfterViewInit(): void {
     if (this.onlyLocalized) {
-      CpTelInputComponent.modifyCountryData();
+      VcTelInputComponent.modifyCountryData();
     }
 
     this.options = {

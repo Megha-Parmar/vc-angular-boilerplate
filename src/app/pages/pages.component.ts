@@ -6,7 +6,7 @@ import { BreadcrumbComponent } from '@layouts/breadcrumb/breadcrumb.component';
 import { HeaderComponent } from '@layouts/header/header.component';
 import { SidebarComponent } from '@layouts/sidebar/sidebar.component';
 import { BreadCrumb, BreadcrumbEventModel } from '@models/breadcrumb.model';
-import { CpEventsService } from '@services/cp-events.service';
+import { VcEventsService } from '@services/vc-events.service';
 
 @Component({
   selector: 'app-pages',
@@ -25,7 +25,7 @@ export class PagesComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   constructor(
-    private cpEventsService: CpEventsService
+    private vcEventsService: VcEventsService
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class PagesComponent implements OnInit {
   }
 
   setBreadcrumbs(): void {
-    this.cpEventsService.cpHeaderDataChanged
+    this.vcEventsService.vcHeaderDataChanged
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result: BreadcrumbEventModel) => {
         setTimeout(() => {

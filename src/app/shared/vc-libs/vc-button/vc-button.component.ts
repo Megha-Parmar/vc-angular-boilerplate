@@ -1,15 +1,15 @@
 import { NgClass, NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Params } from '@angular/router';
-import { CpLoaderComponent } from '@cp-libs/cp-loader/cp-loader.component';
+import { VcLoaderComponent } from '@vc-libs/vc-loader/vc-loader.component';
 
 @Component({
-  selector: 'app-cp-button',
+  selector: 'app-vc-button',
   standalone: true,
-  imports: [NgClass, NgIf, CpLoaderComponent],
-  templateUrl: './cp-button.component.html'
+  imports: [NgClass, NgIf, VcLoaderComponent],
+  templateUrl: './vc-button.component.html'
 })
-export class CpButtonComponent {
+export class VcButtonComponent {
 
   @Input() type: 'button' | 'submit' = 'button';
   @Input() class: Params;

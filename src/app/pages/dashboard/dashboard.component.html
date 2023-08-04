@@ -185,7 +185,7 @@
           </ng-container>
           <ng-container *ngIf="invoiceListLoading">
             <div class="flex items-center justify-center h-[80px]">
-              <app-cp-loader [class]="{ 'w-8 h-8 border-x-primary border-y-transparent': true }"></app-cp-loader>
+              <app-vc-loader [class]="{ 'w-8 h-8 border-x-primary border-y-transparent': true }"></app-vc-loader>
             </div>
           </ng-container>
         </div>
@@ -261,8 +261,8 @@
             <ng-container matColumnDef="action">
               <th mat-header-cell *matHeaderCellDef>{{ 'dashboard.actions' | translate }}</th>
               <td class="w-[10px]" mat-cell *matCellDef="let element">
-                <app-cp-action-toolbar [actionData]="element.action"
-                  [rowReference]="element.trackingUrl"></app-cp-action-toolbar>
+                <app-vc-action-toolbar [actionData]="element.action"
+                  [rowReference]="element.trackingUrl"></app-vc-action-toolbar>
               </td>
             </ng-container>
 
@@ -276,7 +276,7 @@
           </ng-container>
           <ng-container *ngIf="redemptionListLoading">
             <div class="flex items-center justify-center h-[80px]">
-              <app-cp-loader [class]="{ 'w-8 h-8 border-x-primary border-y-transparent': true }"></app-cp-loader>
+              <app-vc-loader [class]="{ 'w-8 h-8 border-x-primary border-y-transparent': true }"></app-vc-loader>
             </div>
           </ng-container>
         </div>
@@ -290,14 +290,14 @@
 <ng-template #accountingStatsLoader>
   <ng-container *ngIf="accountingStatsLoading">
     <div class="flex mt-3 w-full ml-2">
-      <app-cp-loader [class]="{ 'w-8 h-8 border-x-primary border-y-transparent': true }"></app-cp-loader>
+      <app-vc-loader [class]="{ 'w-8 h-8 border-x-primary border-y-transparent': true }"></app-vc-loader>
     </div>
   </ng-container>
 </ng-template>
 
 <ng-template #performanceStatsLoader>
   <div class="flex items-center w-full justify-center h-[80px]">
-    <app-cp-loader [class]="{ 'w-8 h-8 border-x-primary border-y-transparent': true }"></app-cp-loader>
+    <app-vc-loader [class]="{ 'w-8 h-8 border-x-primary border-y-transparent': true }"></app-vc-loader>
   </div>
 </ng-template>
 
