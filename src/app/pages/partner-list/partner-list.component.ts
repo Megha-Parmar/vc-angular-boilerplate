@@ -102,9 +102,6 @@ export class PartnerListComponent implements OnInit {
         if (res) {
           res.records.forEach((el: PartnerDetail | any) => {
             COUNTRY_LIST.forEach((country) => {
-              // if (el.country === country.value) {
-              //   el.country = `${country.label.charAt(0).toUpperCase()}${country.label.slice(1)}`;
-              // } else
               if (el.address.country === country.value) {
                 el.address.country = `${country.label.charAt(0).toUpperCase()}${country.label.slice(1)}`;
               }
