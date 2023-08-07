@@ -153,18 +153,6 @@ export class PartnerListComponent implements OnInit {
     this.router.navigate(['../open-dialog'], { relativeTo: this.route });
   }
 
-  deletePartner(row: PartnerDetail): void {
-    this.dialogService.openGenerateCodeDialog(row).afterClosed().subscribe((res) => {
-      this.toasterService.displaySnackBarWithTranslation(
-        'toasterMessage.updateStatusSuccessful', MessageType.success
-      );
-    });
-  }
-
-  navigateToDeletePartner(): void {
-    this.router.navigate(['../open-dialog'], { relativeTo: this.route });
-  }
-
   updateStatus(row: PartnerDetail): void {
     this.partnerService.updatePartnerDetail({ isActive: !row.isActive }, row._id)
       .pipe(takeUntilDestroyed(this.destroyRef))

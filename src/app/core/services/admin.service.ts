@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
-  MockAccountingStats, MockOpenInvoiceList, MockPerformanceOverview, MockRedemptionList,
+  MockAccountingStats,
+  MockOpenInvoiceList, MockPerformanceOverview, MockRedemptionList,
   MockTopPartnerDetail
 } from '@constants/mock-data.constants';
 import {
@@ -11,30 +12,36 @@ import {
   TopPartners
 } from '@models/admin.model';
 import { PartnerListQueryParams } from '@models/partner.model';
-import { Observable, of } from 'rxjs';
+import { ApiConfigService } from '@services/api-config.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
+  constructor(
+    private apiConfigService: ApiConfigService
+  ) { }
+
   getDashboardAccountingStats(): Observable<DashboardAccountingStats> {
-    return of(MockAccountingStats.data);
+    // return this.checkConfig(RealAccountingStats); // use this statement when API_SERVICE_CONFIG is 'real'
+    return this.apiConfigService.checkConfig(MockAccountingStats.data);
   }
 
   getDashboardPerformanceStats(params: PerformanceStatsParams): Observable<PerformanceOverview[]> {
-    return of(MockPerformanceOverview.data);
+    return this.apiConfigService.checkConfig(MockPerformanceOverview.data, params);
   }
 
   getTopPartners(): Observable<TopPartners[]> {
-    return of(MockTopPartnerDetail.data);
+    return this.apiConfigService.checkConfig(MockTopPartnerDetail.data);
   }
 
   getLatestRedemptionList(params: Partial<PartnerListQueryParams>): Observable<RedemptionList> {
-    return of(MockRedemptionList.data);
+    return this.apiConfigService.checkConfig(MockRedemptionList.data, params);
   }
 
   getOpenInvoiceList(params: Partial<PartnerListQueryParams>): Observable<any> {
-    return of(MockOpenInvoiceList.data);
+    return this.apiConfigService.checkConfig(MockOpenInvoiceList.data, params);
   }
 }

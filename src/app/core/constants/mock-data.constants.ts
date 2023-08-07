@@ -1,3 +1,5 @@
+import { API_ROUTES } from "@constants/app.constants";
+
 export const MockAccountingStats = {
   "message": "Success",
   "status": 200,
@@ -9,6 +11,10 @@ export const MockAccountingStats = {
     "revenueActivations": 160
   },
   "error": []
+};
+
+export const RealAccountingStats = {
+  url: API_ROUTES.dashboardAccountingStatsApi,
 };
 
 export const MockPerformanceOverview = {
