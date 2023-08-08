@@ -15,7 +15,7 @@ export interface RedemptionDetail {
   shopStatus: string;
   billingPositions: number;
   trackingUrl: string;
-  action?: ActionToolbar[];
+  action: ActionToolbar[];
 }
 
 export interface DashboardAccountingStats {

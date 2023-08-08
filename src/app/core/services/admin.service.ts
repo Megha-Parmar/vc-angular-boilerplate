@@ -6,6 +6,7 @@ import {
 } from '@constants/mock-data.constants';
 import {
   DashboardAccountingStats,
+  InvoiceList,
   PerformanceOverview,
   PerformanceStatsParams,
   RedemptionList,
@@ -25,7 +26,10 @@ export class AdminService {
   ) { }
 
   getDashboardAccountingStats(): Observable<DashboardAccountingStats> {
-    // return this.checkConfig(RealAccountingStats); // use this statement when API_SERVICE_CONFIG is 'real'
+    /*
+    //use this statement when API_SERVICE_CONFIG is 'real'
+        return this.apiConfigService.checkConfig(RealAccountingStats);
+    */
     return this.apiConfigService.checkConfig(MockAccountingStats.data);
   }
 
@@ -41,7 +45,7 @@ export class AdminService {
     return this.apiConfigService.checkConfig(MockRedemptionList.data, params);
   }
 
-  getOpenInvoiceList(params: Partial<PartnerListQueryParams>): Observable<any> {
+  getOpenInvoiceList(params: Partial<PartnerListQueryParams>): Observable<InvoiceList> {
     return this.apiConfigService.checkConfig(MockOpenInvoiceList.data, params);
   }
 }
