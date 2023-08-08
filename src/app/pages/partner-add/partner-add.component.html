@@ -149,11 +149,11 @@
     </div>
     <div class="flex justify-end mt-6 2xl:mt-8">
       <app-cp-button [class]="{ 'common-btn secondary-btn font-semibold rounded-[5px] min-w-[100px] mr-4': true }"
-        [label]="( 'partner.add.cancel' | translate )" (buttonTap)="navigateToList()"></app-cp-button>
+        (buttonTap)="navigateToList()">{{'partner.add.cancel' | translate}}</app-cp-button>
 
       <app-cp-button [class]="{ 'common-btn primary-btn font-semibold rounded-[5px] min-w-[100px]': true }"
-        [label]="uuid ? ( 'partner.add.update' | translate ) : ( 'partner.add.add' | translate )"
-        (buttonTap)="onSubmit()" [isDisabled]="isSubmitted" [spin]="isSubmitted"></app-cp-button>
+        (buttonTap)="onSubmit()" [isDisabled]="isSubmitted" [spin]="isSubmitted">{{uuid ? ( 'partner.add.update' |
+        translate ) : ( 'partner.add.add' | translate )}}</app-cp-button>
 
     </div>
   </form>

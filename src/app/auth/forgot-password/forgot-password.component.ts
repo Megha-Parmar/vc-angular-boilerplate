@@ -18,6 +18,7 @@ import { finalize } from 'rxjs';
   templateUrl: './forgot-password.component.html'
 })
 export class ForgotPasswordComponent {
+
   isSubmitted = false;
   public fpForm: FormGroup;
   readonly emailRegex = REGEX_CONSTANTS.EMAIL_REGEX;

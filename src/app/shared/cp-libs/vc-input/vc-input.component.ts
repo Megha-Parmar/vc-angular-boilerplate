@@ -1,61 +1,56 @@
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, Input, forwardRef } from '@angular/core';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Params } from '@angular/router';
 
 @Component({
   selector: 'app-vc-input',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => VcInputComponent),
-      multi: true
-    }
-  ],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => VcInputComponent),
+    multi: true
+  }],
   templateUrl: './vc-input.component.html',
   styleUrls: ['./vc-input.component.scss'],
-
+  standalone: true,
+  imports: [NgClass, FormsModule],
 })
 export class VcInputComponent implements ControlValueAccessor {
-  @Input() public cssClass: { [key: string]: boolean };
-  @Input() public label: string;
-  @Input() public type: string;
-  @Input() public name: string;
-  @Input() public placeholder: string;
-  @Input() public options: any = {};
-  @Input() public required = false;
-  @Input() public isDisabled = false;
-  @Input({ required: false }) pattern: RegExp;
-  _control = "";
+
+  @Input() customClass: Params;
+  @Input() label: string;
+  @Input() type: 'text' | 'email' | 'password' = 'text';
+  @Input({ required: true }) name: string;
+  @Input() placeholder = '';
+  @Input() required = false;
+  @Input() isDisabled = false;
+  @Input() pattern: RegExp;
+
+  #controlValue = '';
+  #propagateChange: (_param: any) => void;
+  #propagateTouched: (_param: any) => void;
 
   get control(): string {
-    return this._control;
+    return this.#controlValue;
   }
-
   set control(value: string) {
-    this._control = value;
-    this.propagateChange(this._control);
+    this.#controlValue = value;
+    this.#propagateChange(this.#controlValue);
   }
 
-  writeValue(value: string) {
-    if (value !== undefined) {
-      this.control = value;
-    }
+  writeValue(value: string): void {
+    value && (this.control = value);
   }
 
-  propagateChange = (_: any) => { };
-  propagateTouched = (_: any) => { };
-
-  registerOnChange(fn) {
-    this.propagateChange = fn;
+  registerOnChange(fn: () => void): void {
+    this.#propagateChange = fn;
   }
 
-  registerOnTouched(fn) {
-    this.propagateTouched = fn;
+  registerOnTouched(fn: () => void): void {
+    this.#propagateTouched = fn;
   }
 
-  touched($event) {
-    this.propagateTouched($event);
+  touched($event): void {
+    this.#propagateTouched($event);
   }
 }
