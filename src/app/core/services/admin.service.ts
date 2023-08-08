@@ -26,10 +26,8 @@ export class AdminService {
   ) { }
 
   getDashboardAccountingStats(): Observable<DashboardAccountingStats> {
-    /*
-    //use this statement when API_SERVICE_CONFIG is 'real'
-        return this.apiConfigService.checkConfig(RealAccountingStats);
-    */
+    // For use 'real' API to uncomment below statement
+    // return this.apiConfigService.checkConfig(RealAccountingStats);
     return this.apiConfigService.checkConfig(MockAccountingStats.data);
   }
 

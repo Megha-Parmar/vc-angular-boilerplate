@@ -140,7 +140,10 @@ export class PartnerListComponent implements OnInit {
             this.toasterService.displaySnackBarWithTranslation(
               'toasterMessage.updateStatusSuccessful', MessageType.success
             );
-            this.getPartnerList();
+            const index = this.partnerList.data.findIndex((user) => user._id === row._id);
+            this.partnerList.data.splice(index, 1);
+            this.partnerList = new MatTableDataSource(this.partnerList.data);
+            this.paginator.length = this.partnerList.data.length;
           });
       }
     });

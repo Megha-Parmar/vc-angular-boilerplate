@@ -27,9 +27,11 @@
 
         <ng-container matColumnDef="partnerId">
           <th mat-header-cell *matHeaderCellDef> {{ 'common.id' | translate }} </th>
-          <td mat-cell *matCellDef="let element;let i = index;"> {{ element.partnerId || ((i+1) + (paginator?.pageIndex
-            *
-            paginator?.pageSize )) }}
+          <td mat-cell *matCellDef="let element; let i = index">
+            {{
+            element.partnerId ||
+            i + 1 + paginator?.pageIndex * paginator?.pageSize
+            }}
           </td>
         </ng-container>
 

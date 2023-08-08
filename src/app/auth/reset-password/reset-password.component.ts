@@ -16,7 +16,7 @@ import { AuthenticationService } from '@services/authentication.service';
   templateUrl: './reset-password.component.html',
 })
 export class ResetPasswordComponent {
-
+  isSubmitted = false;
   readonly passwordRegex = REGEX_CONSTANTS.PASSWORD_REGEX;
   private destroyRef = inject(DestroyRef);
 
@@ -32,18 +32,24 @@ export class ResetPasswordComponent {
     if (form.invalid || (form.value.password !== form.value.confirmPassword)) {
       return true;
     }
+    this.isSubmitted = true;
     const payload = {
       id: this.token.replace(/ /g, '+'), // It' replace '+' to '' sign in url
       password: form.value.password
     };
     this.authenticationService.setPassword(payload)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
-        this.toasterService.displaySnackBarWithTranslation(
-          'toasterMessage.setPasswordSuccessful',
-          MessageType.success
-        );
-        this.router.navigate(['/auth/logout']);
+      .subscribe({
+        next: () => {
+          this.isSubmitted = false;
+          this.toasterService.displaySnackBarWithTranslation(
+            'toasterMessage.setPasswordSuccessful'
+            , MessageType.success);
+          this.router.navigate(['/auth/logout']);
+        },
+        error: () => {
+          this.isSubmitted = false;
+        }
       });
   }
 }
