@@ -11,8 +11,8 @@
           [customClass]="{ 'form-field': true, 'field-error': (loginForm.submitted || email.touched) && email.invalid }"
           type="email" name="email" [required]="true" ngModel #email="ngModel" />
       </div>
-      <ng-container *ngIf="(loginForm.submitted || email.touched)">
-        <p class="error-message" *ngIf="email.errors?.required"> {{ 'validation.emailRequired' | translate }} </p>
+      <ng-container *ngIf="(loginForm.submitted || email.touched) && email.errors?.required">
+        <p class="error-message"> {{ 'validation.emailRequired' | translate }} </p>
       </ng-container>
       <div class="flex mt-4">
         <label class="field-lbl" for="password"
@@ -22,8 +22,8 @@
           [customClass]="{ 'form-field': true, 'field-error': (loginForm.submitted || password.touched) && password.invalid}"
           type="password" name="password" [required]="true" ngModel #password="ngModel" />
       </div>
-      <ng-container *ngIf="(loginForm.submitted || password.touched)">
-        <p class="error-message" *ngIf="password.errors?.required"> {{ 'validation.passwordRequired' | translate }} </p>
+      <ng-container *ngIf="(loginForm.submitted || password.touched) && password.errors?.required">
+        <p class="error-message"> {{ 'validation.passwordRequired' | translate }} </p>
       </ng-container>
       <div class="mt-5 md:mt-8 text-right">
         <app-vc-button [type]="'submit'"
