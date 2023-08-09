@@ -1,7 +1,9 @@
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Params } from '@angular/router';
+import { RegexType } from '@constants/app.constants';
+import { AllowNumberOnlyDirective } from '@directives/allow-number-only.directive';
 
 @Component({
   selector: 'app-vc-input',
@@ -13,7 +15,7 @@ import { Params } from '@angular/router';
   templateUrl: './vc-input.component.html',
   styleUrls: ['./vc-input.component.scss'],
   standalone: true,
-  imports: [NgClass, FormsModule],
+  imports: [NgClass, FormsModule, NgIf, AllowNumberOnlyDirective]
 })
 export class VcInputComponent implements ControlValueAccessor {
 
@@ -24,7 +26,11 @@ export class VcInputComponent implements ControlValueAccessor {
   @Input() placeholder = '';
   @Input() required = false;
   @Input() isDisabled = false;
+  @Input() readOnly = false;
+  @Input() applyAllowNumberOnly = false;
   @Input() pattern: RegExp;
+  @Input() regexType: RegexType;
+  @Input() maxLength = undefined;
 
   #controlValue = '';
   #propagateChange: (_param: any) => void;

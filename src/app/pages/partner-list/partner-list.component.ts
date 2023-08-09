@@ -27,6 +27,7 @@ import { PartnerService } from '@services/partner.service';
 import { VcEventsService } from '@services/vc-events.service';
 import { VcActionToolbarComponent } from '@vc-libs/vc-action-toolbar/vc-action-toolbar.component';
 import { VcButtonComponent } from '@vc-libs/vc-button/vc-button.component';
+import { VcInputComponent } from '@vc-libs/vc-input/vc-input.component';
 import { VcLoaderComponent } from '@vc-libs/vc-loader/vc-loader.component';
 import { debounceTime, distinctUntilChanged, finalize } from 'rxjs';
 
@@ -35,7 +36,7 @@ import { debounceTime, distinctUntilChanged, finalize } from 'rxjs';
   standalone: true,
   imports: [CommonModule, MatTableModule, TranslateModule, MatPaginatorModule, MatCheckboxModule,
     VcButtonComponent, MatIconModule, MatButtonModule, FormsModule, ReactiveFormsModule,
-    NgSelectModule, VcLoaderComponent, VcActionToolbarComponent],
+    NgSelectModule, VcLoaderComponent, VcActionToolbarComponent, VcInputComponent],
   templateUrl: './partner-list.component.html',
   styleUrls: ['./partner-list.component.scss']
 })

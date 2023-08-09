@@ -21,9 +21,8 @@ import { finalize } from 'rxjs';
 export class ForgotPasswordComponent {
 
   isSubmitted = false;
-  public fpForm: FormGroup;
+  fpForm: FormGroup;
   readonly emailRegex = REGEX_CONSTANTS.EMAIL_REGEX;
-  readonly passwordRegex = REGEX_CONSTANTS.PASSWORD_REGEX;
   private destroyRef = inject(DestroyRef);
   constructor(
     private fb: FormBuilder,

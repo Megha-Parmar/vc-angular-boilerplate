@@ -12,12 +12,13 @@ import { AuthenticationService } from '@services/authentication.service';
 import { StorageService } from '@services/storage.service';
 import { UtilityService } from '@services/utility.service';
 import { VcButtonComponent } from '@vc-libs/vc-button/vc-button.component';
+import { VcInputComponent } from '@vc-libs/vc-input/vc-input.component';
 import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, VcButtonComponent, TranslateModule],
+  imports: [CommonModule, FormsModule, VcButtonComponent, VcInputComponent, TranslateModule],
   templateUrl: './login.component.html'
 })
 export class LoginComponent {

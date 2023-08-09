@@ -21,6 +21,7 @@ import { AlertToastrService } from '@services/alert-toastr.service';
 import { PartnerService } from '@services/partner.service';
 import { VcEventsService } from '@services/vc-events.service';
 import { VcButtonComponent } from '@vc-libs/vc-button/vc-button.component';
+import { VcInputComponent } from '@vc-libs/vc-input/vc-input.component';
 import { VcTelInputComponent } from '@vc-libs/vc-tel-input/vc-tel-input.component';
 import { finalize } from 'rxjs';
 
@@ -28,7 +29,7 @@ import { finalize } from 'rxjs';
   selector: 'app-partner-add',
   standalone: true,
   imports: [CommonModule, MatSlideToggleModule, NgSelectModule, FormsModule, VcButtonComponent, ReactiveFormsModule,
-    TranslateModule, AllowNumberOnlyDirective, VcTelInputComponent],
+    TranslateModule, AllowNumberOnlyDirective, VcTelInputComponent, VcInputComponent],
   templateUrl: './partner-add.component.html',
   styleUrls: ['./partner-add.component.scss']
 })

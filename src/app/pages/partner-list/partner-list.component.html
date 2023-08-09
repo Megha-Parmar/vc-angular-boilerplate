@@ -6,9 +6,11 @@
     </div>
     <div class="p-1.5 sm:p-2 order-3 sm:order-none flex-auto sm:flex-none">
       <div class="search-box relative sm:min-w-[300px]">
-        <mat-icon class="text-blue-50 absolute left-[10px] top-[10px]">search</mat-icon>
-        <input class="shadow-2sm rounded-[60px] outline-0 text-blue-50 font-semibold h-[40px] w-full pl-[44px] pr-4"
-          type="text" [formControl]="searchControl" placeholder="{{ 'partner.searchPartner' | translate }}">
+        <app-vc-input placeholder="{{ 'partner.searchPartner' | translate }}"
+          [customClass]="{ 'shadow-2sm rounded-[60px] outline-0 text-blue-50 font-semibold h-[40px] w-full pl-[44px] pr-4': true}"
+          type="text" name="search" [formControl]="searchControl">
+          <mat-icon matIcon class="text-blue-50 absolute left-[10px] top-[10px]">search</mat-icon>
+        </app-vc-input>
       </div>
     </div>
     <div class="p-1.5 sm:p-2 order-2 sm:order-none flex-auto sm:flex-none">
