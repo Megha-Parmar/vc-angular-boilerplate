@@ -1,8 +1,8 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, ContentChild, Input, Renderer2, ViewChild, ViewContainerRef, forwardRef } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Params } from '@angular/router';
-import { RegexType } from '@constants/app.constants';
+import { PositionEnum, RegexType } from '@constants/app.constants';
 import { AllowNumberOnlyDirective } from '@directives/allow-number-only.directive';
 
 @Component({
@@ -30,8 +30,11 @@ export class VcInputComponent implements ControlValueAccessor {
   @Input() applyAllowNumberOnly = false;
   @Input() pattern: RegExp;
   @Input() regexType: RegexType;
+  @Input() position: PositionEnum = PositionEnum.left;
   @Input() maxLength = undefined;
-
+  @ContentChild('projectedElement', { static: false })
+  projectedSvgElement;
+  @ViewChild('input', { read: ViewContainerRef }) inputElement;
   #controlValue = '';
   #propagateChange: (_param: any) => void;
   #propagateTouched: (_param: any) => void;
@@ -43,6 +46,7 @@ export class VcInputComponent implements ControlValueAccessor {
     this.#controlValue = value;
     this.#propagateChange(this.#controlValue);
   }
+  constructor(private renderer: Renderer2) { }
 
   writeValue(value: string): void {
     value && (this.control = value);
@@ -58,5 +62,20 @@ export class VcInputComponent implements ControlValueAccessor {
 
   touched($event): void {
     this.#propagateTouched($event);
+  }
+
+  ngAfterViewInit() {
+    if (this.projectedSvgElement) {
+      const element = this.projectedSvgElement._elementRef.nativeElement;
+      // Add styles dynamically using Renderer2
+      if (this.position === PositionEnum.left) {
+        this.renderer.addClass(element, 'left-[10px]');
+        this.renderer.addClass(this.inputElement.element.nativeElement, 'pl-[44px]');
+      }
+      else if (this.position === PositionEnum.right) {
+        this.renderer.addClass(element, 'right-[10px]');
+        this.renderer.addClass(this.inputElement.element.nativeElement, 'pl-[10px]');
+      }
+    }
   }
 }

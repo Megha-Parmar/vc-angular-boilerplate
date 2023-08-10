@@ -16,6 +16,7 @@ import {
   DEFAULT_PAGE_SIZE,
   MessageType,
   PAGE_SIZE,
+  PositionEnum,
   SORT_OPTIONS
 } from '@constants/app.constants';
 import { BreadCrumb } from '@models/breadcrumb.model';
@@ -55,6 +56,8 @@ export class PartnerListComponent implements OnInit {
 
   readonly pageSizeOptions = PAGE_SIZE;
   readonly sortOptions = SORT_OPTIONS;
+  readonly position = PositionEnum;
+
   private destroyRef = inject(DestroyRef);
 
   constructor(
