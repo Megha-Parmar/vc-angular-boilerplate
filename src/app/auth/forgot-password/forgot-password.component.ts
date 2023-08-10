@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageType, REGEX_CONSTANTS } from '@constants/app.constants';
+import { ForgetPasswordForm } from '@models/auth.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { AlertToastrService } from '@services/alert-toastr.service';
 import { AuthenticationService } from '@services/authentication.service';
@@ -21,17 +22,17 @@ import { finalize } from 'rxjs';
 export class ForgotPasswordComponent {
 
   isSubmitted = false;
-  fpForm: FormGroup;
+  fpForm: FormGroup<ForgetPasswordForm>;
+
   readonly emailRegex = REGEX_CONSTANTS.EMAIL_REGEX;
   private destroyRef = inject(DestroyRef);
   constructor(
-    private fb: FormBuilder,
     private authenticationService: AuthenticationService,
     private router: Router,
     private toasterService: AlertToastrService
   ) {
-    this.fpForm = this.fb.group({
-      email: ['']
+    this.fpForm = new FormGroup<ForgetPasswordForm>({
+      email: new FormControl(''),
     });
   }
 
