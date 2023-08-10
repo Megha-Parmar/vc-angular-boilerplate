@@ -16,7 +16,7 @@ export class ApiConfigService {
         this.apiConfig = this.injector.get(API_SERVICE_CONFIG);
     }
 
-    checkConfig(data: any, option = {}) {
+    checkConfig(data: any, option?: any) {
         if (this.apiConfig === 'mock') {
             return new MockApiService().getData(data);
         } else {
