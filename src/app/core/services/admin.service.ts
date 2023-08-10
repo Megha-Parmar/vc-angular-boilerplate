@@ -1,49 +1,39 @@
 import { Injectable } from '@angular/core';
 import {
-  MockAccountingStats,
-  MockOpenInvoiceList, MockPerformanceOverview, MockRedemptionList,
+  MockAccountingStats, MockOpenInvoiceList, MockPerformanceOverview, MockRedemptionList,
   MockTopPartnerDetail
 } from '@constants/mock-data.constants';
 import {
   DashboardAccountingStats,
-  InvoiceList,
   PerformanceOverview,
   PerformanceStatsParams,
-  RedemptionList,
   TopPartners
 } from '@models/admin.model';
 import { PartnerListQueryParams } from '@models/partner.model';
-import { ApiConfigService } from '@services/api-config.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  constructor(
-    private apiConfigService: ApiConfigService
-  ) { }
-
   getDashboardAccountingStats(): Observable<DashboardAccountingStats> {
-    // For use 'real' API to uncomment below statement
-    // return this.apiConfigService.checkConfig(RealAccountingStats);
-    return this.apiConfigService.checkConfig(MockAccountingStats.data);
+    return of(MockAccountingStats.data);
   }
 
   getDashboardPerformanceStats(params: PerformanceStatsParams): Observable<PerformanceOverview[]> {
-    return this.apiConfigService.checkConfig(MockPerformanceOverview.data, params);
+    return of(MockPerformanceOverview.data);
   }
 
   getTopPartners(): Observable<TopPartners[]> {
-    return this.apiConfigService.checkConfig(MockTopPartnerDetail.data);
+    return of(MockTopPartnerDetail.data);
   }
 
-  getLatestRedemptionList(params: Partial<PartnerListQueryParams>): Observable<RedemptionList> {
-    return this.apiConfigService.checkConfig(MockRedemptionList.data, params);
+  getLatestRedemptionList(params: Partial<PartnerListQueryParams>): Observable<any> {
+    return of(MockRedemptionList.data);
   }
 
-  getOpenInvoiceList(params: Partial<PartnerListQueryParams>): Observable<InvoiceList> {
-    return this.apiConfigService.checkConfig(MockOpenInvoiceList.data, params);
+  getOpenInvoiceList(params: Partial<PartnerListQueryParams>): Observable<any> {
+    return of(MockOpenInvoiceList.data);
   }
 }

@@ -33,8 +33,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AdminService } from '@services/admin.service';
 import { AlertToastrService } from '@services/alert-toastr.service';
-import { ApiConfigService } from '@services/api-config.service';
-import { API_SERVICE_CONFIG } from '@services/api-token.service';
 import { CpEventsService } from '@services/cp-events.service';
 import { PartnerService } from '@services/partner.service';
 import { StorageService } from '@services/storage.service';
@@ -49,12 +47,7 @@ import { finalize } from 'rxjs';
   imports: [CommonModule, TranslateModule, MatIconModule, NgSelectModule, FormsModule, ReactiveFormsModule,
     MatTableModule, MatPaginatorModule, CpLoaderComponent, NgChartsModule, CpActionToolbarComponent],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
-  providers: [
-    AdminService,
-    ApiConfigService,
-    { provide: API_SERVICE_CONFIG, useValue: 'mock' } // 'mock' or 'real' based on your requirement
-  ]
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
 
