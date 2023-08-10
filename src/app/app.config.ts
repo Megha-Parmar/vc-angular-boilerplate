@@ -5,6 +5,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TitleStrategy, provideRouter, withComponentInputBinding } from '@angular/router';
+import { serviceProvider } from '@constants/app.provide';
 import { appRoutes } from '@constants/app.routes';
 import { HttpErrorInterceptor, HttpTokenInterceptor } from '@interceptors/http.interceptor';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -31,7 +32,8 @@ export const appConfig: ApplicationConfig = {
     ),
     { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },
     { provide: LOCALE_ID, useValue: 'en-us' },
-    { provide: TitleStrategy, useClass: CustomPageTitleStrategy }
+    { provide: TitleStrategy, useClass: CustomPageTitleStrategy },
+    ...serviceProvider
   ]
 };
 

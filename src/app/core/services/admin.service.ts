@@ -1,39 +1,51 @@
 import { Injectable } from '@angular/core';
-import {
-  MockAccountingStats, MockOpenInvoiceList, MockPerformanceOverview, MockRedemptionList,
-  MockTopPartnerDetail
-} from '@constants/mock-data.constants';
+import { API_ROUTES } from '@constants/app.constants';
 import {
   DashboardAccountingStats,
+  InvoiceList,
   PerformanceOverview,
   PerformanceStatsParams,
+  RedemptionList,
   TopPartners
 } from '@models/admin.model';
 import { PartnerListQueryParams } from '@models/partner.model';
-import { Observable, of } from 'rxjs';
+import { HttpClientService } from '@services/http-client.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
+  constructor(
+    private httpClientService: HttpClientService
+  ) { }
+
   getDashboardAccountingStats(): Observable<DashboardAccountingStats> {
-    return of(MockAccountingStats.data);
+    return this.httpClientService.get(API_ROUTES.dashboardAccountingStatsApi);
   }
 
   getDashboardPerformanceStats(params: PerformanceStatsParams): Observable<PerformanceOverview[]> {
-    return of(MockPerformanceOverview.data);
+    return this.httpClientService.get(API_ROUTES.dashboardPerformanceOverviewApi, { params });
   }
 
   getTopPartners(): Observable<TopPartners[]> {
-    return of(MockTopPartnerDetail.data);
+    return this.httpClientService.get(API_ROUTES.dashboardTopPartnersApi);
   }
 
-  getLatestRedemptionList(params: Partial<PartnerListQueryParams>): Observable<any> {
-    return of(MockRedemptionList.data);
+  getLatestRedemptionList(params: Partial<PartnerListQueryParams>): Observable<RedemptionList> {
+    return this.httpClientService.get(API_ROUTES.redemptionListApi, { params });
   }
 
-  getOpenInvoiceList(params: Partial<PartnerListQueryParams>): Observable<any> {
-    return of(MockOpenInvoiceList.data);
+  getExchangeRate(): Observable<number> {
+    return this.httpClientService.get(API_ROUTES.exchangeRateApi);
+  }
+
+  saveExchangeRate(params: { exchangeRate: number }): Observable<[] | null> {
+    return this.httpClientService.patch(API_ROUTES.exchangeRateApi, params);
+  }
+
+  getOpenInvoiceList(params: Partial<PartnerListQueryParams>): Observable<InvoiceList> {
+    return this.httpClientService.get(API_ROUTES.openInvoiceListApi, { params });
   }
 }
