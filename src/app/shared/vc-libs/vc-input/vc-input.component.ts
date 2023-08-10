@@ -39,6 +39,8 @@ export class VcInputComponent implements ControlValueAccessor {
   #propagateChange: (_param: any) => void;
   #propagateTouched: (_param: any) => void;
 
+  constructor(private renderer: Renderer2) { }
+
   get control(): string {
     return this.#controlValue;
   }
@@ -46,7 +48,6 @@ export class VcInputComponent implements ControlValueAccessor {
     this.#controlValue = value;
     this.#propagateChange(this.#controlValue);
   }
-  constructor(private renderer: Renderer2) { }
 
   writeValue(value: string): void {
     value && (this.control = value);
