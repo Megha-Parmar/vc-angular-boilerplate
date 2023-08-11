@@ -47,7 +47,7 @@ export const adminRoutes: Routes = [
             path: 'open-dialog',
             title: 'pageTitle.dialog',
             loadComponent: () =>
-              import('@cp-libs/generate-code/generate-code.component').then((m) => m.GenerateCodeComponent),
+              import('@vc-libs/generate-code/generate-code.component').then((m) => m.GenerateCodeComponent),
           },
           {
             path: 'add',

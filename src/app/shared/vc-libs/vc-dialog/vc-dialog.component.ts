@@ -9,13 +9,13 @@ import { DynamicComponentLoaderService } from '@app/core/services/dynamic-compon
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-cp-dialog',
+  selector: 'app-vc-dialog',
   standalone: true,
   imports: [CommonModule, TranslateModule, ReactiveFormsModule, DynamicDirective],
-  templateUrl: './cp-dialog.component.html',
-  styleUrls: ['./cp-dialog.component.scss']
+  templateUrl: './vc-dialog.component.html',
+  styleUrls: ['./vc-dialog.component.scss']
 })
-export class CpDialogComponent implements OnInit {
+export class VcDialogComponent implements OnInit {
 
   title: string;
   customHeaderClass: string;
@@ -29,7 +29,7 @@ export class CpDialogComponent implements OnInit {
   constructor(
     public translate: TranslateService,
     public dialogService: DialogService,
-    public dialogRef: MatDialogRef<CpDialogComponent>,
+    public dialogRef: MatDialogRef<VcDialogComponent>,
     private dynamicComponentLoaderService: DynamicComponentLoaderService,
     @Inject(MAT_DIALOG_DATA) public data: {
       loadComponent: () => Promise<unknown>;

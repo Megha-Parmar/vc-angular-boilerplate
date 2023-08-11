@@ -1,3 +1,5 @@
+import { FormControl } from "@angular/forms";
+
 export interface LoginParams {
   email: string;
   password: string;
@@ -14,4 +16,8 @@ export interface LoginResponse {
   companyName?: string;
   locale: string;
   currency: string;
+}
+
+export interface ForgetPasswordForm {
+  email: FormControl<string>;
 }

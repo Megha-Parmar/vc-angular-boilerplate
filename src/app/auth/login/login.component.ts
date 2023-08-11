@@ -5,19 +5,20 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { APP_CONSTANTS, MessageType } from '@constants/app.constants';
 import { STORAGE } from '@constants/storage.constant';
-import { CpButtonComponent } from '@cp-libs/cp-button/cp-button.component';
 import { LoginResponse } from '@models/auth.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { AlertToastrService } from '@services/alert-toastr.service';
 import { AuthenticationService } from '@services/authentication.service';
 import { StorageService } from '@services/storage.service';
 import { UtilityService } from '@services/utility.service';
+import { VcButtonComponent } from '@vc-libs/vc-button/vc-button.component';
+import { VcInputComponent } from '@vc-libs/vc-input/vc-input.component';
 import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, CpButtonComponent, TranslateModule],
+  imports: [CommonModule, FormsModule, VcButtonComponent, VcInputComponent, TranslateModule],
   templateUrl: './login.component.html'
 })
 export class LoginComponent {

@@ -7,8 +7,9 @@
         <label class="field-lbl" for="email"
           [ngClass]="{ 'field-error': (loginForm.submitted || email.touched) && email.invalid }">{{ 'login.email' |
           translate }}</label>
-        <input class="form-field" [ngClass]="{ 'field-error': (loginForm.submitted || email.touched) && email.invalid }"
-          email type="email" name="email" id="email" ngModel #email="ngModel" required>
+        <app-vc-input
+          [customClass]="{ 'form-field': true, 'field-error': (loginForm.submitted || email.touched) && email.invalid }"
+          type="email" name="email" [required]="true" ngModel #email="ngModel" />
       </div>
       <ng-container *ngIf="(loginForm.submitted || email.touched) && email.errors?.required">
         <p class="error-message"> {{ 'validation.emailRequired' | translate }} </p>
@@ -17,17 +18,18 @@
         <label class="field-lbl" for="password"
           [ngClass]="{ 'field-error': (loginForm.submitted || password.touched) && password.invalid }">{{
           'login.password' | translate }}</label>
-        <input class="form-field" id="password"
-          [ngClass]="{ 'field-error': (loginForm.submitted || password.touched) && password.invalid }" type="password"
-          name="password" ngModel #password="ngModel" required>
+        <app-vc-input
+          [customClass]="{ 'form-field': true, 'field-error': (loginForm.submitted || password.touched) && password.invalid}"
+          type="password" name="password" [required]="true" ngModel #password="ngModel" />
       </div>
       <ng-container *ngIf="(loginForm.submitted || password.touched) && password.errors?.required">
         <p class="error-message"> {{ 'validation.passwordRequired' | translate }} </p>
       </ng-container>
       <div class="mt-5 md:mt-8 text-right">
-        <app-cp-button [type]="'submit'" [label]="'login.login' | translate"
+        <app-vc-button [type]="'submit'"
           [class]="{'common-btn secondary-btn font-base font-semibold rounded-[5px] min-w-[120px]': true, 'pointer-events-none': isSubmitted}"
-          [isDisabled]="isSubmitted" [spin]="isSubmitted" (buttonTap)="onSubmit(loginForm)"></app-cp-button>
+          [isDisabled]="isSubmitted" [spin]="isSubmitted" (buttonTap)="onSubmit(loginForm)"> {{ 'login.login' |
+          translate }}</app-vc-button>
       </div>
       <div class="mt-2 md:mt-3 text-right">
         <button class="cursor-pointer text-[13px]" (click)="navigateToForgotPassword()" [disabled]="isSubmitted">

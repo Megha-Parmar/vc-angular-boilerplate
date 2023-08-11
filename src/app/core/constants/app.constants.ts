@@ -98,6 +98,11 @@ export const SVG_ICON_LIST = [{
   path: 'assets/images/logout.svg'
 }];
 
+export enum PositionEnum {
+  left = 'left',
+  right = 'right',
+}
+
 export enum Months {
   January, February, March, April, May, June, July, August, September, October, November, December
 }
