@@ -12,26 +12,6 @@ export const REGEX_CONSTANTS = {
   ZIP_REGEX: /^[0-9]{4,6}$/
 };
 
-export const API_ROUTES = {
-  loginApi: 'auth/login',
-  forgotPasswordApi: 'auth/forgotPassword',
-  setPasswordApi: 'auth/resetPassword',
-  partnerListApi: 'partner',
-  addPartnerApi: 'partner',
-  cardListApi: 'cards',
-  downloadExcelApi: 'cards/excel',
-  accountingStatsApi: 'cards/accountingStats',
-  buyingBillApi: 'accounts/buy',
-  redeemBillApi: 'accounts/redeem',
-  accountStatusChangeApi: 'accounts',
-  dashboardAccountingStatsApi: 'dashboard/accountingStats',
-  redemptionListApi: 'dashboard/shopifyOrders',
-  dashboardPerformanceOverviewApi: 'dashboard/performanceOverview',
-  dashboardTopPartnersApi: 'dashboard/topPartners',
-  exchangeRateApi: 'exchangerates',
-  openInvoiceListApi: 'dashboard/openBillList'
-};
-
 export enum MessageType {
   info = 'info',
   error = 'error',

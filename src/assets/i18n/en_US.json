@@ -152,6 +152,7 @@
   "pageTitle": {
     "login": "Login",
     "forgotPassword": "Forgot Password",
+    "resetPassword": "Reset Password",
     "logout": "Logout",
     "dashboard": "Dashboard",
     "partnerList": "Partner List",

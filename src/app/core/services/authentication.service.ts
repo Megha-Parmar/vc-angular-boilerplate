@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { API_ROUTES } from '@constants/app.constants';
+import { API_ROUTES } from '@constants/api.constants';
 import { LoginParams, LoginResponse } from '@models/auth.model';
 import { HttpClientService } from '@services/http-client.service';
 import { Observable } from 'rxjs/internal/Observable';

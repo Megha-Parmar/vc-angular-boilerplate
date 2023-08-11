@@ -6,6 +6,5 @@ export const environment = {
   version: npm.version,
   baseUrl: 'http://localhost:4200',
   hostName: 'https://vc-nest-js-boilerplate.vercel.app',
-  restAPI: '/api/',
   preferredCountries: ['ch', 'de', 'fr', 'gb', 'it', 'nl', 'fi'],
 };

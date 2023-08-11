@@ -151,6 +151,7 @@
   "pageTitle": {
     "login": "Anmeldung",
     "forgotPassword": "Passwort vergessen",
+    "resetPassword": "Passwort zurücksetzen",
     "logout": "Ausloggen",
     "dashboard": "Armaturenbrett",
     "partnerList": "Partnerliste",

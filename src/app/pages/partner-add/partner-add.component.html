@@ -40,8 +40,7 @@
             <app-vc-input formControlName="zip" [applyAllowNumberOnly]="true" [maxlength]="6"
               [regexType]="regexType.integer"
               [customClass]="{ 'form-field': true, 'field-error': addressControls.zip.touched && addressControls.zip.invalid }"
-              type="text" name="zip">
-            </app-vc-input>
+              type="text" name="zip" />
           </div>
           <ng-container *ngTemplateOutlet="requiredError; context: { control: addressControls.zip }"></ng-container>
           <ng-container
