@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-cp-loader',
+  selector: 'app-vc-loader',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './cp-loader.component.html'
+  templateUrl: './vc-loader.component.html'
 })
-export class CpLoaderComponent {
+export class VcLoaderComponent {
 
   @Input() class: { [key: string]: boolean };
 }

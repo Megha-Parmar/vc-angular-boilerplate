@@ -44,7 +44,7 @@ export class PartnerService {
     const requestUrl = `${environment.hostName}${environment.restAPI}${API_ROUTES.addPartnerApi}/${uuid}`;
     return this.httpWithoutInterceptor.get(requestUrl, {
       headers: {
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       }
     }) as Observable<CreatePartner>;
   }

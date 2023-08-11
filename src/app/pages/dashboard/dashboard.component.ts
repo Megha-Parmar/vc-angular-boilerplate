@@ -16,8 +16,6 @@ import {
   SORT_OPTIONS
 } from '@constants/app.constants';
 import { STORAGE } from '@constants/storage.constant';
-import { CpActionToolbarComponent } from '@cp-libs/cp-action-toolbar/cp-action-toolbar.component';
-import { CpLoaderComponent } from '@cp-libs/cp-loader/cp-loader.component';
 import {
   DashboardAccountingStats,
   InvoiceDetail,
@@ -33,10 +31,12 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AdminService } from '@services/admin.service';
 import { AlertToastrService } from '@services/alert-toastr.service';
-import { CpEventsService } from '@services/cp-events.service';
 import { PartnerService } from '@services/partner.service';
 import { StorageService } from '@services/storage.service';
 import { UtilityService } from '@services/utility.service';
+import { VcEventsService } from '@services/vc-events.service';
+import { VcActionToolbarComponent } from '@vc-libs/vc-action-toolbar/vc-action-toolbar.component';
+import { VcLoaderComponent } from '@vc-libs/vc-loader/vc-loader.component';
 import { ChartOptions } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
 import { finalize } from 'rxjs';
@@ -45,7 +45,7 @@ import { finalize } from 'rxjs';
   selector: 'app-dashboard',
   standalone: true,
   imports: [CommonModule, TranslateModule, MatIconModule, NgSelectModule, FormsModule, ReactiveFormsModule,
-    MatTableModule, MatPaginatorModule, CpLoaderComponent, NgChartsModule, CpActionToolbarComponent],
+    MatTableModule, MatPaginatorModule, VcLoaderComponent, NgChartsModule, VcActionToolbarComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private cpEventsService: CpEventsService,
+    private vcEventsService: VcEventsService,
     private adminService: AdminService,
     private storageService: StorageService,
     private utilityService: UtilityService,
@@ -108,7 +108,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cpEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
+    this.vcEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
     this.getAccountingStats();
     this.getPerformanceOverview();
     this.getTopPartners();

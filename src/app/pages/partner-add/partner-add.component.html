@@ -14,9 +14,9 @@
           <label class="field-lbl" for="companyName"
             [ngClass]="{ 'field-error': formControls.companyName.touched && formControls.companyName.invalid }">{{
             'partner.add.name' | translate }}</label>
-          <input class="form-field" id="companyName"
-            [ngClass]="{ 'field-error': formControls.companyName.touched && formControls.companyName.invalid }"
-            type="text" formControlName="companyName">
+          <app-vc-input formControlName="companyName"
+            [customClass]="{ 'form-field': true, 'field-error': formControls.companyName.touched && formControls.companyName.invalid }"
+            type="text" name="companyName" />
         </div>
         <ng-container *ngTemplateOutlet="requiredError; context: { control: formControls.companyName }"></ng-container>
       </div>
@@ -26,9 +26,9 @@
             <label class="field-lbl" for="street"
               [ngClass]="{ 'field-error': addressControls.street.touched && addressControls.street.invalid }">{{
               'partner.add.street' | translate }}</label>
-            <input class="form-field" id="street"
-              [ngClass]="{ 'field-error': addressControls.street.touched && addressControls.street.invalid }"
-              type="text" formControlName="street">
+            <app-vc-input formControlName="street"
+              [customClass]="{ 'form-field': true, 'field-error': addressControls.street.touched && addressControls.street.invalid }"
+              type="text" name="street" />
           </div>
           <ng-container *ngTemplateOutlet="requiredError; context: { control: addressControls.street }"></ng-container>
         </div>
@@ -37,9 +37,11 @@
             <label class="field-lbl" for="zip"
               [ngClass]="{ 'field-error': addressControls.zip.touched && addressControls.zip.invalid }">{{
               'partner.add.zip' | translate }}</label>
-            <input class="form-field" id="zip"
-              [ngClass]="{ 'field-error': addressControls.zip.touched && addressControls.zip.invalid }" type="text"
-              formControlName="zip" maxlength="6" appAllowNumberOnly [regexType]="regexType.integer">
+            <app-vc-input formControlName="zip" [applyAllowNumberOnly]="true" [maxlength]="6"
+              [regexType]="regexType.integer"
+              [customClass]="{ 'form-field': true, 'field-error': addressControls.zip.touched && addressControls.zip.invalid }"
+              type="text" name="zip">
+            </app-vc-input>
           </div>
           <ng-container *ngTemplateOutlet="requiredError; context: { control: addressControls.zip }"></ng-container>
           <ng-container
@@ -50,9 +52,9 @@
             <label class="field-lbl" for="city"
               [ngClass]="{ 'field-error': addressControls.city.touched && addressControls.city.invalid }">{{
               'partner.add.city' | translate }}</label>
-            <input class="form-field" id="city"
-              [ngClass]="{ 'field-error': addressControls.city.touched && addressControls.city.invalid }" type="text"
-              formControlName="city">
+            <app-vc-input formControlName="city"
+              [customClass]="{ 'form-field': true, 'field-error': addressControls.city.touched && addressControls.city.invalid }"
+              type="text" name="city" />
           </div>
           <ng-container *ngTemplateOutlet="requiredError; context: { control: addressControls.city }"></ng-container>
         </div>
@@ -84,9 +86,9 @@
           <label class="field-lbl" for="name"
             [ngClass]="{ 'field-error': formControls.name.touched && formControls.name.invalid }">{{
             'partner.add.contact' | translate }}</label>
-          <input class="form-field" id="name"
-            [ngClass]="{ 'field-error': formControls.name.touched && formControls.name.invalid }" type="text"
-            formControlName="name">
+          <app-vc-input formControlName="name"
+            [customClass]="{ 'form-field': true, 'field-error': formControls.name.touched && formControls.name.invalid }"
+            type="text" name="name" />
         </div>
         <ng-container *ngTemplateOutlet="requiredError; context: { control: formControls.name }"></ng-container>
       </div>
@@ -95,9 +97,10 @@
           <label class="field-lbl" for="email"
             [ngClass]="{ 'field-error': formControls.email.touched && formControls.email.invalid, 'read-only': uuid }">{{
             'partner.add.email' | translate }}</label>
-          <input class="form-field" id="email"
-            [ngClass]="{ 'field-error': formControls.email.touched && formControls.email.invalid, 'read-only': uuid }"
-            type="text" [pattern]="emailRegex" [readonly]="uuid && true" formControlName="email">
+
+          <app-vc-input
+            [customClass]="{ 'form-field': true, 'field-error': formControls.email.touched && formControls.email.invalid, 'read-only': uuid  }"
+            type="text" name="name" [pattern]="emailRegex" [readOnly]="uuid && true" formControlName="email" />
         </div>
         <ng-container *ngTemplateOutlet="requiredError; context: { control: formControls.email }"></ng-container>
         <ng-container
@@ -108,9 +111,9 @@
           <label class="field-lbl" for="phoneNo"
             [ngClass]="{ 'field-error': formControls.phoneNo.touched && formControls.phoneNo.invalid }">{{
             'partner.add.phone' | translate }}</label>
-          <app-cp-tel-input class="w-full flex" id="phoneNo"
+          <app-vc-tel-input class="w-full flex" id="phoneNo"
             [cssClass]="{ 'form-field': true, 'field-error': formControls.phoneNo.touched && formControls.phoneNo.invalid }"
-            formControlName="phoneNo"></app-cp-tel-input>
+            formControlName="phoneNo"></app-vc-tel-input>
         </div>
         <ng-container *ngTemplateOutlet="requiredError; context: { control: formControls.phoneNo }"></ng-container>
         <ng-container
@@ -119,7 +122,8 @@
       <div class="w-full sm:w-[50%] p-2">
         <div class="flex">
           <label class="field-lbl" for="web">{{ 'partner.add.web' | translate }}</label>
-          <input class="form-field" id="web" type="text" [pattern]="webUrlRegex" formControlName="webAddress">
+          <app-vc-input name="webAddress" [customClass]="{ 'form-field': true}" type="text" [pattern]="webUrlRegex"
+            formControlName="webAddress" />
         </div>
       </div>
       <div class="w-full sm:w-[50%] p-2">
@@ -148,12 +152,12 @@
       </div>
     </div>
     <div class="flex justify-end mt-6 2xl:mt-8">
-      <app-cp-button [class]="{ 'common-btn secondary-btn font-semibold rounded-[5px] min-w-[100px] mr-4': true }"
-        [label]="( 'partner.add.cancel' | translate )" (buttonTap)="navigateToList()"></app-cp-button>
+      <app-vc-button [class]="{ 'common-btn secondary-btn font-semibold rounded-[5px] min-w-[100px] mr-4': true }"
+        (buttonTap)="navigateToList()">{{'partner.add.cancel' | translate}}</app-vc-button>
 
-      <app-cp-button [class]="{ 'common-btn primary-btn font-semibold rounded-[5px] min-w-[100px]': true }"
-        [label]="uuid ? ( 'partner.add.update' | translate ) : ( 'partner.add.add' | translate )"
-        (buttonTap)="onSubmit()" [isDisabled]="isSubmitted" [spin]="isSubmitted"></app-cp-button>
+      <app-vc-button [class]="{ 'common-btn primary-btn font-semibold rounded-[5px] min-w-[100px]': true }"
+        (buttonTap)="onSubmit()" [isDisabled]="isSubmitted" [spin]="isSubmitted">{{uuid ? ( 'partner.add.update' |
+        translate ) : ( 'partner.add.add' | translate )}}</app-vc-button>
 
     </div>
   </form>

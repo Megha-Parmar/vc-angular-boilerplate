@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { CpEventsService } from '@services/cp-events.service';
+import { VcEventsService } from '@services/vc-events.service';
 
 @Component({
   selector: 'app-header',
@@ -13,10 +13,10 @@ import { CpEventsService } from '@services/cp-events.service';
 export class HeaderComponent {
 
   constructor(
-    private cpEventsService: CpEventsService
-  ) {}
+    private vcEventsService: VcEventsService
+  ) { }
 
   openSidebar(): void {
-    this.cpEventsService.toggleSidebar.emit(true);
+    this.vcEventsService.toggleSidebar.emit(true);
   }
 }

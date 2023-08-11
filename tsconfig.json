@@ -36,8 +36,8 @@
       "@environment/*": [
         "environments/*"
       ],
-      "@cp-libs/*": [
-        "app/shared/cp-libs/*"
+      "@vc-libs/*": [
+        "app/shared/vc-libs/*"
       ],
       "@interceptors/*": [
         "app/core/interceptors/*"

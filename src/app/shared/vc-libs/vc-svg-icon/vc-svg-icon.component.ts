@@ -1,17 +1,16 @@
-import { CommonModule } from '@angular/common';
 import { Component, HostBinding, Input } from '@angular/core';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SvgIcon } from '@models/common.model';
 
 @Component({
-  selector: 'app-cp-svg-icon',
+  selector: 'app-vc-svg-icon',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
-  templateUrl: './cp-svg-icon.component.html',
-  styleUrls: ['./cp-svg-icon.component.scss']
+  imports: [MatIconModule],
+  templateUrl: './vc-svg-icon.component.html',
+  styleUrls: ['./vc-svg-icon.component.scss']
 })
-export class CpSvgIconComponent {
+export class VcSvgIconComponent {
   @HostBinding('style.-webkit-mask-image')
   svgName: string;
 
