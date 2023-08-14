@@ -50,7 +50,7 @@ export class VcTelInputComponent implements OnInit, AfterViewInit {
   @Input() public labelCssClass: string;
   @Input() public name = 'intl-tel-input-name';
   @Input() public onlyLocalized = true;
-  @Input() public options: any = {};
+  @Input() public options = {};
   @Input() public required = false;
   @Input() public isDisabled = false;
 
@@ -67,14 +67,14 @@ export class VcTelInputComponent implements OnInit, AfterViewInit {
   telInputControl: FormControl = new FormControl();
 
   private static modifyCountryData(): void {
-    (window as any).intlTelInputGlobals?.getCountryData().forEach((country: any) =>
+    (window as any).intlTelInputGlobals?.getCountryData().forEach((country) =>
       country.name = country.name.replace(/.+\((.+)\)/, '$1'));
   }
 
   ngOnInit(): void {
     this.telInputControl.valueChanges
       .subscribe(
-        (result: any) => {
+        (result) => {
           if (!result) {
             if (this.onModelChange) {
               this.onModelChange(result);
@@ -159,15 +159,15 @@ export class VcTelInputComponent implements OnInit, AfterViewInit {
     }
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn): void {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn): void {
     this.onTouch = fn;
   }
 
-  writeValue(obj: any): void {
+  writeValue(obj): void {
     this.telInputControl.setValue(obj);
   }
 
@@ -191,7 +191,7 @@ export class VcTelInputComponent implements OnInit, AfterViewInit {
     return null;
   }
 
-  registerOnValidatorChange?(fn: any): void {
+  registerOnValidatorChange?(fn): void {
     this.onValidatorChange = fn;
   }
 }

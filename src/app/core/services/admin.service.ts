@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { API_ROUTES } from '@constants/app.constants';
+import { API_ROUTES } from '@constants/api.constants';
 import {
   DashboardAccountingStats,
   InvoiceList,

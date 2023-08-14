@@ -6,7 +6,7 @@
     "forgotPassword": "Passwort vergessen",
     "problems": "Probleme?",
     "contactUs": "Kontaktieren Sie uns über",
-    "setPassword": "Passwort setzen",
+    "resetPassword": "Passwort zurücksetzen",
     "backToLogin": "Zurück zur Anmeldung",
     "setPasswordInfo": "Um fortzufahren, gib bitte ein neues Passwort ein",
     "forgotPasswordInfo": "E-Mail eingeben, um dein Konto wiederherzustellen"
@@ -151,6 +151,7 @@
   "pageTitle": {
     "login": "Anmeldung",
     "forgotPassword": "Passwort vergessen",
+    "resetPassword": "Passwort zurücksetzen",
     "logout": "Ausloggen",
     "dashboard": "Armaturenbrett",
     "partnerList": "Partnerliste",

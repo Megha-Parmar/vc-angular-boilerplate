@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageType, REGEX_CONSTANTS } from '@constants/app.constants';
 import { ForgetPasswordForm } from '@models/auth.model';
@@ -15,7 +15,7 @@ import { finalize } from 'rxjs';
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [CommonModule, TranslateModule, VcButtonComponent, FormsModule, VcInputComponent, ReactiveFormsModule],
+  imports: [CommonModule, TranslateModule, VcButtonComponent, VcInputComponent, ReactiveFormsModule],
   templateUrl: './forgot-password.component.html'
 })
 export class ForgotPasswordComponent {

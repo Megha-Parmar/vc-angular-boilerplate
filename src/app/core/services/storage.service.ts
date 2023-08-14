@@ -33,6 +33,10 @@ export class StorageService {
     }
   }
 
+  getUserId() {
+    return this.get(STORAGE.USER_DATA)._id;
+  }
+
   remove(key: string) {
     if (isPlatformBrowser(this.platformId)) {
       this.localStorage.removeItem(key);

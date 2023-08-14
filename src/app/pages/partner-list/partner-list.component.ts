@@ -104,10 +104,10 @@ export class PartnerListComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef), finalize(() => this.isLoading = false))
       .subscribe((res: PartnerList) => {
         if (res) {
-          res.records.forEach((el: PartnerDetail) => {
+          res.records.forEach((el: PartnerDetail | any) => {
             COUNTRY_LIST.forEach((country) => {
-              if (el.country === country.value) {
-                el.country = `${country.label.charAt(0).toUpperCase()}${country.label.slice(1)}`;
+              if (el.address.country === country.value) {
+                el.address.country = `${country.label.charAt(0).toUpperCase()}${country.label.slice(1)}`;
               }
             });
             el.partnerAction = [
@@ -132,14 +132,24 @@ export class PartnerListComponent implements OnInit {
   }
 
   editPartner(row: PartnerDetail): void {
-    this.router.navigate([`../${row.uuid}`], { relativeTo: this.route });
+    this.router.navigate([`../${row._id}`], { relativeTo: this.route });
   }
 
   deletePartner(row: PartnerDetail): void {
     this.dialogService.openGenerateCodeDialog(row).afterClosed().subscribe((res) => {
-      this.toasterService.displaySnackBarWithTranslation(
-        'toasterMessage.updateStatusSuccessful', MessageType.success
-      );
+      if (res) {
+        this.partnerService.deletePartnerDetail(row._id)
+          .pipe(takeUntilDestroyed(this.destroyRef))
+          .subscribe(() => {
+            this.toasterService.displaySnackBarWithTranslation(
+              'toasterMessage.updateStatusSuccessful', MessageType.success
+            );
+            const index = this.partnerList.data.findIndex((user) => user._id === row._id);
+            this.partnerList.data.splice(index, 1);
+            this.partnerList = new MatTableDataSource(this.partnerList.data);
+            this.paginator.length = this.partnerList.data.length;
+          });
+      }
     });
   }
 
@@ -148,7 +158,7 @@ export class PartnerListComponent implements OnInit {
   }
 
   updateStatus(row: PartnerDetail): void {
-    this.partnerService.updatePartnerDetail({ isActive: !row.isActive }, row.uuid)
+    this.partnerService.updatePartnerDetail({ isActive: !row.isActive }, row._id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.toasterService.displaySnackBarWithTranslation(

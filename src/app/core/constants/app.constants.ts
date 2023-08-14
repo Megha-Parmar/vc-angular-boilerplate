@@ -12,26 +12,6 @@ export const REGEX_CONSTANTS = {
   ZIP_REGEX: /^[0-9]{4,6}$/
 };
 
-export const API_ROUTES = {
-  loginApi: 'auth/login',
-  forgotPasswordApi: 'auth/forgotPassword',
-  setPasswordApi: 'auth/setPassword',
-  partnerListApi: 'partner',
-  addPartnerApi: 'partner',
-  cardListApi: 'cards',
-  downloadExcelApi: 'cards/excel',
-  accountingStatsApi: 'cards/accountingStats',
-  buyingBillApi: 'accounts/buy',
-  redeemBillApi: 'accounts/redeem',
-  accountStatusChangeApi: 'accounts',
-  dashboardAccountingStatsApi: 'dashboard/accountingStats',
-  redemptionListApi: 'dashboard/shopifyOrders',
-  dashboardPerformanceOverviewApi: 'dashboard/performanceOverview',
-  dashboardTopPartnersApi: 'dashboard/topPartners',
-  exchangeRateApi: 'exchangerates',
-  openInvoiceListApi: 'dashboard/openBillList'
-};
-
 export enum MessageType {
   info = 'info',
   error = 'error',
@@ -46,7 +26,9 @@ export const LANGUAGE_CONSTANTS = {
 
 export const DEFAULT_LANGUAGE = LANGUAGE_CONSTANTS.en;
 
-export const PAGE_SIZE = [10, 25, 50, 100];
+export const PAGE_SIZE = [
+  10, 25, 50, 100
+];
 
 export const COUNTRY_LIST = [
   { value: '63f3818f7ad52cc9f404f645', label: 'switzerland' },

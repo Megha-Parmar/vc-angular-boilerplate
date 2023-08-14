@@ -8,7 +8,6 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageType } from '@constants/app.constants';
 import { STORAGE } from '@constants/storage.constant';
-import { environment } from '@environment/environment';
 import { AlertToastrService } from '@services/alert-toastr.service';
 import { LoggerService } from '@services/logger.service';
 import { StorageService } from '@services/storage.service';
@@ -21,19 +20,8 @@ export const HttpTokenInterceptor: HttpInterceptorFn = (request, next) => {
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`,
+        url: request.url
       }
-    });
-  }
-
-  if (request.url.includes('i18n') ||
-    request.url.includes('assets')) {
-    request = request.clone({
-      url: request.url
-    });
-  } else {
-    const requestUrl = `${environment.hostName}${environment.restAPI}${request.url}`;
-    request = request.clone({
-      url: requestUrl,
     });
   }
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
-import { API_ROUTES } from '@constants/app.constants';
+import { API_ROUTES } from '@constants/api.constants';
 import { LoginParams, LoginResponse } from '@models/auth.model';
 import { HttpClientService } from '@services/http-client.service';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,6 @@ export class AuthenticationService {
   }
 
   setPassword(params: Partial<LoginParams>): Observable<[] | null> {
-    return this.httpClientService.post(API_ROUTES.setPasswordApi, params);
+    return this.httpClientService.put(API_ROUTES.setPasswordApi, params);
   }
 }

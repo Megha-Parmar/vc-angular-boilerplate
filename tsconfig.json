@@ -54,6 +54,9 @@
       "@models/*": [
         "app/core/models/*"
       ],
+      "@mock/*": [
+        "app/mocks/*"
+      ],
       "@services/*": [
         "app/core/services/*"
       ],
