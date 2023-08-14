@@ -7,7 +7,8 @@ import { VcLoaderComponent } from '@vc-libs/vc-loader/vc-loader.component';
   selector: 'app-vc-button',
   standalone: true,
   imports: [NgClass, NgIf, VcLoaderComponent],
-  templateUrl: './vc-button.component.html'
+  templateUrl: './vc-button.component.html',
+  styleUrls: ['./vc-button.component.scss']
 })
 export class VcButtonComponent {
 

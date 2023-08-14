@@ -7,11 +7,12 @@ import { DynamicDirective } from '@app/core/directives/dynamic.directive';
 import { DialogService } from '@app/core/services/dialog.service';
 import { DynamicComponentLoaderService } from '@app/core/services/dynamic-component-loader.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { VcButtonComponent } from '@vc-libs/vc-button/vc-button.component';
 
 @Component({
   selector: 'app-vc-dialog',
   standalone: true,
-  imports: [CommonModule, TranslateModule, ReactiveFormsModule, DynamicDirective],
+  imports: [CommonModule, TranslateModule, ReactiveFormsModule, DynamicDirective, VcButtonComponent],
   templateUrl: './vc-dialog.component.html',
   styleUrls: ['./vc-dialog.component.scss']
 })
