@@ -40,7 +40,7 @@ export class PartnerService {
 
   updatePartnerDetail(params: Partial<CreatePartner>, uuid: string): Observable<[] | null> {
     return this.httpClientService.put(`${API_ROUTES.addPartnerApi}/${uuid}`,
-      { ...params, userId: this.storageService.getUserId });
+      { ...params, userId: this.storageService.getUserId() });
   }
 
   deletePartnerDetail(uuid: string): Observable<[] | null> {
