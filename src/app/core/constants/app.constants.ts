@@ -1,6 +1,7 @@
 export const APP_CONSTANTS = {
   REDIRECT_URL: 'redirect_url',
-  SUPPORT_EMAIL: 'info@calopad.com'
+  SUPPORT_EMAIL: 'info@calopad.com',
+  CSP_NONCE_KEY: 'cfrfgfrtg'
 };
 
 export const REGEX_CONSTANTS = {
