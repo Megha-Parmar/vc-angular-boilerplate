@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, CSP_NONCE, LOCALE_ID, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, LOCALE_ID, importProvidersFrom } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,7 +11,6 @@ import { HttpErrorInterceptor, HttpTokenInterceptor } from '@interceptors/http.i
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CustomPageTitleStrategy } from '@services/custom-page-title-strategy.service';
-import { APP_CONSTANTS } from './core/constants/app.constants';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,11 +33,6 @@ export const appConfig: ApplicationConfig = {
     { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },
     { provide: LOCALE_ID, useValue: 'en-us' },
     { provide: TitleStrategy, useClass: CustomPageTitleStrategy },
-
-    {
-      provide: CSP_NONCE,
-      useValue: APP_CONSTANTS.CSP_NONCE_KEY
-    },
     ...mockServiceProvider
   ]
 };
