@@ -37,7 +37,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "vercel.json",
+                "input": "src/",
+                "output": "./"
+              }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
