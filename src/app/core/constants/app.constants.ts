@@ -46,6 +46,26 @@ export const LANGUAGE_LIST = [
   { value: 'de_CH', label: 'German' }
 ];
 
+export const ROUTE_PATH = {
+  dashboard: '/admin/dashboard',
+  partner: '/admin/partner'
+};
+
+export const LANGUAGE_CONSTANTS_LIST = [
+  {
+    value: 'en_US',
+    src: '/assets/images/flags/en.svg',
+    alt: 'UK flag',
+    viewValue: 'EN'
+  },
+  {
+    value: 'de_CH',
+    src: '/assets/images/flags/de.svg',
+    alt: 'German flag',
+    viewValue: 'DE'
+  }
+];
+
 export enum HttpMethod {
   post = 'POST',
   get = 'GET'
