@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { SvgIcon } from '@app/core/models/common.model';
-import { SVG_ICON_LIST } from '@constants/app.constants';
+import { LANGUAGE_CONSTANTS_LIST, ROUTE_PATH, SVG_ICON_LIST } from '@constants/app.constants';
 import { STORAGE } from '@constants/storage.constant';
 import { LoginResponse } from '@models/auth.model';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -32,6 +32,8 @@ export class SidebarComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   listSvg: SvgIcon;
   logoutSvg: SvgIcon;
+  readonly routePath = ROUTE_PATH;
+  readonly languageList = LANGUAGE_CONSTANTS_LIST;
 
   constructor(
     private storageService: StorageService,
