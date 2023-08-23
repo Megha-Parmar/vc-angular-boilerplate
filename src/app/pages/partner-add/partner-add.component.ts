@@ -71,8 +71,11 @@ export class PartnerAddComponent implements OnInit {
   ngOnInit(): void {
     this.vcEventsService.emitBreadcrumbsDetail(this.breadcrumbs);
     this.initializeForm();
+  }
+
+  ngAfterViewInit() {
     if (this.uuid) {
-      const partnerDetail = this.route.snapshot.data.partnerDetail.data;
+      const partnerDetail = this.route.snapshot.data.partnerDetail;
       this.addPartnerForm.patchValue(partnerDetail);
     }
   }
