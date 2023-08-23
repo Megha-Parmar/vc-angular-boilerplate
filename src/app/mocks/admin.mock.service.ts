@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { MockAccountingStats, MockOpenInvoiceList, MockPerformanceOverview, MockRedemptionList, MockTopPartnerDetail } from '@constants/mock-data.constants';
+import {
+  MockAccountingStats, MockOpenInvoiceList, MockPerformanceOverview,
+  MockRedemptionList, MockTopPartnerDetail
+} from '@constants/mock-data.constants';
 import {
   DashboardAccountingStats,
   InvoiceList,

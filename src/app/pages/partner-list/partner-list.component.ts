@@ -12,6 +12,7 @@ import { DialogService } from '@app/core/services/dialog.service';
 import {
   COUNTRY_LIST,
   DEBOUNCE_TIME,
+  DEFAULT_MAT_DIALOG_CONFIG,
   DEFAULT_PAGE_INDEX,
   DEFAULT_PAGE_SIZE,
   MessageType,
@@ -136,7 +137,11 @@ export class PartnerListComponent implements OnInit {
   }
 
   deletePartner(row: PartnerDetail): void {
-    this.dialogService.openGenerateCodeDialog(row).afterClosed().subscribe((res) => {
+    const config = {
+      ...DEFAULT_MAT_DIALOG_CONFIG,
+      minHeight: '200px'
+    };
+    this.dialogService.openGenerateCodeDialog(row, config).afterClosed().subscribe((res) => {
       if (res) {
         this.partnerService.deletePartnerDetail(row._id)
           .pipe(takeUntilDestroyed(this.destroyRef))
