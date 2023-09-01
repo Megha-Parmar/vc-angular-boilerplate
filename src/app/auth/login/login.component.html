@@ -7,7 +7,7 @@
         <label class="field-lbl" for="email"
           [ngClass]="{ 'field-error': (loginForm.submitted || email.touched) && email.invalid }">{{ 'login.email' |
           translate }}</label>
-        <app-vc-input
+        <vc-input class="w-full"
           [customClass]="{ 'form-field': true, 'field-error': (loginForm.submitted || email.touched) && email.invalid }"
           type="email" name="email" [required]="true" ngModel #email="ngModel" />
       </div>
@@ -18,25 +18,44 @@
         <label class="field-lbl" for="password"
           [ngClass]="{ 'field-error': (loginForm.submitted || password.touched) && password.invalid }">{{
           'login.password' | translate }}</label>
-        <app-vc-input
-          [customClass]="{ 'form-field': true, 'field-error': (loginForm.submitted || password.touched) && password.invalid}"
+        <vc-input class="w-full"
+          [customClass]="{ 'form-field': true,'cls-color-red':true, 'field-error': (loginForm.submitted || password.touched) && password.invalid}"
           type="password" name="password" [required]="true" ngModel #password="ngModel" />
       </div>
       <ng-container *ngIf="(loginForm.submitted || password.touched) && password.errors?.required">
         <p class="error-message"> {{ 'validation.passwordRequired' | translate }} </p>
       </ng-container>
       <div class="mt-5 md:mt-8 text-right">
-        <app-vc-button [type]="'submit'"
-          [class]="{'common-btn secondary-btn font-base font-semibold rounded-[5px] min-w-[120px]': true, 'pointer-events-none': isSubmitted}"
+        <vc-button [type]="'submit'"
+          [class]="{'common-btn primary-btn font-base font-semibold rounded-[5px] min-w-[120px]': true, 'pointer-events-none': isSubmitted}"
           [isDisabled]="isSubmitted" [spin]="isSubmitted" (buttonTap)="onSubmit(loginForm)"> {{ 'login.login' |
-          translate }}</app-vc-button>
+          translate }}</vc-button>
       </div>
       <div class="mt-2 md:mt-3 text-right">
-        <app-vc-button [class]="{'cursor-pointer text-[13px]': true}" [isDisabled]="isSubmitted"
+        <vc-button [class]="{'cursor-pointer text-[13px]': true}" [isDisabled]="isSubmitted"
           (buttonTap)="navigateToForgotPassword()">
           {{'login.forgotPassword' | translate }}
-        </app-vc-button>
+        </vc-button>
       </div>
+
+      <vc-button type="button" [class]="{'cursor-pointer text-[13px] ': true}" (buttonTap)="
+      showSnackbar()">
+        {{"test" }}
+      </vc-button>
     </form>
+
+
+    <!-- <button (click)="showSnackbar()">Show Snackbar</button> -->
+    <!-- <vc-snackbar [message]="snackbarMessage" [show]="snackbarVisible"></vc-snackbar> -->
+    <!-- <vc-snackbar [message]="snackbarMessage" [show]="snackbarVisible" [action]="snackbarAction"
+      [duration]="snackbarDuration" [horizontalPosition]="snackbarHorizontalPosition"
+      [verticalPosition]="snackbarVerticalPosition"></vc-snackbar> -->
+  </div>
+  <div class="bg-white p-4 w-[570px] max-w-[100%] rounded-[10px] mt-5 md:mt-8">
+    <p class="text-center text-[13px] font-semibold">
+      <span class="font-bold">{{ 'login.problems' | translate }}</span><br>
+      {{ 'login.contactUs' | translate }}
+      <a href="mailto:{{supportEmail}}">{{supportEmail}}</a>
+    </p>
   </div>
 </div>

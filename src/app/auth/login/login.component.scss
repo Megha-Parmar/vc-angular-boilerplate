@@ -1,0 +1,6 @@
+// ::ng-deep .cls-color-red {
+//     color: red;
+//   }
+vc-input > input.form-field.cls-color-red{
+    color: red !important;
+}
