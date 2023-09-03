@@ -1,16 +1,24 @@
 <div class="bg-white shadow-2sm p-4 lg:p-6 xl:p-8 2xl:p-10 rounded-[10px]">
   <div class="flex flex-wrap -m-1.5 sm:-m-2 mb-2 sm:mb-3">
     <div class="p-1.5 sm:p-2 mr-auto order-1 sm:order-none flex-auto sm:flex-none">
-      <app-vc-button [class]="{'common-btn primary-btn font-semibold font-base rounded-[5px]': true}"
-        (buttonTap)="navigateToAddPartner()">{{'partner.addPartner' | translate}}</app-vc-button>
+      <vc-button [class]="{'common-btn primary-btn font-semibold font-base rounded-[5px]': true}"
+        (buttonTap)="navigateToAddPartner()">{{'partner.addPartner' | translate}}</vc-button>
     </div>
     <div class="p-1.5 sm:p-2 order-3 sm:order-none flex-auto sm:flex-none">
       <div class="search-box relative sm:min-w-[300px]">
-        <app-vc-input placeholder="{{ 'partner.searchPartner' | translate }}" [position]="position.left"
+        <app-vc-input placeholder="{{ 'partner.searchPartner' | translate }}" [position]="position.right"
           [customClass]="{ 'shadow-2sm rounded-[60px] outline-0 text-blue-50 font-semibold h-[40px] w-full pr-4': true}"
           type="text" name="search" [formControl]="searchControl">
-          <mat-icon #projectedElement matIcon class="text-blue-50 absolute  top-[10px]">search</mat-icon>
+          <mat-icon #projectedElement matIcon class="text-blue-50 absolute top-[10px]">search</mat-icon>
         </app-vc-input>
+        <!-- <vc-input placeholder="{{ 'partner.searchPartner' | translate }}" [position]="'left'"
+          [applyAllowNumberOnly]="true"
+          [customClass]="{ 'shadow-2sm rounded-[60px] outline-0 text-blue-50 font-semibold h-[40px] w-full pr-4': true}"
+          type="text" name="search" [formControl]="searchControl">
+          <mat-icon #projectedElement matIcon class="text-blue-50 absolute top-[10px]">search</mat-icon>
+        </vc-input> -->
+
+
       </div>
     </div>
     <div class="p-1.5 sm:p-2 order-2 sm:order-none flex-auto sm:flex-none">
@@ -109,5 +117,37 @@
     </div>
     <mat-paginator class="custom-paginator" (page)="getPartnerList()" [pageSizeOptions]="pageSizeOptions"
       showFirstLastButtons></mat-paginator>
+  </div>
+  <div class="vc-container" *ngIf="data && data.length">
+    <!-- <vc-table [data]="partnerList.data" [tableHeader]="columnLabel2"></vc-table> -->
+    <vc-table class="component-wrapper" [columns]="columns" [data]="data" [pageSize]="1" [totalData]="totalData"
+      (onNextButtonClick)="this.page = $event;getPartnerList()">
+      <ng-template vcTableHeader let-columns>
+        <div class="column" *ngFor="let col of columns">
+          {{ col.colName }}
+        </div>
+      </ng-template>
+
+      <ng-template vcTableBody let-data>
+        <!-- {{data|json}}++ -->
+        <div class="row" *ngFor="let col of data.columns">
+          <!-- {{ data.rowData[col.fieldName] }} -->
+
+          {{ data.rowData|dotToBracket: col?.fieldName }}
+
+          <!-- dotToBracket -->
+          <!-- {{ data.rowData['address']['street'] }} -->
+
+          <!-- {{col.fieldName}} -->
+        </div>
+
+        <div class="row">
+          <div class="cell" *ngFor="let col of data.columns">
+            {{ col.property ? data.rowData[col.property] : '' }}
+          </div>
+        </div>
+      </ng-template>
+
+    </vc-table>
   </div>
 </div>
